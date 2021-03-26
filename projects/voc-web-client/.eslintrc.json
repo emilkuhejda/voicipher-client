@@ -15,6 +15,12 @@
         ],
         "createDefaultProgram": true
       },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/ng-cli-compat",
+        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
       "rules": {
         "@angular-eslint/component-selector": [
           "error",
@@ -31,12 +37,24 @@
             "prefix": "lib",
             "style": "camelCase"
           }
+        ],
+        "@typescript-eslint/no-inferrable-types": [
+          "off"
+        ],
+        "@typescript-eslint/explicit-member-accessibility": [
+          "error",
+          {
+            "accessibility": "explicit"
+          }
         ]
       }
     },
     {
       "files": [
         "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {}
     }
