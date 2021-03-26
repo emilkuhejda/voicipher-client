@@ -362,6 +362,86 @@
           }
         }
       }
+    },
+    "voc-components": {
+      "projectType": "library",
+      "root": "projects/voc-components",
+      "sourceRoot": "projects/voc-components/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/voc-components/tsconfig.lib.json",
+            "project": "projects/voc-components/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/voc-components/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/voc-components/src/test.ts",
+            "tsConfig": "projects/voc-components/tsconfig.spec.json",
+            "karmaConfig": "projects/voc-components/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/voc-components/tsconfig.lib.json",
+              "projects/voc-components/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "voc-web-client": {
+      "projectType": "library",
+      "root": "projects/voc-web-client",
+      "sourceRoot": "projects/voc-web-client/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/voc-web-client/tsconfig.lib.json",
+            "project": "projects/voc-web-client/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/voc-web-client/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/voc-web-client/src/test.ts",
+            "tsConfig": "projects/voc-web-client/tsconfig.spec.json",
+            "karmaConfig": "projects/voc-web-client/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/voc-web-client/tsconfig.lib.json",
+              "projects/voc-web-client/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "home"
