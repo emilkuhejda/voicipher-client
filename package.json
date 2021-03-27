@@ -7,7 +7,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "home": "ng serve --project=home",
+    "profile": "ng serve --project=profile",
+    "control-panel": "ng serve --project=control-panel"
   },
   "private": true,
   "dependencies": {
