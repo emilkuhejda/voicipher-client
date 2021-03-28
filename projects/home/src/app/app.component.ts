@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DefaultComponent } from './default/default.component';
 
 @Component({
     selector: 'app-root',
@@ -6,8 +7,12 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    public title = 'home';
+    public isDefaultComponent: boolean = false;
 
     public constructor() { }
+
+    public onActivate(component: Component) {
+        this.isDefaultComponent = component instanceof DefaultComponent;
+    }
 
 }
