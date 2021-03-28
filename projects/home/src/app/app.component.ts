@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RouterService } from './service/router.service';
+import { PagePath } from './service/types';
 
 @Component({
     selector: 'app-root',
@@ -7,6 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-    public constructor() { }
+    public constructor(private routerService: RouterService) { }
+
+    public getLink(path: PagePath): string[] {
+        return this.routerService.getLink(path);
+    }
 
 }
