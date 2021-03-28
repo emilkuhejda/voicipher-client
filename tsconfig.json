@@ -20,6 +20,15 @@
       "dom"
     ],
     "paths": {
+      "@home/core": [
+        "projects/home/src/environments/core"
+      ],
+      "@home/environment": [
+        "projects/home/src/environments/environment"
+      ],
+      "@home/service/*": [
+        "projects/home/src/app/service/*"
+      ],
       "voc-components": [
         "dist/voc-components/voc-components",
         "dist/voc-components"
