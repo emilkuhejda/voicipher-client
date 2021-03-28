@@ -12,6 +12,11 @@ import { AboutComponent } from './localization/about/about.component';
 import { environment } from '@home/environment';
 import { ServiceModule } from './service/service.module';
 import { HomeComponent } from './home/home.component';
+import { HowToComponent } from './localization/how-to/how-to.component';
+import { PricingComponent } from './localization/pricing/pricing.component';
+import { ContactComponent } from './localization/contact/contact.component';
+import { PrivacyComponent } from './localization/privacy/privacy.component';
+import { TermsComponent } from './localization/terms/terms.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +24,12 @@ import { HomeComponent } from './home/home.component';
         HomeComponent,
         AboutComponent,
         NotFoundComponent,
-        LocalizationComponent
+        LocalizationComponent,
+        HowToComponent,
+        PricingComponent,
+        ContactComponent,
+        PrivacyComponent,
+        TermsComponent
     ],
     imports: [
         BrowserModule,
