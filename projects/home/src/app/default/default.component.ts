@@ -9,4 +9,6 @@ export class DefaultComponent {
 
     public constructor() { }
 
+    public login(): void { }
+
 }
