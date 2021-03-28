@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
-import { RouterService } from './service/router.service';
-import { PagePath } from './service/types';
+import { PagePath } from '@home/service/types';
 import { takeUntil } from 'rxjs/operators';
-import { StorageService } from './service/storage.service';
+import { StorageService } from '@home/service/storage.service';
+import { RouterService } from '@home/service/router.service';
 
 @Component({
     selector: 'app-root',
