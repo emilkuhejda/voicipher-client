@@ -28,9 +28,21 @@
               "projects/home/src/assets"
             ],
             "styles": [
-              "projects/home/src/styles.scss"
+              "projects/home/src/assets/plugins/font-awesome/font-awesome.min.css",
+              "projects/home/src/assets/plugins/bootstrap/bootstrap.min.css",
+              "projects/home/src/assets/plugins/venobox/venobox.css",
+              "projects/home/src/assets/plugins/slick/slick.css",
+              "projects/home/src/assets/plugins/aos/aos.css",
+              "projects/home/src/assets/css/style.css"
             ],
-            "scripts": []
+            "scripts": [
+              "projects/home/src/assets/plugins/jQuery/jquery.min.js",
+              "projects/home/src/assets/plugins/bootstrap/bootstrap.min.js",
+              "projects/home/src/assets/plugins/slick/slick.min.js",
+              "projects/home/src/assets/plugins/venobox/venobox.min.js",
+              "projects/home/src/assets/plugins/aos/aos.js",
+              "projects/home/src/assets/js/script.js"
+            ]
           },
           "configurations": {
             "production": {
