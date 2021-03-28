@@ -1,17 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DefaultComponent } from './default/default.component';
+import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './localization/about/about.component';
 import { LocalizationComponent } from './localization/localization.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 export const pathPairs: { [key: string]: { [key: string]: string } } = {
-    about: { en: 'about', sk: 'o-nas' }
+    home: { en: '', sk: '' },
+    about: { en: 'about', sk: 'o-nas' },
+    howTo: { en: 'how-to', sk: 'ako-na-to' },
+    pricing: { en: 'pricing', sk: 'cennik' },
+    contact: { en: 'contact', sk: 'kontakt' },
+    terms: { en: 'terms-of-use', sk: 'podmienky-pouzivania' },
+    privacy: { en: 'privacy-policy', sk: 'ochrana-osobnych-udajov' }
 };
 
 const routes: Routes = [
-    { path: '', component: DefaultComponent },
-    { path: 'sk', component: DefaultComponent },
+    { path: '', component: HomeComponent },
+    { path: 'sk', component: HomeComponent },
     {
         path: ':lang', component: LocalizationComponent, children: [
             { path: pathPairs.about.en, component: AboutComponent },
