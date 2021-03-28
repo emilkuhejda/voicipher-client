@@ -1,5 +1,9 @@
 {
   "Voicipher": "Voicipher",
+  "Language": {
+    "English": "English",
+    "Slovak": "Slovak"
+  },
   "AppPage": {
     "Home": "Home",
     "WhatIsVoicipher": "What is Voicipher",

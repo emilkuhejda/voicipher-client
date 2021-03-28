@@ -87,10 +87,25 @@
     <section class="py-4">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+                <div class="col-md-4 text-center text-md-left mb-3 mb-md-0">
                     <p class="mb-0 text-light" [innerHTML]="'AppPage.Copyright' | translate"></p>
                 </div>
-                <div class="col-md-6 text-md-right text-center">
+                <div class="col-md-4 text-md-center text-center">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a (click)="changeLanguage('en')"
+                                [className]="currentLanguage == 'en' ? 'text-light' : 'text-color'">{{
+                                'Language.English' | translate }}</a>
+                        </li>
+                        <li class="list-inline-item">
+                            | &nbsp;
+                            <a (click)="changeLanguage('sk')"
+                                [className]="currentLanguage == 'sk' ? 'text-light' : 'text-color'">{{ 'Language.Slovak'
+                                | translate }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 text-md-right text-center">
                     <ul class="list-inline">
                         <li class="list-inline-item"><a [routerLink]="getLink('terms')" class="text-light">{{
                                 'AppPage.TermsOfService' | translate }}</a>
