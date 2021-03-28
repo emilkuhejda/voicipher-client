@@ -21,6 +21,6 @@ export class StorageService {
             language = environment.defaultLanguage;
         }
 
-        this.storage.setItem(this.languageKey, language)
+        this.storage.setItem(this.languageKey, language);
     }
 }

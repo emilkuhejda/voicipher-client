@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RouterService } from '@home/service/router.service';
 
 @Component({
     selector: 'app-root',
@@ -9,8 +8,6 @@ import { RouterService } from '@home/service/router.service';
 export class AppComponent {
     public title = 'home';
 
-    constructor(private routerService: RouterService) {
-        const link = this.routerService.getLink('about');
-        console.log(link);
-    }
+    public constructor() { }
+
 }

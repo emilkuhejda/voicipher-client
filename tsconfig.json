@@ -20,9 +20,6 @@
       "dom"
     ],
     "paths": {
-      "@home/core": [
-        "projects/home/src/environments/core"
-      ],
       "@home/environment": [
         "projects/home/src/environments/environment"
       ],

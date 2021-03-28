@@ -11,6 +11,7 @@ export const pathPairs: { [key: string]: { [key: string]: string } } = {
 
 const routes: Routes = [
     { path: '', component: DefaultComponent },
+    { path: 'sk', component: DefaultComponent },
     {
         path: ':lang', component: LocalizationComponent, children: [
             { path: pathPairs.about.en, component: AboutComponent },

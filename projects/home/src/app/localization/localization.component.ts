@@ -10,7 +10,7 @@ import { StorageService } from '@home/service/storage.service';
 })
 export class LocalizationComponent implements OnInit {
 
-    constructor(private storageService: StorageService, private router: Router, private route: ActivatedRoute) { }
+    public constructor(private storageService: StorageService, private router: Router, private route: ActivatedRoute) { }
 
     public ngOnInit(): void {
         const lang = this.route.snapshot.params.lang;
