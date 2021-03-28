@@ -22,10 +22,10 @@
                             Voicipher</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark text-capitalize" [routerLink]="getLink('how-to')">How to</a>
+                        <a class="nav-link text-dark text-capitalize" [routerLink]="getLink('howTo')">How to</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark text-capitalize" [routerLink]="getLink(('pricing')">Pricing</a>
+                        <a class="nav-link text-dark text-capitalize" [routerLink]="getLink('pricing')">Pricing</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark text-capitalize" [routerLink]="getLink('contact')">Contact</a>
@@ -57,9 +57,12 @@
                     <ul class="list-styled list-hover-underline">
                         <li class="mb-3 text-light"><a [routerLink]="getLink('about')" class="text-light">What is
                                 Voicipher</a></li>
-                        <li class="mb-3 text-light"><a [routerLink]="getLink(('how-to')" class="text-light">How to</a></li>
-                        <li class="mb-3 text-light"><a [routerLink]="getLink('pricing')" class="text-light">Pricing</a></li>
-                        <li class="mb-3 text-light"><a [routerLink]="getLink('contact')" class="text-light">Contact</a></li>
+                        <li class="mb-3 text-light"><a [routerLink]="getLink('howTo')" class="text-light">How to</a>
+                        </li>
+                        <li class="mb-3 text-light"><a [routerLink]="getLink('pricing')" class="text-light">Pricing</a>
+                        </li>
+                        <li class="mb-3 text-light"><a [routerLink]="getLink('contact')" class="text-light">Contact</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
@@ -89,7 +92,8 @@
                         <li class="list-inline-item"><a [routerLink]="getLink('terms')" class="text-light">Terms of
                                 Service</a>
                         </li>
-                        <li class="list-inline-item">| &nbsp;<a [routerLink]="getLink('privacy')" class="text-light">Privacy
+                        <li class="list-inline-item">| &nbsp;<a [routerLink]="getLink('privacy')"
+                                class="text-light">Privacy
                                 Policy</a></li>
                     </ul>
                 </div>

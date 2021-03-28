@@ -12,10 +12,6 @@ export class RouterService {
         const language = this.storageService.getLanguage();
         const path = pathPairs[pathKey][language];
 
-        if (pathKey === 'home') {
-            return language === this.translateService.defaultLang ? ['/'] : ['/', language];
-        }
-
         return ['/', language, path];
     }
 }

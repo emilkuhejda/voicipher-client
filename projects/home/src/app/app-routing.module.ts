@@ -6,12 +6,13 @@ import { LocalizationComponent } from './localization/localization.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 export const pathPairs: { [key: string]: { [key: string]: string } } = {
+    home: { en: '', sk: '' },
     about: { en: 'about', sk: 'o-nas' },
-    howTo: { en: 'how-to', sk: '' },
-    pricing: { en: 'pricing', sk: '' },
-    contact: { en: 'contact', sk: '' },
-    terms: { en: 'terms', sk: '' },
-    privacy: { en: 'privacy', sk: '' }
+    howTo: { en: 'how-to', sk: 'ako-na-to' },
+    pricing: { en: 'pricing', sk: 'cennik' },
+    contact: { en: 'contact', sk: 'kontakt' },
+    terms: { en: 'terms-of-use', sk: 'podmienky-pouzivania' },
+    privacy: { en: 'privacy-policy', sk: 'ochrana-osobnych-udajov' }
 };
 
 const routes: Routes = [

@@ -1,1 +1,1 @@
-export type PagePath = 'home' | 'about' | 'how-to' | 'pricing' | 'contact' | 'terms' | 'privacy';
+export type PagePath = 'home' | 'about' | 'howTo' | 'pricing' | 'contact' | 'terms' | 'privacy';
