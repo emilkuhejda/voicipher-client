@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+    production: true,
+    defaultLanguage: 'en',
+    languages: ['en', 'sk'],
+    storage: localStorage
 };
