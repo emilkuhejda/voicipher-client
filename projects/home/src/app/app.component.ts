@@ -16,7 +16,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
     public currentLanguage: string | undefined;
 
-    public constructor(private routerService: RouterService, private storageService: StorageService, private translateService: TranslateService) { }
+    public constructor(
+        private routerService: RouterService,
+        private storageService: StorageService,
+        private translateService: TranslateService) { }
 
     public ngOnInit(): void {
         this.currentLanguage = this.storageService.getLanguage();
