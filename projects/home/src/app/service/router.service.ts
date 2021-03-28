@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { pathPairs } from '../app-routing.module';
 import { StorageService } from './storage.service';
+import { PagePath } from './types';
 
 @Injectable()
 export class RouterService {
-    public constructor(private storageService: StorageService) { }
+    public constructor(private storageService: StorageService, private translateService: TranslateService) { }
 
-    public getLink(pathKey: string): string[] {
+    public getLink(pathKey: PagePath): string[] {
         const language = this.storageService.getLanguage();
         const path = pathPairs[pathKey][language];
+
+        if (pathKey === 'home') {
+            return language === this.translateService.defaultLang ? ['/'] : ['/', language];
+        }
+
         return ['/', language, path];
     }
 }

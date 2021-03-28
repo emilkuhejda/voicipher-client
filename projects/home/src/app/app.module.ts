@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DefaultComponent } from './default/default.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -12,11 +11,12 @@ import { LocalizationComponent } from './localization/localization.component';
 import { AboutComponent } from './localization/about/about.component';
 import { environment } from '@home/environment';
 import { ServiceModule } from './service/service.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        DefaultComponent,
+        HomeComponent,
         AboutComponent,
         NotFoundComponent,
         LocalizationComponent
