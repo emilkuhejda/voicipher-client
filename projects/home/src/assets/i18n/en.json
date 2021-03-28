@@ -1,2 +1,16 @@
 {
+  "Voicipher": "Voicipher",
+  "HomePage": {
+    "Home": "Home",
+    "WhatIsVoicipher": "What is Voicipher",
+    "HowTo": "How to",
+    "Pricing": "Pricing",
+    "Contact": "Contact",
+    "SignUp": "sign up",
+    "FooterText": "Voicipher is your professional assistant that converts voice to text using Google AI Technology. Convert your audio record to text or use a real time dictation. Simple, accurate and reliable.",
+    "ContactInfo": "Contact Info",
+    "Copyright": "Copyright &copy; Voicipher 2021",
+    "TermsOfService": "Terms of Service",
+    "PrivacyPolicy": "Privacy Policy"
+  }
 }
