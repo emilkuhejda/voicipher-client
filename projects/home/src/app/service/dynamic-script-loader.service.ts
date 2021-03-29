@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-type scriptKey = 'script';
+type ScriptKey = 'script';
 
-declare var document: any;
+declare const document: any;
 
 @Injectable()
 export class DynamicScriptLoaderService {
@@ -15,16 +15,16 @@ export class DynamicScriptLoaderService {
 
     public constructor() { }
 
-    public loadScript(name: scriptKey) {
+    public loadScript(name: ScriptKey) {
         return new Promise((resolve, _) => {
             if (!this.scripts[name].loaded) {
-                let script = document.createElement('script');
+                const script = document.createElement('script');
                 script.type = 'text/javascript';
                 script.src = this.scripts[name].src;
-                script.id = "script-" + name;
+                script.id = 'script-' + name;
                 if (script.readyState) {
                     script.onreadystatechange = () => {
-                        if (script.readyState === "loaded" || script.readyState === "complete") {
+                        if (script.readyState === 'loaded' || script.readyState === 'complete') {
                             script.onreadystatechange = null;
                             this.scripts[name].loaded = true;
                             resolve({ script: name, loaded: true, status: 'Loaded' });
@@ -36,7 +36,7 @@ export class DynamicScriptLoaderService {
                         resolve({ script: name, loaded: true, status: 'Loaded' });
                     };
                 }
-                script.onerror = (_: any) => resolve({ script: name, loaded: false, status: 'Loaded' });
+                script.onerror = (error: any) => resolve({ script: name, loaded: false, status: 'Loaded' });
                 document.getElementsByTagName('head')[0].appendChild(script);
             } else {
                 resolve({ script: name, loaded: true, status: 'Already Loaded' });
@@ -44,11 +44,11 @@ export class DynamicScriptLoaderService {
         });
     }
 
-    public removeScript(name: scriptKey) {
+    public removeScript(name: ScriptKey) {
         return new Promise((resolve, _) => {
             if (this.scripts[name].loaded) {
                 this.scripts[name].loaded = false;
-                let element = document.getElementById("script-" + name);
+                const element = document.getElementById('script-' + name);
                 if (element === null) {
                     resolve({ script: name, loaded: false, status: 'Script not found' });
                 } else {

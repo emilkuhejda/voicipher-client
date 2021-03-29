@@ -16,7 +16,11 @@ export class LocalizationComponent implements OnDestroy {
 
     private language: string = environment.defaultLanguage;
 
-    public constructor(private translateService: TranslateService, private storageService: StorageService, private router: Router, private route: ActivatedRoute) {
+    public constructor(
+        private translateService: TranslateService,
+        private storageService: StorageService,
+        private router: Router,
+        private route: ActivatedRoute) {
         this.language = this.route.snapshot.params.lang;
         if (!environment.languages.find(x => x === this.language)) {
             this.router.navigate(['/404']);
