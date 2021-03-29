@@ -17,6 +17,7 @@ import { PricingComponent } from './localization/pricing/pricing.component';
 import { ContactComponent } from './localization/contact/contact.component';
 import { PrivacyComponent } from './localization/privacy/privacy.component';
 import { TermsComponent } from './localization/terms/terms.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import { TermsComponent } from './localization/terms/terms.component';
         AppRoutingModule,
         HttpClientModule,
         ServiceModule,
+        ReactiveFormsModule,
         TranslateModule.forRoot({
             defaultLanguage: environment.defaultLanguage,
             loader: {

@@ -183,5 +183,17 @@
     "PageNotFound": "Page Not Found",
     "NotFoundText": "It looks like you found a glitch in the matrix...",
     "BackToDashboard": "&larr; Back to Dashboard"
+  },
+  "ContactPage": {
+    "Headline": "Contact us",
+    "Contact": "Contact",
+    "LeaveMessage": "Leave A Message",
+    "EnterName": "Please enter your name.",
+    "WrongEmail": "Wrong email address format.",
+    "EnterEmail": "Please enter your email address.",
+    "EnterMessage": "Please enter a message.",
+    "SuccessMessage": "Contact form was successfully sent.",
+    "FailedMessage": "Contact form was not successfully sent. Please, try it later.",
+    "Send": "Send"
   }
 }

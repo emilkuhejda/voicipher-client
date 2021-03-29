@@ -1,12 +1,6 @@
 (function ($) {
     'use strict';
 
-
-    // Preloader js    
-    $(window).on('load', function () {
-        $('.preloader').fadeOut(700);
-    });
-
     //   navfixed
     $(window).on('scroll', function () {
         var scrolling = $(this).scrollTop();
