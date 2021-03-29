@@ -23,6 +23,7 @@ export const pathPairs: { [key: string]: { [key: string]: string } } = {
 const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'sk', component: HomeComponent },
+    { path: '404', component: NotFoundComponent },
     {
         path: ':lang', component: LocalizationComponent, children: [
             { path: pathPairs.about.en, component: AboutComponent },
@@ -39,7 +40,6 @@ const routes: Routes = [
             { path: pathPairs.privacy.sk, component: PrivacyComponent },
         ]
     },
-    { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '404' }
 ];
 
