@@ -22,10 +22,12 @@ export const pathPairs: { [key: string]: { [key: string]: string } } = {
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
-    { path: 'sk', component: HomeComponent },
+    { path: 'en/', component: HomeComponent },
+    { path: 'sk/', component: HomeComponent },
     { path: '404', component: NotFoundComponent },
     {
         path: ':lang', component: LocalizationComponent, children: [
+            { path: '', component: HomeComponent },
             { path: pathPairs.about.en, component: AboutComponent },
             { path: pathPairs.about.sk, component: AboutComponent },
             { path: pathPairs.howTo.en, component: HowToComponent },
