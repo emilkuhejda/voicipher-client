@@ -1,5 +1,6 @@
-jQuery(document).ready(function () {
+(function ($) {
     'use strict';
+
 
     // Preloader js    
     $(window).on('load', function () {
@@ -95,8 +96,7 @@ jQuery(document).ready(function () {
         {
             breakpoint: 480,
             settings: {
-                slidesToShow: 1,
-                arrows: false
+                slidesToShow: 1
             }
         }
         ]
@@ -166,4 +166,6 @@ jQuery(document).ready(function () {
         easing: 'ease',
         duration: 800
     });
-});
+
+
+})(jQuery);
