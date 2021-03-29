@@ -33,8 +33,9 @@ export class ContactComponent implements OnInit {
         this.successMessage = '';
         this.errorMessage = '';
 
-        if (this.contactForm?.invalid)
+        if (this.contactForm?.invalid) {
             return;
+        }
 
         this.loading = true;
 
@@ -43,8 +44,6 @@ export class ContactComponent implements OnInit {
             email: this.controls?.email.value,
             message: this.controls?.message.value
         };
-
-        console.log(contactFormData)
     }
 
 }
