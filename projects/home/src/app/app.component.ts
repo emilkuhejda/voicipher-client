@@ -42,4 +42,8 @@ export class AppComponent implements OnInit, OnDestroy {
         });
     }
 
+    public onActivate() {
+        window.scrollTo({ top: 0 });
+    }
+
 }

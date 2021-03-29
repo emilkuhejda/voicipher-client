@@ -33,4 +33,8 @@ export class LocalizationComponent implements OnDestroy {
         this.destroy$.unsubscribe();
     }
 
+    public onActivate() {
+        window.scrollTo({ top: 0 });
+    }
+
 }
