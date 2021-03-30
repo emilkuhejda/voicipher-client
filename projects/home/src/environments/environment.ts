@@ -6,7 +6,8 @@ export const environment = {
     production: false,
     defaultLanguage: 'en',
     languages: ['en', 'sk'],
-    storage: localStorage
+    storage: localStorage,
+    webApiUrl: 'https://localhost:5001/'
 };
 
 /*

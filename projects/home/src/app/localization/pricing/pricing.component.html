@@ -1,0 +1,71 @@
+<section class="page-title page-title-overlay bg-cover" data-background="assets/images/background/about.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <h1 class="text-white position-relative">
+                    {{ 'PricingPage.Headline' | translate }}<span class="watermark-sm">{{ 'PricingPage.Headline' |
+                        translate }}</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- pricing -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h3 class="section-title" data-aos="fade-up" data-aos-delay="100">
+                    {{ 'PricingPage.Text1' | translate }}
+                </h3>
+                <p class="lead">
+                    {{ 'PricingPage.Text2' | translate }}
+                </p>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-lg-0 mb-4" data-aos="fade-up">
+                <div
+                    class="pricing-table position-relative text-center px-4 py-5 rounded-lg shadow transition bg-white">
+                    <span class="badge badge-pill badge-light font-weight-medium mb-3 py-2 px-4 text-primary">
+                        {{ 'PricingPage.10Minutes' | translate }}
+                    </span>
+                    <div class="h1 text-dark">{{ 'PricingPage.Free' | translate }}</div>
+                    <h5 class="mb-4 font-weight-normal text-color">&nbsp;</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-lg-0 mb-4" data-aos="fade-up">
+                <div
+                    class="pricing-table position-relative text-center px-4 py-5 rounded-lg shadow transition bg-white">
+                    <span class="badge badge-pill badge-light font-weight-medium mb-3 py-2 px-4 text-primary">
+                        {{ 'PricingPage.1Hour' | translate }}
+                    </span>
+                    <div class="h1 text-dark">4<span class="cents-label">.99</span>&#8364;</div>
+                    <h5 class="mb-4 font-weight-normal text-color">&nbsp;</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-lg-0 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div
+                    class="pricing-table position-relative text-center px-4 py-5 rounded-lg shadow transition bg-white">
+                    <span class="badge badge-pill badge-light font-weight-medium mb-3 py-2 px-4 text-primary">
+                        {{ 'PricingPage.5Hours' | translate }}
+                    </span>
+                    <div class="h1 text-dark">18<span class="cents-label">.99</span>&#8364;</div>
+                    <h5 class="mb-4 font-weight-normal text-color" [innerHTML]="'PricingPage.Save4Euro' | translate">
+                    </h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-lg-0 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div
+                    class="pricing-table position-relative text-center px-4 py-5 rounded-lg shadow transition bg-white">
+                    <span class="badge badge-pill badge-light font-weight-medium mb-3 py-2 px-4 text-primary">
+                        {{ 'PricingPage.10Hours' | translate }}
+                    </span>
+                    <div class="h1 text-dark">34<span class="cents-label">.99</span>&#8364;</div>
+                    <h5 class="mb-4 font-weight-normal text-color" [innerHTML]="'PricingPage.Save10Euro' | translate">
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- pricing -->

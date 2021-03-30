@@ -2,11 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DynamicScriptLoaderService } from '@home/service/dynamic-script-loader.service';
 
 @Component({
-    selector: 'app-about',
-    templateUrl: './about.component.html',
-    styleUrls: ['./about.component.scss']
+    selector: 'app-how-to',
+    templateUrl: './how-to.component.html',
+    styleUrls: ['./how-to.component.scss']
 })
-export class AboutComponent implements OnInit, OnDestroy {
+export class HowToComponent implements OnInit, OnDestroy {
 
     public constructor(private dynamicScriptLoaderService: DynamicScriptLoaderService) { }
 
