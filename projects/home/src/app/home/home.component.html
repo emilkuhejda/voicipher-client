@@ -3,38 +3,41 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 text-center text-lg-left mb-4 mb-lg-0">
-                <h1 class="text-dark position-relative">Save time you spend transcribing<span
-                        class="watermark">Save</span>
+                <h1 class="text-dark position-relative">{{ 'HomePage.BannerText1' | translate }}<span
+                        class="watermark">{{ 'HomePage.Save' | translate }}</span>
                 </h1>
-                <p class="text-dark mb-3 perex">Increase your productivity. Convert audio to text easy and fast.</p>
-                <p class="text-dark mb-4 font-weight-bold perex">Let Voicipher do it for you.</p>
+                <p class="text-dark mb-3 perex">{{ 'HomePage.BannerText2' | translate }}</p>
+                <p class="text-dark mb-4 font-weight-bold perex">{{ 'HomePage.BannerText3' | translate }}</p>
                 <ul class="list-inline">
                     <li class="list-inline-item mx-1 my-2">
                         <a (click)="login()" class="btn btn-outline-primary">
-                            <i class="fa fa-desktop text-secondary mr-3 transition"></i>Web
+                            <i class="fa fa-desktop text-secondary mr-3 transition"></i>{{ 'HomePage.Web' | translate }}
                         </a>
                     </li>
                     <li class="list-inline-item mx-1 my-2">
                         <a href="https://play.google.com/store/apps/details?id=com.voicipher.mobile&hl=en"
                             target="_blank" class="btn btn-outline-primary">
-                            <i class="fa fa-google text-secondary mr-3 transition"></i>Google Play
+                            <i class="fa fa-google text-secondary mr-3 transition"></i>{{ 'HomePage.GooglePlay' |
+                            translate }}
                         </a>
                     </li>
                     <li class="list-inline-item mx-1 my-2">
                         <a href="https://apps.apple.com/us/app/voicipher/id1487304758?l=sk&ls=1" target="_blank"
                             class="btn btn-outline-primary">
-                            <i class="fa fa-apple text-secondary mr-3 transition"></i>App Store
+                            <i class="fa fa-apple text-secondary mr-3 transition"></i>{{ 'HomePage.AppStore' | translate
+                            }}
                         </a>
                     </li>
                 </ul>
             </div>
             <div class="col-lg-6">
                 <img src="assets/images/homepage/screen.png" class="img-fluid w-100 shadow rounded-lg"
-                    alt="app-interface" data-aos="fade-left" data-aos-delay="1000">
+                    alt="{{ 'HomePage.Image1' | translate }}" data-aos="fade-left" data-aos-delay="1000">
             </div>
         </div>
     </div>
-    <img src="assets/images/homepage-3/banner-shape.png" class="img-fluid bg-shape-1" alt="shape">
+    <img src="assets/images/homepage-3/banner-shape.png" class="img-fluid bg-shape-1"
+        alt="{{ 'HomePage.Image8' | translate }}">
 </section>
 <!-- banner -->
 
@@ -43,7 +46,7 @@
     <div class="container">
         <div class="row">
             <h2 class="section-title text-center w-100 text-color mb-0">
-                Simple, accurate and reliable.
+                {{ 'HomePage.Text1' | translate }}
             </h2>
         </div>
     </div>
@@ -55,15 +58,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 pr-lg-5 image-wrapper">
-                <img src="assets/images/homepage/screen1.png" class="img-fluid" alt="dashboard" data-aos="fade-right">
+                <img src="assets/images/homepage/screen1.png" class="img-fluid"
+                    alt="{{ 'HomePage.Image2' | translate }}" data-aos="fade-right">
             </div>
             <div class="col-md-6 pl-lg-5">
                 <h2 class="section-title" data-aos="fade-up" data-aos-delay="200">
-                    Audio and real speech to text
+                    {{ 'HomePage.Text2' | translate }}
                 </h2>
                 <p class="mb-4 perex" data-aos="fade-up" data-aos-delay="400">
-                    Upload your file or use a real time dictation on your phone. Choose the language and receive a
-                    transcript of your audio.
+                    {{ 'HomePage.Text3' | translate }}
                 </p>
                 <ul class="list-unstyled">
                     <li class="d-flex mb-4" data-aos="fade-up" data-aos-delay="500">
@@ -71,8 +74,8 @@
                             <i class="fa fa-check text-secondary bg-white shadow icon-sm"></i>
                         </div>
                         <div>
-                            <h5>Powered by machine learning</h5>
-                            <p>Up to 96% accurate AI transcription</p>
+                            <h5>{{ 'HomePage.Text4' | translate }}</h5>
+                            <p>{{ 'HomePage.Text5' | translate }}</p>
                         </div>
                     </li>
                 </ul>
@@ -86,33 +89,33 @@
         <div class="row">
             <div class="col-md-6 pr-lg-5">
                 <h2 class="section-title" data-aos="fade-up" data-aos-delay="200">
-                    15 languages available
+                    {{ 'HomePage.Text6' | translate }}
                 </h2>
                 <p class="perex mb-5" data-aos="fade-up" data-aos-delay="300">
-                    English, German, French, Spanish, Italian, Portuguese, Slovak, Czech, Russian, Hungarian and more.
+                    {{ 'HomePage.Text7' | translate }}
                 </p>
                 <div>
                     <select class="browser-default custom-select">
-                        <option>Check if your language is available</option>
-                        <option value="en-AU">English</option>
-                        <option value="de-DE">German</option>
-                        <option value="fr-FR">French</option>
-                        <option value="es-ES">Spanish</option>
-                        <option value="it-IT">Italian</option>
-                        <option value="pt-PT">Portuguese</option>
-                        <option value="sk-SK">Slovak</option>
-                        <option value="cs-CZ">Czech</option>
-                        <option value="pl-PL">Polish</option>
-                        <option value="hu-HU">Hungarian</option>
-                        <option value="ru-RU">Russian</option>
-                        <option value="ja-JP">Japanese</option>
-                        <option value="zh">Chinese (Mandarin)</option>
+                        <option>{{ 'HomePage.Text8' | translate }}</option>
+                        <option value="en-AU">{{ 'HomePage.English' | translate }}</option>
+                        <option value="de-DE">{{ 'HomePage.German' | translate }}</option>
+                        <option value="fr-FR">{{ 'HomePage.French' | translate }}</option>
+                        <option value="es-ES">{{ 'HomePage.Spanish' | translate }}</option>
+                        <option value="it-IT">{{ 'HomePage.Italian' | translate }}</option>
+                        <option value="pt-PT">{{ 'HomePage.Portuguese' | translate }}</option>
+                        <option value="sk-SK">{{ 'HomePage.Slovak' | translate }}</option>
+                        <option value="cs-CZ">{{ 'HomePage.Czech' | translate }}</option>
+                        <option value="pl-PL">{{ 'HomePage.Polish' | translate }}</option>
+                        <option value="hu-HU">{{ 'HomePage.Hungarian' | translate }}</option>
+                        <option value="ru-RU">{{ 'HomePage.Russian' | translate }}</option>
+                        <option value="ja-JP">{{ 'HomePage.Japanese' | translate }}</option>
+                        <option value="zh">{{ 'HomePage.Chinese' | translate }}</option>
                     </select>
                 </div>
             </div>
             <div class="col-md-6 pl-lg-5 image-wrapper">
-                <img src="assets/images/homepage/screen2.png" class="img-fluid" alt="dashboard" data-aos="fade-left"
-                    data-aos-delay="200">
+                <img src="assets/images/homepage/screen2.png" class="img-fluid"
+                    alt="{{ 'HomePage.Image3' | translate }}" data-aos="fade-left" data-aos-delay="200">
             </div>
         </div>
     </div>
@@ -122,15 +125,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 pr-lg-5 image-wrapper">
-                <img src="assets/images/homepage/screen3.png" class="img-fluid" alt="dashboard" data-aos="fade-right">
+                <img src="assets/images/homepage/screen3.png" class="img-fluid"
+                    alt="{{ 'HomePage.Image4' | translate }}" data-aos="fade-right">
             </div>
             <div class="col-md-6 pl-lg-5">
                 <h2 class="section-title" data-aos="fade-up" data-aos-delay="200">
-                    Check and edit your transcript
+                    {{ 'HomePage.Text9' | translate }}
                 </h2>
                 <p class="mb-4 perex" data-aos="fade-up" data-aos-delay="400">
-                    Make any in-text changes and download a ready-to use document. Navigate in text better thanks to
-                    timestamps.
+                    {{ 'HomePage.Text10' | translate }}
                 </p>
             </div>
         </div>
@@ -142,15 +145,15 @@
         <div class="row">
             <div class="col-md-6 pr-lg-5">
                 <h2 class="section-title" data-aos="fade-up" data-aos-delay="200">
-                    Access your data via phone or computer
+                    {{ 'HomePage.Text11' | translate }}
                 </h2>
                 <p class="perex" data-aos="fade-up" data-aos-delay="300">
-                    Upload a file via phone and edit it on a computer. Or vice versa.
+                    {{ 'HomePage.Text12' | translate }}
                 </p>
             </div>
             <div class="col-md-6 pl-lg-5 image-wrapper web">
-                <img src="assets/images/homepage/screen4.png" class="img-fluid" alt="dashboard" data-aos="fade-left"
-                    data-aos-delay="200">
+                <img src="assets/images/homepage/screen4.png" class="img-fluid"
+                    alt="{{ 'HomePage.Image5' | translate }}" data-aos="fade-left" data-aos-delay="200">
             </div>
         </div>
     </div>
@@ -167,9 +170,9 @@
                     <div class="card-body">
                         <i class="fa fa-desktop icon-lg icon-blue icon-bg-blue icon-bg-circle mb-3"></i>
                         <h4 class="mt-4 mb-3">
-                            Free trial
+                            {{ 'HomePage.Text13' | translate }}
                         </h4>
-                        <p>10 minutes</p>
+                        <p>{{ 'HomePage.Text14' | translate }}</p>
                     </div>
                 </div>
             </div>
@@ -178,8 +181,8 @@
                 <div class="card border-0 shadow rounded-xs pt-5 h-100">
                     <div class="card-body">
                         <i class="fa fa-clock-o icon-lg icon-green icon-bg-green icon-bg-circle mb-3"></i>
-                        <h4 class="mt-4 mb-3">No commitment</h4>
-                        <p>Pay-As-You-Go</p>
+                        <h4 class="mt-4 mb-3">{{ 'HomePage.Text15' | translate }}</h4>
+                        <p>{{ 'HomePage.Text16' | translate }}</p>
                     </div>
                 </div>
             </div>
@@ -188,8 +191,8 @@
                 <div class="card border-0 shadow rounded-xs pt-5 h-100">
                     <div class="card-body">
                         <i class="fa fa-gears icon-lg icon-orange icon-bg-orange icon-bg-circle mb-3"></i>
-                        <h4 class="mt-4 mb-3">Export options</h4>
-                        <p>download in docx or send to email</p>
+                        <h4 class="mt-4 mb-3">{{ 'HomePage.Text17' | translate }}</h4>
+                        <p>{{ 'HomePage.Text18' | translate }}</p>
                     </div>
                 </div>
             </div>
@@ -198,15 +201,17 @@
                 <div class="card border-0 shadow rounded-xs pt-5 h-100">
                     <div class="card-body">
                         <i class="fa fa-shield icon-lg icon-purple icon-bg-purple icon-bg-circle mb-3"></i>
-                        <h4 class="mt-4 mb-3">Supported formats</h4>
-                        <p>m4a and wav formats</p>
+                        <h4 class="mt-4 mb-3">{{ 'HomePage.Text19' | translate }}</h4>
+                        <p>{{ 'HomePage.Text20' | translate }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <img src="assets/images/dot/dot-1.png" class="img-fluid feature-bg-shape-1" alt="background-dots">
-    <img src="assets/images/shape/shape-bg.png" class="img-fluid feature-bg-shape-2" alt="background-shape">
+    <img src="assets/images/dot/dot-1.png" class="img-fluid feature-bg-shape-1"
+        alt="{{ 'HomePage.Image6' | translate }}">
+    <img src="assets/images/shape/shape-bg.png" class="img-fluid feature-bg-shape-2"
+        alt="{{ 'HomePage.Image7' | translate }}">
 </section>
 <!-- feature -->
 
@@ -216,29 +221,30 @@
         <div class="row">
             <div class="col-lg-9 mx-auto text-center">
                 <h2 class="section-title text-white">
-                    Try Voicipher now
+                    {{ 'HomePage.Text21' | translate }}
                 </h2>
                 <p class="text-white perex mb-5">
-                    Start on computer or download our app on any mobile device!
+                    {{ 'HomePage.Text22' | translate }}
                 </p>
             </div>
             <div class="w-100">
                 <ul class="list-inline text-center">
                     <li class="list-inline-item mx-1 my-2">
                         <a (click)="login()" class="btn btn-outline-primary text-white border-white">
-                            <i class="fa fa-desktop text-white mr-3 transition"></i>Web
+                            <i class="fa fa-desktop text-white mr-3 transition"></i>{{ 'HomePage.Web' | translate }}
                         </a>
                     </li>
                     <li class="list-inline-item mx-1 my-2">
                         <a href="https://play.google.com/store/apps/details?id=com.voicipher.mobile&hl=en"
                             target="_blank" class="btn btn-outline-primary text-white border-white">
-                            <i class="fa fa-google text-white mr-3 transition"></i>Google Play
+                            <i class="fa fa-google text-white mr-3 transition"></i>{{ 'HomePage.GooglePlay' | translate
+                            }}
                         </a>
                     </li>
                     <li class="list-inline-item mx-1 my-2">
                         <a href="https://apps.apple.com/us/app/voicipher/id1487304758?l=sk&ls=1" target="_blank"
                             class="btn btn-outline-primary text-white border-white">
-                            <i class="fa fa-apple text-white mr-3 transition"></i>App Store
+                            <i class="fa fa-apple text-white mr-3 transition"></i>{{ 'HomePage.AppStore' | translate }}
                         </a>
                     </li>
                 </ul>

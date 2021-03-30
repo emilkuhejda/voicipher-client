@@ -3,10 +3,11 @@
 </div>
 
 <!-- nav part start -->
-<div class="naviagtion fixed-top transition">
+<div class="naviagtion fixed-top transition naviagtion-white">
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark p-0">
-            <a class="navbar-brand p-0" href="index.html"><img src="assets/images/logo/logo-dark.png" alt="Agico"></a>
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+            <a class="navbar-brand p-0" [routerLink]="getLink('home')"><img src="assets/images/logo/logo-dark.png"
+                    alt="{{ 'Voicipher' | translate }}"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                 aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -15,30 +16,34 @@
             <div class="collapse navbar-collapse text-center" id="navigation">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-dark text-capitalize" [routerLink]="getLink('home')">Home</a>
+                        <a class="nav-link text-dark text-capitalize" [routerLink]="getLink('home')">{{ 'AppPage.Home'
+                            | translate }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark text-capitalize" [routerLink]="getLink('about')">What is
-                            Voicipher</a>
+                        <a class="nav-link text-dark text-capitalize" [routerLink]="getLink('about')">{{
+                            'AppPage.WhatIsVoicipher' | translate }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark text-capitalize" [routerLink]="getLink('howTo')">How to</a>
+                        <a class="nav-link text-dark text-capitalize" [routerLink]="getLink('howTo')">{{
+                            'AppPage.HowTo' | translate }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark text-capitalize" [routerLink]="getLink('pricing')">Pricing</a>
+                        <a class="nav-link text-dark text-capitalize" [routerLink]="getLink('pricing')">{{
+                            'AppPage.Pricing' | translate }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark text-capitalize" [routerLink]="getLink('contact')">Contact</a>
+                        <a class="nav-link text-dark text-capitalize" [routerLink]="getLink('contact')">{{
+                            'AppPage.Contact' | translate }}</a>
                     </li>
                 </ul>
-                <a class="btn btn-outline-primary text-white ml-3">sign up</a>
+                <a class="btn btn-outline-primary text-white ml-3">{{ 'AppPage.SignUp' | translate }}</a>
             </div>
         </nav>
     </div>
 </div>
 <!-- nav part end -->
 
-<router-outlet></router-outlet>
+<router-outlet (activate)="onActivate()"></router-outlet>
 
 <!-- footer part start -->
 <footer class="bg-secondary pt-5">
@@ -46,27 +51,25 @@
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-md-5 mb-4 mb-md-0">
-                    <img src="assets/images/logo/logo.png" class="mb-4" alt="agico">
-                    <p class="text-light mb-4">
-                        Voicipher is your professional assistant that converts voice to text using Google AI Technology.
-                        Convert your audio record to text or use a real time dictation. Simple, accurate and reliable.
-                    </p>
+                    <img src="assets/images/logo/logo.png" class="mb-4" alt="{{ 'Voicipher' | translate }}">
+                    <p class="text-light mb-4">{{ 'AppPage.FooterText' | translate }}</p>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <h4 class="text-white mb-4">Services</h4>
                     <ul class="list-styled list-hover-underline">
-                        <li class="mb-3 text-light"><a [routerLink]="getLink('about')" class="text-light">What is
-                                Voicipher</a></li>
-                        <li class="mb-3 text-light"><a [routerLink]="getLink('howTo')" class="text-light">How to</a>
-                        </li>
-                        <li class="mb-3 text-light"><a [routerLink]="getLink('pricing')" class="text-light">Pricing</a>
-                        </li>
-                        <li class="mb-3 text-light"><a [routerLink]="getLink('contact')" class="text-light">Contact</a>
+                        <li class="mb-3 text-light"><a [routerLink]="getLink('about')" class="text-light">{{
+                                'AppPage.WhatIsVoicipher' | translate }}</a></li>
+                        <li class="mb-3 text-light"><a [routerLink]="getLink('howTo')" class="text-light">{{
+                                'AppPage.HowTo' | translate }}</a></li>
+                        <li class="mb-3 text-light"><a [routerLink]="getLink('pricing')" class="text-light">{{
+                                'AppPage.Pricing' | translate }}</a></li>
+                        <li class="mb-3 text-light"><a [routerLink]="getLink('contact')" class="text-light">{{
+                                'AppPage.Contact' | translate }}</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
-                    <h4 class="text-white mb-4">Contact Info</h4>
+                    <h4 class="text-white mb-4">{{ 'AppPage.ContactInfo' | translate }}</h4>
                     <ul class="list-unstyled">
                         <li class="mb-3">
                             <a class="text-light" href="mailto:support@voicipher.com">
@@ -84,17 +87,31 @@
     <section class="py-4">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
-                    <p class="mb-0 text-light">Copyright &copy; Voicipher 2020</p>
+                <div class="col-md-4 text-center text-md-left mb-3 mb-md-0">
+                    <p class="mb-0 text-light" [innerHTML]="'AppPage.Copyright' | translate"></p>
                 </div>
-                <div class="col-md-6 text-md-right text-center">
+                <div class="col-md-4 text-md-center text-center">
                     <ul class="list-inline">
-                        <li class="list-inline-item"><a [routerLink]="getLink('terms')" class="text-light">Terms of
-                                Service</a>
+                        <li class="list-inline-item">
+                            <a (click)="changeLanguage('en')"
+                                [className]="currentLanguage == 'en' ? 'text-light' : 'text-color'">{{
+                                'Language.English' | translate }}</a>
                         </li>
-                        <li class="list-inline-item">| &nbsp;<a [routerLink]="getLink('privacy')"
-                                class="text-light">Privacy
-                                Policy</a></li>
+                        <li class="list-inline-item">
+                            | &nbsp;
+                            <a (click)="changeLanguage('sk')"
+                                [className]="currentLanguage == 'sk' ? 'text-light' : 'text-color'">{{ 'Language.Slovak'
+                                | translate }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 text-md-right text-center">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a [routerLink]="getLink('terms')" class="text-light">{{
+                                'AppPage.TermsOfService' | translate }}</a>
+                        </li>
+                        <li class="list-inline-item">| &nbsp;<a [routerLink]="getLink('privacy')" class="text-light">{{
+                                'AppPage.PrivacyPolicy' | translate }}</a></li>
                     </ul>
                 </div>
             </div>
