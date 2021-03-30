@@ -33,7 +33,9 @@ export class ContactComponent implements OnInit, OnDestroy {
             message: ['', Validators.required]
         });
 
-        this.translateService.get(['ContactPage.SuccessMessage', 'ContactPage.FailedMessage']).subscribe(translations => this.translations = translations);
+        this.translateService
+            .get(['ContactPage.SuccessMessage', 'ContactPage.FailedMessage'])
+            .subscribe(translations => this.translations = translations);
         this.dynamicScriptLoaderService.loadScript('script');
     }
 

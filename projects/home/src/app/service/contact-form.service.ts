@@ -1,8 +1,8 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { environment } from "@home/environment";
-import { Observable, of } from "rxjs";
-import { ContactFormModel } from "../domain/contact-form.model";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { environment } from '@home/environment';
+import { Observable } from 'rxjs';
+import { ContactFormModel } from '../domain/contact-form.model';
 
 @Injectable()
 export class ContactFormService {

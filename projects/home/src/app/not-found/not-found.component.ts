@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DynamicScriptLoaderService } from '@home/service/dynamic-script-loader.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { DynamicScriptLoaderService } from '@home/service/dynamic-script-loader.
     templateUrl: './not-found.component.html',
     styleUrls: ['./not-found.component.scss']
 })
-export class NotFoundComponent {
+export class NotFoundComponent implements OnInit, OnDestroy {
 
     public constructor(private dynamicScriptLoaderService: DynamicScriptLoaderService) { }
 
