@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DynamicScriptLoaderService } from '@home/service/dynamic-script-loader.service';
 
 @Component({
     selector: 'app-not-found',
@@ -7,6 +8,14 @@ import { Component } from '@angular/core';
 })
 export class NotFoundComponent {
 
-    public constructor() { }
+    public constructor(private dynamicScriptLoaderService: DynamicScriptLoaderService) { }
+
+    public ngOnInit(): void {
+        this.dynamicScriptLoaderService.loadScript('script');
+    }
+
+    public ngOnDestroy(): void {
+        this.dynamicScriptLoaderService.removeScript('script');
+    }
 
 }

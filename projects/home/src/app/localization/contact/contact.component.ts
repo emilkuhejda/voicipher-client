@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactFormService } from '@home/service/contact-form.service';
+import { DynamicScriptLoaderService } from '@home/service/dynamic-script-loader.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ContactFormModel } from '../../domain/contact-form.model';
 
@@ -9,7 +10,7 @@ import { ContactFormModel } from '../../domain/contact-form.model';
     templateUrl: './contact.component.html',
     styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent implements OnInit, OnDestroy {
 
     private translations: any = {};
 
@@ -22,7 +23,8 @@ export class ContactComponent implements OnInit {
     public constructor(
         private formBuilder: FormBuilder,
         private contactFormService: ContactFormService,
-        private translateService: TranslateService) { }
+        private translateService: TranslateService,
+        private dynamicScriptLoaderService: DynamicScriptLoaderService) { }
 
     public ngOnInit() {
         this.contactForm = this.formBuilder.group({
@@ -32,6 +34,11 @@ export class ContactComponent implements OnInit {
         });
 
         this.translateService.get(['ContactPage.SuccessMessage', 'ContactPage.FailedMessage']).subscribe(translations => this.translations = translations);
+        this.dynamicScriptLoaderService.loadScript('script');
+    }
+
+    public ngOnDestroy(): void {
+        this.dynamicScriptLoaderService.removeScript('script');
     }
 
     public get controls() {
