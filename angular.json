@@ -370,7 +370,7 @@
       "projectType": "library",
       "root": "projects/voc-components",
       "sourceRoot": "projects/voc-components/src",
-      "prefix": "lib",
+      "prefix": "voc",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
