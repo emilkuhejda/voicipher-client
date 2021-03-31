@@ -394,41 +394,6 @@
         }
       }
     },
-    "voc-web-client": {
-      "projectType": "library",
-      "root": "projects/voc-web-client",
-      "sourceRoot": "projects/voc-web-client/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/voc-web-client/tsconfig.lib.json",
-            "project": "projects/voc-web-client/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/voc-web-client/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-builders/jest:run",
-          "options": {
-            "tsConfig": "projects/voc-web-client/tsconfig.spec.json"
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "projects/voc-web-client/**/*.ts",
-              "projects/voc-web-client/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "voc-core": {
       "projectType": "library",
       "root": "projects/voc-core",
@@ -448,11 +413,9 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-builders/jest:run",
           "options": {
-            "main": "projects/voc-core/src/test.ts",
-            "tsConfig": "projects/voc-core/tsconfig.spec.json",
-            "karmaConfig": "projects/voc-core/karma.conf.js"
+            "tsConfig": "projects/voc-core/tsconfig.spec.json"
           }
         },
         "lint": {
