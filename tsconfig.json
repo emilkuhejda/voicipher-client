@@ -33,6 +33,10 @@
       "voc-web-client": [
         "dist/voc-web-client/voc-web-client",
         "dist/voc-web-client"
+      ],
+      "voc-core": [
+        "dist/voc-core/voc-core",
+        "dist/voc-core"
       ]
     }
   },
