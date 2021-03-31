@@ -10,8 +10,8 @@
       ],
       "parserOptions": {
         "project": [
-          "projects/voc-web-client/tsconfig.lib.json",
-          "projects/voc-web-client/tsconfig.spec.json"
+          "projects/voc-core/tsconfig.lib.json",
+          "projects/voc-core/tsconfig.spec.json"
         ],
         "createDefaultProgram": true
       },

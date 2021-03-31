@@ -6,4 +6,4 @@ import { NgModule } from '@angular/core';
     ],
     exports: []
 })
-export class VocWebClientModule { }
+export class VocCoreModule { }

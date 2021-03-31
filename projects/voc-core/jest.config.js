@@ -4,7 +4,7 @@ module.exports = {
   ...baseConfig,
   globals: {
     'ts-jest': {
-      tsConfig: '<rootDir>/projects/voc-web-client/tsconfig.spec.json',
+      tsConfig: '<rootDir>/projects/voc-core/tsconfig.spec.json',
     },
   },
 };
