@@ -15,7 +15,7 @@ export class DynamicScriptLoaderService {
 
     public constructor() { }
 
-    public loadScript(name: ScriptKey) {
+    public loadScript(name: ScriptKey): Promise<unknown> {
         return new Promise((resolve, _) => {
             if (!this.scripts[name].loaded) {
                 const script = document.createElement('script');
@@ -44,7 +44,7 @@ export class DynamicScriptLoaderService {
         });
     }
 
-    public removeScript(name: ScriptKey) {
+    public removeScript(name: ScriptKey): Promise<unknown> {
         return new Promise((resolve, _) => {
             if (this.scripts[name].loaded) {
                 this.scripts[name].loaded = false;

@@ -394,36 +394,36 @@
         }
       }
     },
-    "voc-web-client": {
+    "voc-core": {
       "projectType": "library",
-      "root": "projects/voc-web-client",
-      "sourceRoot": "projects/voc-web-client/src",
+      "root": "projects/voc-core",
+      "sourceRoot": "projects/voc-core/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/voc-web-client/tsconfig.lib.json",
-            "project": "projects/voc-web-client/ng-package.json"
+            "tsConfig": "projects/voc-core/tsconfig.lib.json",
+            "project": "projects/voc-core/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/voc-web-client/tsconfig.lib.prod.json"
+              "tsConfig": "projects/voc-core/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-builders/jest:run",
           "options": {
-            "tsConfig": "projects/voc-web-client/tsconfig.spec.json"
+            "tsConfig": "projects/voc-core/tsconfig.spec.json"
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "projects/voc-web-client/**/*.ts",
-              "projects/voc-web-client/**/*.html"
+              "projects/voc-core/**/*.ts",
+              "projects/voc-core/**/*.html"
             ]
           }
         }

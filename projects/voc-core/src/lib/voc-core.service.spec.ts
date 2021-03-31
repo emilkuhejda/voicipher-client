@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { VocWebClientService } from './voc-web-client.service';
+import { VocCoreService } from './voc-core.service';
 
-describe('VocWebClientService', () => {
-  let service: VocWebClientService;
+describe('VocCoreService', () => {
+  let service: VocCoreService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(VocWebClientService);
+    service = TestBed.inject(VocCoreService);
   });
 
   it('should be created', () => {
