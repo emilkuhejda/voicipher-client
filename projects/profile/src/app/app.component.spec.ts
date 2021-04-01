@@ -1,7 +1,9 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateService } from '@ngx-translate/core';
 import { AppComponent } from './app.component';
+import { TranslateMockPipe } from './tests/translate.mock.pipe';
 
 describe('AppComponent', () => {
     beforeEach(async () => {
@@ -10,7 +12,14 @@ describe('AppComponent', () => {
                 RouterTestingModule
             ],
             declarations: [
-                AppComponent
+                AppComponent,
+                TranslateMockPipe
+            ],
+            providers: [
+                {
+                    provide: TranslateService,
+                    useValue: {}
+                }
             ],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();

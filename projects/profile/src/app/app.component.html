@@ -1,6 +1,9 @@
 <voc-main>
-    <voc-sidebar sidebar></voc-sidebar>
+    <voc-sidebar sidebar [headingText]="'Sidebar.Overview' | translate" [dataItems]="sidebarItems">
+        <a [routerLink]="['/']" sidebar-brand>Voicipher</a>
+    </voc-sidebar>
     <voc-topbar topbar></voc-topbar>
+    <span copyright [innerHTML]="'copyright' | translate"></span>
     <router-outlet></router-outlet>
 </voc-main>
 

@@ -62,7 +62,8 @@
   "jest": {
     "moduleNameMapper": {
       "@home/environment": ["<rootDir>/projects/home/src/environments/environment"],
-      "@home/service/(.*)$": "<rootDir>/projects/home/src/app/service/$1"
+      "@home/service/(.*)$": "<rootDir>/projects/home/src/app/service/$1",
+      "@profile/environment": ["<rootDir>/projects/profile/src/environments/environment"]
     }
   }
 }
