@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'voc-topbar',
@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
     styleUrls: ['./topbar.component.scss']
 })
 export class TopbarComponent {
+
+    @Input()
+    public avatarText: string = '';
 
     public constructor() { }
 

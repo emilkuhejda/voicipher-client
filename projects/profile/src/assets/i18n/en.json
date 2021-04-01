@@ -1,11 +1,20 @@
 {
-    "copyright": "Copyright &copy; Voicipher 2020",
+    "Voicipher": "Voicipher",
+    "Copyright": "Copyright &copy; Voicipher 2020",
     "Sidebar": {
         "Overview": "Overview",
         "Files": "Files",
         "Create": "Create",
         "MessageCenter": "Message center",
         "RecycleBin": "Recycle bin"
+    },
+    "Topbar": {
+        "Profile": "Profile",
+        "Logout": "Logout"
+    },
+    "MessageBox": {
+        "MessageCenter": "Message Center",
+        "ReadMore": "Read More Messages"
     },
     "LogoutDialog": {
         "Title": "Ready to Leave?",

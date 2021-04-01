@@ -1,0 +1,24 @@
+<li class="nav-item dropdown no-arrow mx-1">
+    <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-envelope fa-fw"></i>
+        <!-- Counter - Messages -->
+        <span *ngIf="activeMessages" class="badge badge-danger badge-counter">{{activeMessages}}</span>
+    </a>
+    <!-- Dropdown - Messages -->
+    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+        aria-labelledby="messagesDropdown">
+        <h6 class="dropdown-header">
+            {{header}}
+        </h6>
+        <a class="dropdown-item d-flex align-items-center" *ngFor="let message of messages" [routerLink]="message.url">
+            <div class="font-weight-bold">
+                <div class="text-truncate">{{message.title}}</div>
+                <div class="text-truncate small text-gray-500">{{message.body}}</div>
+            </div>
+        </a>
+
+        <a class="dropdown-item text-center small text-gray-500"
+            [routerLink]="navigationUrl">{{navigationButtonText}}</a>
+    </div>
+</li>
