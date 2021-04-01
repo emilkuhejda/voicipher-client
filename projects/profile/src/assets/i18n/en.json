@@ -12,6 +12,10 @@
         "Profile": "Profile",
         "Logout": "Logout"
     },
+    "MessageBox": {
+        "MessageCenter": "Message Center",
+        "ReadMore": "Read More Messages"
+    },
     "LogoutDialog": {
         "Title": "Ready to Leave?",
         "Body": "Select \"Logout\" below if you are ready to end your current session.",
