@@ -17,6 +17,10 @@ export class AppComponent implements OnInit {
         this.initializeSidebarItems();
     }
 
+    public logout(): void {
+        window.location.reload();
+    }
+
     private initializeSidebarItems(): void {
         this.translateService
             .get(['Sidebar.Files', 'Sidebar.Overview', 'Sidebar.Create', 'Sidebar.MessageCenter', 'Sidebar.RecycleBin'])

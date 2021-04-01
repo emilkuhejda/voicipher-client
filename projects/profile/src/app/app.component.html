@@ -7,4 +7,7 @@
     <router-outlet></router-outlet>
 </voc-main>
 
-<voc-logout-dialog></voc-logout-dialog>
+<voc-logout-dialog [title]="'LogoutDialog.Title' | translate" [body]="'LogoutDialog.Body' | translate"
+    [cancelButtonText]="'LogoutDialog.Cancel' | translate" [okButtonText]="'LogoutDialog.Logout' | translate"
+    (okCommand)="logout()">
+</voc-logout-dialog>
