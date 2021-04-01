@@ -14,6 +14,11 @@ import { MessageOverviewComponent } from './pages/message/message-overview/messa
 import { RecycleBinComponent } from './pages/recycle-bin/recycle-bin.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AccountComponent } from './pages/account/account.component';
+import { StoreModule } from '@ngrx/store';
+import { effects } from '@profile/state/effects';
+import { reducers } from '@profile/state/app.state';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
     declarations: [
@@ -37,7 +42,13 @@ import { AccountComponent } from './pages/account/account.component';
                 useFactory: (http: HttpClient) => new TranslateHttpLoader(http),
                 deps: [HttpClient]
             }
-        })
+        }),
+        StoreModule.forRoot(reducers),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25,
+            logOnly: environment.production
+        }),
+        EffectsModule.forRoot(effects)
     ],
     providers: [],
     bootstrap: [AppComponent]
