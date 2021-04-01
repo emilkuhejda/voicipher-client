@@ -27,10 +27,11 @@ export class SidebarComponent implements OnInit {
                     }
                 }
 
-                const navItem = this.dataItems.find(item => item.url.find(x => event.url.includes(x)));
+                const path = event.urlAfterRedirects;
+                const navItem = this.dataItems.find(item => item.url.find(x => path.includes(x)));
                 if (navItem) {
                     navItem.isActive = true;
-                    const subNavItem = navItem.items.find(item => item.url.find(x => x.includes(event.url)));
+                    const subNavItem = navItem.items.find(item => item.url.find(x => x.includes(path)));
                     if (subNavItem) {
                         subNavItem.isActive = true;
                     }
