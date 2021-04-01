@@ -18,7 +18,7 @@
     <div class="sidebar-heading">{{headingText}}</div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item" *ngFor="let sidebarItem of dataItems">
+    <li class="nav-item" *ngFor="let sidebarItem of dataItems" [ngClass]="{ 'active': sidebarItem.isActive }">
         <ng-container *ngIf="sidebarItem.items.length;">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                 aria-expanded="true" aria-controls="collapseTwo">
@@ -29,7 +29,8 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">{{sidebarItem.title}}:</h6>
                     <a *ngFor="let subSidebarItem of sidebarItem.items" [routerLink]="subSidebarItem.url"
-                        class="collapse-item">{{subSidebarItem.title}}</a>
+                        class="collapse-item"
+                        [ngClass]="{ 'active': subSidebarItem.isActive }">{{subSidebarItem.title}}</a>
                 </div>
             </div>
         </ng-container>

@@ -7,7 +7,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { RecycleBinComponent } from './pages/recycle-bin/recycle-bin.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'files' },
+    { path: '', redirectTo: 'files', pathMatch: 'full' },
     { path: 'files', component: FileOverviewComponent },
     { path: 'files/create', component: FileCreateComponent },
     { path: 'messages', component: MessageOverviewComponent },

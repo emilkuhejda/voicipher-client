@@ -1,10 +1,12 @@
 export interface SidebarItemModel {
     title: string;
-    url: string[],
-    items: SubSidebarItemModel[]
+    url: string[];
+    isActive?: boolean;
+    items: SubSidebarItemModel[];
 }
 
 interface SubSidebarItemModel {
     title: string;
-    url: string[]
+    url: string[];
+    isActive?: boolean;
 }

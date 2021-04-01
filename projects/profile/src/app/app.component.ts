@@ -11,7 +11,7 @@ export class AppComponent {
     public sidebarItems: SidebarItemModel[] = [
         {
             title: 'Files',
-            url: [],
+            url: ['/files'],
             items: [
                 {
                     title: 'Overview',
@@ -33,5 +33,7 @@ export class AppComponent {
             url: ['/recycle-bin'],
             items: []
         }
-    ]
+    ];
+
+    public constructor() { }
 }
