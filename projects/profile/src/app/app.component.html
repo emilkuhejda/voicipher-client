@@ -1,9 +1,25 @@
 <voc-main>
     <voc-sidebar sidebar [headingText]="'Sidebar.Overview' | translate" [dataItems]="sidebarItems">
-        <a [routerLink]="['/']" sidebar-brand>Voicipher</a>
+        <a [routerLink]="['/']" sidebar-brand>{{ 'Voicipher' | translate }}</a>
     </voc-sidebar>
-    <voc-topbar topbar></voc-topbar>
-    <span copyright [innerHTML]="'copyright' | translate"></span>
+    <voc-topbar topbar avatarText="USER NAME">
+        <ng-container topbar-items>
+            <voc-message-box [header]="'MessageBox.MessageCenter' | translate"
+                [navigationButtonText]="'MessageBox.ReadMore' | translate" [navigationUrl]="['/messages']"
+                [messages]="messages" [activeMessages]="10"></voc-message-box>
+        </ng-container>
+
+        <a class="dropdown-item" [routerLink]="['/account']">
+            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+            {{ 'Topbar.Profile' | translate }}
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">
+            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+            {{ 'Topbar.Logout' | translate }}
+        </a>
+    </voc-topbar>
+    <span copyright [innerHTML]="'Copyright' | translate"></span>
     <router-outlet></router-outlet>
 </voc-main>
 
