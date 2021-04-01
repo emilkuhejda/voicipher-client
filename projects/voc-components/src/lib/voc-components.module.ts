@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { LogoutDialogComponent } from './logout-dialog/logout-dialog.component';
 import { MainComponent } from './main/main.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -13,7 +15,10 @@ const components = [
 
 @NgModule({
     declarations: components,
-    imports: [],
+    imports: [
+        CommonModule,
+        RouterModule
+    ],
     exports: components
 })
 export class VocComponentsModule { }

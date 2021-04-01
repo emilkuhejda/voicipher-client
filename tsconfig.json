@@ -26,6 +26,9 @@
       "@home/service/*": [
         "projects/home/src/app/service/*"
       ],
+      "@profile/environment": [
+        "projects/profile/src/environments/environment"
+      ],
       "voc-components": [
         "dist/voc-components/voc-components",
         "dist/voc-components"

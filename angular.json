@@ -155,8 +155,9 @@
             ],
             "styles": [
               "projects/profile/src/styles.sass",
+              "projects/voc-components/src/assets/css/styles.css",
               "projects/voc-components/src/assets/vendor/fontawesome-free/css/all.min.css",
-              "projects/voc-components/src/assets/css/sb-admin-2.css"
+              "projects/voc-components/src/assets/css/sb-admin-2.min.css"
             ],
             "scripts": [
               "projects/voc-components/src/assets/vendor/jquery/jquery.min.js",
