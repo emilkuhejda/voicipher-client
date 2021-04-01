@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SidebarItemModel } from 'projects/voc-components/src/public-api';
 
 @Component({
     selector: 'app-root',
@@ -6,5 +7,31 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-    public title = 'profile';
+
+    public sidebarItems: SidebarItemModel[] = [
+        {
+            title: 'Files',
+            url: [],
+            items: [
+                {
+                    title: 'Overview',
+                    url: ['/files']
+                },
+                {
+                    title: 'Create',
+                    url: ['/files/create']
+                },
+            ]
+        },
+        {
+            title: 'Message center',
+            url: ['/messages'],
+            items: []
+        },
+        {
+            title: 'Recycle Bin',
+            url: ['/recycle-bin'],
+            items: []
+        }
+    ]
 }
