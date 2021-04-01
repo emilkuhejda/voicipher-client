@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { SidebarItemModel } from 'projects/voc-components/src/public-api';
 
 @Component({
@@ -6,34 +7,47 @@ import { SidebarItemModel } from 'projects/voc-components/src/public-api';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.sass']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-    public sidebarItems: SidebarItemModel[] = [
-        {
-            title: 'Files',
-            url: ['/files'],
-            items: [
-                {
-                    title: 'Overview',
-                    url: ['/files']
-                },
-                {
-                    title: 'Create',
-                    url: ['/files/create']
-                },
-            ]
-        },
-        {
-            title: 'Message center',
-            url: ['/messages'],
-            items: []
-        },
-        {
-            title: 'Recycle Bin',
-            url: ['/recycle-bin'],
-            items: []
-        }
-    ];
+    public sidebarItems: SidebarItemModel[] = [];
 
-    public constructor() { }
+    public constructor(private translateService: TranslateService) { }
+
+    public ngOnInit(): void {
+        this.initializeSidebarItems();
+    }
+
+    private initializeSidebarItems(): void {
+        this.translateService
+            .get(['Sidebar.Files', 'Sidebar.Overview', 'Sidebar.Create', 'Sidebar.MessageCenter', 'Sidebar.RecycleBin'])
+            .subscribe(translations => {
+                this.sidebarItems = [
+                    {
+                        title: translations['Sidebar.Files'],
+                        url: ['/files'],
+                        items: [
+                            {
+                                title: translations['Sidebar.Overview'],
+                                url: ['/files']
+                            },
+                            {
+                                title: translations['Sidebar.Create'],
+                                url: ['/files/create']
+                            },
+                        ]
+                    },
+                    {
+                        title: translations['Sidebar.MessageCenter'],
+                        url: ['/messages'],
+                        items: []
+                    },
+                    {
+                        title: translations['Sidebar.RecycleBin'],
+                        url: ['/recycle-bin'],
+                        items: []
+                    }
+                ];
+            });
+    }
+
 }

@@ -1,6 +1,10 @@
 {
     "copyright": "Copyright &copy; Voicipher 2020",
     "Sidebar": {
-        "Overview": "Overview"
+        "Overview": "Overview",
+        "Files": "Files",
+        "Create": "Create",
+        "MessageCenter": "Message center",
+        "RecycleBin": "Recycle bin"
     }
 }
