@@ -8,10 +8,20 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { environment } from '@profile/environment';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FileOverviewComponent } from './pages/file/file-overview/file-overview.component';
+import { FileCreateComponent } from './pages/file/file-create/file-create.component';
+import { MessageOverviewComponent } from './pages/message/message-overview/message-overview.component';
+import { RecycleBinComponent } from './pages/recycle-bin/recycle-bin.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        FileOverviewComponent,
+        FileCreateComponent,
+        MessageOverviewComponent,
+        RecycleBinComponent,
+        NotFoundComponent
     ],
     imports: [
         BrowserModule,
