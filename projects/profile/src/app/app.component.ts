@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
             body: 'Message body',
             url: ['/messages', '1']
         }
-    ]
+    ];
 
     public constructor(private translateService: TranslateService) { }
 
