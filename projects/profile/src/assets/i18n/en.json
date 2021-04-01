@@ -6,5 +6,11 @@
         "Create": "Create",
         "MessageCenter": "Message center",
         "RecycleBin": "Recycle bin"
+    },
+    "LogoutDialog": {
+        "Title": "Ready to Leave?",
+        "Body": "Select \"Logout\" below if you are ready to end your current session.",
+        "Cancel": "Cancel",
+        "Logout": "Logout"
     }
 }

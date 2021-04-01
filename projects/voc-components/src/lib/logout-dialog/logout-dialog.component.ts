@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'voc-logout-dialog',
@@ -7,6 +7,25 @@ import { Component } from '@angular/core';
 })
 export class LogoutDialogComponent {
 
+    @Input()
+    public title: string = '';
+
+    @Input()
+    public body: string = '';
+
+    @Input()
+    public cancelButtonText: string = '';
+
+    @Input()
+    public okButtonText: string = '';
+
+    @Output()
+    public okCommand: EventEmitter<any> = new EventEmitter();
+
     public constructor() { }
+
+    public handleClick() {
+        this.okCommand.emit();
+    }
 
 }
