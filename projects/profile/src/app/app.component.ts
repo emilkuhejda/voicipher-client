@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { SidebarItemModel } from 'projects/voc-components/src/public-api';
+import { MessageModel, SidebarItemModel } from 'projects/voc-components/src/public-api';
 
 @Component({
     selector: 'app-root',
@@ -10,6 +10,14 @@ import { SidebarItemModel } from 'projects/voc-components/src/public-api';
 export class AppComponent implements OnInit {
 
     public sidebarItems: SidebarItemModel[] = [];
+
+    public messages: MessageModel[] = [
+        {
+            title: 'Message title',
+            body: 'Message body',
+            url: ['/messages', '1']
+        }
+    ]
 
     public constructor(private translateService: TranslateService) { }
 

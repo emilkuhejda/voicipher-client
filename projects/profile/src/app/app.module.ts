@@ -13,6 +13,7 @@ import { FileCreateComponent } from './pages/file/file-create/file-create.compon
 import { MessageOverviewComponent } from './pages/message/message-overview/message-overview.component';
 import { RecycleBinComponent } from './pages/recycle-bin/recycle-bin.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { AccountComponent } from './pages/account/account.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
         FileCreateComponent,
         MessageOverviewComponent,
         RecycleBinComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        AccountComponent
     ],
     imports: [
         BrowserModule,
