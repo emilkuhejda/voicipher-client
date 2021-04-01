@@ -154,9 +154,16 @@
               "projects/profile/src/assets"
             ],
             "styles": [
-              "projects/profile/src/styles.sass"
+              "projects/profile/src/styles.sass",
+              "projects/voc-components/src/assets/vendor/fontawesome-free/css/all.min.css",
+              "projects/voc-components/src/assets/css/sb-admin-2.css"
             ],
-            "scripts": []
+            "scripts": [
+              "projects/voc-components/src/assets/vendor/jquery/jquery.min.js",
+              "projects/voc-components/src/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
+              "projects/voc-components/src/assets/vendor/jquery-easing/jquery.easing.min.js",
+              "projects/voc-components/src/assets/js/sb-admin-2.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -363,7 +370,7 @@
       "projectType": "library",
       "root": "projects/voc-components",
       "sourceRoot": "projects/voc-components/src",
-      "prefix": "lib",
+      "prefix": "voc",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
