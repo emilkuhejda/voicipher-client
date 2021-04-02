@@ -26,6 +26,8 @@ import { TokenInterceptorService } from '@profile/service/token-interceptor.serv
 import { ErrorInterceptorService } from '@profile/service/error-interceptor.service';
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
 import { ToastModule } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
     declarations: [
@@ -47,6 +49,8 @@ import { ToastModule } from 'primeng/toast';
         CoreModule,
         ServiceModule,
         ToastModule,
+        ButtonModule,
+        TooltipModule,
         TranslateModule.forRoot({
             defaultLanguage: environment.defaultLanguage,
             loader: {

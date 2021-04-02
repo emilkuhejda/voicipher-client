@@ -40,6 +40,11 @@
     "Name": "Name",
     "DateCreated": "Date created",
     "Status": "Status",
-    "Actions": "Actions"
+    "Actions": "Actions",
+    "Transcribe": "Transcribe",
+    "Edit": "Edit",
+    "Detail": "Detail",
+    "SendEmail": "Send an email",
+    "Delete": "Delete"
   }
 }

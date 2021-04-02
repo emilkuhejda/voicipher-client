@@ -21,7 +21,7 @@
                     <tr>
                         <th class="table-header">{{ 'FilesPage.Name' | translate }}</th>
                         <th class="table-header">{{ 'FilesPage.DateCreated' | translate }}</th>
-                        <td class="table-header">{{ 'FilesPage.Status' | translate }}</td>
+                        <th class="table-header">{{ 'FilesPage.Status' | translate }}</th>
                         <th class="table-header">{{ 'FilesPage.Actions' | translate }}</th>
                     </tr>
                 </thead>
@@ -29,8 +29,28 @@
                     <tr *ngFor="let audioFile of audioFiles">
                         <td><label>{{audioFile.name}}</label></td>
                         <td><label>{{audioFile.dateCreated | date}}</label></td>
-                        <td><label class="col-md-8">{{audioFile.recognitionStateString}}</label></td>
-                        <td class="actions"></td>
+                        <td>
+                            <label class="col-md-8">{{audioFile.recognitionStateString}}</label>
+                            <i class="pi pi-check"></i>
+                        </td>
+                        <td class="actions">
+                            <!--Transcribe-->
+                            <button pButton pRipple type="button" icon="pi pi-file" class="p-button-rounded mr-2"
+                                [pTooltip]="'FilesPage.Transcribe' | translate" tooltipPosition="top"></button>
+                            <!--Edit-->
+                            <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded mr-2"
+                                [pTooltip]="'FilesPage.Edit' | translate" tooltipPosition="top"></button>
+                            <!--Detail-->
+                            <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded mr-2"
+                                [pTooltip]="'FilesPage.Detail' | translate" tooltipPosition="top"></button>
+                            <!--Send email-->
+                            <button pButton pRipple type="button" icon="pi pi-envelope" class="p-button-rounded mr-2"
+                                [pTooltip]="'FilesPage.SendEmail' | translate" tooltipPosition="top"></button>
+                            <!--Delete-->
+                            <button pButton pRipple type="button" icon="pi pi-times"
+                                class="p-button-rounded p-button-danger" [pTooltip]="'FilesPage.Delete' | translate"
+                                tooltipPosition="top"></button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
