@@ -1,3 +1,5 @@
+import { UploadStatus } from "../types/upload-status";
+
 export interface AudioFile {
     id: string;
     name: string;
@@ -5,13 +7,13 @@ export interface AudioFile {
     language: string;
     isPhoneCall: string;
     recognitionStateString: string;
-    uploadStatus: string;
+    uploadStatus: UploadStatus;
     totalTimeTicks: number;
     transcriptionStartTimeTicks: number;
     transcriptionEndTimeTicks: number;
     transcribedTimeTicks: number;
     dateCreated: Date;
-    dateProcessedUtc: Date;
+    dateProcessedUtc: Date | null;
     dateUpdatedUtc: Date;
     isDeleted: boolean;
 }

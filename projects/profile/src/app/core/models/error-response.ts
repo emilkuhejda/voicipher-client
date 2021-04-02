@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorCode } from '../enums/error-code';
+import { ErrorCode } from '../types/error-code';
 
 export class ErrorResponse {
     private response: HttpErrorResponse
