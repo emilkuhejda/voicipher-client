@@ -27,5 +27,9 @@
     "PageNotFound": "Page Not Found",
     "NotFoundText": "It looks like you found a glitch in the matrix...",
     "BackToDashboard": "&larr; Back to Dashboard"
+  },
+  "RegisterUserPage": {
+    "ImageText": "Login process is in progress",
+    "LoginInProgress": "Login process is in progress. Please, do not refresh web page."
   }
 }
