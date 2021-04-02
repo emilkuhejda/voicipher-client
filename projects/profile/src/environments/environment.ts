@@ -7,6 +7,7 @@ export const environment = {
     defaultLanguage: 'en',
     languages: ['en', 'sk'],
     storage: localStorage,
+    applicationId: "ef036280-6a26-421a-a258-c51c8e98b99c",
     webApiUrl: 'https://localhost:5001/',
     tenantConfig: {
         tenant: "voicipher.onmicrosoft.com",
@@ -16,7 +17,7 @@ export const environment = {
         authorityBase: "https://login.microsoftonline.com/tfp/",
         b2cScopes: ["https://voicipher.onmicrosoft.com/access-api/user_impersonation"],
         cacheLocation: 'localStorage',
-        redirectUri: 'http://localhost:4100/'
+        redirectUri: 'http://localhost:4100/register-user/'
     }
 };
 

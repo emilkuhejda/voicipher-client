@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
 import { environment } from '@profile/environment';
 
-type StorageKey = 'b2c.key' | 'language';
+type StorageKey = 'token' | 'b2c.token' | 'identity' | 'language';
 
 Injectable()
 export class StorageService {
+
     private storage: Storage;
 
     public constructor() {
         this.storage = environment.storage;
     }
 
-    public getToken(): string | null {
-        return this.storage.getItem('b2c.key' as StorageKey);
+    public getItem<T>(storageKey: StorageKey): T | null {
+        return this.parseJSON(this.storage.getItem(storageKey));
     }
 
-    public setToken(token: string) {
-        this.storage.setItem('b2c.key' as StorageKey, token);
+    public setItem(storageKey: StorageKey, value: string): void {
+        this.storage.setItem(storageKey, JSON.stringify(value));
     }
 
-    public removeToken() {
-        this.storage.removeItem('b2c.key' as StorageKey);
+    public removeToken(storageKey: StorageKey) {
+        this.storage.removeItem(storageKey);
     }
 
     public getLanguage(): string {
@@ -34,4 +35,6 @@ export class StorageService {
 
         this.storage.setItem('language' as StorageKey, language);
     }
+
+    private readonly parseJSON = (value: string | null): any => value ? JSON.parse(value) : null;
 }

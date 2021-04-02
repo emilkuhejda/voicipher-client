@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageModel, SidebarItemModel } from 'projects/voc-components/src/public-api';
+import { MsalService } from './service/msal.service';
 
 @Component({
     selector: 'app-root',
@@ -19,14 +20,16 @@ export class AppComponent implements OnInit {
         }
     ];
 
-    public constructor(private translateService: TranslateService) { }
+    public constructor(
+        private msalService: MsalService,
+        private translateService: TranslateService) { }
 
     public ngOnInit(): void {
         this.initializeSidebarItems();
     }
 
     public logout(): void {
-        window.location.reload();
+        this.msalService.logout();
     }
 
     private initializeSidebarItems(): void {

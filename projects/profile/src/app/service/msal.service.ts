@@ -14,7 +14,7 @@ export class MsalService {
         this.clientApplication = new Msal.UserAgentApplication(
             environment.tenantConfig.clientId,
             this.authority,
-            function (errorDesc: any, token: any) {
+            (errorDesc: any, token: any) => {
                 if (errorDesc !== undefined) {
                     return;
                 }
@@ -23,8 +23,7 @@ export class MsalService {
                     return;
                 }
 
-                storageService.setToken(token);
-                console.log(token);
+                storageService.setItem('b2c.token', token);
             },
             {
                 cacheLocation: environment.tenantConfig.cacheLocation,
@@ -38,12 +37,54 @@ export class MsalService {
         this.clientApplication.loginRedirect(environment.tenantConfig.b2cScopes);
     }
 
-    logout(): void {
+    public logout(): void {
         this.clientApplication.logout();
-        this.storageService.removeToken();
+        this.storageService.removeToken('token');
+        this.storageService.removeToken('b2c.token');
     }
 
-    isLoggedIn(): boolean {
-        return this.storageService.getToken() !== null;
-    };
+    public completeLogin(token: string) {
+        this.storageService.setItem('token', token);
+        this.storageService.removeToken('b2c.token');
+    }
+
+    public isLoggedIn(): boolean {
+        return this.storageService.getItem('token') !== null;
+    }
+
+    public hasB2CToken(): boolean {
+        return this.storageService.getItem('b2c.token') !== null;
+    }
+
+    public getUserId(): string {
+        return this.getUser()['oid'];
+    }
+
+    public getUserEmail(): string {
+        return this.getUser()['emails'][0];
+    }
+
+    public getGivenName(): string {
+        return this.decode(this.getUser()['given_name']);
+    }
+
+    public getFamilyName(): string {
+        return this.decode(this.getUser()['family_name']);
+    }
+
+    public getToken(): string | null {
+        return this.storageService.getItem('token');
+    }
+
+    public getB2CToken(): string | null {
+        return this.storageService.getItem('b2c.token');
+    }
+
+    private getUser(): any {
+        return this.clientApplication.getUser().idToken;
+    }
+
+    private decode(text: string): string {
+        return decodeURIComponent(escape(text));
+    }
 }

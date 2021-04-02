@@ -5,12 +5,12 @@ import { MsalService } from '@profile/service/msal.service';
 @Injectable({
     providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class MsalGuard implements CanActivate {
 
     public constructor(private msalService: MsalService) { }
 
     public canActivate(): boolean {
-        if (!this.msalService.isLoggedIn()) {
+        if (!this.msalService.hasB2CToken()) {
             this.msalService.login();
             return false;
         }
