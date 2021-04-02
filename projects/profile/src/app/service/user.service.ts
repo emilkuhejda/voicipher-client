@@ -1,10 +1,10 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { UserRegistration } from "@profile/core/models";
-import { UserRegistrationInputModel } from "@profile/core/models/input-models";
-import { Observable } from "rxjs";
-import { MsalService } from "./msal.service";
-import { RoutingService } from "./routing.service";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { UserRegistration } from '@profile/core/models';
+import { UserRegistrationInputModel } from '@profile/core/models/input-models';
+import { Observable } from 'rxjs';
+import { MsalService } from './msal.service';
+import { RoutingService } from './routing.service';
 
 @Injectable()
 export class UserService {
@@ -16,7 +16,7 @@ export class UserService {
     public registerUser(userRegistrationInputModel: UserRegistrationInputModel): Observable<UserRegistration> {
         const headers = {
             headers: {
-                Authorization: `Bearer ${this.msalService.getB2CToken()}`
+                authorization: `Bearer ${this.msalService.getB2CToken()}`
             }
         };
 

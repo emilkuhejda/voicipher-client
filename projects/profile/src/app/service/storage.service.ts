@@ -3,7 +3,7 @@ import { environment } from '@profile/environment';
 
 type StorageKey = 'token' | 'b2c.token' | 'identity' | 'language';
 
-Injectable()
+@Injectable()
 export class StorageService {
 
     private storage: Storage;
@@ -16,12 +16,16 @@ export class StorageService {
         return this.parseJSON(this.storage.getItem(storageKey));
     }
 
-    public setItem(storageKey: StorageKey, value: string): void {
+    public setItem(storageKey: StorageKey, value: any): void {
         this.storage.setItem(storageKey, JSON.stringify(value));
     }
 
-    public removeToken(storageKey: StorageKey) {
+    public removeItem(storageKey: StorageKey): void {
         this.storage.removeItem(storageKey);
+    }
+
+    public clear(): void {
+        this.storage.clear();
     }
 
     public getLanguage(): string {

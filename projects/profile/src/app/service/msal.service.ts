@@ -1,19 +1,19 @@
 import * as Msal from 'msal';
-import { Injectable } from "@angular/core";
-import { StorageService } from "./storage.service";
+import { Injectable } from '@angular/core';
+import { StorageService } from './storage.service';
 import { environment } from '@profile/environment';
 
 @Injectable()
 export class MsalService {
 
-    private authority = environment.tenantConfig.authorityBase + environment.tenantConfig.tenant + "/" + environment.tenantConfig.signUpSignIn;
-
     private clientApplication: Msal.UserAgentApplication;
 
-    constructor(private storageService: StorageService) {
+    public constructor(private storageService: StorageService) {
+        const tenantConfig = environment.tenantConfig;
+        const authority = `${tenantConfig.authorityBase}${tenantConfig.tenant}/${tenantConfig.signUpSignIn}`;
         this.clientApplication = new Msal.UserAgentApplication(
             environment.tenantConfig.clientId,
-            this.authority,
+            authority,
             (errorDesc: any, token: any) => {
                 if (errorDesc !== undefined || token === undefined) {
                     this.logout();
@@ -36,13 +36,12 @@ export class MsalService {
 
     public logout(): void {
         this.clientApplication.logout();
-        this.storageService.removeToken('token');
-        this.storageService.removeToken('b2c.token');
+        this.storageService.clear();
     }
 
     public completeLogin(token: string) {
         this.storageService.setItem('token', token);
-        this.storageService.removeToken('b2c.token');
+        this.storageService.removeItem('b2c.token');
     }
 
     public isLoggedIn(): boolean {
@@ -54,19 +53,19 @@ export class MsalService {
     }
 
     public getUserId(): string {
-        return this.getUser()['oid'];
+        return this.getUser().oid;
     }
 
-    public getUserEmail(): string {
-        return this.getUser()['emails'][0];
+    public getEmail(): string {
+        return this.getUser().emails[0];
     }
 
     public getGivenName(): string {
-        return this.decode(this.getUser()['given_name']);
+        return this.decode(this.getUser().given_name);
     }
 
     public getFamilyName(): string {
-        return this.decode(this.getUser()['family_name']);
+        return this.decode(this.getUser().family_name);
     }
 
     public getToken(): string | null {
