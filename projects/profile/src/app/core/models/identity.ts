@@ -1,6 +1,5 @@
-export interface UserRegistrationInputModel {
+export interface Identity {
     id: string;
-    applicationId: string;
     email: string;
     givenName: string;
     familyName: string;
