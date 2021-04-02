@@ -1,7 +1,10 @@
 import { ActionReducerMap } from '@ngrx/store';
+import { Identity } from '@profile/core/models';
 import { configReducer } from './reducers/config.reducers';
+import { identityReducer } from './reducers/Identity.reducers';
 
 export interface AppState {
+    identity: IdentityState,
     config: ConfigState;
 }
 
@@ -11,9 +14,10 @@ export interface ConfigState {
 };
 
 export interface IdentityState {
-    name: string;
+    identity: Identity
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-    config: configReducer
+    identity: identityReducer,
+    config: configReducer,
 };
