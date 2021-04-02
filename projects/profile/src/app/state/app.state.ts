@@ -10,6 +10,8 @@ export interface ConfigState {
     languages: string[];
 };
 
+export interface IdentityState { }
+
 export const reducers: ActionReducerMap<AppState> = {
     config: configReducer
 };
