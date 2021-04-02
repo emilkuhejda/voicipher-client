@@ -3,7 +3,7 @@ import { environment } from '@profile/environment';
 
 type StorageKey = 'token' | 'b2c.token' | 'identity' | 'language';
 
-Injectable()
+@Injectable()
 export class StorageService {
 
     private storage: Storage;
