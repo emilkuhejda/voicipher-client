@@ -8,7 +8,7 @@ const emptyIdentity: Identity = {
     email: '',
     givenName: '',
     familyName: ''
-}
+};
 
 const initialState: IdentityState = {
     identity: emptyIdentity

@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AppComponent } from './app.component';
 import { MsalService } from './service/msal.service';
 import { TranslateMockPipe } from './tests/translate.mock.pipe';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('AppComponent', () => {
     beforeEach(async () => {
@@ -17,6 +18,7 @@ describe('AppComponent', () => {
                 TranslateMockPipe
             ],
             providers: [
+                provideMockStore(),
                 {
                     provide: MsalService,
                     useValue: {}
