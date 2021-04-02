@@ -19,6 +19,8 @@ import { effects } from '@profile/state/effects';
 import { reducers } from '@profile/state/app.state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { CoreModule } from '@profile/core/core.module';
+import { ServiceModule } from '@profile/service/service.module';
 
 @NgModule({
     declarations: [
@@ -35,6 +37,8 @@ import { EffectsModule } from '@ngrx/effects';
         AppRoutingModule,
         VocComponentsModule,
         HttpClientModule,
+        CoreModule,
+        ServiceModule,
         TranslateModule.forRoot({
             defaultLanguage: environment.defaultLanguage,
             loader: {
