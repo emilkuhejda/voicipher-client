@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +25,7 @@ import { ServiceModule } from '@profile/service/service.module';
 import { TokenInterceptorService } from '@profile/service/token-interceptor.service';
 import { ErrorInterceptorService } from '@profile/service/error-interceptor.service';
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
     declarations: [
@@ -38,11 +40,13 @@ import { RegisterUserComponent } from './pages/register-user/register-user.compo
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         AppRoutingModule,
         VocComponentsModule,
         HttpClientModule,
         CoreModule,
         ServiceModule,
+        ToastModule,
         TranslateModule.forRoot({
             defaultLanguage: environment.defaultLanguage,
             loader: {

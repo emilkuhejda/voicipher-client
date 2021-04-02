@@ -7,3 +7,8 @@ export const getAudioFiles = createSelector(
     getFileFeatureState,
     state => state.audioFiles
 );
+
+export const getFileModuleError = createSelector(
+    getFileFeatureState,
+    state => state.error
+);

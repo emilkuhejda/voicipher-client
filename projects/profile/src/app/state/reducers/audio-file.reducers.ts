@@ -11,7 +11,8 @@ export const fileReducer = createReducer<FileState>(
     initialState,
     on(AudioFileApiAction.loadAudioFilesSuccess, (state, action): FileState => ({
         ...state,
-        audioFiles: action.audioFiles
+        audioFiles: action.audioFiles,
+        error: ''
     })),
     on(AudioFileApiAction.loadAudioFilesFailure, (state, action): FileState => ({
         ...state,

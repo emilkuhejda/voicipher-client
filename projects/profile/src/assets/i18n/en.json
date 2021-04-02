@@ -1,6 +1,7 @@
 {
   "Voicipher": "Voicipher",
   "Copyright": "Copyright &copy; Voicipher 2021",
+  "ErrorMessage": "Error occurred, please try again later",
   "Sidebar": {
     "Overview": "Overview",
     "Files": "Files",
