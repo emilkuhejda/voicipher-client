@@ -36,13 +36,12 @@ export class MsalService {
 
     public logout(): void {
         this.clientApplication.logout();
-        this.storageService.removeToken('token');
-        this.storageService.removeToken('b2c.token');
+        this.storageService.clear();
     }
 
     public completeLogin(token: string) {
         this.storageService.setItem('token', token);
-        this.storageService.removeToken('b2c.token');
+        this.storageService.removeItem('b2c.token');
     }
 
     public isLoggedIn(): boolean {

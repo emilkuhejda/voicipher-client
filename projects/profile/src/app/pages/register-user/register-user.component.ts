@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { StorageService } from '@profile/service/storage.service';
 import { UserRegistrationInputModel } from '@profile/core/models/input-models';
 import { environment } from '@profile/environment';
 import { MsalService } from '@profile/service/msal.service';
 import { UserService } from '@profile/service/user.service';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from '@profile/state/app.state';
+import { IdentityPageAction } from '@profile/state/actions';
 
 @Component({
     selector: 'app-register-user',
@@ -14,8 +16,8 @@ import { Router } from '@angular/router';
 export class RegisterUserComponent implements OnInit {
 
     public constructor(
+        private store: Store<AppState>,
         private userService: UserService,
-        private storageService: StorageService,
         private router: Router,
         private msalService: MsalService) { }
 
@@ -32,7 +34,7 @@ export class RegisterUserComponent implements OnInit {
             .registerUser(userRegistrationModel)
             .subscribe(
                 userRegistration => {
-                    this.storageService.setItem('identity', userRegistration.identity);
+                    this.store.dispatch(IdentityPageAction.setCurrentIdentityRequest({ identity: userRegistration.identity }));
                     this.msalService.completeLogin(userRegistration.token);
                     this.router.navigate(['/']);
                 },

@@ -11,13 +11,26 @@ export class IdentityEffects {
 
     public constructor(private action$: Actions, private storageService: StorageService) { }
 
+    public createIdentity = createEffect(() => this.action$
+        .pipe(
+            ofType(IdentityPageAction.setCurrentIdentityRequest),
+            concatMap(action => {
+                this.storageService.setItem('identity', action.identity);
+                return of(IdentityApiAction.setCurrentIdentitySuccess({ identity: action.identity }));
+            })
+        ));
+
     public loadIdentity = createEffect(() => this.action$
         .pipe(
             ofType(IdentityPageAction.loadCurrentIdentityRequest),
             concatMap(() => {
                 const identity = this.storageService.getItem<Identity>('identity');
-                return of(IdentityApiAction.loadCurrentIdentitySuccess({ identity: identity! }));
+                if (identity) {
+                    return of(IdentityApiAction.loadCurrentIdentitySuccess({ identity: identity }));
+                } else {
+                    return of(IdentityApiAction.loadCurrentIdentityFailure());
+                }
             })
-        ))
+        ));
 
 }

@@ -20,8 +20,12 @@ export class StorageService {
         this.storage.setItem(storageKey, JSON.stringify(value));
     }
 
-    public removeToken(storageKey: StorageKey) {
+    public removeItem(storageKey: StorageKey): void {
         this.storage.removeItem(storageKey);
+    }
+
+    public clear(): void {
+        this.storage.clear();
     }
 
     public getLanguage(): string {

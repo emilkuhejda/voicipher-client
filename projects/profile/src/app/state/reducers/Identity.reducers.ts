@@ -16,11 +16,18 @@ const initialState: IdentityState = {
 
 export const identityReducer = createReducer<IdentityState>(
     initialState,
+    on(IdentityApiAction.setCurrentIdentitySuccess, (state, action): IdentityState => ({
+        ...state,
+        identity: { ...action.identity }
+    })),
     on(IdentityApiAction.loadCurrentIdentitySuccess, (state, action): IdentityState => ({
         ...state,
         identity: { ...action.identity }
     })),
-    on(IdentityPageAction.removeCurrentIdentityRequest, (state): IdentityState => ({
+    on(IdentityApiAction.loadCurrentIdentityFailure, (): IdentityState => ({
+        ...initialState
+    })),
+    on(IdentityPageAction.removeCurrentIdentityRequest, (): IdentityState => ({
         ...initialState
     }))
 );
