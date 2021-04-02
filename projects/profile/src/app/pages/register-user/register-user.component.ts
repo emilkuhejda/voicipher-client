@@ -23,7 +23,7 @@ export class RegisterUserComponent implements OnInit {
         const userRegistrationModel: UserRegistrationInputModel = {
             id: this.msalService.getUserId(),
             applicationId: environment.applicationId,
-            email: this.msalService.getUserEmail(),
+            email: this.msalService.getEmail(),
             givenName: this.msalService.getGivenName(),
             familyName: this.msalService.getFamilyName()
         };

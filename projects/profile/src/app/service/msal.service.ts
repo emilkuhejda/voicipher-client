@@ -57,7 +57,7 @@ export class MsalService {
         return this.getUser()['oid'];
     }
 
-    public getUserEmail(): string {
+    public getEmail(): string {
         return this.getUser()['emails'][0];
     }
 
