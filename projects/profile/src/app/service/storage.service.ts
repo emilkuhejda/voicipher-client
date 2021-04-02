@@ -16,7 +16,7 @@ export class StorageService {
         return this.parseJSON(this.storage.getItem(storageKey));
     }
 
-    public setItem(storageKey: StorageKey, value: string): void {
+    public setItem(storageKey: StorageKey, value: any): void {
         this.storage.setItem(storageKey, JSON.stringify(value));
     }
 
