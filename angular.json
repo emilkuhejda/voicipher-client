@@ -133,7 +133,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "scss"
         }
       },
       "root": "projects/profile",
@@ -154,7 +154,7 @@
               "projects/profile/src/assets"
             ],
             "styles": [
-              "projects/profile/src/styles.sass",
+              "projects/profile/src/styles.scss",
               "projects/voc-components/src/assets/css/styles.css",
               "projects/voc-components/src/assets/vendor/fontawesome-free/css/all.min.css",
               "projects/voc-components/src/assets/css/sb-admin-2.min.css"
@@ -164,6 +164,9 @@
               "projects/voc-components/src/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
               "projects/voc-components/src/assets/vendor/jquery-easing/jquery.easing.min.js",
               "projects/voc-components/src/assets/js/sb-admin-2.min.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "msal"
             ]
           },
           "configurations": {
@@ -224,7 +227,7 @@
               "projects/profile/src/assets"
             ],
             "styles": [
-              "projects/profile/src/styles.sass"
+              "projects/profile/src/styles.scss"
             ],
             "scripts": []
           }
@@ -256,7 +259,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "scss"
         }
       },
       "root": "projects/control-panel",
@@ -277,7 +280,7 @@
               "projects/control-panel/src/assets"
             ],
             "styles": [
-              "projects/control-panel/src/styles.sass"
+              "projects/control-panel/src/styles.scss"
             ],
             "scripts": []
           },
@@ -339,7 +342,7 @@
               "projects/control-panel/src/assets"
             ],
             "styles": [
-              "projects/control-panel/src/styles.sass"
+              "projects/control-panel/src/styles.scss"
             ],
             "scripts": []
           }
