@@ -157,7 +157,10 @@
               "projects/profile/src/styles.scss",
               "projects/voc-components/src/assets/css/styles.css",
               "projects/voc-components/src/assets/vendor/fontawesome-free/css/all.min.css",
-              "projects/voc-components/src/assets/css/sb-admin-2.min.css"
+              "projects/voc-components/src/assets/css/sb-admin-2.min.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": [
               "projects/voc-components/src/assets/vendor/jquery/jquery.min.js",
