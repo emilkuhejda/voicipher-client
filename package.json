@@ -22,6 +22,7 @@
     "@angular/platform-browser": "~11.0.9",
     "@angular/platform-browser-dynamic": "~11.0.9",
     "@angular/router": "~11.0.9",
+    "@azure/msal-angular": "^0.1.2",
     "@briebug/jest-schematic": "^3.1.0",
     "@ngrx/effects": "^11.1.0",
     "@ngrx/store": "^11.1.0",
@@ -68,9 +69,11 @@
         "<rootDir>/projects/home/src/environments/environment"
       ],
       "@home/service/(.*)$": "<rootDir>/projects/home/src/app/service/$1",
+      "@home/core/(.*)$": "<rootDir>/projects/home/src/app/core/$1",
       "@profile/environment": [
         "<rootDir>/projects/profile/src/environments/environment"
       ],
+      "@home/profile/(.*)$": "<rootDir>/projects/profile/src/app/service/$1",
       "@profile/state/(.*)$": "<rootDir>/projects/profile/src/app/state/$1"
     }
   }

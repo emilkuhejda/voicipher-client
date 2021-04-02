@@ -26,8 +26,14 @@
       "@home/service/*": [
         "projects/home/src/app/service/*"
       ],
+      "@profile/core/*": [
+        "projects/profile/src/app/core/*"
+      ],
       "@profile/environment": [
         "projects/profile/src/environments/environment"
+      ],
+      "@profile/service/*": [
+        "projects/profile/src/app/service/*"
       ],
       "@profile/state/*": [
         "projects/profile/src/app/state/*"

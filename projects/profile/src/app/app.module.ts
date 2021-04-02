@@ -19,6 +19,9 @@ import { effects } from '@profile/state/effects';
 import { reducers } from '@profile/state/app.state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { CoreModule } from '@profile/core/core.module';
+import { ServiceModule } from '@profile/service/service.module';
+import { RegisterUserComponent } from './pages/register-user/register-user.component';
 
 @NgModule({
     declarations: [
@@ -28,13 +31,16 @@ import { EffectsModule } from '@ngrx/effects';
         MessageOverviewComponent,
         RecycleBinComponent,
         NotFoundComponent,
-        AccountComponent
+        AccountComponent,
+        RegisterUserComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         VocComponentsModule,
         HttpClientModule,
+        CoreModule,
+        ServiceModule,
         TranslateModule.forRoot({
             defaultLanguage: environment.defaultLanguage,
             loader: {
