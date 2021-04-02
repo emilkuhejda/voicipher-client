@@ -23,13 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     public sidebarItems: SidebarItemModel[] = [];
 
-    public messages: MessageModel[] = [
-        {
-            title: 'Message title',
-            body: 'Message body',
-            url: ['/messages', '1']
-        }
-    ];
+    public messages: MessageModel[] = [];
 
     public constructor(
         private store: Store<AppState>,
@@ -38,12 +32,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
     public ngOnInit(): void {
         this.store.dispatch(IdentityPageAction.loadCurrentIdentityRequest());
-        this.identity$ = this.store.select(getCurrentIdentity);
 
         this.store
             .select(getCurrentLanguage)
             .pipe(takeUntil(this.destroy$))
             .subscribe(() => this.initializeSidebarItems());
+        this.identity$ = this.store.select(getCurrentIdentity);
     }
 
     public ngOnDestroy(): void {
