@@ -15,11 +15,8 @@ export class MsalService {
             environment.tenantConfig.clientId,
             this.authority,
             (errorDesc: any, token: any) => {
-                if (errorDesc !== undefined) {
-                    return;
-                }
-
-                if (token === undefined) {
+                if (errorDesc !== undefined || token === undefined) {
+                    this.logout();
                     return;
                 }
 
