@@ -4,7 +4,7 @@ import { configReducer } from './reducers/config.reducers';
 import { identityReducer } from './reducers/Identity.reducers';
 
 export interface AppState {
-    identity: IdentityState,
+    identity: IdentityState;
     config: ConfigState;
 }
 
@@ -14,10 +14,10 @@ export interface ConfigState {
 };
 
 export interface IdentityState {
-    identity: Identity
+    identity: Identity;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
     identity: identityReducer,
-    config: configReducer,
+    config: configReducer
 };

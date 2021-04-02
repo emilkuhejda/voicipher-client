@@ -26,7 +26,7 @@ export class IdentityEffects {
             concatMap(() => {
                 const identity = this.storageService.getItem<Identity>('identity');
                 if (identity) {
-                    return of(IdentityApiAction.loadCurrentIdentitySuccess({ identity: identity }));
+                    return of(IdentityApiAction.loadCurrentIdentitySuccess({ identity }));
                 } else {
                     return of(IdentityApiAction.loadCurrentIdentityFailure());
                 }
