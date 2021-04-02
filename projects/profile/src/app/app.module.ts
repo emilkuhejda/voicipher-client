@@ -7,7 +7,7 @@ import { VocComponentsModule } from 'projects/voc-components/src/public-api';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { environment } from '@profile/environment';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FileOverviewComponent } from './pages/file/file-overview/file-overview.component';
 import { FileCreateComponent } from './pages/file/file-create/file-create.component';
 import { MessageOverviewComponent } from './pages/message/message-overview/message-overview.component';
@@ -21,6 +21,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { CoreModule } from '@profile/core/core.module';
 import { ServiceModule } from '@profile/service/service.module';
+import { TokenInterceptorService } from '@profile/service/token-interceptor.service';
+import { ErrorInterceptorService } from '@profile/service/error-interceptor.service';
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
 
 @NgModule({
@@ -56,7 +58,18 @@ import { RegisterUserComponent } from './pages/register-user/register-user.compo
         }),
         EffectsModule.forRoot(effects)
     ],
-    providers: [],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptorService,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorInterceptorService,
+            multi: true
+        }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
