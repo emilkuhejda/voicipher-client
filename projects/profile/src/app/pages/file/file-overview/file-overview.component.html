@@ -25,6 +25,14 @@
                         <th class="table-header">{{ 'FilesPage.Actions' | translate }}</th>
                     </tr>
                 </thead>
+                <tbody *ngIf="audioFile$ | async as audioFiles">
+                    <tr *ngFor="let audioFile of audioFiles">
+                        <td><label>{{audioFile.name}}</label></td>
+                        <td><label>{{audioFile.dateCreated | date}}</label></td>
+                        <td><label class="col-md-8">{{audioFile.recognitionStateString}}</label></td>
+                        <td class="actions"></td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>

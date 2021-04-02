@@ -1,3 +1,4 @@
+import { RecognitionState } from "../types/recognition-state";
 import { UploadStatus } from "../types/upload-status";
 
 export interface AudioFile {
@@ -6,7 +7,7 @@ export interface AudioFile {
     fileName: string;
     language: string;
     isPhoneCall: string;
-    recognitionStateString: string;
+    recognitionStateString: RecognitionState;
     uploadStatus: UploadStatus;
     totalTimeTicks: number;
     transcriptionStartTimeTicks: number;

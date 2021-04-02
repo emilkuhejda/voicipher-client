@@ -11,7 +11,7 @@ export class IdentityEffects {
 
     public constructor(private action$: Actions, private storageService: StorageService) { }
 
-    public createIdentity = createEffect(() => this.action$
+    public createIdentity$ = createEffect(() => this.action$
         .pipe(
             ofType(IdentityPageAction.setCurrentIdentityRequest),
             concatMap(action => {
@@ -20,7 +20,7 @@ export class IdentityEffects {
             })
         ));
 
-    public loadIdentity = createEffect(() => this.action$
+    public loadIdentity$ = createEffect(() => this.action$
         .pipe(
             ofType(IdentityPageAction.loadCurrentIdentityRequest),
             concatMap(() => {
