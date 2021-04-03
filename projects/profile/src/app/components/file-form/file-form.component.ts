@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageHelper } from '@profile/core/utils/language-helper';
@@ -16,8 +16,13 @@ export class FileFormComponent implements OnInit {
 
     public fileForm: FormGroup;
     public submitted: boolean = false;
-    public loading: boolean = false;
     public audioTypeVisible: boolean = false;
+
+    @Input()
+    public loading: boolean = false;
+
+    @Output()
+    public loadingChange: EventEmitter<any> = new EventEmitter();
 
     @Output()
     public save: EventEmitter<FileFormData> = new EventEmitter();
@@ -69,8 +74,6 @@ export class FileFormComponent implements OnInit {
             return;
         }
 
-        this.loading = true;
-
         const fileFormData: FileFormData = {
             name: this.controls.name.value,
             language: this.controls.language.value,
@@ -79,6 +82,7 @@ export class FileFormComponent implements OnInit {
         };
 
         this.save.emit(fileFormData);
+        this.submitted = false;
     }
 
 }

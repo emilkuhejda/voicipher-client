@@ -14,8 +14,8 @@ export class FileCreateComponent {
     public constructor() { }
 
     public save(fileFormData: FileFormData) {
-        console.log(this.loading);
-        console.log(fileFormData);
+        this.loading = true;
+        this.loading = false;
     }
 
 }
