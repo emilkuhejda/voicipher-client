@@ -4,7 +4,6 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { ErrorResponse } from '@profile/core/models/error-response';
 import { FileService } from '@profile/service/file.service';
-import { of } from 'rxjs';
 import { catchError, concatMap, map, mergeMap } from 'rxjs/operators';
 import { AudioFileApiAction, AudioFilePageAction } from '../actions';
 
@@ -23,7 +22,7 @@ export class AudioFileEffects {
                 .pipe(
                     map(audioFiles => AudioFileApiAction.loadAudioFilesSuccess({ audioFiles })),
                     catchError(() => this.translateService
-                        .get('ErrorMessage')
+                        .get('ErrorCode.None')
                         .pipe(map(translation => AudioFileApiAction.loadAudioFilesFailure({ error: translation }))))
                 ))
         ));
@@ -47,7 +46,13 @@ export class AudioFileEffects {
                             return AudioFileApiAction.createAudioFileEventReceived();
                         }
                     }),
-                    catchError((error: ErrorResponse) => of(AudioFileApiAction.createAudioFilesFailure({ identifier: action.identifier, error: error.errorCode })))
+                    catchError((error: ErrorResponse) =>
+                        this.translateService
+                            .get(`ErrorCode.${error.errorCode}`)
+                            .pipe(map(translation => AudioFileApiAction.createAudioFilesFailure({
+                                identifier: action.identifier,
+                                error: translation
+                            }))))
                 ))
         ));
 

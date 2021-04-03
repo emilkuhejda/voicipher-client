@@ -34,7 +34,8 @@ export const fileReducer = createReducer<FileState>(
     on(AudioFilePageAction.createAudioFilesRequest, (state, action): FileState => ({
         ...state,
         currentUploadedFile: { identifier: action.identifier, progress: 0 },
-        uploadedFiles: [...state.uploadedFiles, { identifier: action.identifier, progress: 0 }]
+        uploadedFiles: [...state.uploadedFiles, { identifier: action.identifier, progress: 0 }],
+        error: ''
     })),
     on(AudioFileApiAction.createAudioFileSuccess, (state, action): FileState => {
         const updatedFiles = state.uploadedFiles.filter(x => x.identifier !== action.identifier);
