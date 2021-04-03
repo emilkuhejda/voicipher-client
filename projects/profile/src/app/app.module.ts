@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { VocComponentsModule } from 'projects/voc-components/src/public-api';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { environment } from '@profile/environment';
@@ -33,6 +34,7 @@ import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { ChipModule } from 'primeng/chip';
 import { FileFormComponent } from './components/file-form/file-form.component';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
     declarations: [
@@ -53,14 +55,16 @@ import { FileFormComponent } from './components/file-form/file-form.component';
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
-        VocComponentsModule,
+        ReactiveFormsModule,
         HttpClientModule,
+        VocComponentsModule,
         CoreModule,
         ServiceModule,
         ToastModule,
         ButtonModule,
         TooltipModule,
         ChipModule,
+        FileUploadModule,
         TranslateModule.forRoot({
             defaultLanguage: environment.defaultLanguage,
             loader: {

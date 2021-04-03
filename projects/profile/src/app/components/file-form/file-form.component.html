@@ -1,1 +1,72 @@
-<p>file-form works!</p>
+<ng-container *ngIf="fileForm">
+    <form [formGroup]="fileForm">
+        <h4>File name</h4>
+
+        <div class="form-group">
+            <input type="text" formControlName="name" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && controls.name.errors }" />
+            <div *ngIf="submitted && controls.name.errors" class="invalid-feedback">
+                <div *ngIf="controls.name.errors.required">File name is required</div>
+            </div>
+        </div>
+
+        <h4>Language</h4>
+
+        <div class="form-group mb-3">
+            <select formControlName="language" class="form-control" (change)="onSelectChange()">
+                <option value="" selected>-Select-</option>
+                <option value="en-AU">English (Australia)</option>
+                <option value="en-GB">English (United Kingdom)</option>
+                <option value="en-US">English (United States)</option>
+                <option value="de-DE">German (Germany)</option>
+                <option value="fr-FR">French (France)</option>
+                <option value="es-ES">Spanish (Spain)</option>
+                <option value="it-IT">Italian (Italy)</option>
+                <option value="pt-PT">Portuguese (Portugal)</option>
+                <option value="sk-SK">Slovak (Slovakia)</option>
+                <option value="cs-CZ">Czech (Czech Republic)</option>
+                <option value="pl-PL">Polish (Poland)</option>
+                <option value="hu-HU">Hungarian (Hungary)</option>
+                <option value="ru-RU">Russian (Russia)</option>
+                <option value="ja-JP">Japanese (Japan)</option>
+                <option value="zh">Chinese (Mandarin, simplified)</option>
+            </select>
+        </div>
+
+        <h4>Audio upload</h4>
+
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                <input #fileInput type="file" id="inputGroupFile" class="custom-file-input"
+                    aria-describedby="inputGroupFileAddon" (change)="onChange(fileInput.files)" />
+                <label class="custom-file-label" for="inputGroupFile">{{selectedFileName}}</label>
+            </div>
+        </div>
+
+        <h4 *ngIf="isModelSupported">Audio type</h4>
+
+        <div *ngIf="isModelSupported" class="check-container mb-3">
+            <div class="form-check">
+                <input type="radio" id="isBasicRecording" formControlName="audioType" class="form-check-input"
+                    value="0" />
+                <label for="isBasicRecording">Basic recording</label>
+            </div>
+
+            <div class="form-check">
+                <input type="radio" id="isPhoneCall" formControlName="audioType" class="form-check-input" value="1" />
+                <label for="isPhoneCall">Phone / video call</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button [disabled]="loading" (click)="onSubmit(fileInput.files)"
+                class="btn btn-primary mr-2">Create</button>
+            <img *ngIf="loading"
+                src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+
+        <!-- <div *ngIf="progress > 0 && progress < 100">
+            <app-progress-bar value="{{progress}}"></app-progress-bar>
+        </div> -->
+    </form>
+</ng-container>
