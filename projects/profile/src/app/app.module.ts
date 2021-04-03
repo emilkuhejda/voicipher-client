@@ -11,6 +11,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FileOverviewComponent } from './pages/file/file-overview/file-overview.component';
 import { FileCreateComponent } from './pages/file/file-create/file-create.component';
+import { FileEditComponent } from './pages/file/file-edit/file-edit.component';
+import { FileDetailComponent } from './pages/file/file-detail/file-detail.component';
+import { MessageDetailComponent } from './pages/message/message-detail/message-detail.component';
 import { MessageOverviewComponent } from './pages/message/message-overview/message-overview.component';
 import { RecycleBinComponent } from './pages/recycle-bin/recycle-bin.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -35,7 +38,10 @@ import { ChipModule } from 'primeng/chip';
         AppComponent,
         FileOverviewComponent,
         FileCreateComponent,
+        FileEditComponent,
+        FileDetailComponent,
         MessageOverviewComponent,
+        MessageDetailComponent,
         RecycleBinComponent,
         NotFoundComponent,
         AccountComponent,

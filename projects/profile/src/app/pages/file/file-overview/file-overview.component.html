@@ -40,11 +40,11 @@
                                 (click)="transcribe(audioFile)" class="p-button-rounded mr-2"
                                 [pTooltip]="'FilesPage.Transcribe' | translate" tooltipPosition="top"></button>
                             <button pButton pRipple *ngIf="audioFile.canTranscribe" [disabled]="audioFile.isInProgress"
-                                [routerLink]="['/files/edit', audioFile.id]" type="button" icon="pi pi-pencil"
+                                (click)="navigateToPage('/files/edit', audioFile.id)" type="button" icon="pi pi-pencil"
                                 class="p-button-rounded mr-2" [pTooltip]="'FilesPage.Edit' | translate"
                                 tooltipPosition="top"></button>
                             <button pButton pRipple *ngIf="audioFile.isCompleted" [disabled]="audioFile.isInProgress"
-                                [routerLink]="['/files', audioFile.id]" type="button" icon="pi pi-pencil"
+                                (click)="navigateToPage('/files', audioFile.id)" type="button" icon="pi pi-pencil"
                                 class="p-button-rounded mr-2" [pTooltip]="'FilesPage.Detail' | translate"
                                 tooltipPosition="top"></button>
                             <button pButton pRipple *ngIf="audioFile.isCompleted" [disabled]="audioFile.isInProgress"
