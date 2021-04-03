@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateMockPipe } from '../../../tests/translate.mock.pipe';
 
@@ -9,7 +10,8 @@ describe('FileCreateComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [FileCreateComponent, TranslateMockPipe]
+            declarations: [FileCreateComponent, TranslateMockPipe],
+            schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
     });
 
