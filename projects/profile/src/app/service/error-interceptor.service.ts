@@ -17,7 +17,7 @@ export class ErrorInterceptorService {
                     this.msalService.logout();
                 }
 
-                let errorResponse = new ErrorResponse(err);
+                const errorResponse = new ErrorResponse(err);
                 return throwError(errorResponse);
             })
         );

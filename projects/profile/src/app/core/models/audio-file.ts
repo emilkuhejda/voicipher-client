@@ -1,5 +1,5 @@
-import { RecognitionState } from "../types/recognition-state";
-import { UploadStatus } from "../types/upload-status";
+import { RecognitionState } from '../types/recognition-state';
+import { UploadStatus } from '../types/upload-status';
 
 export interface AudioFile {
     id: string;

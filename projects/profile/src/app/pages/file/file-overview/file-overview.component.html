@@ -36,26 +36,21 @@
                             </div>
                         </td>
                         <td class="actions">
-                            <!--Transcribe-->
                             <button pButton pRipple *ngIf="audioFile.canTranscribe" type="button" icon="pi pi-file"
                                 (click)="transcribe(audioFile)" class="p-button-rounded mr-2"
                                 [pTooltip]="'FilesPage.Transcribe' | translate" tooltipPosition="top"></button>
-                            <!--Edit-->
                             <button pButton pRipple *ngIf="audioFile.canTranscribe" [disabled]="audioFile.isInProgress"
                                 [routerLink]="['/files/edit', audioFile.id]" type="button" icon="pi pi-pencil"
                                 class="p-button-rounded mr-2" [pTooltip]="'FilesPage.Edit' | translate"
                                 tooltipPosition="top"></button>
-                            <!--Detail-->
                             <button pButton pRipple *ngIf="audioFile.isCompleted" [disabled]="audioFile.isInProgress"
                                 [routerLink]="['/files', audioFile.id]" type="button" icon="pi pi-pencil"
                                 class="p-button-rounded mr-2" [pTooltip]="'FilesPage.Detail' | translate"
                                 tooltipPosition="top"></button>
-                            <!--Send email-->
                             <button pButton pRipple *ngIf="audioFile.isCompleted" [disabled]="audioFile.isInProgress"
                                 (click)="sendEmail(audioFile)" type="button" icon="pi pi-envelope"
                                 class="p-button-rounded mr-2" [pTooltip]="'FilesPage.SendEmail' | translate"
                                 tooltipPosition="top"></button>
-                            <!--Delete-->
                             <button pButton pRipple [disabled]="audioFile.isInProgress" type="button" icon="pi pi-times"
                                 (click)="delete(audioFile)" class="p-button-rounded p-button-danger"
                                 [pTooltip]="'FilesPage.Delete' | translate" tooltipPosition="top"></button>

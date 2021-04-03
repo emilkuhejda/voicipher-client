@@ -6,14 +6,14 @@ import { configReducer } from './reducers/config.reducers';
 import { identityReducer } from './reducers/Identity.reducers';
 
 export interface AppState {
-    file: FileState,
+    file: FileState;
     identity: IdentityState;
     config: ConfigState;
 }
 
 export interface FileState {
-    audioFiles: AudioFile[],
-    error: string
+    audioFiles: AudioFile[];
+    error: string;
 }
 
 export interface IdentityState {

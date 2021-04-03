@@ -22,7 +22,7 @@ export class AudioFileViewModel {
     }
 
     public get isInProgress(): boolean {
-        return this.audioFile.recognitionStateString == 'InProgress';
+        return this.audioFile.recognitionStateString === 'InProgress';
     }
 
     public get isCompleted(): boolean {

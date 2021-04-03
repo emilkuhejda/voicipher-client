@@ -8,8 +8,8 @@ export class RoutingService {
         return environment.webApiUrl + 'api/b2c/v1/users/register/';
     }
 
-    getAudioFilesUrl(): string {
-        return environment.webApiUrl + "api/v1/files/";
+    public getAudioFilesUrl(): string {
+        return environment.webApiUrl + 'api/v1/files/';
     }
 
 }

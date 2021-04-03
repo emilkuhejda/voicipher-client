@@ -19,7 +19,9 @@ export class AudioFileEffects {
             mergeMap(() => this.fileService.getAll()
                 .pipe(
                     map(audioFiles => AudioFileApiAction.loadAudioFilesSuccess({ audioFiles })),
-                    catchError(() => this.translateService.get('ErrorMessage').pipe(map(translation => AudioFileApiAction.loadAudioFilesFailure({ error: translation }))))
+                    catchError(() => this.translateService
+                        .get('ErrorMessage')
+                        .pipe(map(translation => AudioFileApiAction.loadAudioFilesFailure({ error: translation }))))
                 ))
         ));
 
