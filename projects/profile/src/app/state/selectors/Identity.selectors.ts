@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { IdentityState } from '../app.state';
 
-const getConfigFeatureState = createFeatureSelector<IdentityState>('identity');
+const getIdentityFeatureState = createFeatureSelector<IdentityState>('identity');
 
 export const getCurrentIdentity = createSelector(
-    getConfigFeatureState,
+    getIdentityFeatureState,
     state => state.identity
 );
