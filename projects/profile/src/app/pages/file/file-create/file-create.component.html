@@ -7,7 +7,8 @@
 
     <!-- Card Body -->
     <div class="card-body">
-        <app-file-form (save)="save($event)" [(loading)]="loading"></app-file-form>
+        <app-file-form (save)="save($event)" [(loading)]="loading"
+            [saveButtonText]="'CreateFilePage.Create' | translate"></app-file-form>
         <p-progressBar *ngIf="progress > 0 && progress < 100" [value]="progress"></p-progressBar>
     </div>
 </div>

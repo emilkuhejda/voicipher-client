@@ -1,43 +1,43 @@
 <ng-container *ngIf="fileForm">
     <form [formGroup]="fileForm">
-        <h4>File name</h4>
+        <h4>{{ 'FileForm.FileName' | translate }}</h4>
 
         <div class="form-group">
             <input type="text" formControlName="name" class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && controls.name.errors }" />
             <div *ngIf="submitted && controls.name.errors" class="invalid-feedback">
-                <div *ngIf="controls.name.errors.required">File name is required</div>
+                <div *ngIf="controls.name.errors.required">{{ 'FileForm.FileNameError' | translate }}</div>
             </div>
         </div>
 
-        <h4>Language</h4>
+        <h4>{{ 'FileForm.Language' | translate }}</h4>
 
         <div class="form-group mb-3">
             <select formControlName="language" class="form-control" (change)="onSelectChange()"
                 [ngClass]="{ 'is-invalid': submitted && controls.language.errors }">
-                <option value="" selected>-Select-</option>
-                <option value="en-AU">English (Australia)</option>
-                <option value="en-GB">English (United Kingdom)</option>
-                <option value="en-US">English (United States)</option>
-                <option value="de-DE">German (Germany)</option>
-                <option value="fr-FR">French (France)</option>
-                <option value="es-ES">Spanish (Spain)</option>
-                <option value="it-IT">Italian (Italy)</option>
-                <option value="pt-PT">Portuguese (Portugal)</option>
-                <option value="sk-SK">Slovak (Slovakia)</option>
-                <option value="cs-CZ">Czech (Czech Republic)</option>
-                <option value="pl-PL">Polish (Poland)</option>
-                <option value="hu-HU">Hungarian (Hungary)</option>
-                <option value="ru-RU">Russian (Russia)</option>
-                <option value="ja-JP">Japanese (Japan)</option>
-                <option value="zh">Chinese (Mandarin, simplified)</option>
+                <option value="" selected>{{ 'FileForm.Select' | translate }}</option>
+                <option value="en-AU">{{ 'FileForm.EnglishAU' | translate }}</option>
+                <option value="en-GB">{{ 'FileForm.EnglishGB' | translate }}</option>
+                <option value="en-US">{{ 'FileForm.EnglishUS' | translate }}</option>
+                <option value="de-DE">{{ 'FileForm.German' | translate }}</option>
+                <option value="fr-FR">{{ 'FileForm.French' | translate }}</option>
+                <option value="es-ES">{{ 'FileForm.Spanish' | translate }}</option>
+                <option value="it-IT">{{ 'FileForm.Italian' | translate }}</option>
+                <option value="pt-PT">{{ 'FileForm.Portuguese' | translate }}</option>
+                <option value="sk-SK">{{ 'FileForm.Slovak' | translate }}</option>
+                <option value="cs-CZ">{{ 'FileForm.Czech' | translate }}</option>
+                <option value="pl-PL">{{ 'FileForm.Polish' | translate }}</option>
+                <option value="hu-HU">{{ 'FileForm.Hungarian' | translate }}</option>
+                <option value="ru-RU">{{ 'FileForm.Russian' | translate }}</option>
+                <option value="ja-JP">{{ 'FileForm.Japanese' | translate }}</option>
+                <option value="zh">{{ 'FileForm.Chinese' | translate }}</option>
             </select>
             <div *ngIf="submitted && controls.language.errors" class="invalid-feedback">
-                <div *ngIf="controls.language.errors.required">Language is required</div>
+                <div *ngIf="controls.language.errors.required">{{ 'FileForm.LanguageError' | translate }}</div>
             </div>
         </div>
 
-        <h4>Audio upload</h4>
+        <h4>{{ 'FileForm.AudioUpload' | translate }}</h4>
 
         <div class="upload-row input-group mb-3">
             <div class="custom-file">
@@ -45,34 +45,35 @@
                     aria-describedby="inputGroupFileAddon" (change)="onChange(fileInput.files)"
                     [ngClass]="{ 'is-invalid': submitted && controls.uploadedFile.errors }" />
                 <div *ngIf="submitted && controls.uploadedFile.errors" class="invalid-feedback">
-                    <div *ngIf="controls.uploadedFile.errors.required">File is required</div>
+                    <div *ngIf="controls.uploadedFile.errors.required">{{ 'FileForm.UploadedFileError' | translate }}
+                    </div>
                 </div>
                 <label *ngIf="controls.uploadedFile.value; else fileNotSelected" class="custom-file-label"
                     for="inputGroupFile">{{controls.uploadedFile.value.name}}</label>
                 <ng-template #fileNotSelected>
-                    <label class="custom-file-label" for="inputGroupFile">Choose
-                        file</label>
+                    <label class="custom-file-label" for="inputGroupFile">{{ 'FileForm.ChooseFile' | translate
+                        }}</label>
                 </ng-template>
             </div>
         </div>
 
-        <h4 *ngIf="audioTypeVisible">Audio type</h4>
+        <h4 *ngIf="audioTypeVisible">{{ 'FileForm.AudioType' | translate }}</h4>
 
         <div *ngIf="audioTypeVisible" class="check-container mb-3">
             <div class="form-check">
                 <input type="radio" id="isBasicRecording" formControlName="audioType" class="form-check-input"
                     value="0" />
-                <label for="isBasicRecording">Basic recording</label>
+                <label for="isBasicRecording">{{ 'FileForm.BasicRecording' | translate }}</label>
             </div>
 
             <div class="form-check">
                 <input type="radio" id="isPhoneCall" formControlName="audioType" class="form-check-input" value="1" />
-                <label for="isPhoneCall">Phone / video call</label>
+                <label for="isPhoneCall">{{ 'FileForm.PhoneVideoCall' | translate }}</label>
             </div>
         </div>
 
         <div class="form-group">
-            <button [disabled]="loading" (click)="onSubmit()" class="btn btn-primary mr-2">Create</button>
+            <button [disabled]="loading" (click)="onSubmit()" class="btn btn-primary mr-2">{{saveButtonText}}</button>
             <img *ngIf="loading"
                 src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
         </div>

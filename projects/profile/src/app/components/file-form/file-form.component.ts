@@ -19,6 +19,9 @@ export class FileFormComponent implements OnInit {
     public audioTypeVisible: boolean = false;
 
     @Input()
+    public saveButtonText: string = '';
+
+    @Input()
     public loading: boolean = false;
 
     @Output()

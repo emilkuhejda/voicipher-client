@@ -24,7 +24,33 @@
     "Logout": "Logout"
   },
   "FileForm": {
-    "MultipleUploadError": "You can upload only one file at once."
+    "FileName": "File name",
+    "Language": "Language",
+    "Select": "-Select-",
+    "EnglishAU": "English (Australia)",
+    "EnglishGB": "English (United Kingdom)",
+    "EnglishUS": "English (United States)",
+    "German": "German (Germany)",
+    "French": "French (France)",
+    "Spanish": "Spanish (Spain)",
+    "Italian": "Italian (Italy)",
+    "Portuguese": "Portuguese (Portugal)",
+    "Slovak": "Slovak (Slovakia)",
+    "Czech": "Czech (Czech Republic)",
+    "Polish": "Polish (Poland)",
+    "Hungarian": "Hungarian (Hungary)",
+    "Russian": "Russian (Russia)",
+    "Japanese": "Japanese (Japan)",
+    "Chinese": "Chinese (Mandarin, simplified)",
+    "AudioUpload": "Audio upload",
+    "ChooseFile": "Choose file",
+    "AudioType": "Audio type",
+    "BasicRecording": "Basic recording",
+    "PhoneVideoCall": "Phone / video call",
+    "MultipleUploadError": "You can upload only one file at once.",
+    "FileNameError": "File name is required",
+    "LanguageError": "Language is required",
+    "UploadedFileError": "File is required"
   },
   "NotFoundPage": {
     "404": "404",
@@ -51,6 +77,7 @@
     "Delete": "Delete"
   },
   "CreateFilePage": {
-    "CreateNewFile": "Create new file"
+    "CreateNewFile": "Create new file",
+    "Create": "Create"
   }
 }
