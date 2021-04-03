@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
@@ -16,7 +17,7 @@ export class FileOverviewComponent implements OnInit {
 
     public audioFile$: Observable<AudioFileViewModel[]> | undefined;
 
-    public constructor(private store: Store<AppState>) { }
+    public constructor(private store: Store<AppState>, private router: Router) { }
 
     public ngOnInit(): void {
         this.store.dispatch(AudioFilePageAction.loadAudioFilesRequest());
@@ -32,16 +33,14 @@ export class FileOverviewComponent implements OnInit {
             );
     }
 
-    public transcribe(audioFileViewModel: AudioFileViewModel): void {
-        console.log(audioFileViewModel);
+    public navigateToPage(path: string, audioFileId: string) {
+        this.router.navigate([path, audioFileId]);
     }
 
-    public sendEmail(audioFileViewModel: AudioFileViewModel): void {
-        console.log(audioFileViewModel);
-    }
+    public transcribe(audioFileViewModel: AudioFileViewModel): void { }
 
-    public delete(audioFileViewModel: AudioFileViewModel) {
-        console.log(audioFileViewModel);
-    }
+    public sendEmail(audioFileViewModel: AudioFileViewModel): void { }
+
+    public delete(audioFileViewModel: AudioFileViewModel) { }
 
 }
