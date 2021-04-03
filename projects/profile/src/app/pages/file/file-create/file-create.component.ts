@@ -8,7 +8,6 @@ import { FileFormData } from '@profile/components/file-form/file-form-data';
 })
 export class FileCreateComponent {
 
-    public progress: number = 0;
     public loading: boolean = false;
 
     public constructor() { }

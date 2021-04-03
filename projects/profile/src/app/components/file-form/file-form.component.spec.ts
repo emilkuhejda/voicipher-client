@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateService } from '@ngx-translate/core';
+import { of } from 'rxjs';
 
 import { FileFormComponent } from './file-form.component';
 
@@ -8,7 +10,15 @@ describe('FileFormComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [FileFormComponent]
+            declarations: [FileFormComponent],
+            providers: [
+                {
+                    provide: TranslateService,
+                    useValue: {
+                        get: () => of([])
+                    }
+                }
+            ]
         }).compileComponents();
     });
 

@@ -26,8 +26,8 @@ export class FileService {
     }
 
     public upload(formData: FormData, params: HttpParams) {
-        let uploadRequest = new HttpRequest('POST', this.routingService.getUploadFileItemUrl(), formData, {
-            params: params,
+        const uploadRequest = new HttpRequest('POST', this.routingService.getUploadFileItemUrl(), formData, {
+            params,
             reportProgress: true
         });
 

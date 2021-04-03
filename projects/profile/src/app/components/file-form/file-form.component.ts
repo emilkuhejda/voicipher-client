@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageHelper } from '@profile/core/utils/language-helper';
@@ -10,11 +10,12 @@ import { FileFormData } from './file-form-data';
     templateUrl: './file-form.component.html',
     styleUrls: ['./file-form.component.scss']
 })
-export class FileFormComponent implements OnInit {
+export class FileFormComponent {
 
     private translations: { [key: string]: string } = {};
 
     public fileForm: FormGroup;
+    public progress: number = 0;
     public submitted: boolean = false;
     public audioTypeVisible: boolean = false;
 
@@ -45,8 +46,6 @@ export class FileFormComponent implements OnInit {
             .get(['FileForm.MultipleUploadError'])
             .subscribe(translations => this.translations = translations);
     }
-
-    public ngOnInit(): void { }
 
     public get controls(): { [key: string]: AbstractControl } {
         return this.fileForm.controls;
