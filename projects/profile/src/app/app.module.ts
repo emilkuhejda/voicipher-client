@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ComponentsModule } from '@profile/components/components.module';
 import { VocComponentsModule } from 'projects/voc-components/src/public-api';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { environment } from '@profile/environment';
@@ -28,6 +29,7 @@ import { ServiceModule } from '@profile/service/service.module';
 import { TokenInterceptorService } from '@profile/service/token-interceptor.service';
 import { ErrorInterceptorService } from '@profile/service/error-interceptor.service';
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
+import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
@@ -51,10 +53,12 @@ import { ChipModule } from 'primeng/chip';
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
-        VocComponentsModule,
         HttpClientModule,
+        ComponentsModule,
+        VocComponentsModule,
         CoreModule,
         ServiceModule,
+        ProgressBarModule,
         ToastModule,
         ButtonModule,
         TooltipModule,

@@ -1,0 +1,8 @@
+.upload-row .custom-file {
+    display: block;
+    height: auto;
+}
+
+.form-control.is-invalid, .was-validated .form-control:invalid {
+    background-position: center right calc(0.70em + .1875rem)
+}
