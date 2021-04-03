@@ -26,6 +26,9 @@
       "@home/service/*": [
         "projects/home/src/app/service/*"
       ],
+      "@profile/components/*": [
+        "projects/profile/src/app/components/*"
+      ],
       "@profile/core/*": [
         "projects/profile/src/app/core/*"
       ],

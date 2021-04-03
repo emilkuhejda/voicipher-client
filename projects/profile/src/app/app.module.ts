@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ComponentsModule } from '@profile/components/components.module';
 import { VocComponentsModule } from 'projects/voc-components/src/public-api';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { environment } from '@profile/environment';
@@ -33,7 +33,6 @@ import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { ChipModule } from 'primeng/chip';
-import { FileFormComponent } from './components/file-form/file-form.component';
 
 @NgModule({
     declarations: [
@@ -47,15 +46,14 @@ import { FileFormComponent } from './components/file-form/file-form.component';
         RecycleBinComponent,
         NotFoundComponent,
         AccountComponent,
-        RegisterUserComponent,
-        FileFormComponent
+        RegisterUserComponent
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
-        ReactiveFormsModule,
         HttpClientModule,
+        ComponentsModule,
         VocComponentsModule,
         CoreModule,
         ServiceModule,

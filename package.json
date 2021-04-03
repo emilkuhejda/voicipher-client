@@ -72,7 +72,8 @@
         "<rootDir>/projects/home/src/environments/environment"
       ],
       "@home/service/(.*)$": "<rootDir>/projects/home/src/app/service/$1",
-      "@home/core/(.*)$": "<rootDir>/projects/home/src/app/core/$1",
+      "@profile/components/(.*)$": "<rootDir>/projects/profile/src/app/components/$1",
+      "@profile/core/(.*)$": "<rootDir>/projects/profile/src/app/core/$1",
       "@profile/environment": [
         "<rootDir>/projects/profile/src/environments/environment"
       ],

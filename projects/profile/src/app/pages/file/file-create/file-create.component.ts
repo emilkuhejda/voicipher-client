@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FileFormData } from '../../../components/file-form/file-form-data';
+import { FileFormData } from '@profile/components/file-form/file-form-data';
 
 @Component({
     selector: 'app-file-create',
