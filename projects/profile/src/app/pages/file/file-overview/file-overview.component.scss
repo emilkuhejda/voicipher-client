@@ -1,0 +1,9 @@
+:host ::ng-deep .none-chip .p-chip {
+    background: var(--primary-color);
+    color: var(--primary-color-text);
+}
+
+:host ::ng-deep .completed-chip .p-chip {
+    background: var(--green-500);
+    color: var(--primary-color-text);
+}

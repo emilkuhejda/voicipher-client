@@ -28,6 +28,7 @@ import { RegisterUserComponent } from './pages/register-user/register-user.compo
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
+import { ChipModule } from 'primeng/chip';
 
 @NgModule({
     declarations: [
@@ -51,6 +52,7 @@ import { TooltipModule } from 'primeng/tooltip';
         ToastModule,
         ButtonModule,
         TooltipModule,
+        ChipModule,
         TranslateModule.forRoot({
             defaultLanguage: environment.defaultLanguage,
             loader: {
