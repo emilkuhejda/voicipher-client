@@ -34,7 +34,6 @@ import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { ChipModule } from 'primeng/chip';
 import { FileFormComponent } from './components/file-form/file-form.component';
-import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
     declarations: [
@@ -64,7 +63,6 @@ import { FileUploadModule } from 'primeng/fileupload';
         ButtonModule,
         TooltipModule,
         ChipModule,
-        FileUploadModule,
         TranslateModule.forRoot({
             defaultLanguage: environment.defaultLanguage,
             loader: {

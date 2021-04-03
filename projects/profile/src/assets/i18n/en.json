@@ -23,6 +23,9 @@
     "Cancel": "Cancel",
     "Logout": "Logout"
   },
+  "FileForm": {
+    "MultipleUploadError": "You can upload only one file at once."
+  },
   "NotFoundPage": {
     "404": "404",
     "PageNotFound": "Page Not Found",
