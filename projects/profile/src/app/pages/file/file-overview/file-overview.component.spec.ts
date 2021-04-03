@@ -1,5 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
+import { ChipModule } from 'primeng/chip';
+import { TooltipModule } from 'primeng/tooltip';
+import { TranslateMockPipe } from '../../../tests/translate.mock.pipe';
 
 import { FileOverviewComponent } from './file-overview.component';
 
@@ -9,8 +13,9 @@ describe('FileOverviewComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [FileOverviewComponent],
-            providers: [provideMockStore()]
+            declarations: [FileOverviewComponent, TranslateMockPipe],
+            providers: [provideMockStore()],
+            imports: [RouterTestingModule, TooltipModule, ChipModule]
         }).compileComponents();
     });
 
