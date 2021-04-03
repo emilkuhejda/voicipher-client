@@ -10,3 +10,17 @@ export const loadAudioFilesFailure = createAction(
     '[Audio File API] Load audio files failure',
     props<{ error: string }>()
 );
+
+export const createAudioFileEventReceived = createAction(
+    '[Audio File Page] Create audio file event received'
+);
+
+export const createAudioFileSuccess = createAction(
+    '[Audio File Page] Create audio file success',
+    props<{ identifier: string }>()
+);
+
+export const createAudioFilesFailure = createAction(
+    '[Audio File Page] Create audio file failure',
+    props<{ identifier: string; error: string }>()
+);

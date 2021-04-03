@@ -29,7 +29,6 @@ import { ServiceModule } from '@profile/service/service.module';
 import { TokenInterceptorService } from '@profile/service/token-interceptor.service';
 import { ErrorInterceptorService } from '@profile/service/error-interceptor.service';
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
-import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
@@ -58,7 +57,6 @@ import { ChipModule } from 'primeng/chip';
         VocComponentsModule,
         CoreModule,
         ServiceModule,
-        ProgressBarModule,
         ToastModule,
         ButtonModule,
         TooltipModule,
