@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AudioFile } from '@profile/core/models/audio-file';
 import { Observable } from 'rxjs';
@@ -23,6 +23,15 @@ export class FileService {
                     return audioFiles;
                 })
             );
+    }
+
+    public upload(formData: FormData, params: HttpParams) {
+        let uploadRequest = new HttpRequest('POST', this.routingService.getUploadFileItemUrl(), formData, {
+            params: params,
+            reportProgress: true
+        });
+
+        return this.httpClient.request(uploadRequest);
     }
 
 }

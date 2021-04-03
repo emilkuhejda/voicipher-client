@@ -13,9 +13,6 @@ export class FileCreateComponent {
 
     public constructor() { }
 
-    public save(fileFormData: FileFormData) {
-        this.loading = true;
-        this.loading = false;
-    }
+    public save(fileFormData: FileFormData) { }
 
 }
