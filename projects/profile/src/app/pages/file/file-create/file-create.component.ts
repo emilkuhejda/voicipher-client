@@ -1,12 +1,21 @@
 import { Component } from '@angular/core';
+import { FileFormData } from '../../../components/file-form/file-form-data';
 
 @Component({
-  selector: 'app-file-create',
-  templateUrl: './file-create.component.html',
-  styleUrls: ['./file-create.component.scss']
+    selector: 'app-file-create',
+    templateUrl: './file-create.component.html',
+    styleUrls: ['./file-create.component.scss']
 })
 export class FileCreateComponent {
 
-  public constructor() { }
+    public progress: number = 0;
+    public loading: boolean = false;
+
+    public constructor() { }
+
+    public save(fileFormData: FileFormData) {
+        console.log(this.loading);
+        console.log(fileFormData);
+    }
 
 }

@@ -13,7 +13,8 @@
         <h4>Language</h4>
 
         <div class="form-group mb-3">
-            <select formControlName="language" class="form-control" (change)="onSelectChange()">
+            <select formControlName="language" class="form-control" (change)="onSelectChange()"
+                [ngClass]="{ 'is-invalid': submitted && controls.language.errors }">
                 <option value="" selected>-Select-</option>
                 <option value="en-AU">English (Australia)</option>
                 <option value="en-GB">English (United Kingdom)</option>
@@ -31,6 +32,9 @@
                 <option value="ja-JP">Japanese (Japan)</option>
                 <option value="zh">Chinese (Mandarin, simplified)</option>
             </select>
+            <div *ngIf="submitted && controls.language.errors" class="invalid-feedback">
+                <div *ngIf="controls.language.errors.required">Language is required</div>
+            </div>
         </div>
 
         <h4>Audio upload</h4>
@@ -72,9 +76,5 @@
             <img *ngIf="loading"
                 src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
         </div>
-
-        <!-- <div *ngIf="progress > 0 && progress < 100">
-            <app-progress-bar value="{{progress}}"></app-progress-bar>
-        </div> -->
     </form>
 </ng-container>

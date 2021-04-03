@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { LanguageHelper } from '@profile/core/utils/language-helper';
 import { MessageService } from 'primeng/api';
+import { FileFormData } from './file-form-data';
 
 @Component({
     selector: 'app-file-form',
@@ -13,11 +15,12 @@ export class FileFormComponent implements OnInit {
     private translations: { [key: string]: string } = {};
 
     public fileForm: FormGroup;
-    public progress: number = 0;
-    public selectedLanguage: string = '';
     public submitted: boolean = false;
     public loading: boolean = false;
     public audioTypeVisible: boolean = false;
+
+    @Output()
+    public save: EventEmitter<FileFormData> = new EventEmitter();
 
     public constructor(
         formBuilder: FormBuilder,
@@ -52,12 +55,30 @@ export class FileFormComponent implements OnInit {
     }
 
     public onSelectChange() {
-        this.audioTypeVisible = true;
+        this.audioTypeVisible = LanguageHelper.isPhoneCallModelSupported(this.controls.language.value);
+
+        if (!this.audioTypeVisible) {
+            this.controls.audioType.setValue('0');
+        }
     }
 
     public onSubmit() {
         this.submitted = true;
-        console.log(this.controls.uploadedFile.value);
+
+        if (this.fileForm.invalid) {
+            return;
+        }
+
+        this.loading = true;
+
+        const fileFormData: FileFormData = {
+            name: this.controls.name.value,
+            language: this.controls.language.value,
+            uploadedFile: this.controls.uploadedFile.value,
+            audioType: this.controls.audioType.value
+        };
+
+        this.save.emit(fileFormData);
     }
 
 }
