@@ -46,5 +46,8 @@
     "Detail": "Detail",
     "SendEmail": "Send an email",
     "Delete": "Delete"
+  },
+  "CreateFilePage": {
+    "CreateNewFile": "Create new file"
   }
 }

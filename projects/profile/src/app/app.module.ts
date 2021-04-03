@@ -32,6 +32,7 @@ import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { ChipModule } from 'primeng/chip';
+import { FileFormComponent } from './components/file-form/file-form.component';
 
 @NgModule({
     declarations: [
@@ -45,7 +46,8 @@ import { ChipModule } from 'primeng/chip';
         RecycleBinComponent,
         NotFoundComponent,
         AccountComponent,
-        RegisterUserComponent
+        RegisterUserComponent,
+        FileFormComponent
     ],
     imports: [
         BrowserModule,
