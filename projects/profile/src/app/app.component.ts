@@ -10,11 +10,14 @@ import { getCurrentIdentity } from '@profile/state/selectors/Identity.selectors'
 import { Identity } from '@profile/core/models';
 import { getCurrentLanguage } from '@profile/state/selectors';
 import { takeUntil } from 'rxjs/operators';
+import { getFileModuleError } from './state/selectors/audio-file.selectors';
+import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+    styleUrls: ['./app.component.scss'],
+    providers: [MessageService]
 })
 export class AppComponent implements OnInit, OnDestroy {
     private destroy$: Subject<void> = new Subject<void>();
@@ -27,12 +30,17 @@ export class AppComponent implements OnInit, OnDestroy {
 
     public constructor(
         private store: Store<AppState>,
+        private messageService: MessageService,
         private msalService: MsalService,
         private translateService: TranslateService) { }
 
     public ngOnInit(): void {
         this.store.dispatch(IdentityPageAction.loadCurrentIdentityRequest());
 
+        this.store
+            .select(getFileModuleError)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(error => this.messageService.add({ severity: 'error', detail: error }));
         this.store
             .select(getCurrentLanguage)
             .pipe(takeUntil(this.destroy$))

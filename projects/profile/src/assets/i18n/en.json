@@ -1,6 +1,7 @@
 {
   "Voicipher": "Voicipher",
   "Copyright": "Copyright &copy; Voicipher 2021",
+  "ErrorMessage": "Error occurred, please try again later",
   "Sidebar": {
     "Overview": "Overview",
     "Files": "Files",
@@ -31,5 +32,19 @@
   "RegisterUserPage": {
     "ImageText": "Login process is in progress",
     "LoginInProgress": "Login process is in progress. Please, do not refresh web page."
+  },
+  "FilesPage": {
+    "Files": "Files",
+    "FilesOverview": "Files Overview",
+    "CreateNew": "Create new",
+    "Name": "Name",
+    "DateCreated": "Date created",
+    "Status": "Status",
+    "Actions": "Actions",
+    "Transcribe": "Transcribe",
+    "Edit": "Edit",
+    "Detail": "Detail",
+    "SendEmail": "Send an email",
+    "Delete": "Delete"
   }
 }

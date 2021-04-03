@@ -4,6 +4,9 @@ import { MsalService } from './msal.service';
 import { StorageService } from './storage.service';
 import { UserService } from './user.service';
 import { RoutingService } from './routing.service';
+import { FileService } from './file.service';
+import { TokenInterceptorService } from './token-interceptor.service';
+import { ErrorInterceptorService } from './error-interceptor.service';
 
 @NgModule({
     declarations: [],
@@ -14,7 +17,10 @@ import { RoutingService } from './routing.service';
         MsalService,
         StorageService,
         RoutingService,
-        UserService
+        UserService,
+        FileService,
+        TokenInterceptorService,
+        ErrorInterceptorService
     ]
 })
 export class ServiceModule { }
