@@ -6,10 +6,9 @@ import { FileFormData } from '@profile/core/models/file-form-data';
 import { LanguageHelper } from '@profile/core/utils/language-helper';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
-import { getCurrentUploadedFile, getCurrentUploadedFileProgress, getUploadedFiles } from '@profile/state/selectors/audio-file.selectors';
+import { getCurrentUploadedFileProgress } from '@profile/state/selectors/audio-file.selectors';
 import { MessageService } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-file-form',
@@ -20,6 +19,7 @@ export class FileFormComponent implements OnInit, OnDestroy {
     private destroy$: Subject<void> = new Subject<void>();
 
     private translations: { [key: string]: string } = {};
+    private identifier: string = new Date().toString();
 
     public fileForm: FormGroup;
     public loading: boolean = false;
@@ -49,16 +49,7 @@ export class FileFormComponent implements OnInit, OnDestroy {
     }
 
     public ngOnInit(): void {
-        this.store
-            .select(getCurrentUploadedFile)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(uploadedFile => {
-                if (uploadedFile) {
-                    this.loading = true;
-                } else {
-                    this.loading = false;
-                }
-            })
+        this.store.dispatch(AudioFilePageAction.setCurrentFileIdentifier({ identifier: this.identifier }));
         this.progres$ = this.store.select(getCurrentUploadedFileProgress);
     }
 
@@ -103,7 +94,7 @@ export class FileFormComponent implements OnInit, OnDestroy {
             audioType: this.controls.audioType.value
         };
 
-        this.store.dispatch(AudioFilePageAction.createAudioFilesRequest({ identifier: new Date().toString(), fileFormData }));
+        this.store.dispatch(AudioFilePageAction.createAudioFilesRequest({ identifier: this.identifier, fileFormData }));
     }
 
 }

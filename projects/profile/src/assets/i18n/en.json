@@ -1,6 +1,9 @@
 {
   "Voicipher": "Voicipher",
   "Copyright": "Copyright &copy; Voicipher 2021",
+  "AppComponent": {
+    "UploadingFile": "Uploading file"
+  },
   "Sidebar": {
     "Overview": "Overview",
     "Files": "Files",

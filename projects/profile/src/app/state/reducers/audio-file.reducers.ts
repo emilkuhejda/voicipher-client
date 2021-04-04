@@ -3,7 +3,8 @@ import { AudioFileApiAction, AudioFilePageAction } from '../actions';
 import { FileState } from '../app.state';
 
 const initialState: FileState = {
-    currentUploadedFile: undefined,
+    currentUploadProgress: 0,
+    currentFileIdentifier: '',
     uploadedFiles: [],
     audioFiles: [],
     error: ''
@@ -20,28 +21,31 @@ export const fileReducer = createReducer<FileState>(
         ...state,
         error: action.error
     })),
+    on(AudioFilePageAction.setCurrentFileIdentifier, (state, action): FileState => ({
+        ...state,
+        currentFileIdentifier: action.identifier,
+        currentUploadProgress: 0
+    })),
     on(AudioFilePageAction.changeUploadedFileProgressRequest, (state, action): FileState => {
-        const updatedFiles = state.uploadedFiles
-            .map(item => item.identifier === action.identifier
-                ? { ...item, progress: action.progress }
-                : item);
+        const progress = state.currentFileIdentifier === action.identifier
+            ? action.progress
+            : state.currentUploadProgress;
 
         return {
             ...state,
-            uploadedFiles: updatedFiles
+            currentUploadProgress: progress
         };
     }),
     on(AudioFilePageAction.createAudioFilesRequest, (state, action): FileState => ({
         ...state,
-        currentUploadedFile: { identifier: action.identifier, progress: 0 },
-        uploadedFiles: [...state.uploadedFiles, { identifier: action.identifier, progress: 0 }],
+        uploadedFiles: [...state.uploadedFiles, { identifier: action.identifier, name: action.fileFormData.name }],
         error: ''
     })),
     on(AudioFileApiAction.createAudioFileSuccess, (state, action): FileState => {
         const updatedFiles = state.uploadedFiles.filter(x => x.identifier !== action.identifier);
         return {
             ...state,
-            currentUploadedFile: undefined,
+            currentFileIdentifier: '',
             uploadedFiles: updatedFiles,
             error: ''
         };
@@ -50,7 +54,7 @@ export const fileReducer = createReducer<FileState>(
         const updatedFiles = state.uploadedFiles.filter(x => x.identifier !== action.identifier);
         return {
             ...state,
-            currentUploadedFile: undefined,
+            currentFileIdentifier: '',
             uploadedFiles: updatedFiles,
             error: action.error
         };
