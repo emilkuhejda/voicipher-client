@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
 import { getAudioFiles } from '@profile/state/selectors/audio-file.selectors';
+import { ConfirmationService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AudioFileViewModel } from './audio-file.view.model';
@@ -17,7 +19,11 @@ export class FileOverviewComponent implements OnInit {
 
     public audioFile$: Observable<AudioFileViewModel[]> | undefined;
 
-    public constructor(private store: Store<AppState>, private router: Router) { }
+    public constructor(
+        private store: Store<AppState>,
+        private router: Router,
+        private confirmationService: ConfirmationService,
+        private translateService: TranslateService) { }
 
     public ngOnInit(): void {
         this.store.dispatch(AudioFilePageAction.loadAudioFilesRequest());
@@ -41,6 +47,18 @@ export class FileOverviewComponent implements OnInit {
 
     public sendEmail(audioFileViewModel: AudioFileViewModel): void { }
 
-    public delete(audioFileViewModel: AudioFileViewModel) { }
+    public delete(event: any, audioFileViewModel: AudioFileViewModel) {
+        this.translateService
+            .get('FilesPage.DeleteActionMessage', { fileName: audioFileViewModel.name })
+            .subscribe(translation => {
+                this.confirmationService.confirm({
+                    target: event.target,
+                    message: translation,
+                    icon: 'pi pi-exclamation-triangle',
+                    accept: () => {
+                    }
+                });
+            })
+    }
 
 }

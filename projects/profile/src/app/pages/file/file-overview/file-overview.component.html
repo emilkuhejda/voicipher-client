@@ -52,7 +52,7 @@
                                 class="p-button-rounded mr-2" [pTooltip]="'FilesPage.SendEmail' | translate"
                                 tooltipPosition="top"></button>
                             <button pButton pRipple [disabled]="audioFile.isInProgress" type="button" icon="pi pi-times"
-                                (click)="delete(audioFile)" class="p-button-rounded p-button-danger"
+                                (click)="delete($event, audioFile)" class="p-button-rounded p-button-danger"
                                 [pTooltip]="'FilesPage.Delete' | translate" tooltipPosition="top"></button>
                         </td>
                     </tr>
@@ -61,3 +61,5 @@
         </div>
     </div>
 </div>
+
+<p-confirmPopup></p-confirmPopup>

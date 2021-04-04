@@ -33,6 +33,8 @@ import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { ChipModule } from 'primeng/chip';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
     declarations: [
@@ -61,6 +63,7 @@ import { ChipModule } from 'primeng/chip';
         ButtonModule,
         TooltipModule,
         ChipModule,
+        ConfirmPopupModule,
         TranslateModule.forRoot({
             defaultLanguage: environment.defaultLanguage,
             loader: {
@@ -86,7 +89,8 @@ import { ChipModule } from 'primeng/chip';
             provide: HTTP_INTERCEPTORS,
             useClass: ErrorInterceptorService,
             multi: true
-        }
+        },
+        ConfirmationService
     ],
     bootstrap: [AppComponent]
 })

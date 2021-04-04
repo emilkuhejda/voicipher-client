@@ -76,7 +76,8 @@
     "Edit": "Edit",
     "Detail": "Detail",
     "SendEmail": "Send an email",
-    "Delete": "Delete"
+    "Delete": "Delete",
+    "DeleteActionMessage": "Are you sure that you want to delete file {{fileName}}?"
   },
   "CreateFilePage": {
     "CreateNewFile": "Create new file",
