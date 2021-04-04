@@ -9,7 +9,7 @@ import { AppState } from '@profile/state/app.state';
 import { getCurrentUploadedFileProgress, getUploadedFiles } from '@profile/state/selectors/audio-file.selectors';
 import { MessageService } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 import { FileFormModel } from './file-form.model';
 
 @Component({
@@ -68,11 +68,16 @@ export class FileFormComponent implements OnInit, OnDestroy, OnChanges {
             .subscribe(uploadedFiles => {
                 if (uploadedFiles.length === 0) {
                     this.loading = false;
-                    this.uploadCompleted.emit();
                 }
             });
 
-        this.progres$ = this.store.select(getCurrentUploadedFileProgress);
+        this.progres$ = this.store.select(getCurrentUploadedFileProgress).pipe(
+            tap(progress => {
+                if (progress >= 100) {
+                    this.uploadCompleted.emit();
+                }
+            })
+        );
 
         if (this.dataSource) {
             this.initializeData(this.dataSource);
