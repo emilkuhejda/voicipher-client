@@ -96,6 +96,13 @@
     "EditFile": "Edit file",
     "Edit": "Edit"
   },
+  "RecycleBinPage": {
+    "RecycleBin": "Recycle Bin",
+    "RestoreRecycleBin": "Restore Recycle Bin",
+    "EmptyRecycleBin": "Empty Recycle Bin",
+    "Restore": "Restore",
+    "Delete": "Delete"
+  },
   "SuccessMessage": {
     "CreateAudioFile": "Audio file {{fileName}} was successfully created",
     "UpdateAudioFile": "Audio file {{fileName}} was successfully updated",

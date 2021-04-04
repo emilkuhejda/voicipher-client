@@ -83,6 +83,10 @@ export class FileService {
         return this.httpClient.delete(this.routingService.getDeleteFileItemUrl(), { params });
     }
 
+    public getDeletedAudioFiles(): Observable<AudioFile[]> {
+        return this.httpClient.get<AudioFile[]>(this.routingService.getTemporaryDeletedFileItemsUrl());
+    }
+
     public sendEmail(audioFileId: string, recipient: string): Observable<any> {
         const body = { fileItemId: audioFileId, recipient };
         return this.httpClient.post(this.routingService.getEmailUrl(), body);

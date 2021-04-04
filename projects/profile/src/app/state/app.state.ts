@@ -5,9 +5,11 @@ import { UploadedFile } from '@profile/core/models/uploaded-file';
 import { fileReducer } from './reducers/audio-file.reducers';
 import { configReducer } from './reducers/config.reducers';
 import { identityReducer } from './reducers/Identity.reducers';
+import { recycleBinReducer } from './reducers/recycle-bin.reducers';
 
 export interface AppState {
     file: FileState;
+    recycleBin: RecycleBinState,
     identity: IdentityState;
     config: ConfigState;
 }
@@ -17,6 +19,12 @@ export interface FileState {
     currentFileIdentifier: string;
     uploadedFiles: UploadedFile[];
     currentAudioFile: AudioFile | undefined;
+    audioFiles: AudioFile[];
+    successMessage: string;
+    error: string;
+}
+
+export interface RecycleBinState {
     audioFiles: AudioFile[];
     successMessage: string;
     error: string;
@@ -33,6 +41,7 @@ export interface ConfigState {
 
 export const reducers: ActionReducerMap<AppState> = {
     file: fileReducer,
+    recycleBin: recycleBinReducer,
     identity: identityReducer,
     config: configReducer
 };
