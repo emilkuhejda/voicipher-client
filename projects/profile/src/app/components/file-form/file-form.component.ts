@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,17 +10,19 @@ import { getCurrentFileIdentifier, getCurrentUploadedFileProgress } from '@profi
 import { MessageService } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
+import { FileFormModel } from './file-form.model';
 
 @Component({
     selector: 'app-file-form',
     templateUrl: './file-form.component.html',
     styleUrls: ['./file-form.component.scss']
 })
-export class FileFormComponent implements OnInit, OnDestroy {
+export class FileFormComponent implements OnInit, OnDestroy, OnChanges {
     private destroy$: Subject<void> = new Subject<void>();
 
     private translations: { [key: string]: string } = {};
     private identifier: string = new Date().toString();
+    private id: string = '';
 
     public fileForm: FormGroup;
     public loading: boolean = false;
@@ -31,6 +33,9 @@ export class FileFormComponent implements OnInit, OnDestroy {
 
     @Input()
     public saveButtonText: string = '';
+
+    @Input()
+    public dataSource: FileFormModel | undefined;
 
     @Output()
     public uploadCompleted: EventEmitter<any> = new EventEmitter();
@@ -70,6 +75,10 @@ export class FileFormComponent implements OnInit, OnDestroy {
                 }
             })
         );
+
+        if (this.dataSource) {
+            this.initializeData(this.dataSource);
+        }
     }
 
     public ngOnDestroy(): void {
@@ -77,11 +86,17 @@ export class FileFormComponent implements OnInit, OnDestroy {
         this.destroy$.unsubscribe();
     }
 
+    public ngOnChanges(changes: SimpleChanges): void {
+        if (changes.dataSource && changes.dataSource.currentValue) {
+            this.initializeData(changes.dataSource.currentValue);
+        }
+    }
+
     public get controls(): { [key: string]: AbstractControl } {
         return this.fileForm.controls;
     }
 
-    public onChange(files: FileList | null) {
+    public onChange(files: FileList | null): void {
         if (!files || files.length === 0) {
             this.controls.uploadedFile.setValue('');
             this.messageService.add({ severity: 'error', detail: this.translations['FileForm.MultipleUploadError'] });
@@ -91,7 +106,7 @@ export class FileFormComponent implements OnInit, OnDestroy {
         this.controls.uploadedFile.setValue(files[0]);
     }
 
-    public onSelectChange() {
+    public onSelectChange(): void {
         this.audioTypeVisible = LanguageHelper.isPhoneCallModelSupported(this.controls.language.value);
 
         if (!this.audioTypeVisible) {
@@ -99,7 +114,7 @@ export class FileFormComponent implements OnInit, OnDestroy {
         }
     }
 
-    public onSubmit() {
+    public onSubmit(): void {
         this.submitted = true;
 
         if (this.fileForm.invalid) {
@@ -115,6 +130,15 @@ export class FileFormComponent implements OnInit, OnDestroy {
 
         this.loading = true;
         this.store.dispatch(AudioFilePageAction.createAudioFilesRequest({ identifier: this.identifier, fileFormData }));
+    }
+
+    private initializeData(fileFormModel: FileFormModel): void {
+        this.id = fileFormModel.id;
+        this.controls.name.setValue(fileFormModel.name);
+        this.controls.language.setValue(fileFormModel.language);
+        this.controls.audioType.setValue(fileFormModel.audioType);
+
+        this.onSelectChange();
     }
 
 }

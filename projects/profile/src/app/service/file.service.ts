@@ -12,6 +12,10 @@ export class FileService {
 
     public constructor(private routingService: RoutingService, private httpClient: HttpClient) { }
 
+    public get(fileItemId: string): Observable<AudioFile> {
+        return this.httpClient.get<AudioFile>(this.routingService.getAudioFilesUrl() + fileItemId);
+    }
+
     public getAll(): Observable<AudioFile[]> {
         return this.httpClient.get<AudioFile[]>(this.routingService.getAudioFilesUrl())
             .pipe(

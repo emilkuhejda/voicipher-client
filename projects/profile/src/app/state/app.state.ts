@@ -16,6 +16,7 @@ export interface FileState {
     currentUploadProgress: number;
     currentFileIdentifier: string;
     uploadedFiles: UploadedFile[];
+    currentAudioFile: AudioFile | undefined;
     audioFiles: AudioFile[];
     successMessage: string;
     error: string;

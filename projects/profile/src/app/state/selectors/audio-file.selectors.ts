@@ -3,6 +3,11 @@ import { FileState } from '../app.state';
 
 const getFileFeatureState = createFeatureSelector<FileState>('file');
 
+export const getCurrentAudioFile = createSelector(
+    getFileFeatureState,
+    state => state.currentAudioFile
+);
+
 export const getAudioFiles = createSelector(
     getFileFeatureState,
     state => state.audioFiles

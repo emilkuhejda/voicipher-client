@@ -17,6 +17,18 @@ export class AudioFileEffects {
 
     public loadAudioFile$ = createEffect(() => this.action$
         .pipe(
+            ofType(AudioFilePageAction.loadCurrentAudioFileRequest),
+            concatMap(action => this.fileService.get(action.audioFileId)
+                .pipe(
+                    map(audioFile => AudioFileApiAction.loadCurrentAudioFileSuccess({ audioFile })),
+                    catchError(() => this.translateService
+                        .get('ErrorCode.None')
+                        .pipe(map(translation => AudioFileApiAction.loadCurrentAudioFileFailure({ error: translation }))))
+                ))
+        ));
+
+    public loadAudioFiles$ = createEffect(() => this.action$
+        .pipe(
             ofType(AudioFilePageAction.loadAudioFilesRequest),
             mergeMap(() => this.fileService.getAll()
                 .pipe(
