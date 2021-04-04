@@ -1,6 +1,8 @@
 import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AudioFile } from '@profile/core/models/audio-file';
+import { FileFormData } from '@profile/core/models/file-form-data';
+import { environment } from '@profile/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RoutingService } from './routing.service';
@@ -25,7 +27,20 @@ export class FileService {
             );
     }
 
-    public upload(formData: FormData, params: HttpParams) {
+    public upload(fileFormData: FileFormData) {
+        let params = new HttpParams();
+        params = params.append('name', fileFormData.name);
+        params = params.append('language', fileFormData.language);
+        params = params.append('fileName', fileFormData.uploadedFile.name);
+        params = params.append('isPhoneCall', String(fileFormData.audioType === '1'));
+        params = params.append('startTimeSeconds', '0');
+        params = params.append('endTimeSeconds', '0');
+        params = params.append('dateCreated', new Date().toISOString());
+        params = params.append('applicationId', environment.applicationId);
+
+        const formData = new FormData();
+        formData.append('file', fileFormData.uploadedFile);
+
         const uploadRequest = new HttpRequest('POST', this.routingService.getUploadFileItemUrl(), formData, {
             params,
             reportProgress: true

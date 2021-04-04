@@ -10,8 +10,10 @@ import { getCurrentIdentity } from '@profile/state/selectors/Identity.selectors'
 import { Identity } from '@profile/core/models';
 import { getCurrentLanguage } from '@profile/state/selectors';
 import { takeUntil } from 'rxjs/operators';
-import { getFileModuleError } from './state/selectors/audio-file.selectors';
+import { getFileModuleError, getUploadedFiles } from './state/selectors/audio-file.selectors';
 import { MessageService } from 'primeng/api';
+
+type ToastKey = 'info' | 'error';
 
 @Component({
     selector: 'app-root',
@@ -23,9 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private destroy$: Subject<void> = new Subject<void>();
 
     public identity$: Observable<Identity> | undefined;
-
     public sidebarItems: SidebarItemModel[] = [];
-
     public messages: MessageModel[] = [];
 
     public constructor(
@@ -40,12 +40,37 @@ export class AppComponent implements OnInit, OnDestroy {
         this.store
             .select(getFileModuleError)
             .pipe(takeUntil(this.destroy$))
-            .subscribe(error => this.messageService.add({ severity: 'error', detail: error }));
+            .subscribe(error => {
+                if (error !== '') {
+                    const toastKey: ToastKey = 'error';
+                    this.messageService.add({ key: toastKey, severity: toastKey, detail: error });
+                }
+            });
         this.store
             .select(getCurrentLanguage)
             .pipe(takeUntil(this.destroy$))
             .subscribe(() => this.initializeSidebarItems());
         this.identity$ = this.store.select(getCurrentIdentity);
+
+        this.translateService
+            .get('AppComponent.UploadingFile')
+            .subscribe(translation => {
+                this.store
+                    .select(getUploadedFiles)
+                    .pipe(takeUntil(this.destroy$))
+                    .subscribe(uploadedFiles => {
+                        const toastKey: ToastKey = 'info';
+                        this.messageService.clear(toastKey);
+                        for (const uploadedFile of uploadedFiles) {
+                            this.messageService.add({
+                                key: toastKey,
+                                severity: toastKey,
+                                detail: `${translation} ${uploadedFile.name}`,
+                                sticky: true
+                            });
+                        }
+                    });
+            });
     }
 
     public ngOnDestroy(): void {

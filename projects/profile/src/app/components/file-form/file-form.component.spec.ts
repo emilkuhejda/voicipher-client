@@ -1,6 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { provideMockStore } from '@ngrx/store/testing';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { of } from 'rxjs';
@@ -17,6 +18,7 @@ describe('FileFormComponent', () => {
             declarations: [FileFormComponent, TranslateMockPipe],
             imports: [ReactiveFormsModule],
             providers: [
+                provideMockStore(),
                 {
                     provide: TranslateService,
                     useValue: {
