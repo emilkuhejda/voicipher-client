@@ -20,12 +20,7 @@ export const changeUploadedFileProgressRequest = createAction(
     props<{ identifier: string; progress: number }>()
 );
 
-export const createAudioFilesRequest = createAction(
-    '[Audio File Page] Create audio file request',
-    props<{ identifier: string; fileFormData: FileFormData }>()
-);
-
-export const updateAudioFilesRequest = createAction(
-    '[Audio File Page] Update audio file request',
+export const uploadAudioFilesRequest = createAction(
+    '[Audio File Page] Upload audio file request',
     props<{ identifier: string; audioFileId: string; fileFormData: FileFormData }>()
 );

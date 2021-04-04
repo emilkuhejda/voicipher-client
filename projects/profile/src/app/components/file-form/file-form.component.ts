@@ -134,16 +134,11 @@ export class FileFormComponent implements OnInit, OnDestroy, OnChanges {
         };
 
         this.loading = true;
-
-        if (this.id === '') {
-            this.store.dispatch(AudioFilePageAction.createAudioFilesRequest({ identifier: this.identifier, fileFormData }));
-        } else {
-            this.store.dispatch(AudioFilePageAction.updateAudioFilesRequest({
-                identifier: this.identifier,
-                audioFileId: this.id,
-                fileFormData
-            }));
-        }
+        this.store.dispatch(AudioFilePageAction.uploadAudioFilesRequest({
+            identifier: this.identifier,
+            audioFileId: this.id,
+            fileFormData
+        }));
     }
 
     private initializeData(fileFormModel: FileFormModel): void {

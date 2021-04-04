@@ -47,13 +47,7 @@ export const fileReducer = createReducer<FileState>(
             currentUploadProgress: progress
         };
     }),
-    on(AudioFilePageAction.createAudioFilesRequest, (state, action): FileState => ({
-        ...state,
-        uploadedFiles: [...state.uploadedFiles, { identifier: action.identifier, name: action.fileFormData.name }],
-        successMessage: '',
-        error: ''
-    })),
-    on(AudioFilePageAction.updateAudioFilesRequest, (state, action): FileState => ({
+    on(AudioFilePageAction.uploadAudioFilesRequest, (state, action): FileState => ({
         ...state,
         uploadedFiles: [...state.uploadedFiles, { identifier: action.identifier, name: action.fileFormData.name }],
         successMessage: '',

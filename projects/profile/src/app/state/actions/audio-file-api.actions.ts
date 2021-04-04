@@ -21,16 +21,16 @@ export const loadAudioFilesFailure = createAction(
     props<{ error: string }>()
 );
 
-export const createAudioFileEventReceived = createAction(
-    '[Audio File API] Create audio file event received'
+export const uploadAudioFileEventReceived = createAction(
+    '[Audio File API] Upload audio file event received'
 );
 
 export const uploadAudioFileSuccess = createAction(
-    '[Audio File API] Create audio file success',
+    '[Audio File API] Upload audio file success',
     props<{ identifier: string; successMessage: string }>()
 );
 
 export const uploadAudioFilesFailure = createAction(
-    '[Audio File API] Create audio file failure',
+    '[Audio File API] Upload audio file failure',
     props<{ identifier: string; error: string }>()
 );
