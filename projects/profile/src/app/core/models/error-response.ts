@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorCode } from '../types/error-code';
+import { ErrorCode, errorCodes } from '../types/error-code';
 
 export class ErrorResponse {
     private response: HttpErrorResponse;
@@ -9,7 +9,8 @@ export class ErrorResponse {
         this.response = response;
 
         if (typeof response.error === 'string') {
-            this.error = response.error as ErrorCode;
+            const error = response.error as ErrorCode;
+            this.error = errorCodes.includes(error) ? error : 'None';
         }
     }
 

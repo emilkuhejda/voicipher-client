@@ -17,6 +17,18 @@ export class AudioFileEffects {
 
     public loadAudioFile$ = createEffect(() => this.action$
         .pipe(
+            ofType(AudioFilePageAction.loadCurrentAudioFileRequest),
+            concatMap(action => this.fileService.get(action.audioFileId)
+                .pipe(
+                    map(audioFile => AudioFileApiAction.loadCurrentAudioFileSuccess({ audioFile })),
+                    catchError(() => this.translateService
+                        .get('ErrorCode.None')
+                        .pipe(map(translation => AudioFileApiAction.loadCurrentAudioFileFailure({ error: translation }))))
+                ))
+        ));
+
+    public loadAudioFiles$ = createEffect(() => this.action$
+        .pipe(
             ofType(AudioFilePageAction.loadAudioFilesRequest),
             mergeMap(() => this.fileService.getAll()
                 .pipe(
@@ -27,11 +39,16 @@ export class AudioFileEffects {
                 ))
         ));
 
-    public cerateAudioFile$ = createEffect(() => this.action$
+    public uploadAudioFile$ = createEffect(() => this.action$
         .pipe(
-            ofType(AudioFilePageAction.createAudioFilesRequest),
-            concatMap(action => this.fileService.upload(action.fileFormData)
-                .pipe(
+            ofType(AudioFilePageAction.uploadAudioFilesRequest),
+            concatMap(action => {
+                const translationKey = action.audioFileId === '' ? 'SuccessMessage.CreateAudioFile' : 'SuccessMessage.UpdateAudioFile';
+                const updateAction = action.audioFileId === ''
+                    ? this.fileService.upload(action.fileFormData)
+                    : this.fileService.update(action.audioFileId, action.fileFormData);
+
+                return updateAction.pipe(
                     switchMap((event: any) => {
                         if (event.type === HttpEventType.UploadProgress) {
                             const progress = {
@@ -41,22 +58,28 @@ export class AudioFileEffects {
 
                             return [AudioFilePageAction.changeUploadedFileProgressRequest(progress)];
                         } else if (event instanceof HttpResponse) {
-                            return [
-                                AudioFileApiAction.createAudioFileSuccess({ identifier: action.identifier }),
-                                AudioFilePageAction.loadAudioFilesRequest()
-                            ];
+                            return this.translateService
+                                .get(translationKey, { fileName: action.fileFormData.name })
+                                .pipe(switchMap(translation => [
+                                    AudioFileApiAction.uploadAudioFileSuccess({
+                                        identifier: action.identifier,
+                                        successMessage: translation
+                                    }),
+                                    AudioFilePageAction.loadAudioFilesRequest()
+                                ]));
                         } else {
-                            return [AudioFileApiAction.createAudioFileEventReceived()];
+                            return [AudioFileApiAction.uploadAudioFileEventReceived()];
                         }
                     }),
                     catchError((error: ErrorResponse) =>
                         this.translateService
                             .get(`ErrorCode.${error.errorCode}`)
-                            .pipe(map(translation => AudioFileApiAction.createAudioFilesFailure({
+                            .pipe(map(translation => AudioFileApiAction.uploadAudioFilesFailure({
                                 identifier: action.identifier,
                                 error: translation
                             }))))
-                ))
+                );
+            })
         ));
 
 }
