@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { ErrorResponse } from '@profile/core/models/error-response';
 import { FileService } from '@profile/service/file.service';
-import { catchError, concatMap, map, mergeMap } from 'rxjs/operators';
+import { catchError, concatMap, map, mergeMap, switchMap } from 'rxjs/operators';
 import { AudioFileApiAction, AudioFilePageAction } from '../actions';
 
 @Injectable()
@@ -32,18 +32,21 @@ export class AudioFileEffects {
             ofType(AudioFilePageAction.createAudioFilesRequest),
             concatMap(action => this.fileService.upload(action.fileFormData)
                 .pipe(
-                    map((event: any) => {
+                    switchMap((event: any) => {
                         if (event.type == HttpEventType.UploadProgress) {
                             const progress = {
                                 identifier: action.identifier,
                                 progress: Math.round(100 * event.loaded / event.total)
                             };
 
-                            return AudioFilePageAction.changeUploadedFileProgressRequest(progress);
+                            return [AudioFilePageAction.changeUploadedFileProgressRequest(progress)];
                         } else if (event instanceof HttpResponse) {
-                            return AudioFileApiAction.createAudioFileSuccess({ identifier: action.identifier });
+                            return [
+                                AudioFileApiAction.createAudioFileSuccess({ identifier: action.identifier }),
+                                AudioFilePageAction.loadAudioFilesRequest()
+                            ];
                         } else {
-                            return AudioFileApiAction.createAudioFileEventReceived();
+                            return [AudioFileApiAction.createAudioFileEventReceived()];
                         }
                     }),
                     catchError((error: ErrorResponse) =>
