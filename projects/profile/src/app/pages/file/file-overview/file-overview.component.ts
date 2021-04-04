@@ -55,6 +55,8 @@ export class FileOverviewComponent implements OnInit {
                 this.dialogService.open(SendEmailDialogComponent, {
                     data: { audioFile: audioFileViewModel.audioFile },
                     header: translation,
+                    width: '50%',
+                    contentStyle: { "max-height": "500px", "overflow": "auto" },
                     baseZIndex: 10000
                 });
             });
