@@ -31,7 +31,7 @@ export class FileService {
             );
     }
 
-    public upload(fileFormData: FileFormData) {
+    public upload(fileFormData: FileFormData): Observable<any> {
         let params = new HttpParams();
         params = params.append('name', fileFormData.name);
         params = params.append('language', fileFormData.language);
@@ -53,7 +53,7 @@ export class FileService {
         return this.httpClient.request(uploadRequest);
     }
 
-    public update(audioFileId: string, fileFormData: FileFormData) {
+    public update(audioFileId: string, fileFormData: FileFormData): Observable<any> {
         const formData = new FormData();
         formData.append('fileItemId', audioFileId);
         formData.append('name', fileFormData.name);
@@ -75,12 +75,17 @@ export class FileService {
         return this.httpClient.request(uploadRequest);
     }
 
-    public delete(audioFileId: string) {
+    public delete(audioFileId: string): Observable<any> {
         let params = new HttpParams();
         params = params.append('fileItemId', audioFileId);
         params = params.append('applicationId', environment.applicationId);
 
         return this.httpClient.delete(this.routingService.getDeleteFileItemUrl(), { params: params });
+    }
+
+    public sendEmail(audioFileId: string, recipient: string): Observable<any> {
+        const body = { fileItemId: audioFileId, recipient: recipient };
+        return this.httpClient.post(this.routingService.getEmailUrl(), body);
     }
 
 }

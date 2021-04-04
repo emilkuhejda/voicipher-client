@@ -52,7 +52,7 @@ export class RoutingService {
         return environment.webApiUrl + 'api/v1/files/transcribe/';
     }
 
-    public getMailUrl(): string {
+    public getEmailUrl(): string {
         return environment.webApiUrl + 'api/v1/mail/';
     }
 

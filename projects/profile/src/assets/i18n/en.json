@@ -4,6 +4,7 @@
   "AppComponent": {
     "UploadingFile": "Uploading file"
   },
+  "ErrorMessage": "Error occurred, please try again later",
   "Sidebar": {
     "Overview": "Overview",
     "Files": "Files",
@@ -98,7 +99,8 @@
   "SuccessMessage": {
     "CreateAudioFile": "Audio file {{fileName}} was successfully created",
     "UpdateAudioFile": "Audio file {{fileName}} was successfully updated",
-    "DeleteAudioFile": "The file {{fileItem}} was successfully deleted"
+    "DeleteAudioFile": "The file {{fileItem}} was successfully deleted",
+    "SendEmail": "An email has been sent successfully"
   },
   "ErrorCode": {
     "EC100": "Uploaded file was not found",

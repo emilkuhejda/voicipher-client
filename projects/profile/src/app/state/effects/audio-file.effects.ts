@@ -22,7 +22,7 @@ export class AudioFileEffects {
                 .pipe(
                     map(audioFile => AudioFileApiAction.loadCurrentAudioFileSuccess({ audioFile })),
                     catchError(() => this.translateService
-                        .get('ErrorCode.None')
+                        .get('ErrorMessage')
                         .pipe(map(translation => AudioFileApiAction.loadCurrentAudioFileFailure({ error: translation }))))
                 ))
         ));
@@ -34,7 +34,7 @@ export class AudioFileEffects {
                 .pipe(
                     map(audioFiles => AudioFileApiAction.loadAudioFilesSuccess({ audioFiles })),
                     catchError(() => this.translateService
-                        .get('ErrorCode.None')
+                        .get('ErrorMessage')
                         .pipe(map(translation => AudioFileApiAction.loadAudioFilesFailure({ error: translation }))))
                 ))
         ));
@@ -95,9 +95,23 @@ export class AudioFileEffects {
                         ]))
                     ),
                     catchError(() => this.translateService
-                        .get('ErrorCode.None')
+                        .get('ErrorMessage')
                         .pipe(map(translation => AudioFileApiAction.loadAudioFilesFailure({ error: translation })))
                     )
+                ))
+        ));
+
+    public sendEmail$ = createEffect(() => this.action$
+        .pipe(
+            ofType(AudioFilePageAction.sendEmailRequest),
+            concatMap(action => this.fileService.sendEmail(action.audioFileId, action.recipient)
+                .pipe(
+                    concatMap(() => this.translateService
+                        .get('SuccessMessage.SendEmail')
+                        .pipe(map(translation => AudioFileApiAction.sendEmailSuccess({ successMessage: translation })))),
+                    catchError(() => this.translateService
+                        .get('ErrorMessage')
+                        .pipe(map(translation => AudioFileApiAction.sendEmailFailure({ error: translation }))))
                 ))
         ));
 

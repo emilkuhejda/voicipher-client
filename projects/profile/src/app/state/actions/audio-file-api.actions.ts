@@ -36,11 +36,21 @@ export const uploadAudioFilesFailure = createAction(
 );
 
 export const deleteAudioFileSuccess = createAction(
-    '[Audio File Page] Delete audio file success',
+    '[Audio File API] Delete audio file success',
     props<{ successMessage: string }>()
 );
 
 export const deleteAudioFileFailure = createAction(
-    '[Audio File Page] Delete audio file failure',
+    '[Audio File API] Delete audio file failure',
+    props<{ error: string }>()
+);
+
+export const sendEmailSuccess = createAction(
+    '[Audio File API] Send email success',
+    props<{ successMessage: string }>()
+);
+
+export const sendEmailFailure = createAction(
+    '[Audio File API] Send email failure',
     props<{ error: string }>()
 );

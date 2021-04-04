@@ -30,3 +30,8 @@ export const deleteAudioFileRequest = createAction(
     '[Audio File Page] Delete audio file request',
     props<{ audioFile: AudioFile }>()
 );
+
+export const sendEmailRequest = createAction(
+    '[Audio File Page] Send email request',
+    props<{ audioFileId: string; recipient: string }>()
+);
