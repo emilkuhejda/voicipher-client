@@ -131,7 +131,7 @@ export class FileFormComponent implements OnInit, OnDestroy, OnChanges {
             name: this.controls.name.value,
             language: this.controls.language.value,
             uploadedFile: this.controls.uploadedFile.value,
-            audioType: audioType,
+            audioType,
             transcriptionStartTime: audioType === '1' ? this.transcriptionStartTime : '0',
             transcriptionEndTime: audioType === '1' ? this.transcriptionEndTime : '0'
         };

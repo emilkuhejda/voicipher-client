@@ -87,7 +87,8 @@
     "Edit": "Edit"
   },
   "SuccessMessage": {
-    "CreateAudioFile": "Audio file {{fileName}} was successfully created"
+    "CreateAudioFile": "Audio file {{fileName}} was successfully created",
+    "UpdateAudioFile": "Audio file {{fileName}} was successfully updated"
   },
   "ErrorCode": {
     "EC100": "Uploaded file was not found",

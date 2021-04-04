@@ -54,7 +54,7 @@ export class FileService {
     }
 
     public update(audioFileId: string, fileFormData: FileFormData) {
-        let formData = new FormData();
+        const formData = new FormData();
         formData.append('fileItemId', audioFileId);
         formData.append('name', fileFormData.name);
         formData.append('language', fileFormData.language);
@@ -68,7 +68,7 @@ export class FileService {
             formData.append('fileName', fileFormData.uploadedFile.name);
         }
 
-        let uploadRequest = new HttpRequest('PUT', this.routingService.getUpdateFileItemUrl(), formData, {
+        const uploadRequest = new HttpRequest('PUT', this.routingService.getUpdateFileItemUrl(), formData, {
             reportProgress: true
         });
 

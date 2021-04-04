@@ -12,8 +12,8 @@ export class TimeSpanWrapper {
     }
 
     public getDate(): Date {
-        let ticksToMicrotime = this.ticks / 10000;
-        let epochMicrotimeDiff = Math.abs(new Date(0, 0, 1).setFullYear(1));
+        const ticksToMicrotime = this.ticks / 10000;
+        const epochMicrotimeDiff = Math.abs(new Date(0, 0, 1).setFullYear(1));
 
         return new Date(ticksToMicrotime - epochMicrotimeDiff);
     }

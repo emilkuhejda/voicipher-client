@@ -43,6 +43,7 @@ export class AudioFileEffects {
         .pipe(
             ofType(AudioFilePageAction.uploadAudioFilesRequest),
             concatMap(action => {
+                const translationKey = action.audioFileId === '' ? 'SuccessMessage.CreateAudioFile' : 'SuccessMessage.UpdateAudioFile';
                 const updateAction = action.audioFileId === ''
                     ? this.fileService.upload(action.fileFormData)
                     : this.fileService.update(action.audioFileId, action.fileFormData);
@@ -58,16 +59,14 @@ export class AudioFileEffects {
                             return [AudioFilePageAction.changeUploadedFileProgressRequest(progress)];
                         } else if (event instanceof HttpResponse) {
                             return this.translateService
-                                .get('SuccessMessage.CreateAudioFile', { fileName: action.fileFormData.name })
-                                .pipe(switchMap(translation => {
-                                    return [
-                                        AudioFileApiAction.uploadAudioFileSuccess({
-                                            identifier: action.identifier,
-                                            successMessage: translation
-                                        }),
-                                        AudioFilePageAction.loadAudioFilesRequest()
-                                    ]
-                                }));
+                                .get(translationKey, { fileName: action.fileFormData.name })
+                                .pipe(switchMap(translation => [
+                                    AudioFileApiAction.uploadAudioFileSuccess({
+                                        identifier: action.identifier,
+                                        successMessage: translation
+                                    }),
+                                    AudioFilePageAction.loadAudioFilesRequest()
+                                ]));
                         } else {
                             return [AudioFileApiAction.uploadAudioFileEventReceived()];
                         }
@@ -79,7 +78,7 @@ export class AudioFileEffects {
                                 identifier: action.identifier,
                                 error: translation
                             }))))
-                )
+                );
             })
         ));
 
