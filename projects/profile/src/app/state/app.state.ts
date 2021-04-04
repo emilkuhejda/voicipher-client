@@ -17,6 +17,7 @@ export interface FileState {
     currentFileIdentifier: string;
     uploadedFiles: UploadedFile[];
     audioFiles: AudioFile[];
+    successMessage: string;
     error: string;
 }
 

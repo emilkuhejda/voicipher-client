@@ -23,6 +23,11 @@ export const getCurrentFileIdentifier = createSelector(
     state => state.currentFileIdentifier
 );
 
+export const getFileModuleSuccessMessage = createSelector(
+    getFileFeatureState,
+    state => state.successMessage
+);
+
 export const getFileModuleError = createSelector(
     getFileFeatureState,
     state => state.error

@@ -7,6 +7,7 @@ const initialState: FileState = {
     currentFileIdentifier: '',
     uploadedFiles: [],
     audioFiles: [],
+    successMessage: '',
     error: ''
 };
 
@@ -39,6 +40,7 @@ export const fileReducer = createReducer<FileState>(
     on(AudioFilePageAction.createAudioFilesRequest, (state, action): FileState => ({
         ...state,
         uploadedFiles: [...state.uploadedFiles, { identifier: action.identifier, name: action.fileFormData.name }],
+        successMessage: '',
         error: ''
     })),
     on(AudioFileApiAction.createAudioFileSuccess, (state, action): FileState => {
@@ -47,6 +49,7 @@ export const fileReducer = createReducer<FileState>(
             ...state,
             currentFileIdentifier: '',
             uploadedFiles: updatedFiles,
+            successMessage: action.successMessage,
             error: ''
         };
     }),
@@ -56,6 +59,7 @@ export const fileReducer = createReducer<FileState>(
             ...state,
             currentFileIdentifier: '',
             uploadedFiles: updatedFiles,
+            successMessage: '',
             error: action.error
         };
     })

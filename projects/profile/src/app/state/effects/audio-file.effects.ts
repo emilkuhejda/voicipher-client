@@ -41,10 +41,17 @@ export class AudioFileEffects {
 
                             return [AudioFilePageAction.changeUploadedFileProgressRequest(progress)];
                         } else if (event instanceof HttpResponse) {
-                            return [
-                                AudioFileApiAction.createAudioFileSuccess({ identifier: action.identifier }),
-                                AudioFilePageAction.loadAudioFilesRequest()
-                            ];
+                            return this.translateService
+                                .get('SuccessMessage.CreateAudioFile', { fileName: action.fileFormData.name })
+                                .pipe(switchMap(translation => {
+                                    return [
+                                        AudioFileApiAction.createAudioFileSuccess({
+                                            identifier: action.identifier,
+                                            successMessage: translation
+                                        }),
+                                        AudioFilePageAction.loadAudioFilesRequest()
+                                    ]
+                                }));
                         } else {
                             return [AudioFileApiAction.createAudioFileEventReceived()];
                         }

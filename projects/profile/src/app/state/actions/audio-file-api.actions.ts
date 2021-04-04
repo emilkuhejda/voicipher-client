@@ -17,7 +17,7 @@ export const createAudioFileEventReceived = createAction(
 
 export const createAudioFileSuccess = createAction(
     '[Audio File Page] Create audio file success',
-    props<{ identifier: string }>()
+    props<{ identifier: string; successMessage: string }>()
 );
 
 export const createAudioFilesFailure = createAction(

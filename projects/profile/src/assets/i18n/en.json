@@ -82,6 +82,9 @@
     "CreateNewFile": "Create new file",
     "Create": "Create"
   },
+  "SuccessMessage": {
+    "CreateAudioFile": "Audio file {{fileName}} was successfully created"
+  },
   "ErrorCode": {
     "EC100": "Uploaded file was not found",
     "EC200": "Language is not supported",
