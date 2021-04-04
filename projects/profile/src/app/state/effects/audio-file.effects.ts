@@ -82,4 +82,23 @@ export class AudioFileEffects {
             })
         ));
 
+    public deleteAudioFile$ = createEffect(() => this.action$
+        .pipe(
+            ofType(AudioFilePageAction.deleteAudioFileRequest),
+            concatMap(action => this.fileService.delete(action.audioFile.id)
+                .pipe(
+                    switchMap(() => this.translateService
+                        .get('SuccessMessage.DeleteAudioFile', { fileItem: action.audioFile.name })
+                        .pipe(switchMap(translation => [
+                            AudioFileApiAction.deleteAudioFileSuccess({ successMessage: translation }),
+                            AudioFilePageAction.loadAudioFilesRequest()
+                        ]))
+                    ),
+                    catchError(() => this.translateService
+                        .get('ErrorCode.None')
+                        .pipe(map(translation => AudioFileApiAction.loadAudioFilesFailure({ error: translation })))
+                    )
+                ))
+        ));
+
 }

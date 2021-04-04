@@ -55,8 +55,9 @@ export class FileOverviewComponent implements OnInit {
                     target: event.target,
                     message: translation,
                     icon: 'pi pi-exclamation-triangle',
-                    accept: () => {
-                    }
+                    accept: () => this.store.dispatch(AudioFilePageAction.deleteAudioFileRequest({
+                        audioFile: audioFileViewModel.audioFile
+                    }))
                 });
             })
     }

@@ -89,7 +89,8 @@
   },
   "SuccessMessage": {
     "CreateAudioFile": "Audio file {{fileName}} was successfully created",
-    "UpdateAudioFile": "Audio file {{fileName}} was successfully updated"
+    "UpdateAudioFile": "Audio file {{fileName}} was successfully updated",
+    "DeleteAudioFile": "The file {{fileItem}} was successfully deleted"
   },
   "ErrorCode": {
     "EC100": "Uploaded file was not found",

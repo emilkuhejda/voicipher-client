@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { AudioFile } from '@profile/core/models/audio-file';
 import { FileFormData } from '@profile/core/models/file-form-data';
 
 export const loadCurrentAudioFileRequest = createAction(
@@ -23,4 +24,9 @@ export const changeUploadedFileProgressRequest = createAction(
 export const uploadAudioFilesRequest = createAction(
     '[Audio File Page] Upload audio file request',
     props<{ identifier: string; audioFileId: string; fileFormData: FileFormData }>()
+);
+
+export const deleteAudioFileRequest = createAction(
+    '[Audio File Page] Delete audio file request',
+    props<{ audioFile: AudioFile }>()
 );
