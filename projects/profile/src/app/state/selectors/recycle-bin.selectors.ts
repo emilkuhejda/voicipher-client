@@ -7,3 +7,13 @@ export const getRecycleBinAudioFiles = createSelector(
     getFileFeatureState,
     state => state.audioFiles
 );
+
+export const getRecycleBinModuleSuccessMessage = createSelector(
+    getFileFeatureState,
+    state => state.successMessage
+);
+
+export const getRecycleBinModuleError = createSelector(
+    getFileFeatureState,
+    state => state.error
+);

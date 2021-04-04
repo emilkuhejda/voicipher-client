@@ -13,7 +13,7 @@ export const loadAudioFilesFailure = createAction(
 
 export const restoreAudioFilesSuccess = createAction(
     '[Recycle Bin API] Restore audio files success',
-    props<{ audioFileIds: string[] }>()
+    props<{ audioFileIds: string[], successMessage: string }>()
 );
 
 export const restoreAudioFilesFailure = createAction(
@@ -23,7 +23,7 @@ export const restoreAudioFilesFailure = createAction(
 
 export const permanentDeleteAudioFilesSuccess = createAction(
     '[Recycle Bin API] Permanent delete audio files success',
-    props<{ audioFileIds: string[] }>()
+    props<{ audioFileIds: string[], successMessage: string }>()
 );
 
 export const permanentDeleteAudioFilesFailure = createAction(

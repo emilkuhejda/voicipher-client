@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { FileService } from '@profile/service/file.service';
-import { catchError, concatMap, map, mergeMap } from 'rxjs/operators';
+import { catchError, concatMap, map, mergeMap, switchMap } from 'rxjs/operators';
 import { RecycleBinApiAction, RecycleBinPageAction } from '../actions';
 
 @Injectable()
@@ -30,7 +30,18 @@ export class RecycleBinEffects {
             ofType(RecycleBinPageAction.restoreAudioFilesRequest),
             concatMap(action => this.fileService.restoreAll(action.audioFileIds)
                 .pipe(
-                    map(() => RecycleBinApiAction.restoreAudioFilesSuccess({ audioFileIds: action.audioFileIds })),
+                    switchMap(() => {
+                        const translationKey = action.audioFileIds.length > 1
+                            ? 'SuccessMessage.RestoreAllAudioFile'
+                            : 'SuccessMessage.RestoreAudioFile';
+
+                        return this.translateService
+                            .get(translationKey)
+                            .pipe(map(translation => RecycleBinApiAction.restoreAudioFilesSuccess({
+                                audioFileIds: action.audioFileIds,
+                                successMessage: translation
+                            })))
+                    }),
                     catchError(() => this.translateService
                         .get('ErrorMessage')
                         .pipe(map(translation => RecycleBinApiAction.restoreAudioFilesFailure({ error: translation }))))
@@ -42,7 +53,18 @@ export class RecycleBinEffects {
             ofType(RecycleBinPageAction.permanentDeleteAudioFilesRequest),
             concatMap(action => this.fileService.permanentDeleteAll(action.audioFileIds)
                 .pipe(
-                    map(() => RecycleBinApiAction.permanentDeleteAudioFilesSuccess({ audioFileIds: action.audioFileIds })),
+                    switchMap(() => {
+                        const translationKey = action.audioFileIds.length > 1
+                            ? 'SuccessMessage.PermanentDeleteAllAudioFile'
+                            : 'SuccessMessage.PermanentDeleteAudioFile';
+
+                        return this.translateService
+                            .get(translationKey)
+                            .pipe(map(translation => RecycleBinApiAction.permanentDeleteAudioFilesSuccess({
+                                audioFileIds: action.audioFileIds,
+                                successMessage: translation
+                            })))
+                    }),
                     catchError(() => this.translateService
                         .get('ErrorMessage')
                         .pipe(map(translation => RecycleBinApiAction.permanentDeleteAudioFilesFailure({ error: translation }))))
