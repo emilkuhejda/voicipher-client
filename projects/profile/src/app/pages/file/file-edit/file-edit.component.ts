@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { FileFormModel } from '@profile/components/file-form/file-form.model';
+import { TimeSpanWrapper } from '@profile/core/utils/time-span-wrapper';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
 import { getCurrentAudioFile } from '@profile/state/selectors/audio-file.selectors';
@@ -32,7 +33,9 @@ export class FileEditComponent implements OnInit, OnDestroy {
                         id: audioFile.id,
                         name: audioFile.name,
                         language: audioFile.language,
-                        audioType: audioFile.isPhoneCall ? '1' : '0'
+                        audioType: audioFile.isPhoneCall ? '1' : '0',
+                        transcriptionStartTime: new TimeSpanWrapper(audioFile.transcriptionStartTimeTicks).getTotalSeconds().toString(),
+                        transcriptionEndTime: new TimeSpanWrapper(audioFile.transcriptionEndTimeTicks).getTotalSeconds().toString()
                     };
                 }
             });

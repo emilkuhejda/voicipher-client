@@ -78,4 +78,43 @@ export class AudioFileEffects {
                 ))
         ));
 
+    public updateAudioFile$ = createEffect(() => this.action$
+        .pipe(
+            ofType(AudioFilePageAction.updateAudioFilesRequest),
+            concatMap(action => this.fileService.update(action.audioFileId, action.fileFormData)
+                .pipe(
+                    switchMap((event: any) => {
+                        if (event.type === HttpEventType.UploadProgress) {
+                            const progress = {
+                                identifier: action.identifier,
+                                progress: Math.round(100 * event.loaded / event.total)
+                            };
+
+                            return [AudioFilePageAction.changeUploadedFileProgressRequest(progress)];
+                        } else if (event instanceof HttpResponse) {
+                            return this.translateService
+                                .get('SuccessMessage.CreateAudioFile', { fileName: action.fileFormData.name })
+                                .pipe(switchMap(translation => {
+                                    return [
+                                        AudioFileApiAction.createAudioFileSuccess({
+                                            identifier: action.identifier,
+                                            successMessage: translation
+                                        }),
+                                        AudioFilePageAction.loadAudioFilesRequest()
+                                    ]
+                                }));
+                        } else {
+                            return [AudioFileApiAction.createAudioFileEventReceived()];
+                        }
+                    }),
+                    catchError((error: ErrorResponse) =>
+                        this.translateService
+                            .get(`ErrorCode.${error.errorCode}`)
+                            .pipe(map(translation => AudioFileApiAction.createAudioFilesFailure({
+                                identifier: action.identifier,
+                                error: translation
+                            }))))
+                ))
+        ));
+
 }

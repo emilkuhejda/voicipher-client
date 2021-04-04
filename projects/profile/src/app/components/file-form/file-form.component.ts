@@ -23,6 +23,8 @@ export class FileFormComponent implements OnInit, OnDestroy, OnChanges {
     private translations: { [key: string]: string } = {};
     private identifier: string = new Date().toString();
     private id: string = '';
+    private transcriptionStartTime: string = '0';
+    private transcriptionEndTime: string = '0';
 
     public fileForm: FormGroup;
     public loading: boolean = false;
@@ -121,11 +123,14 @@ export class FileFormComponent implements OnInit, OnDestroy, OnChanges {
             return;
         }
 
+        const audioType = this.controls.audioType.value;
         const fileFormData: FileFormData = {
             name: this.controls.name.value,
             language: this.controls.language.value,
             uploadedFile: this.controls.uploadedFile.value,
-            audioType: this.controls.audioType.value
+            audioType: audioType,
+            transcriptionStartTime: audioType === '1' ? this.transcriptionStartTime : '0',
+            transcriptionEndTime: audioType === '1' ? this.transcriptionEndTime : '0'
         };
 
         this.loading = true;
@@ -133,11 +138,19 @@ export class FileFormComponent implements OnInit, OnDestroy, OnChanges {
         if (this.id === '') {
             this.store.dispatch(AudioFilePageAction.createAudioFilesRequest({ identifier: this.identifier, fileFormData }));
         } else {
+            this.store.dispatch(AudioFilePageAction.updateAudioFilesRequest({
+                identifier: this.identifier,
+                audioFileId: this.id,
+                fileFormData
+            }));
         }
     }
 
     private initializeData(fileFormModel: FileFormModel): void {
         this.id = fileFormModel.id;
+        this.transcriptionStartTime = fileFormModel.transcriptionStartTime;
+        this.transcriptionEndTime = fileFormModel.transcriptionEndTime;
+
         this.controls.name.setValue(fileFormModel.name);
         this.controls.language.setValue(fileFormModel.language);
         this.controls.audioType.setValue(fileFormModel.audioType);

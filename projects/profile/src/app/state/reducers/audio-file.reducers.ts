@@ -72,5 +72,25 @@ export const fileReducer = createReducer<FileState>(
             successMessage: '',
             error: action.error
         };
+    }),
+    on(AudioFileApiAction.updateAudioFileSuccess, (state, action): FileState => {
+        const updatedFiles = state.uploadedFiles.filter(x => x.identifier !== action.identifier);
+        return {
+            ...state,
+            currentFileIdentifier: '',
+            uploadedFiles: updatedFiles,
+            successMessage: action.successMessage,
+            error: ''
+        };
+    }),
+    on(AudioFileApiAction.updateAudioFilesFailure, (state, action): FileState => {
+        const updatedFiles = state.uploadedFiles.filter(x => x.identifier !== action.identifier);
+        return {
+            ...state,
+            currentFileIdentifier: '',
+            uploadedFiles: updatedFiles,
+            successMessage: '',
+            error: action.error
+        };
     })
 );

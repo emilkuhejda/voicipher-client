@@ -3,4 +3,6 @@ export interface FileFormModel {
     name: string;
     language: string;
     audioType: string;
+    transcriptionStartTime: string;
+    transcriptionEndTime: string;
 }
