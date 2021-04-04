@@ -98,7 +98,19 @@ export class FileService {
     }
 
     public getDeletedAudioFiles(): Observable<AudioFile[]> {
-        return this.httpClient.get<AudioFile[]>(this.routingService.getTemporaryDeletedFileItemsUrl());
+        return this.httpClient
+            .get<AudioFile[]>(this.routingService.getTemporaryDeletedFileItemsUrl())
+            .pipe(
+                map(audioFiles => {
+                    for (const audioFile of audioFiles) {
+                        audioFile.dateCreated = new Date(audioFile.dateCreated);
+                        audioFile.dateProcessedUtc = audioFile.dateProcessedUtc ? new Date(audioFile.dateProcessedUtc) : null;
+                        audioFile.dateUpdatedUtc = new Date(audioFile.dateUpdatedUtc);
+                    }
+
+                    return audioFiles;
+                })
+            );
     }
 
     public sendEmail(audioFileId: string, recipient: string): Observable<any> {
