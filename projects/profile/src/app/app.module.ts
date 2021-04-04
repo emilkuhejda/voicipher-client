@@ -35,6 +35,8 @@ import { TooltipModule } from 'primeng/tooltip';
 import { ChipModule } from 'primeng/chip';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { DialogModule } from 'primeng/dialog';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @NgModule({
     declarations: [
@@ -64,6 +66,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
         TooltipModule,
         ChipModule,
         ConfirmPopupModule,
+        DialogModule,
         TranslateModule.forRoot({
             defaultLanguage: environment.defaultLanguage,
             loader: {
@@ -91,6 +94,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
             multi: true
         },
         MessageService,
+        DialogService,
         ConfirmationService
     ],
     bootstrap: [AppComponent]

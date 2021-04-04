@@ -9,6 +9,8 @@ import { ConfirmationService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AudioFileViewModel } from './audio-file.view.model';
+import { DialogService } from 'primeng/dynamicdialog';
+import { SendEmailDialogComponent } from '@profile/components/send-email-dialog/send-email-dialog.component';
 
 @Component({
     selector: 'app-file-overview',
@@ -23,6 +25,7 @@ export class FileOverviewComponent implements OnInit {
         private store: Store<AppState>,
         private router: Router,
         private confirmationService: ConfirmationService,
+        private dialogService: DialogService,
         private translateService: TranslateService) { }
 
     public ngOnInit(): void {
@@ -45,7 +48,12 @@ export class FileOverviewComponent implements OnInit {
 
     public transcribe(audioFileViewModel: AudioFileViewModel): void { }
 
-    public sendEmail(audioFileViewModel: AudioFileViewModel): void { }
+    public sendEmail(audioFileViewModel: AudioFileViewModel): void {
+        this.dialogService.open(SendEmailDialogComponent, {
+            header: 'Send email',
+            baseZIndex: 10000
+        });
+    }
 
     public delete(event: any, audioFileViewModel: AudioFileViewModel) {
         this.translateService
