@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { FileFormModel } from '@profile/components/file-form/file-form.model';
 import { AudioFilePageAction } from '@profile/state/actions';
@@ -18,7 +18,7 @@ export class FileEditComponent implements OnInit, OnDestroy {
 
     public fileFormModel: FileFormModel | undefined = undefined;
 
-    public constructor(private store: Store<AppState>, private router: Router, private route: ActivatedRoute) { }
+    public constructor(private store: Store<AppState>, private route: ActivatedRoute) { }
 
     public ngOnInit(): void {
         const audioFileId = this.route.snapshot.params.fileId;
@@ -27,9 +27,7 @@ export class FileEditComponent implements OnInit, OnDestroy {
             .select(getCurrentAudioFile)
             .pipe(takeUntil(this.destroy$))
             .subscribe(audioFile => {
-                if (!audioFile) {
-                    this.router.navigate(['/files']);
-                } else {
+                if (audioFile) {
                     this.fileFormModel = {
                         id: audioFile.id,
                         name: audioFile.name,

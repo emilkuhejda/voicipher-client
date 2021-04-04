@@ -129,7 +129,11 @@ export class FileFormComponent implements OnInit, OnDestroy, OnChanges {
         };
 
         this.loading = true;
-        this.store.dispatch(AudioFilePageAction.createAudioFilesRequest({ identifier: this.identifier, fileFormData }));
+
+        if (this.id === '') {
+            this.store.dispatch(AudioFilePageAction.createAudioFilesRequest({ identifier: this.identifier, fileFormData }));
+        } else {
+        }
     }
 
     private initializeData(fileFormModel: FileFormModel): void {
@@ -137,6 +141,9 @@ export class FileFormComponent implements OnInit, OnDestroy, OnChanges {
         this.controls.name.setValue(fileFormModel.name);
         this.controls.language.setValue(fileFormModel.language);
         this.controls.audioType.setValue(fileFormModel.audioType);
+
+        this.controls.uploadedFile.clearValidators();
+        this.controls.uploadedFile.setErrors(null);
 
         this.onSelectChange();
     }

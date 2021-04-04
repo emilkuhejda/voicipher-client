@@ -91,6 +91,7 @@
   },
   "ErrorCode": {
     "EC100": "Uploaded file was not found",
+    "EC101": "File was not found",
     "EC200": "Language is not supported",
     "EC201": "Audio file is not supported",
     "EC203": "Audio type is not supported",
