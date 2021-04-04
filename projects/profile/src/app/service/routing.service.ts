@@ -16,4 +16,8 @@ export class RoutingService {
         return environment.webApiUrl + 'api/v1/files/upload/';
     }
 
+    public getUpdateFileItemUrl(): string {
+        return environment.webApiUrl + 'api/v1/files/update/';
+    }
+
 }

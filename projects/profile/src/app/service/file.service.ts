@@ -12,6 +12,10 @@ export class FileService {
 
     public constructor(private routingService: RoutingService, private httpClient: HttpClient) { }
 
+    public get(fileItemId: string): Observable<AudioFile> {
+        return this.httpClient.get<AudioFile>(this.routingService.getAudioFilesUrl() + fileItemId);
+    }
+
     public getAll(): Observable<AudioFile[]> {
         return this.httpClient.get<AudioFile[]>(this.routingService.getAudioFilesUrl())
             .pipe(
@@ -33,8 +37,8 @@ export class FileService {
         params = params.append('language', fileFormData.language);
         params = params.append('fileName', fileFormData.uploadedFile.name);
         params = params.append('isPhoneCall', String(fileFormData.audioType === '1'));
-        params = params.append('startTimeSeconds', '0');
-        params = params.append('endTimeSeconds', '0');
+        params = params.append('startTimeSeconds', fileFormData.transcriptionStartTime);
+        params = params.append('endTimeSeconds', fileFormData.transcriptionEndTime);
         params = params.append('dateCreated', new Date().toISOString());
         params = params.append('applicationId', environment.applicationId);
 
@@ -43,6 +47,28 @@ export class FileService {
 
         const uploadRequest = new HttpRequest('POST', this.routingService.getUploadFileItemUrl(), formData, {
             params,
+            reportProgress: true
+        });
+
+        return this.httpClient.request(uploadRequest);
+    }
+
+    public update(audioFileId: string, fileFormData: FileFormData) {
+        const formData = new FormData();
+        formData.append('fileItemId', audioFileId);
+        formData.append('name', fileFormData.name);
+        formData.append('language', fileFormData.language);
+        formData.append('isPhoneCall', String(fileFormData.audioType === '1'));
+        formData.append('startTimeSeconds', fileFormData.transcriptionStartTime);
+        formData.append('endTimeSeconds', fileFormData.transcriptionEndTime);
+        formData.append('applicationId', environment.applicationId);
+
+        if (fileFormData.uploadedFile) {
+            formData.append('file', fileFormData.uploadedFile);
+            formData.append('fileName', fileFormData.uploadedFile.name);
+        }
+
+        const uploadRequest = new HttpRequest('PUT', this.routingService.getUpdateFileItemUrl(), formData, {
             reportProgress: true
         });
 

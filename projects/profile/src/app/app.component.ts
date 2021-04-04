@@ -10,10 +10,10 @@ import { getCurrentIdentity } from '@profile/state/selectors/Identity.selectors'
 import { Identity } from '@profile/core/models';
 import { getCurrentLanguage } from '@profile/state/selectors';
 import { takeUntil } from 'rxjs/operators';
-import { getFileModuleError, getUploadedFiles } from './state/selectors/audio-file.selectors';
+import { getFileModuleError, getFileModuleSuccessMessage, getUploadedFiles } from './state/selectors/audio-file.selectors';
 import { MessageService } from 'primeng/api';
 
-type ToastKey = 'info' | 'error';
+type ToastKey = 'primary' | 'secondary';
 
 @Component({
     selector: 'app-root',
@@ -38,12 +38,21 @@ export class AppComponent implements OnInit, OnDestroy {
         this.store.dispatch(IdentityPageAction.loadCurrentIdentityRequest());
 
         this.store
+            .select(getFileModuleSuccessMessage)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(message => {
+                if (message !== '') {
+                    const toastKey: ToastKey = 'primary';
+                    this.messageService.add({ key: toastKey, severity: 'success', detail: message });
+                }
+            });
+        this.store
             .select(getFileModuleError)
             .pipe(takeUntil(this.destroy$))
             .subscribe(error => {
                 if (error !== '') {
-                    const toastKey: ToastKey = 'error';
-                    this.messageService.add({ key: toastKey, severity: toastKey, detail: error });
+                    const toastKey: ToastKey = 'primary';
+                    this.messageService.add({ key: toastKey, severity: 'error', detail: error });
                 }
             });
         this.store
@@ -59,12 +68,12 @@ export class AppComponent implements OnInit, OnDestroy {
                     .select(getUploadedFiles)
                     .pipe(takeUntil(this.destroy$))
                     .subscribe(uploadedFiles => {
-                        const toastKey: ToastKey = 'info';
+                        const toastKey: ToastKey = 'secondary';
                         this.messageService.clear(toastKey);
                         for (const uploadedFile of uploadedFiles) {
                             this.messageService.add({
                                 key: toastKey,
-                                severity: toastKey,
+                                severity: 'info',
                                 detail: `${translation} ${uploadedFile.name}`,
                                 sticky: true
                             });

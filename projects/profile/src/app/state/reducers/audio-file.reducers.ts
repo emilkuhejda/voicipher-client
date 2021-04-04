@@ -6,12 +6,23 @@ const initialState: FileState = {
     currentUploadProgress: 0,
     currentFileIdentifier: '',
     uploadedFiles: [],
+    currentAudioFile: undefined,
     audioFiles: [],
+    successMessage: '',
     error: ''
 };
 
 export const fileReducer = createReducer<FileState>(
     initialState,
+    on(AudioFileApiAction.loadCurrentAudioFileSuccess, (state, action): FileState => ({
+        ...state,
+        currentAudioFile: action.audioFile,
+        error: ''
+    })),
+    on(AudioFileApiAction.loadCurrentAudioFileFailure, (state, action): FileState => ({
+        ...state,
+        error: action.error
+    })),
     on(AudioFileApiAction.loadAudioFilesSuccess, (state, action): FileState => ({
         ...state,
         audioFiles: action.audioFiles,
@@ -36,26 +47,29 @@ export const fileReducer = createReducer<FileState>(
             currentUploadProgress: progress
         };
     }),
-    on(AudioFilePageAction.createAudioFilesRequest, (state, action): FileState => ({
+    on(AudioFilePageAction.uploadAudioFilesRequest, (state, action): FileState => ({
         ...state,
         uploadedFiles: [...state.uploadedFiles, { identifier: action.identifier, name: action.fileFormData.name }],
+        successMessage: '',
         error: ''
     })),
-    on(AudioFileApiAction.createAudioFileSuccess, (state, action): FileState => {
+    on(AudioFileApiAction.uploadAudioFileSuccess, (state, action): FileState => {
         const updatedFiles = state.uploadedFiles.filter(x => x.identifier !== action.identifier);
         return {
             ...state,
             currentFileIdentifier: '',
             uploadedFiles: updatedFiles,
+            successMessage: action.successMessage,
             error: ''
         };
     }),
-    on(AudioFileApiAction.createAudioFilesFailure, (state, action): FileState => {
+    on(AudioFileApiAction.uploadAudioFilesFailure, (state, action): FileState => {
         const updatedFiles = state.uploadedFiles.filter(x => x.identifier !== action.identifier);
         return {
             ...state,
             currentFileIdentifier: '',
             uploadedFiles: updatedFiles,
+            successMessage: '',
             error: action.error
         };
     })
