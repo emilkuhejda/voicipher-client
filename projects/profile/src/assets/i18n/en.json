@@ -4,6 +4,7 @@
   "AppComponent": {
     "UploadingFile": "Uploading file"
   },
+  "ErrorMessage": "Error occurred, please try again later",
   "Sidebar": {
     "Overview": "Overview",
     "Files": "Files",
@@ -54,6 +55,14 @@
     "LanguageError": "Language is required",
     "UploadedFileError": "File is required"
   },
+  "EmailForm": {
+    "Header": "Send an email",
+    "EmailAddress": "Email address",
+    "FileNameRequired": "File name is required",
+    "IncorrectEmailAddressFormat": "Email address format is incorrect",
+    "Send": "Send",
+    "Close": "Close"
+  },
   "NotFoundPage": {
     "404": "404",
     "PageNotFound": "Page Not Found",
@@ -76,7 +85,8 @@
     "Edit": "Edit",
     "Detail": "Detail",
     "SendEmail": "Send an email",
-    "Delete": "Delete"
+    "Delete": "Delete",
+    "DeleteActionMessage": "Are you sure that you want to delete file {{fileName}}?"
   },
   "CreateFilePage": {
     "CreateNewFile": "Create new file",
@@ -88,7 +98,9 @@
   },
   "SuccessMessage": {
     "CreateAudioFile": "Audio file {{fileName}} was successfully created",
-    "UpdateAudioFile": "Audio file {{fileName}} was successfully updated"
+    "UpdateAudioFile": "Audio file {{fileName}} was successfully updated",
+    "DeleteAudioFile": "The file {{fileItem}} was successfully deleted",
+    "SendEmail": "An email has been sent successfully"
   },
   "ErrorCode": {
     "EC100": "Uploaded file was not found",

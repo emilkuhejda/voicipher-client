@@ -1,7 +1,7 @@
 import { AudioFile } from '@profile/core/models/audio-file';
 
 export class AudioFileViewModel {
-    private audioFile: AudioFile;
+    public audioFile: AudioFile;
 
     public id: string;
     public name: string;

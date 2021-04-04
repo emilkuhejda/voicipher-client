@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
 import { getAudioFiles } from '@profile/state/selectors/audio-file.selectors';
+import { ConfirmationService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AudioFileViewModel } from './audio-file.view.model';
+import { DialogService } from 'primeng/dynamicdialog';
+import { SendEmailDialogComponent } from '@profile/components/send-email-dialog/send-email-dialog.component';
 
 @Component({
     selector: 'app-file-overview',
@@ -17,7 +21,12 @@ export class FileOverviewComponent implements OnInit {
 
     public audioFile$: Observable<AudioFileViewModel[]> | undefined;
 
-    public constructor(private store: Store<AppState>, private router: Router) { }
+    public constructor(
+        private store: Store<AppState>,
+        private router: Router,
+        private confirmationService: ConfirmationService,
+        private dialogService: DialogService,
+        private translateService: TranslateService) { }
 
     public ngOnInit(): void {
         this.store.dispatch(AudioFilePageAction.loadAudioFilesRequest());
@@ -39,8 +48,33 @@ export class FileOverviewComponent implements OnInit {
 
     public transcribe(audioFileViewModel: AudioFileViewModel): void { }
 
-    public sendEmail(audioFileViewModel: AudioFileViewModel): void { }
+    public sendEmail(audioFileViewModel: AudioFileViewModel): void {
+        this.translateService
+            .get('EmailForm.Header')
+            .subscribe(translation => {
+                this.dialogService.open(SendEmailDialogComponent, {
+                    data: { audioFile: audioFileViewModel.audioFile },
+                    header: translation,
+                    width: '50%',
+                    contentStyle: { 'max-height': '500px' },
+                    baseZIndex: 10000
+                });
+            });
+    }
 
-    public delete(audioFileViewModel: AudioFileViewModel) { }
+    public delete(event: any, audioFileViewModel: AudioFileViewModel) {
+        this.translateService
+            .get('FilesPage.DeleteActionMessage', { fileName: audioFileViewModel.name })
+            .subscribe(translation => {
+                this.confirmationService.confirm({
+                    target: event.target,
+                    message: translation,
+                    icon: 'pi pi-exclamation-triangle',
+                    accept: () => this.store.dispatch(AudioFilePageAction.deleteAudioFileRequest({
+                        audioFile: audioFileViewModel.audioFile
+                    }))
+                });
+            });
+    }
 
 }

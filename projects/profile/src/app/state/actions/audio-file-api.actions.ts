@@ -34,3 +34,23 @@ export const uploadAudioFilesFailure = createAction(
     '[Audio File API] Upload audio file failure',
     props<{ identifier: string; error: string }>()
 );
+
+export const deleteAudioFileSuccess = createAction(
+    '[Audio File API] Delete audio file success',
+    props<{ successMessage: string }>()
+);
+
+export const deleteAudioFileFailure = createAction(
+    '[Audio File API] Delete audio file failure',
+    props<{ error: string }>()
+);
+
+export const sendEmailSuccess = createAction(
+    '[Audio File API] Send email success',
+    props<{ successMessage: string }>()
+);
+
+export const sendEmailFailure = createAction(
+    '[Audio File API] Send email failure',
+    props<{ error: string }>()
+);

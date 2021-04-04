@@ -72,5 +72,23 @@ export const fileReducer = createReducer<FileState>(
             successMessage: '',
             error: action.error
         };
-    })
+    }),
+    on(AudioFileApiAction.deleteAudioFileSuccess, (state, action): FileState => ({
+        ...state,
+        successMessage: action.successMessage,
+        error: ''
+    })),
+    on(AudioFileApiAction.deleteAudioFileFailure, (state, action): FileState => ({
+        ...state,
+        error: action.error
+    })),
+    on(AudioFileApiAction.sendEmailSuccess, (state, action): FileState => ({
+        ...state,
+        successMessage: action.successMessage,
+        error: ''
+    })),
+    on(AudioFileApiAction.sendEmailFailure, (state, action): FileState => ({
+        ...state,
+        error: action.error
+    }))
 );

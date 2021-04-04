@@ -4,9 +4,11 @@ import { FileFormComponent } from './file-form/file-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { SendEmailDialogComponent } from './send-email-dialog/send-email-dialog.component';
 
 const components = [
-    FileFormComponent
+    FileFormComponent,
+    SendEmailDialogComponent
 ];
 
 @NgModule({
