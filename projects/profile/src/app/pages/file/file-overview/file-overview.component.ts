@@ -53,6 +53,7 @@ export class FileOverviewComponent implements OnInit {
             .get('EmailForm.Header')
             .subscribe(translation => {
                 this.dialogService.open(SendEmailDialogComponent, {
+                    data: { audioFile: audioFileViewModel.audioFile },
                     header: translation,
                     baseZIndex: 10000
                 });
