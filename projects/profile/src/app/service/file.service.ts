@@ -83,6 +83,20 @@ export class FileService {
         return this.httpClient.delete(this.routingService.getDeleteFileItemUrl(), { params });
     }
 
+    public restoreAll(audioFilesIds: string[]) {
+        let params = new HttpParams();
+        params = params.append('applicationId', environment.applicationId);
+
+        return this.httpClient.put(this.routingService.getRestoreAllUrl(), audioFilesIds, { params });
+    }
+
+    public permanentDeleteAll(audioFilesIds: string[]) {
+        let params = new HttpParams();
+        params = params.append('applicationId', environment.applicationId);
+
+        return this.httpClient.put(this.routingService.getPermanentDeleteAll(), audioFilesIds, { params });
+    }
+
     public getDeletedAudioFiles(): Observable<AudioFile[]> {
         return this.httpClient.get<AudioFile[]>(this.routingService.getTemporaryDeletedFileItemsUrl());
     }

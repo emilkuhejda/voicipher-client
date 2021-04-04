@@ -18,5 +18,27 @@ export const recycleBinReducer = createReducer<RecycleBinState>(
     on(RecycleBinApiAction.loadAudioFilesFailure, (state, action): RecycleBinState => ({
         ...state,
         error: action.error
+    })),
+    on(RecycleBinApiAction.restoreAudioFilesSuccess, (state, action): RecycleBinState => {
+        const reducedAudioFiles = state.audioFiles.filter(x => !action.audioFileIds.find(id => id === x.id));
+        return {
+            ...state,
+            audioFiles: reducedAudioFiles
+        };
+    }),
+    on(RecycleBinApiAction.restoreAudioFilesFailure, (state): RecycleBinState => ({
+        ...state,
+        error: ''
+    })),
+    on(RecycleBinApiAction.permanentDeleteAudioFilesSuccess, (state, action): RecycleBinState => {
+        const reducedAudioFiles = state.audioFiles.filter(x => !action.audioFileIds.find(id => id === x.id));
+        return {
+            ...state,
+            audioFiles: reducedAudioFiles
+        };
+    }),
+    on(RecycleBinApiAction.permanentDeleteAudioFilesFailure, (state): RecycleBinState => ({
+        ...state,
+        error: ''
     }))
 );

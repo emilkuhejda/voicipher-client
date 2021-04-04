@@ -101,7 +101,9 @@
     "RestoreRecycleBin": "Restore Recycle Bin",
     "EmptyRecycleBin": "Empty Recycle Bin",
     "Restore": "Restore",
-    "Delete": "Delete"
+    "Delete": "Delete",
+    "RestoreMessage": "Are you sure that you want to restore file {{fileName}}?",
+    "DeleteMessage": "Are you sure that you want to permanently delete file {{fileName}}?"
   },
   "SuccessMessage": {
     "CreateAudioFile": "Audio file {{fileName}} was successfully created",

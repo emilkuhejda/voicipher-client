@@ -62,17 +62,19 @@ export class FileOverviewComponent implements OnInit {
             });
     }
 
-    public delete(event: any, audioFileViewModel: AudioFileViewModel) {
+    public delete(event: Event, audioFileViewModel: AudioFileViewModel) {
         this.translateService
             .get('FilesPage.DeleteActionMessage', { fileName: audioFileViewModel.name })
             .subscribe(translation => {
                 this.confirmationService.confirm({
-                    target: event.target,
+                    target: event.target ?? undefined,
                     message: translation,
                     icon: 'pi pi-exclamation-triangle',
-                    accept: () => this.store.dispatch(AudioFilePageAction.deleteAudioFileRequest({
-                        audioFile: audioFileViewModel.audioFile
-                    }))
+                    accept: () => {
+                        this.store.dispatch(AudioFilePageAction.deleteAudioFileRequest({
+                            audioFile: audioFileViewModel.audioFile
+                        }));
+                    }
                 });
             });
     }

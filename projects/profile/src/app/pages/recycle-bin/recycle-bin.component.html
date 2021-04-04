@@ -34,11 +34,11 @@
                         {{audioFile.name}}<span class="file-name">({{audioFile.fileName}})</span>
                     </div>
                     <div class="col-3 text-right">
-                        <a (click)="restore(audioFile)" class="mr-2" [pTooltip]="'RecycleBinPage.Restore' | translate"
-                            tooltipPosition="top">
+                        <a (click)="restore($event, audioFile)" class="mr-2"
+                            [pTooltip]="'RecycleBinPage.Restore' | translate" tooltipPosition="top">
                             <i class="fas fa-undo"></i>
                         </a>
-                        <a (click)="delete(audioFile)" [pTooltip]="'RecycleBinPage.Delete' | translate"
+                        <a (click)="delete($event, audioFile)" [pTooltip]="'RecycleBinPage.Delete' | translate"
                             tooltipPosition="top">
                             <i class="fas fa-trash"></i>
                         </a>
@@ -48,3 +48,5 @@
         </ul>
     </div>
 </div>
+
+<p-confirmPopup></p-confirmPopup>
