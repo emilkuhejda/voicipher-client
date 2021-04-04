@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
+import { TranslateMockPipe } from '../../../tests/translate.mock.pipe';
 
 import { FileEditComponent } from './file-edit.component';
 
@@ -10,7 +11,7 @@ describe('FileEditComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [FileEditComponent],
+            declarations: [FileEditComponent, TranslateMockPipe],
             imports: [RouterTestingModule],
             providers: [provideMockStore()]
         }).compileComponents();
