@@ -79,5 +79,7 @@
         </div>
     </form>
 
-    <p-progressBar *ngIf="progress > 0 && progress < 100" [value]="progress"></p-progressBar>
+    <ng-container *ngIf="progres$ | async as progress">
+        <p-progressBar *ngIf="progress > 0 && progress < 100" [value]="progress"></p-progressBar>
+    </ng-container>
 </ng-container>

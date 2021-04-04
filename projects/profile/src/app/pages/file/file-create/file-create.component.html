@@ -7,7 +7,7 @@
 
     <!-- Card Body -->
     <div class="card-body">
-        <app-file-form (save)="save($event)" [(loading)]="loading"
-            [saveButtonText]="'CreateFilePage.Create' | translate"></app-file-form>
+        <app-file-form (uploadCompleted)="onUploadCompleted()" [saveButtonText]="'CreateFilePage.Create' | translate">
+        </app-file-form>
     </div>
 </div>

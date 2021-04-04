@@ -8,6 +8,21 @@ export const getAudioFiles = createSelector(
     state => state.audioFiles
 );
 
+export const getUploadedFiles = createSelector(
+    getFileFeatureState,
+    state => state.uploadedFiles
+);
+
+export const getCurrentUploadedFileProgress = createSelector(
+    getFileFeatureState,
+    state => state.currentUploadProgress
+);
+
+export const getCurrentFileIdentifier = createSelector(
+    getFileFeatureState,
+    state => state.currentFileIdentifier
+);
+
 export const getFileModuleError = createSelector(
     getFileFeatureState,
     state => state.error
