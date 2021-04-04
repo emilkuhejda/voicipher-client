@@ -6,10 +6,10 @@ import { FileFormData } from '@profile/core/models/file-form-data';
 import { LanguageHelper } from '@profile/core/utils/language-helper';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
-import { getCurrentFileIdentifier, getCurrentUploadedFileProgress } from '@profile/state/selectors/audio-file.selectors';
+import { getCurrentUploadedFileProgress, getUploadedFiles } from '@profile/state/selectors/audio-file.selectors';
 import { MessageService } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil, tap } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { FileFormModel } from './file-form.model';
 
 @Component({
@@ -63,21 +63,15 @@ export class FileFormComponent implements OnInit, OnDestroy, OnChanges {
     public ngOnInit(): void {
         this.store.dispatch(AudioFilePageAction.setCurrentFileIdentifier({ identifier: this.identifier }));
         this.store
-            .select(getCurrentFileIdentifier)
+            .select(getUploadedFiles)
             .pipe(takeUntil(this.destroy$))
-            .subscribe(identifier => {
-                if (identifier === '') {
+            .subscribe(uploadedFiles => {
+                if (uploadedFiles.length === 0) {
                     this.loading = false;
                 }
             });
 
-        this.progres$ = this.store.select(getCurrentUploadedFileProgress).pipe(
-            tap(progress => {
-                if (progress >= 100) {
-                    this.uploadCompleted.emit();
-                }
-            })
-        );
+        this.progres$ = this.store.select(getCurrentUploadedFileProgress);
 
         if (this.dataSource) {
             this.initializeData(this.dataSource);
