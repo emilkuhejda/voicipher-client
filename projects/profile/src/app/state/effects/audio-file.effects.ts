@@ -57,7 +57,7 @@ export class AudioFileEffects {
                                 .get('SuccessMessage.CreateAudioFile', { fileName: action.fileFormData.name })
                                 .pipe(switchMap(translation => {
                                     return [
-                                        AudioFileApiAction.createAudioFileSuccess({
+                                        AudioFileApiAction.uploadAudioFileSuccess({
                                             identifier: action.identifier,
                                             successMessage: translation
                                         }),
@@ -71,7 +71,7 @@ export class AudioFileEffects {
                     catchError((error: ErrorResponse) =>
                         this.translateService
                             .get(`ErrorCode.${error.errorCode}`)
-                            .pipe(map(translation => AudioFileApiAction.createAudioFilesFailure({
+                            .pipe(map(translation => AudioFileApiAction.uploadAudioFilesFailure({
                                 identifier: action.identifier,
                                 error: translation
                             }))))
@@ -96,7 +96,7 @@ export class AudioFileEffects {
                                 .get('SuccessMessage.CreateAudioFile', { fileName: action.fileFormData.name })
                                 .pipe(switchMap(translation => {
                                     return [
-                                        AudioFileApiAction.createAudioFileSuccess({
+                                        AudioFileApiAction.uploadAudioFileSuccess({
                                             identifier: action.identifier,
                                             successMessage: translation
                                         }),
@@ -110,7 +110,7 @@ export class AudioFileEffects {
                     catchError((error: ErrorResponse) =>
                         this.translateService
                             .get(`ErrorCode.${error.errorCode}`)
-                            .pipe(map(translation => AudioFileApiAction.createAudioFilesFailure({
+                            .pipe(map(translation => AudioFileApiAction.uploadAudioFilesFailure({
                                 identifier: action.identifier,
                                 error: translation
                             }))))

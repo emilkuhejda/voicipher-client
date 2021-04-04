@@ -25,22 +25,12 @@ export const createAudioFileEventReceived = createAction(
     '[Audio File API] Create audio file event received'
 );
 
-export const createAudioFileSuccess = createAction(
+export const uploadAudioFileSuccess = createAction(
     '[Audio File API] Create audio file success',
     props<{ identifier: string; successMessage: string }>()
 );
 
-export const createAudioFilesFailure = createAction(
+export const uploadAudioFilesFailure = createAction(
     '[Audio File API] Create audio file failure',
-    props<{ identifier: string; error: string }>()
-);
-
-export const updateAudioFileSuccess = createAction(
-    '[Audio File API] Update audio file success',
-    props<{ identifier: string; successMessage: string }>()
-);
-
-export const updateAudioFilesFailure = createAction(
-    '[Audio File API] Update audio file failure',
     props<{ identifier: string; error: string }>()
 );

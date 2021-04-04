@@ -53,7 +53,13 @@ export const fileReducer = createReducer<FileState>(
         successMessage: '',
         error: ''
     })),
-    on(AudioFileApiAction.createAudioFileSuccess, (state, action): FileState => {
+    on(AudioFilePageAction.updateAudioFilesRequest, (state, action): FileState => ({
+        ...state,
+        uploadedFiles: [...state.uploadedFiles, { identifier: action.identifier, name: action.fileFormData.name }],
+        successMessage: '',
+        error: ''
+    })),
+    on(AudioFileApiAction.uploadAudioFileSuccess, (state, action): FileState => {
         const updatedFiles = state.uploadedFiles.filter(x => x.identifier !== action.identifier);
         return {
             ...state,
@@ -63,27 +69,7 @@ export const fileReducer = createReducer<FileState>(
             error: ''
         };
     }),
-    on(AudioFileApiAction.createAudioFilesFailure, (state, action): FileState => {
-        const updatedFiles = state.uploadedFiles.filter(x => x.identifier !== action.identifier);
-        return {
-            ...state,
-            currentFileIdentifier: '',
-            uploadedFiles: updatedFiles,
-            successMessage: '',
-            error: action.error
-        };
-    }),
-    on(AudioFileApiAction.updateAudioFileSuccess, (state, action): FileState => {
-        const updatedFiles = state.uploadedFiles.filter(x => x.identifier !== action.identifier);
-        return {
-            ...state,
-            currentFileIdentifier: '',
-            uploadedFiles: updatedFiles,
-            successMessage: action.successMessage,
-            error: ''
-        };
-    }),
-    on(AudioFileApiAction.updateAudioFilesFailure, (state, action): FileState => {
+    on(AudioFileApiAction.uploadAudioFilesFailure, (state, action): FileState => {
         const updatedFiles = state.uploadedFiles.filter(x => x.identifier !== action.identifier);
         return {
             ...state,
