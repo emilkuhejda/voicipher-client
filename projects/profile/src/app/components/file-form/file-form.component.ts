@@ -68,6 +68,7 @@ export class FileFormComponent implements OnInit, OnDestroy, OnChanges {
             .subscribe(uploadedFiles => {
                 if (uploadedFiles.length === 0) {
                     this.loading = false;
+                    this.uploadCompleted.emit();
                 }
             });
 
