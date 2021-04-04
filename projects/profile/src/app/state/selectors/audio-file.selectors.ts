@@ -18,6 +18,11 @@ export const getCurrentUploadedFileProgress = createSelector(
     state => state.currentUploadProgress
 );
 
+export const getCurrentFileIdentifier = createSelector(
+    getFileFeatureState,
+    state => state.currentFileIdentifier
+);
+
 export const getFileModuleError = createSelector(
     getFileFeatureState,
     state => state.error

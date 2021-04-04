@@ -6,10 +6,10 @@ import { FileFormData } from '@profile/core/models/file-form-data';
 import { LanguageHelper } from '@profile/core/utils/language-helper';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
-import { getCurrentUploadedFileProgress } from '@profile/state/selectors/audio-file.selectors';
+import { getCurrentFileIdentifier, getCurrentUploadedFileProgress } from '@profile/state/selectors/audio-file.selectors';
 import { MessageService } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-file-form',
@@ -54,6 +54,15 @@ export class FileFormComponent implements OnInit, OnDestroy {
 
     public ngOnInit(): void {
         this.store.dispatch(AudioFilePageAction.setCurrentFileIdentifier({ identifier: this.identifier }));
+        this.store
+            .select(getCurrentFileIdentifier)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(identifier => {
+                if (identifier === '') {
+                    this.loading = false;
+                }
+            });
+
         this.progres$ = this.store.select(getCurrentUploadedFileProgress).pipe(
             tap(progress => {
                 if (progress >= 100) {
@@ -104,6 +113,7 @@ export class FileFormComponent implements OnInit, OnDestroy {
             audioType: this.controls.audioType.value
         };
 
+        this.loading = true;
         this.store.dispatch(AudioFilePageAction.createAudioFilesRequest({ identifier: this.identifier, fileFormData }));
     }
 
