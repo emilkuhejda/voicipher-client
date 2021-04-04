@@ -80,11 +80,11 @@ export class FileService {
         params = params.append('fileItemId', audioFileId);
         params = params.append('applicationId', environment.applicationId);
 
-        return this.httpClient.delete(this.routingService.getDeleteFileItemUrl(), { params: params });
+        return this.httpClient.delete(this.routingService.getDeleteFileItemUrl(), { params });
     }
 
     public sendEmail(audioFileId: string, recipient: string): Observable<any> {
-        const body = { fileItemId: audioFileId, recipient: recipient };
+        const body = { fileItemId: audioFileId, recipient };
         return this.httpClient.post(this.routingService.getEmailUrl(), body);
     }
 

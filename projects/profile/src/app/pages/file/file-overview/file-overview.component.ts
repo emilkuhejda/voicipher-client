@@ -56,7 +56,7 @@ export class FileOverviewComponent implements OnInit {
                     data: { audioFile: audioFileViewModel.audioFile },
                     header: translation,
                     width: '50%',
-                    contentStyle: { "max-height": "500px", "overflow": "auto" },
+                    contentStyle: { 'max-height': '500px' },
                     baseZIndex: 10000
                 });
             });
@@ -74,7 +74,7 @@ export class FileOverviewComponent implements OnInit {
                         audioFile: audioFileViewModel.audioFile
                     }))
                 });
-            })
+            });
     }
 
 }
