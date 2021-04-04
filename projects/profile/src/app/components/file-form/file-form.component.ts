@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,6 +9,7 @@ import { AppState } from '@profile/state/app.state';
 import { getCurrentUploadedFileProgress } from '@profile/state/selectors/audio-file.selectors';
 import { MessageService } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-file-form',
@@ -31,6 +32,9 @@ export class FileFormComponent implements OnInit, OnDestroy {
     @Input()
     public saveButtonText: string = '';
 
+    @Output()
+    public uploadCompleted: EventEmitter<any> = new EventEmitter();
+
     public constructor(
         formBuilder: FormBuilder,
         translateService: TranslateService,
@@ -50,7 +54,13 @@ export class FileFormComponent implements OnInit, OnDestroy {
 
     public ngOnInit(): void {
         this.store.dispatch(AudioFilePageAction.setCurrentFileIdentifier({ identifier: this.identifier }));
-        this.progres$ = this.store.select(getCurrentUploadedFileProgress);
+        this.progres$ = this.store.select(getCurrentUploadedFileProgress).pipe(
+            tap(progress => {
+                if (progress >= 100) {
+                    this.uploadCompleted.emit();
+                }
+            })
+        );
     }
 
     public ngOnDestroy(): void {

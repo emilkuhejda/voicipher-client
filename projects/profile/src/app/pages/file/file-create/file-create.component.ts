@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-file-create',
@@ -7,6 +8,10 @@ import { Component } from '@angular/core';
 })
 export class FileCreateComponent {
 
-    public constructor() { }
+    public constructor(private router: Router) { }
+
+    public onUploadCompleted(): void {
+        this.router.navigate(['/files']);
+    }
 
 }
