@@ -48,8 +48,8 @@
                     <div *ngIf="controls.uploadedFile.errors.required">{{ 'FileForm.UploadedFileError' | translate }}
                     </div>
                 </div>
-                <label *ngIf="controls.uploadedFile.value; else fileNotSelected" class="custom-file-label"
-                    for="inputGroupFile">{{controls.uploadedFile.value.name}}</label>
+                <label *ngIf="fileName; else fileNotSelected" class="custom-file-label"
+                    for="inputGroupFile">{{fileName}}</label>
                 <ng-template #fileNotSelected>
                     <label class="custom-file-label" for="inputGroupFile">{{ 'FileForm.ChooseFile' | translate
                         }}</label>

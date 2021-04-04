@@ -32,6 +32,7 @@ export class FileEditComponent implements OnInit, OnDestroy {
                     this.fileFormModel = {
                         id: audioFile.id,
                         name: audioFile.name,
+                        fileName: audioFile.fileName,
                         language: audioFile.language,
                         audioType: audioFile.isPhoneCall ? '1' : '0',
                         transcriptionStartTime: new TimeSpanWrapper(audioFile.transcriptionStartTimeTicks).getTotalSeconds().toString(),

@@ -29,6 +29,7 @@ export class FileFormComponent implements OnInit, OnDestroy, OnChanges {
     public fileForm: FormGroup;
     public loading: boolean = false;
     public submitted: boolean = false;
+    public fileName: string = '';
     public audioTypeVisible: boolean = false;
 
     public progres$: Observable<number> | undefined;
@@ -105,7 +106,9 @@ export class FileFormComponent implements OnInit, OnDestroy, OnChanges {
             return;
         }
 
-        this.controls.uploadedFile.setValue(files[0]);
+        const file = files[0];
+        this.controls.uploadedFile.setValue(file);
+        this.fileName = file.name;
     }
 
     public onSelectChange(): void {
@@ -149,6 +152,10 @@ export class FileFormComponent implements OnInit, OnDestroy, OnChanges {
         this.controls.name.setValue(fileFormModel.name);
         this.controls.language.setValue(fileFormModel.language);
         this.controls.audioType.setValue(fileFormModel.audioType);
+
+        if (fileFormModel.fileName) {
+            this.fileName = fileFormModel.fileName;
+        }
 
         this.controls.uploadedFile.clearValidators();
         this.controls.uploadedFile.setErrors(null);
