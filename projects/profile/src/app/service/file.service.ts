@@ -38,7 +38,7 @@ export class FileService {
         params = params.append('dateCreated', new Date().toISOString());
         params = params.append('applicationId', environment.applicationId);
 
-        let formData = new FormData();
+        const formData = new FormData();
         formData.append('file', fileFormData.uploadedFile);
 
         const uploadRequest = new HttpRequest('POST', this.routingService.getUploadFileItemUrl(), formData, {

@@ -15,7 +15,7 @@ export interface AppState {
 export interface FileState {
     currentUploadProgress: number;
     currentFileIdentifier: string;
-    uploadedFiles: UploadedFile[],
+    uploadedFiles: UploadedFile[];
     audioFiles: AudioFile[];
     error: string;
 }

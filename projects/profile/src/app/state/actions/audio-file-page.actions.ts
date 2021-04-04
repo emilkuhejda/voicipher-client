@@ -17,5 +17,5 @@ export const changeUploadedFileProgressRequest = createAction(
 
 export const createAudioFilesRequest = createAction(
     '[Audio File Page] Create audio file request',
-    props<{ identifier: string, fileFormData: FileFormData }>()
+    props<{ identifier: string; fileFormData: FileFormData }>()
 );

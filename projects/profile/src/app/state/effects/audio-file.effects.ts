@@ -33,7 +33,7 @@ export class AudioFileEffects {
             concatMap(action => this.fileService.upload(action.fileFormData)
                 .pipe(
                     switchMap((event: any) => {
-                        if (event.type == HttpEventType.UploadProgress) {
+                        if (event.type === HttpEventType.UploadProgress) {
                             const progress = {
                                 identifier: action.identifier,
                                 progress: Math.round(100 * event.loaded / event.total)

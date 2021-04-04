@@ -43,7 +43,7 @@ export class AppComponent implements OnInit, OnDestroy {
             .subscribe(error => {
                 if (error !== '') {
                     const toastKey: ToastKey = 'error';
-                    this.messageService.add({ key: toastKey, severity: toastKey, detail: error })
+                    this.messageService.add({ key: toastKey, severity: toastKey, detail: error });
                 }
             });
         this.store
