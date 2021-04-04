@@ -20,4 +20,40 @@ export class RoutingService {
         return environment.webApiUrl + 'api/v1/files/update/';
     }
 
+    public getDeleteFileItemUrl(): string {
+        return environment.webApiUrl + 'api/v1/files/delete/';
+    }
+
+    public getTemporaryDeletedFileItemsUrl(): string {
+        return environment.webApiUrl + 'api/v1/files/temporary-deleted/';
+    }
+
+    public getPermanentDeleteAll(): string {
+        return environment.webApiUrl + 'api/v1/files/permanent-delete-all/';
+    }
+
+    public getRestoreAllUrl(): string {
+        return environment.webApiUrl + 'api/v1/files/restore-all/';
+    }
+
+    public getTranscribeItemsUrl(): string {
+        return environment.webApiUrl + 'api/v1/transcribe-items/';
+    }
+
+    public getUpdateTranscriptUrl(): string {
+        return environment.webApiUrl + 'api/v1/transcribe-items/update-transcript/';
+    }
+
+    public getTranscribeAudioUrl(): string {
+        return environment.webApiUrl + 'api/v1/transcribe-items/audio-stream/';
+    }
+
+    public getTranscribeFileItemUrl(): string {
+        return environment.webApiUrl + 'api/v1/files/transcribe/';
+    }
+
+    public getMailUrl(): string {
+        return environment.webApiUrl + 'api/v1/mail/';
+    }
+
 }

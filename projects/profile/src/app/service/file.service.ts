@@ -75,4 +75,12 @@ export class FileService {
         return this.httpClient.request(uploadRequest);
     }
 
+    public delete(audioFileId: string) {
+        let params = new HttpParams();
+        params = params.append('fileItemId', audioFileId);
+        params = params.append('applicationId', environment.applicationId);
+
+        return this.httpClient.delete(this.routingService.getDeleteFileItemUrl(), { params: params });
+    }
+
 }

@@ -34,7 +34,7 @@ import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { ChipModule } from 'primeng/chip';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @NgModule({
     declarations: [
@@ -90,6 +90,7 @@ import { ConfirmationService } from 'primeng/api';
             useClass: ErrorInterceptorService,
             multi: true
         },
+        MessageService,
         ConfirmationService
     ],
     bootstrap: [AppComponent]

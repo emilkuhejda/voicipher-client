@@ -18,8 +18,7 @@ type ToastKey = 'primary' | 'secondary';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    providers: [MessageService]
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
     private destroy$: Subject<void> = new Subject<void>();
