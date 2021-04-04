@@ -82,6 +82,10 @@
     "CreateNewFile": "Create new file",
     "Create": "Create"
   },
+  "EditFilePage": {
+    "EditFile": "Edit file",
+    "Edit": "Edit"
+  },
   "SuccessMessage": {
     "CreateAudioFile": "Audio file {{fileName}} was successfully created"
   },
