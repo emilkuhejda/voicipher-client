@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
     selector: 'app-send-email-dialog',
@@ -6,7 +8,31 @@ import { Component } from '@angular/core';
     styleUrls: ['./send-email-dialog.component.scss']
 })
 export class SendEmailDialogComponent {
+    public emailForm: FormGroup;
+    public submitted: boolean = false;
+    public loading: boolean = false;
 
-    public constructor() { }
+    public constructor(private formBuilder: FormBuilder, public ref: DynamicDialogRef) {
+        this.emailForm = this.formBuilder.group({
+            emailAddress: ['', [Validators.required, Validators.email]]
+        })
+    }
+
+    public get controls() {
+        return this.emailForm.controls;
+    }
+
+    public onSubmit() {
+        this.submitted = true;
+        if (this.emailForm.invalid) {
+            return;
+        }
+
+        this.loading = true;
+    }
+
+    public close() {
+        this.ref.close();
+    }
 
 }

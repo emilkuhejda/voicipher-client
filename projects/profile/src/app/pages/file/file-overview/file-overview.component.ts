@@ -49,10 +49,14 @@ export class FileOverviewComponent implements OnInit {
     public transcribe(audioFileViewModel: AudioFileViewModel): void { }
 
     public sendEmail(audioFileViewModel: AudioFileViewModel): void {
-        this.dialogService.open(SendEmailDialogComponent, {
-            header: 'Send email',
-            baseZIndex: 10000
-        });
+        this.translateService
+            .get('EmailForm.Header')
+            .subscribe(translation => {
+                this.dialogService.open(SendEmailDialogComponent, {
+                    header: translation,
+                    baseZIndex: 10000
+                });
+            });
     }
 
     public delete(event: any, audioFileViewModel: AudioFileViewModel) {

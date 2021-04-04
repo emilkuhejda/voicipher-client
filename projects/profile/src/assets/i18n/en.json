@@ -54,6 +54,14 @@
     "LanguageError": "Language is required",
     "UploadedFileError": "File is required"
   },
+  "EmailForm": {
+    "Header": "Send an email",
+    "EmailAddress": "Email address",
+    "FileNameRequired": "File name is required",
+    "IncorrectEmailAddressFormat": "Email address format is incorrect",
+    "Send": "Send",
+    "Close": "Close"
+  },
   "NotFoundPage": {
     "404": "404",
     "PageNotFound": "Page Not Found",
