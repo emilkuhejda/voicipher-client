@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MsalService } from './service/msal.service';
 import { TranslateMockPipe } from './tests/translate.mock.pipe';
 import { provideMockStore } from '@ngrx/store/testing';
+import { MessageService } from 'primeng/api';
 
 describe('AppComponent', () => {
     beforeEach(async () => {
@@ -21,6 +22,10 @@ describe('AppComponent', () => {
                 provideMockStore(),
                 {
                     provide: MsalService,
+                    useValue: {}
+                },
+                {
+                    provide: MessageService,
                     useValue: {}
                 },
                 {
