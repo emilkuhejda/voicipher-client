@@ -41,6 +41,30 @@ export class AudioFileEffects {
                 ))
         ));
 
+    public loadAudioSource$ = createEffect(() => this.action$
+        .pipe(
+            ofType(AudioFilePageAction.loadCurrentAudioSourceRequest),
+            concatMap(action => this.transcribeItemService.getAudio(action.transcribeItemId)
+                .pipe(
+                    map(source => AudioFileApiAction.loadCurrentAudioSourceSuccess({ source })),
+                    catchError(() => this.translateService
+                        .get('ErrorMessage')
+                        .pipe(map(translation => AudioFileApiAction.loadCurrentAudioSourceFailure({ error: translation }))))
+                ))
+        ));
+
+    public updateTranscript$ = createEffect(() => this.action$
+        .pipe(
+            ofType(AudioFilePageAction.updateTranscriptRequest),
+            concatMap(action => this.transcribeItemService.updateTranscript(action.transcribeItemId, action.transcript)
+                .pipe(
+                    map(() => AudioFileApiAction.updateTranscriptSuccess()),
+                    catchError(() => this.translateService
+                        .get('ErrorMessage')
+                        .pipe(map(translation => AudioFileApiAction.updateTranscriptFailure({ error: translation }))))
+                ))
+        ));
+
     public loadAudioFiles$ = createEffect(() => this.action$
         .pipe(
             ofType(AudioFilePageAction.loadAudioFilesRequest),

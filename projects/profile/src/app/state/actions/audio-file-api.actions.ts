@@ -13,12 +13,31 @@ export const loadCurrentAudioFileFailure = createAction(
 );
 
 export const loadCurrentTranscribeItemsSuccess = createAction(
-    '[Audio File Page] Load current transcribe items success',
+    '[Audio File API] Load current transcribe items success',
     props<{ transcribeItems: TranscribeItem[] }>()
 );
 
 export const loadCurrentTranscribeItemsFailure = createAction(
-    '[Audio File Page] Load current transcribe items failure',
+    '[Audio File API] Load current transcribe items failure',
+    props<{ error: string }>()
+);
+
+export const loadCurrentAudioSourceSuccess = createAction(
+    '[Audio File API] Load current audio source success',
+    props<{ source: Blob }>()
+);
+
+export const loadCurrentAudioSourceFailure = createAction(
+    '[Audio File API] Load current audio source failure',
+    props<{ error: string }>()
+);
+
+export const updateTranscriptSuccess = createAction(
+    '[Audio File API] Update transcript success'
+);
+
+export const updateTranscriptFailure = createAction(
+    '[Audio File API] Update transcript failure',
     props<{ error: string }>()
 );
 
