@@ -2,6 +2,7 @@ import { ActionReducerMap } from '@ngrx/store';
 import { Identity } from '@profile/core/models';
 import { AudioFile } from '@profile/core/models/audio-file';
 import { InformationMessage } from '@profile/core/models/information-message';
+import { TranscribeItem } from '@profile/core/models/transcribe-item';
 import { UploadedFile } from '@profile/core/models/uploaded-file';
 import { fileReducer } from './reducers/audio-file.reducers';
 import { configReducer } from './reducers/config.reducers';
@@ -22,6 +23,7 @@ export interface FileState {
     currentFileIdentifier: string;
     uploadedFiles: UploadedFile[];
     currentAudioFile: AudioFile | undefined;
+    currentTranscribeItems: TranscribeItem[];
     audioFiles: AudioFile[];
     successMessage: string;
     error: string;

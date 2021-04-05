@@ -8,6 +8,7 @@ import { FileService } from './file.service';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { ErrorInterceptorService } from './error-interceptor.service';
 import { InformationMessageService } from './information-message.service';
+import { TranscribeItemService } from './transcribe-item.service';
 
 @NgModule({
     declarations: [],
@@ -20,6 +21,7 @@ import { InformationMessageService } from './information-message.service';
         RoutingService,
         UserService,
         FileService,
+        TranscribeItemService,
         InformationMessageService,
         TokenInterceptorService,
         ErrorInterceptorService

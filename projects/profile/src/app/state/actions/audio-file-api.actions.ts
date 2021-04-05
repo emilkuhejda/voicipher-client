@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { AudioFile } from '@profile/core/models/audio-file';
+import { TranscribeItem } from '@profile/core/models/transcribe-item';
 
 export const loadCurrentAudioFileSuccess = createAction(
     '[Audio File API] Load current audio file success',
@@ -8,6 +9,16 @@ export const loadCurrentAudioFileSuccess = createAction(
 
 export const loadCurrentAudioFileFailure = createAction(
     '[Audio File API] Load current audio file failure',
+    props<{ error: string }>()
+);
+
+export const loadCurrentTranscribeItemsSuccess = createAction(
+    '[Audio File Page] Load current transcribe items success',
+    props<{ transcribeItems: TranscribeItem[] }>()
+);
+
+export const loadCurrentTranscribeItemsFailure = createAction(
+    '[Audio File Page] Load current transcribe items failure',
     props<{ error: string }>()
 );
 

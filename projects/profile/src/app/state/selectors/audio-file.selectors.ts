@@ -8,6 +8,11 @@ export const getCurrentAudioFile = createSelector(
     state => state.currentAudioFile
 );
 
+export const getCurrentTranscribeItems = createSelector(
+    getFileFeatureState,
+    state => state.currentTranscribeItems
+);
+
 export const getAudioFiles = createSelector(
     getFileFeatureState,
     state => state.audioFiles
