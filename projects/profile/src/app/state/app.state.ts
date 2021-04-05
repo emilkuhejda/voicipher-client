@@ -23,6 +23,7 @@ export interface FileState {
     currentFileIdentifier: string;
     uploadedFiles: UploadedFile[];
     currentAudioFile: AudioFile | undefined;
+    currentAudioSource: Blob | undefined;
     currentTranscribeItems: TranscribeItem[];
     audioFiles: AudioFile[];
     successMessage: string;

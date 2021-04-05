@@ -1,5 +1,5 @@
 <ng-container *ngIf="transcribeItem">
-    <div class="row no-gutters align-items-center mb-4" *ngIf="transcribeItem.source">
+    <div *ngIf="transcribeItem.source" class="row no-gutters align-items-center mb-4">
         <audio #audio controls="controls" [src]="transcribeItem.source" (timeupdate)="restrictAudio(audio)"></audio>
     </div>
 
