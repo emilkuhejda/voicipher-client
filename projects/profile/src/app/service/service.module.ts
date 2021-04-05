@@ -7,6 +7,7 @@ import { RoutingService } from './routing.service';
 import { FileService } from './file.service';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { ErrorInterceptorService } from './error-interceptor.service';
+import { InformationMessageService } from './information-message.service';
 
 @NgModule({
     declarations: [],
@@ -19,6 +20,7 @@ import { ErrorInterceptorService } from './error-interceptor.service';
         RoutingService,
         UserService,
         FileService,
+        InformationMessageService,
         TokenInterceptorService,
         ErrorInterceptorService
     ]

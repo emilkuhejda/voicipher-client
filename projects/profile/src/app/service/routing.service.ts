@@ -56,4 +56,12 @@ export class RoutingService {
         return environment.webApiUrl + 'api/v1/mail/';
     }
 
+    public getInformationMessagesUrl(): string {
+        return environment.webApiUrl + 'api/v1/information-messages/';
+    }
+
+    public getMarkMessageAsOpenedUrl(): string {
+        return environment.webApiUrl + 'api/v1/information-messages/mark-as-opened/';
+    }
+
 }
