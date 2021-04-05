@@ -8,6 +8,8 @@ import { AppState } from '@profile/state/app.state';
 import { getCurrentLanguage } from '@profile/state/selectors';
 import { getMessages } from '@profile/state/selectors/message.selectors';
 import { Observable, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
+import { MessageViewModel } from '../message-view.model';
 
 @Component({
     selector: 'app-message-overview',
@@ -17,7 +19,7 @@ import { Observable, Subject } from 'rxjs';
 export class MessageOverviewComponent implements OnInit, OnDestroy {
     private destroy$: Subject<void> = new Subject<void>();
 
-    public message$: Observable<InformationMessage[]> | undefined;
+    public message$: Observable<MessageViewModel[]> | undefined;
     public currentLanguage: Language = 'Undefined';
 
     public constructor(private store: Store<AppState>) { }
@@ -26,23 +28,20 @@ export class MessageOverviewComponent implements OnInit, OnDestroy {
         this.store.dispatch(MessagePageAction.loadMessagesRequest());
         this.store
             .select(getCurrentLanguage)
+            .pipe(takeUntil(this.destroy$))
             .subscribe(language => this.currentLanguage = LanguageHelper.convertFromString(language));
 
-        this.message$ = this.store.select(getMessages);
+        this.message$ = this.store
+            .select(getMessages)
+            .pipe(
+                takeUntil(this.destroy$),
+                map(messages => messages.map(x => new MessageViewModel(x, this.currentLanguage)))
+            );
     }
 
     public ngOnDestroy(): void {
         this.destroy$.next();
         this.destroy$.unsubscribe();
-    }
-
-    public getTitle(message: InformationMessage): string {
-        const languageVersion = message.languageVersions.find(x => x.languageString === this.currentLanguage);
-        if (languageVersion == undefined) {
-            return '';
-        }
-
-        return languageVersion.title;
     }
 
 }

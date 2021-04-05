@@ -17,7 +17,7 @@
                     <i class="fas fa-info-circle"></i>
                 </a>
                 <a [routerLink]="['/messages', message.id]" class="text-dark"
-                    [class.font-weight-bold]="!message.wasOpened">{{getTitle(message)}}</a>
+                    [class.font-weight-bold]="!message.wasOpened">{{message.title}}</a>
             </li>
         </ul>
     </div>
