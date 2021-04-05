@@ -63,6 +63,10 @@
     "Send": "Send",
     "Close": "Close"
   },
+  "TranscribeItemComponent": {
+    "Accuracy": "% accuracy {{a}}",
+    "ErrorMessage": "Couldn't be transcribed"
+  },
   "NotFoundPage": {
     "404": "404",
     "PageNotFound": "Page Not Found",
@@ -87,6 +91,10 @@
     "SendEmail": "Send an email",
     "Delete": "Delete",
     "DeleteActionMessage": "Are you sure that you want to delete file {{fileName}}?"
+  },
+  "FileDetailPage": {
+    "SendToEmail": "Send to email",
+    "Transcript": "Transcript"
   },
   "CreateFilePage": {
     "CreateNewFile": "Create new file",
