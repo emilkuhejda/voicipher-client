@@ -9,7 +9,7 @@ import { MessageModel } from './message.model';
 export class MessageBoxComponent {
 
     @Input()
-    public activeMessages: number = 0;
+    public activeMessages: number | null = null;
 
     @Input()
     public header: string = '';
@@ -21,7 +21,7 @@ export class MessageBoxComponent {
     public navigationUrl: string[] = [];
 
     @Input()
-    public messages: MessageModel[] = [];
+    public messages: MessageModel[] | null = null;
 
     public constructor() { }
 

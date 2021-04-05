@@ -1,6 +1,7 @@
 import { InformationMessage } from '@profile/core/models/information-message';
 import { LanguageVersion } from '@profile/core/models/language-version';
 import { Language } from '@profile/core/types/language';
+import { MessageModel } from 'projects/voc-components/src/public-api';
 
 export class MessageViewModel {
     private message: InformationMessage;
@@ -36,4 +37,13 @@ export class MessageViewModel {
 
         return this.languageVersion.description;
     }
+
+    public toMessageModel(): MessageModel {
+        return {
+            title: this.title,
+            body: this.title,
+            url: ['/messages', this.id]
+        };
+    }
+
 }

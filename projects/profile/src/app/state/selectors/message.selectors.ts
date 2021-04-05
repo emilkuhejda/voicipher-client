@@ -1,19 +1,29 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { MessageState } from '../app.state';
 
-const getFileFeatureState = createFeatureSelector<MessageState>('message');
+const getMessageFeatureState = createFeatureSelector<MessageState>('message');
 
 export const getMessages = createSelector(
-    getFileFeatureState,
+    getMessageFeatureState,
     state => state.messages
 );
 
+export const getActiveMessagesCount = createSelector(
+    getMessageFeatureState,
+    state => state.messages.filter(x => !x.wasOpened).length
+);
+
+export const getMessageBoxMessages = createSelector(
+    getMessageFeatureState,
+    state => state.messages.slice(0, 5)
+);
+
 export const getCurrentMessage = createSelector(
-    getFileFeatureState,
+    getMessageFeatureState,
     state => state.currentMessage
 );
 
 export const getMessageModuleError = createSelector(
-    getFileFeatureState,
+    getMessageFeatureState,
     state => state.error
 );

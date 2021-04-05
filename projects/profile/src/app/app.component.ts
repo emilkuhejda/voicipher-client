@@ -4,10 +4,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { MessageModel, SidebarItemModel } from 'projects/voc-components/src/public-api';
 import { Observable, Subject } from 'rxjs';
 import { MsalService } from '@profile/service/msal.service';
-import { IdentityPageAction } from '@profile/state/actions';
+import { IdentityPageAction, MessagePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
 import { Identity } from '@profile/core/models';
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { MessageService } from 'primeng/api';
 import {
     getCurrentLanguage,
@@ -17,8 +17,13 @@ import {
     getMessageModuleError,
     getRecycleBinModuleError,
     getRecycleBinModuleSuccessMessage,
-    getUploadedFiles
+    getUploadedFiles,
+    getMessageBoxMessages,
+    getActiveMessagesCount
 } from './state/selectors';
+import { MessageViewModel } from './pages/message/message-view.model';
+import { Language } from './core/types/language';
+import { LanguageHelper } from './core/utils/language-helper';
 
 type ToastKey = 'primary' | 'secondary';
 
@@ -32,7 +37,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
     public identity$: Observable<Identity> | undefined;
     public sidebarItems: SidebarItemModel[] = [];
-    public messages: MessageModel[] = [];
+    public currentLanguage: Language = 'Undefined';
+
+    public message$: Observable<MessageModel[]> | undefined;
+    public activeMessage$: Observable<number> | undefined;
 
     public constructor(
         private store: Store<AppState>,
@@ -42,6 +50,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     public ngOnInit(): void {
         this.store.dispatch(IdentityPageAction.loadCurrentIdentityRequest());
+        this.store.dispatch(MessagePageAction.loadMessagesRequest());
 
         this.store
             .select(getFileModuleSuccessMessage)
@@ -67,7 +76,18 @@ export class AppComponent implements OnInit, OnDestroy {
             .select(getCurrentLanguage)
             .pipe(takeUntil(this.destroy$))
             .subscribe(() => this.initializeSidebarItems());
+        this.store
+            .select(getCurrentLanguage)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(language => this.currentLanguage = LanguageHelper.convertFromString(language));
+
         this.identity$ = this.store.select(getCurrentIdentity);
+        this.activeMessage$ = this.store.select(getActiveMessagesCount);
+        this.message$ = this.store.select(getMessageBoxMessages)
+            .pipe(
+                takeUntil(this.destroy$),
+                map(message => message.map(x => new MessageViewModel(x, this.currentLanguage).toMessageModel()))
+            );
 
         this.translateService
             .get('AppComponent.UploadingFile')
