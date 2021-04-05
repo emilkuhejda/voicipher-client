@@ -5,7 +5,7 @@ import { FileFormModel } from '@profile/components/file-form/file-form.model';
 import { TimeSpanWrapper } from '@profile/core/utils/time-span-wrapper';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
-import { getCurrentAudioFile } from '@profile/state/selectors/audio-file.selectors';
+import { getCurrentAudioFile } from '@profile/state/selectors';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 

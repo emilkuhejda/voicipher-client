@@ -6,7 +6,7 @@ import { FileFormData } from '@profile/core/models/file-form-data';
 import { LanguageHelper } from '@profile/core/utils/language-helper';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
-import { getCurrentUploadedFileProgress, getUploadedFiles } from '@profile/state/selectors/audio-file.selectors';
+import { getCurrentUploadedFileProgress, getUploadedFiles } from '@profile/state/selectors';
 import { MessageService } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
