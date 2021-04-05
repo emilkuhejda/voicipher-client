@@ -23,19 +23,11 @@ export class MessageViewModel {
     }
 
     public getTitle(): string {
-        if (!this.languageVersion) {
-            return '';
-        }
-
-        return this.languageVersion.title;
+        return this.languageVersion?.title ?? '';
     }
 
     public getDescription(): string {
-        if (!this.languageVersion) {
-            return ''
-        }
-
-        return this.languageVersion.description;
+        return this.languageVersion?.description ?? '';
     }
 
     public toMessageModel(): MessageModel {

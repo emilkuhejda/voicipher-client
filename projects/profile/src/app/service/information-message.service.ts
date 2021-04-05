@@ -31,15 +31,15 @@ export class InformationMessageService {
         let params = new HttpParams();
         params = params.append('informationMessageId', message.id);
         return this.httpClient
-            .put<InformationMessage>(this.routingService.getMarkMessageAsOpenedUrl(), null, { params: params })
-            .pipe(map(message => {
+            .put<InformationMessage>(this.routingService.getMarkMessageAsOpenedUrl(), null, { params })
+            .pipe(map(informationMessage => {
                 const openedMessages = this.storageService.getItem<string[]>('opened.messages') ?? [];
-                return this.mapMessage(message, openedMessages);
+                return this.mapMessage(informationMessage, openedMessages);
             }));
     }
 
     public markAsOpenedLocally(message: InformationMessage): Observable<InformationMessage> {
-        let openedMessages = this.storageService.getItem<string[]>('opened.messages') ?? [];
+        const openedMessages = this.storageService.getItem<string[]>('opened.messages') ?? [];
         if (!openedMessages.includes(message.id)) {
             openedMessages.push(message.id);
         }
@@ -55,7 +55,7 @@ export class InformationMessageService {
     private mapMessage(message: InformationMessage, openedMessages: string[]): InformationMessage {
         message.dateUpdated = new Date(message.dateUpdated);
         message.datePublished = new Date(message.datePublished);
-        message.wasOpened = openedMessages.includes(message.id)
+        message.wasOpened = openedMessages.includes(message.id);
         return message;
     }
 

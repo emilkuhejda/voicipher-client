@@ -1,4 +1,4 @@
-import { LanguageVersion } from "./language-version";
+import { LanguageVersion } from './language-version';
 
 export interface InformationMessage {
     id: string;

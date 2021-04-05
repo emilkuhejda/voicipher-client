@@ -39,7 +39,7 @@ export class MessageDetailComponent implements OnInit, OnDestroy {
                     if (message) {
                         this.store.dispatch(MessagePageAction.markMessageAsOpenedRequest({ message }));
 
-                        return new MessageViewModel(message, this.currentLanguage)
+                        return new MessageViewModel(message, this.currentLanguage);
                     }
 
                     return undefined;

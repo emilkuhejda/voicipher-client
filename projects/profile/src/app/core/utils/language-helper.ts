@@ -1,4 +1,4 @@
-import { Language } from "../types/language";
+import { Language } from '../types/language';
 
 export class LanguageHelper {
     private static supportedLanguages: string[] = ['en-GB', 'en-US', 'ru-RU'];

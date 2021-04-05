@@ -1,5 +1,5 @@
-import { createAction, props } from "@ngrx/store";
-import { InformationMessage } from "@profile/core/models/information-message";
+import { createAction, props } from '@ngrx/store';
+import { InformationMessage } from '@profile/core/models/information-message';
 
 export const loadMessagesRequest = createAction(
     '[Message Page] Load messages request'

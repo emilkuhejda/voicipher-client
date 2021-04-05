@@ -18,7 +18,7 @@ export class MessageEffects {
             ofType(MessagePageAction.loadMessagesRequest),
             mergeMap(() => this.informationMessageService.getAll()
                 .pipe(
-                    map(messages => MessageApiAction.loadMessagesSuccess({ messages: messages })),
+                    map(messages => MessageApiAction.loadMessagesSuccess({ messages })),
                     catchError(() => this.translateService
                         .get('ErrorMessage')
                         .pipe(map(translation => MessageApiAction.loadMessagesFailure({ error: translation }))))
