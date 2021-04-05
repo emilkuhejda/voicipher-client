@@ -6,9 +6,9 @@ export interface TranscribeItem {
     alternatives: RecognitionAlternative[];
     transcript: string;
     userTranscript: string;
-    startTimeString: string;
-    endTimeString: string;
-    totalTimeString: string;
+    startTimeTicks: number;
+    endTimeTicks: number;
+    totalTimeTicks: number;
     isIncomplete: boolean;
     dateCreated: Date;
     dateUpdated: Date;
