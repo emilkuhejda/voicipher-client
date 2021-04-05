@@ -21,7 +21,8 @@ export const recycleBinReducer = createReducer<RecycleBinState>(
     })),
     on(RecycleBinPageAction.restoreAudioFilesRequest, (state): RecycleBinState => ({
         ...state,
-        successMessage: ''
+        successMessage: '',
+        error: ''
     })),
     on(RecycleBinApiAction.restoreAudioFilesSuccess, (state, action): RecycleBinState => {
         const reducedAudioFiles = state.audioFiles.filter(x => !action.audioFileIds.find(id => id === x.id));
@@ -29,16 +30,18 @@ export const recycleBinReducer = createReducer<RecycleBinState>(
         return {
             ...state,
             audioFiles: reducedAudioFiles.slice().sort((a, b) => b.dateUpdatedUtc.getTime() - a.dateUpdatedUtc.getTime()),
-            successMessage: action.successMessage
+            successMessage: action.successMessage,
+            error: ''
         };
     }),
-    on(RecycleBinApiAction.restoreAudioFilesFailure, (state): RecycleBinState => ({
+    on(RecycleBinApiAction.restoreAudioFilesFailure, (state, action): RecycleBinState => ({
         ...state,
-        error: ''
+        error: action.error
     })),
     on(RecycleBinPageAction.permanentDeleteAudioFilesRequest, (state): RecycleBinState => ({
         ...state,
-        successMessage: ''
+        successMessage: '',
+        error: ''
     })),
     on(RecycleBinApiAction.permanentDeleteAudioFilesSuccess, (state, action): RecycleBinState => {
         const reducedAudioFiles = state.audioFiles.filter(x => !action.audioFileIds.find(id => id === x.id));
@@ -46,11 +49,12 @@ export const recycleBinReducer = createReducer<RecycleBinState>(
         return {
             ...state,
             audioFiles: reducedAudioFiles.slice().sort((a, b) => b.dateUpdatedUtc.getTime() - a.dateUpdatedUtc.getTime()),
-            successMessage: action.successMessage
+            successMessage: action.successMessage,
+            error: ''
         };
     }),
-    on(RecycleBinApiAction.permanentDeleteAudioFilesFailure, (state): RecycleBinState => ({
+    on(RecycleBinApiAction.permanentDeleteAudioFilesFailure, (state, action): RecycleBinState => ({
         ...state,
-        error: ''
+        error: action.error
     }))
 );
