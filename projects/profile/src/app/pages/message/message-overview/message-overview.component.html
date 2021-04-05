@@ -1,13 +1,13 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Messages</h1>
+    <h1 class="h3 mb-0 text-gray-800">{{ 'MessagesPage.Messages' | translate }}</h1>
 </div>
 
 <!-- Content -->
 <div class="card shadow mb-4">
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">Messages</h6>
+        <h6 class="m-0 font-weight-bold text-primary">{{ 'MessagesPage.Messages' | translate }}</h6>
     </div>
     <!-- Card Body -->
     <div class="card-body">
@@ -17,7 +17,7 @@
                     <i class="fas fa-info-circle"></i>
                 </a>
                 <a [routerLink]="['/messages', message.id]" class="text-dark"
-                    [class.font-weight-bold]="!message.wasOpened">{{message}}</a>
+                    [class.font-weight-bold]="!message.wasOpened">{{getTitle(message)}}</a>
             </li>
         </ul>
     </div>

@@ -1,4 +1,4 @@
-import { Language } from '../enums/language';
+import { Language } from '../types/language';
 
 export interface LanguageVersion {
     id: string;
@@ -6,7 +6,7 @@ export interface LanguageVersion {
     title: string;
     message: string;
     description: string;
-    language: Language;
+    languageString: Language;
     sentOnOsx: boolean;
     sentOnAndroid: boolean;
 }

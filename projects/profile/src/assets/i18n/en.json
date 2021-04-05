@@ -96,6 +96,9 @@
     "EditFile": "Edit file",
     "Edit": "Edit"
   },
+  "MessagesPage": {
+    "Messages": "Messages"
+  },
   "RecycleBinPage": {
     "RecycleBin": "Recycle Bin",
     "RestoreRecycleBin": "Restore Recycle Bin",
