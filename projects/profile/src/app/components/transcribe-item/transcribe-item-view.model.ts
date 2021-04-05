@@ -1,6 +1,6 @@
-import { RecognitionAlternative } from "@profile/core/models/recognition-alternative";
-import { TranscribeItem } from "@profile/core/models/transcribe-item";
-import { TimeSpanWrapper } from "@profile/core/utils/time-span-wrapper";
+import { RecognitionAlternative } from '@profile/core/models/recognition-alternative';
+import { TranscribeItem } from '@profile/core/models/transcribe-item';
+import { TimeSpanWrapper } from '@profile/core/utils/time-span-wrapper';
 
 export class TranscribeItemViewModel {
     private readonly transcript: string;
@@ -30,11 +30,12 @@ export class TranscribeItemViewModel {
     }
 
     private calculateAverageConfidence(alternatives: RecognitionAlternative[]): number {
-        if (alternatives.length <= 0)
+        if (alternatives.length <= 0) {
             return 0;
+        }
 
-        let map = alternatives.map(x => x.confidence);
-        let total = map.reduce((previousValue, currentValue) => previousValue + currentValue);
+        const map = alternatives.map(x => x.confidence);
+        const total = map.reduce((previousValue, currentValue) => previousValue + currentValue);
         return total / map.length;
     }
 

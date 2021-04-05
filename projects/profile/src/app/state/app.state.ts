@@ -11,8 +11,8 @@ import { messageReducer } from './reducers/message.reducers';
 import { recycleBinReducer } from './reducers/recycle-bin.reducers';
 
 interface BlobSource {
-    transcribeItemId: string,
-    blob: Blob | undefined
+    transcribeItemId: string;
+    blob: Blob | undefined;
 }
 
 export interface AppState {

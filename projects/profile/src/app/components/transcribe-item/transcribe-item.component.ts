@@ -53,7 +53,7 @@ export class TranscribeItemComponent implements OnInit {
 
         this.transcribeItem.isLoading = true;
 
-        this.store.dispatch(AudioFilePageAction.loadCurrentAudioBlobSourceRequest({ transcribeItemId: this.transcribeItem.id }))
+        this.store.dispatch(AudioFilePageAction.loadCurrentAudioBlobSourceRequest({ transcribeItemId: this.transcribeItem.id }));
     }
 
     public refresh(): void {
@@ -69,7 +69,3 @@ export class TranscribeItemComponent implements OnInit {
     }
 
 }
-function getCurrentAudioBlobSource(getCurrentAudioBlobSource: any) {
-    throw new Error('Function not implemented.');
-}
-
