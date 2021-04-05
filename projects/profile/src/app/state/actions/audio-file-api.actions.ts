@@ -33,7 +33,8 @@ export const loadCurrentAudioBlobSourceFailure = createAction(
 );
 
 export const updateTranscriptSuccess = createAction(
-    '[Audio File API] Update transcript success'
+    '[Audio File API] Update transcript success',
+    props<{ successMessage: string }>()
 );
 
 export const updateTranscriptFailure = createAction(

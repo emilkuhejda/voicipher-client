@@ -44,6 +44,12 @@ export const fileReducer = createReducer<FileState>(
     })),
     on(AudioFilePageAction.updateTranscriptRequest, (state): FileState => ({
         ...state,
+        successMessage: '',
+        error: ''
+    })),
+    on(AudioFileApiAction.updateTranscriptSuccess, (state, action): FileState => ({
+        ...state,
+        successMessage: action.successMessage,
         error: ''
     })),
     on(AudioFileApiAction.updateTranscriptFailure, (state, action): FileState => ({

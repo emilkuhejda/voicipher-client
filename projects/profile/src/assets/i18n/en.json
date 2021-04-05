@@ -127,11 +127,12 @@
     "CreateAudioFile": "Audio file {{fileName}} was successfully created",
     "UpdateAudioFile": "Audio file {{fileName}} was successfully updated",
     "DeleteAudioFile": "The file {{fileItem}} was successfully deleted",
-    "SendEmail": "An email has been sent successfully",
+    "SendEmail": "An email was successfully sent",
     "RestoreAudioFile": "Audio file was successfully restored",
     "RestoreAllAudioFile": "Audio files were successfully restored",
     "PermanentDeleteAudioFile": "Audio file was successfully permanently deleted",
-    "PermanentDeleteAllAudioFile": "Audio files were successfully permanently deleted"
+    "PermanentDeleteAllAudioFile": "Audio files were successfully permanently deleted",
+    "UpdateTranscript": "Transcript was updated"
   },
   "ErrorCode": {
     "EC100": "Uploaded file was not found",

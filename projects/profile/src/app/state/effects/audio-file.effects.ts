@@ -61,7 +61,9 @@ export class AudioFileEffects {
             ofType(AudioFilePageAction.updateTranscriptRequest),
             concatMap(action => this.transcribeItemService.updateTranscript(action.transcribeItemId, action.transcript)
                 .pipe(
-                    map(() => AudioFileApiAction.updateTranscriptSuccess()),
+                    switchMap(() => this.translateService
+                        .get('SuccessMessage.UpdateTranscript')
+                        .pipe(map(translation => AudioFileApiAction.updateTranscriptSuccess({ successMessage: translation })))),
                     catchError(() => this.translateService
                         .get('ErrorMessage')
                         .pipe(map(translation => AudioFileApiAction.updateTranscriptFailure({ error: translation }))))
