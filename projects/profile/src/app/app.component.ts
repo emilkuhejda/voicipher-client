@@ -8,11 +8,17 @@ import { IdentityPageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
 import { getCurrentIdentity } from '@profile/state/selectors/Identity.selectors';
 import { Identity } from '@profile/core/models';
-import { getCurrentLanguage } from '@profile/state/selectors';
 import { takeUntil } from 'rxjs/operators';
-import { getFileModuleError, getFileModuleSuccessMessage, getUploadedFiles } from './state/selectors/audio-file.selectors';
 import { MessageService } from 'primeng/api';
-import { getRecycleBinModuleError, getRecycleBinModuleSuccessMessage } from './state/selectors/recycle-bin.selectors';
+import {
+    getCurrentLanguage,
+    getFileModuleError,
+    getFileModuleSuccessMessage,
+    getMessageModuleError,
+    getRecycleBinModuleError,
+    getRecycleBinModuleSuccessMessage,
+    getUploadedFiles
+} from './state/selectors';
 
 type ToastKey = 'primary' | 'secondary';
 
@@ -47,6 +53,10 @@ export class AppComponent implements OnInit, OnDestroy {
             .subscribe(message => this.handleSuccessMessage(message));
         this.store
             .select(getFileModuleError)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(message => this.handleErrorMessage(message));
+        this.store
+            .select(getMessageModuleError)
             .pipe(takeUntil(this.destroy$))
             .subscribe(message => this.handleErrorMessage(message));
         this.store

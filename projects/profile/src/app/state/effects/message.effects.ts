@@ -36,4 +36,22 @@ export class MessageEffects {
                         .pipe(map(translation => MessageApiAction.loadCurrentMessageFailure({ error: translation }))))
                 ))
         ));
+
+    public markAsOpened$ = createEffect(() => this.action$
+        .pipe(
+            ofType(MessagePageAction.markMessageAsOpenedRequest),
+            concatMap(action => {
+                const method = action.message.isUserSpecific
+                    ? this.informationMessageService.markAsOpened(action.message)
+                    : this.informationMessageService.markAsOpenedLocally(action.message);
+
+                return method.pipe(
+                    map(message => MessageApiAction.markMessageAsOpenedSuccess({ message })),
+                    catchError(() => this.translateService
+                        .get('ErrorMessage')
+                        .pipe(map(translation => MessageApiAction.markMessageAsOpenedFailure({ error: translation }))))
+                );
+            })
+        ));
+
 }

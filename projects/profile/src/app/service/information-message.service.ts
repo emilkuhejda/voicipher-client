@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { InformationMessage } from '@profile/core/models/information-message';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RoutingService } from './routing.service';
 
@@ -27,6 +27,24 @@ export class InformationMessageService {
 
     public get(informationMessageId: string): Observable<InformationMessage> {
         return this.httpClient.get<InformationMessage>(this.routingService.getInformationMessagesUrl() + informationMessageId);
+    }
+
+    public markAsOpened(message: InformationMessage): Observable<InformationMessage> {
+        let params = new HttpParams();
+        params = params.append('informationMessageId', message.id);
+        return this.httpClient
+            .put<InformationMessage>(this.routingService.getMarkMessageAsOpenedUrl(), null, { params: params })
+            .pipe(
+                map(message => {
+                    message.dateUpdated = new Date(message.dateUpdated);
+                    message.datePublished = new Date(message.datePublished);
+                    return message;
+                })
+            );
+    }
+
+    markAsOpenedLocally(message: InformationMessage): Observable<InformationMessage> {
+        return of(message);
     }
 
 }

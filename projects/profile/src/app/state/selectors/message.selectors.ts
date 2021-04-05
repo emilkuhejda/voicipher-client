@@ -12,3 +12,8 @@ export const getCurrentMessage = createSelector(
     getFileFeatureState,
     state => state.currentMessage
 );
+
+export const getMessageModuleError = createSelector(
+    getFileFeatureState,
+    state => state.error
+);
