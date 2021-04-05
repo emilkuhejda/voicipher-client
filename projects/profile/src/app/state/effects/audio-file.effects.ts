@@ -46,7 +46,10 @@ export class AudioFileEffects {
             ofType(AudioFilePageAction.loadCurrentAudioSourceRequest),
             concatMap(action => this.transcribeItemService.getAudio(action.transcribeItemId)
                 .pipe(
-                    map(source => AudioFileApiAction.loadCurrentAudioSourceSuccess({ source })),
+                    map(blob => AudioFileApiAction.loadCurrentAudioSourceSuccess({
+                        transcribeItemId: action.transcribeItemId,
+                        blob
+                    })),
                     catchError(() => this.translateService
                         .get('ErrorMessage')
                         .pipe(map(translation => AudioFileApiAction.loadCurrentAudioSourceFailure({ error: translation }))))

@@ -24,7 +24,7 @@ export const loadCurrentTranscribeItemsFailure = createAction(
 
 export const loadCurrentAudioSourceSuccess = createAction(
     '[Audio File API] Load current audio source success',
-    props<{ source: Blob }>()
+    props<{ transcribeItemId: string; blob: Blob }>()
 );
 
 export const loadCurrentAudioSourceFailure = createAction(

@@ -20,9 +20,9 @@ export class TranscribeItemComponent implements OnInit {
 
     public ngOnInit(): void {
         this.store.select(getCurrentAudioSource).subscribe(source => {
-            if (this.transcribeItem && source) {
+            if (this.transcribeItem && source.transcribeItemId === this.transcribeItem.id) {
                 this.transcribeItem.isLoading = false;
-                this.transcribeItem.source = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(source));
+                this.transcribeItem.source = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(source.blob));
             }
         });
     }

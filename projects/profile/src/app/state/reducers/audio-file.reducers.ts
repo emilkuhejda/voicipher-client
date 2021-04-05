@@ -7,7 +7,7 @@ const initialState: FileState = {
     currentFileIdentifier: '',
     uploadedFiles: [],
     currentAudioFile: undefined,
-    currentAudioSource: undefined,
+    currentAudioSource: { transcribeItemId: '', blob: undefined },
     currentTranscribeItems: [],
     audioFiles: [],
     successMessage: '',
@@ -35,7 +35,7 @@ export const fileReducer = createReducer<FileState>(
     })),
     on(AudioFileApiAction.loadCurrentAudioSourceSuccess, (state, action): FileState => ({
         ...state,
-        currentAudioSource: action.source,
+        currentAudioSource: { transcribeItemId: action.transcribeItemId, blob: action.blob },
         error: ''
     })),
     on(AudioFileApiAction.loadCurrentAudioSourceFailure, (state, action): FileState => ({
