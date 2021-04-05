@@ -20,12 +20,13 @@ export class TranscribeItemViewModel {
         this.transcribeItem = transcribeItem;
 
         const transcript = transcribeItem.alternatives.length > 0 ? transcribeItem.alternatives.map(x => x.transcript).join('') : '';
-        this.transcript = transcribeItem.userTranscript === null ? transcript : transcribeItem.userTranscript;
+        const userTranscript = transcribeItem.userTranscript === null ? transcript : transcribeItem.userTranscript;
         const startTime = new TimeSpanWrapper(transcribeItem.startTimeTicks).getTime();
         const endTime = new TimeSpanWrapper(transcribeItem.endTimeTicks).getTime();
 
+        this.transcript = transcript;
         this.id = transcribeItem.id;
-        this.userTranscript = this.transcript;
+        this.userTranscript = userTranscript;
         this.time = `${startTime} - ${endTime}`;
         this.isIncomplete = transcribeItem.isIncomplete;
         this.wasCleaned = transcribeItem.wasCleaned;
@@ -46,7 +47,7 @@ export class TranscribeItemViewModel {
     }
 
     public refreshTranscript() {
-        this.isDirty = false;
+        this.isDirty = true;
         this.userTranscript = this.transcript;
     }
 
