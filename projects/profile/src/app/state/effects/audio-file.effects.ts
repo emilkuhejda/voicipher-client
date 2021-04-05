@@ -4,6 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { ErrorResponse } from '@profile/core/models/error-response';
 import { FileService } from '@profile/service/file.service';
+import { TranscribeItemService } from '@profile/service/transcribe-item.service';
 import { catchError, concatMap, map, mergeMap, switchMap } from 'rxjs/operators';
 import { AudioFileApiAction, AudioFilePageAction } from '../actions';
 
@@ -13,6 +14,7 @@ export class AudioFileEffects {
     public constructor(
         private action$: Actions,
         private fileService: FileService,
+        private transcribeItemService: TranscribeItemService,
         private translateService: TranslateService) { }
 
     public loadAudioFile$ = createEffect(() => this.action$
@@ -24,6 +26,47 @@ export class AudioFileEffects {
                     catchError(() => this.translateService
                         .get('ErrorMessage')
                         .pipe(map(translation => AudioFileApiAction.loadCurrentAudioFileFailure({ error: translation }))))
+                ))
+        ));
+
+    public loadTranscribeItem$ = createEffect(() => this.action$
+        .pipe(
+            ofType(AudioFilePageAction.loadCurrentTranscribeItemsRequest),
+            mergeMap(action => this.transcribeItemService.getAll(action.audioFileId)
+                .pipe(
+                    map(transcribeItems => AudioFileApiAction.loadCurrentTranscribeItemsSuccess({ transcribeItems })),
+                    catchError(() => this.translateService
+                        .get('ErrorMessage')
+                        .pipe(map(translation => AudioFileApiAction.loadCurrentTranscribeItemsFailure({ error: translation }))))
+                ))
+        ));
+
+    public loadAudioSource$ = createEffect(() => this.action$
+        .pipe(
+            ofType(AudioFilePageAction.loadCurrentAudioBlobSourceRequest),
+            concatMap(action => this.transcribeItemService.getAudio(action.transcribeItemId)
+                .pipe(
+                    map(blob => AudioFileApiAction.loadCurrentAudioBlobSourceSuccess({
+                        transcribeItemId: action.transcribeItemId,
+                        blob
+                    })),
+                    catchError(() => this.translateService
+                        .get('ErrorMessage')
+                        .pipe(map(translation => AudioFileApiAction.loadCurrentAudioBlobSourceFailure({ error: translation }))))
+                ))
+        ));
+
+    public updateTranscript$ = createEffect(() => this.action$
+        .pipe(
+            ofType(AudioFilePageAction.updateTranscriptRequest),
+            concatMap(action => this.transcribeItemService.updateTranscript(action.transcribeItemId, action.transcript)
+                .pipe(
+                    switchMap(() => this.translateService
+                        .get('SuccessMessage.UpdateTranscript')
+                        .pipe(map(translation => AudioFileApiAction.updateTranscriptSuccess({ successMessage: translation })))),
+                    catchError(() => this.translateService
+                        .get('ErrorMessage')
+                        .pipe(map(translation => AudioFileApiAction.updateTranscriptFailure({ error: translation }))))
                 ))
         ));
 
