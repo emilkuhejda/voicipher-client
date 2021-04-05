@@ -25,8 +25,8 @@ export class RecycleBinComponent implements OnInit, OnDestroy {
 
     public constructor(
         private store: Store<AppState>,
-        private confirmationService: ConfirmationService,
         private messageService: MessageService,
+        private confirmationService: ConfirmationService,
         private translateService: TranslateService) { }
 
     public ngOnInit(): void {
