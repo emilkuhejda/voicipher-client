@@ -12,6 +12,7 @@ import { getCurrentLanguage } from '@profile/state/selectors';
 import { takeUntil } from 'rxjs/operators';
 import { getFileModuleError, getFileModuleSuccessMessage, getUploadedFiles } from './state/selectors/audio-file.selectors';
 import { MessageService } from 'primeng/api';
+import { getRecycleBinModuleError, getRecycleBinModuleSuccessMessage } from './state/selectors/recycle-bin.selectors';
 
 type ToastKey = 'primary' | 'secondary';
 
@@ -39,21 +40,19 @@ export class AppComponent implements OnInit, OnDestroy {
         this.store
             .select(getFileModuleSuccessMessage)
             .pipe(takeUntil(this.destroy$))
-            .subscribe(message => {
-                if (message !== '') {
-                    const toastKey: ToastKey = 'primary';
-                    this.messageService.add({ key: toastKey, severity: 'success', detail: message });
-                }
-            });
+            .subscribe(message => this.handleSuccessMessage(message));
+        this.store
+            .select(getRecycleBinModuleSuccessMessage)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(message => this.handleSuccessMessage(message));
         this.store
             .select(getFileModuleError)
             .pipe(takeUntil(this.destroy$))
-            .subscribe(error => {
-                if (error !== '') {
-                    const toastKey: ToastKey = 'primary';
-                    this.messageService.add({ key: toastKey, severity: 'error', detail: error });
-                }
-            });
+            .subscribe(message => this.handleErrorMessage(message));
+        this.store
+            .select(getRecycleBinModuleError)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(message => this.handleErrorMessage(message));
         this.store
             .select(getCurrentLanguage)
             .pipe(takeUntil(this.destroy$))
@@ -88,6 +87,20 @@ export class AppComponent implements OnInit, OnDestroy {
 
     public logout(): void {
         this.msalService.logout();
+    }
+
+    private handleSuccessMessage(message: string): void {
+        if (message !== '') {
+            const toastKey: ToastKey = 'primary';
+            this.messageService.add({ key: toastKey, severity: 'success', detail: message });
+        }
+    }
+
+    private handleErrorMessage(message: string): void {
+        if (message !== '') {
+            const toastKey: ToastKey = 'primary';
+            this.messageService.add({ key: toastKey, severity: 'error', detail: message });
+        }
     }
 
     private initializeSidebarItems(): void {

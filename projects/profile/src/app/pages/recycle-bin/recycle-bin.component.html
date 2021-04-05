@@ -1,1 +1,73 @@
-<p>recycle-bin works!</p>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">{{ 'RecycleBinPage.RecycleBin' | translate }}</h1>
+</div>
+
+<!-- Content -->
+<div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">{{ 'RecycleBinPage.RecycleBin' | translate }}</h6>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+        <div class="mb-3">
+            <a (click)="restoreAll()" class="btn btn-success btn-icon-split mr-2 mb-2">
+                <span class="icon text-white-50">
+                    <i class="fas fa-undo"></i>
+                </span>
+                <span class="text text-white">{{ 'RecycleBinPage.RestoreRecycleBin' | translate }}</span>
+            </a>
+
+            <a (click)="deleteAll()" class="btn btn-danger btn-icon-split mb-2">
+                <span class="icon text-white-50">
+                    <i class="fas fa-trash"></i>
+                </span>
+                <span class="text text-white">{{ 'RecycleBinPage.EmptyRecycleBin' | translate }}</span>
+            </a>
+        </div>
+
+        <ul *ngIf="audioFiles.length > 0" class="list-group">
+            <li *ngFor="let audioFile of audioFiles" class="list-group-item">
+                <div class="row">
+                    <div class="col">
+                        {{audioFile.name}}<span class="file-name">({{audioFile.fileName}})</span>
+                    </div>
+                    <div class="col-3 text-right">
+                        <a (click)="restore($event, audioFile)" class="mr-2"
+                            [pTooltip]="'RecycleBinPage.Restore' | translate" tooltipPosition="top">
+                            <i class="fas fa-undo"></i>
+                        </a>
+                        <a (click)="delete($event, audioFile)" [pTooltip]="'RecycleBinPage.Delete' | translate"
+                            tooltipPosition="top">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<p-confirmPopup></p-confirmPopup>
+
+<p-toast position="bottom-center" key="confirm-toast" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div class="confirm-toast p-flex p-flex-column" style="flex: 1">
+            <div class="p-text-center">
+                <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+                <h4>{{message.summary}}</h4>
+                <p>{{message.detail}}</p>
+            </div>
+            <div class="p-grid p-fluid">
+                <div class="p-col-6">
+                    <button type="button" pButton (click)="onConfirm(message.data)" label="Yes"
+                        class="p-button-success"></button>
+                </div>
+                <div class="p-col-6">
+                    <button type="button" pButton (click)="onReject()" label="No" class="p-button-secondary"></button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>

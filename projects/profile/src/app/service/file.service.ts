@@ -83,6 +83,36 @@ export class FileService {
         return this.httpClient.delete(this.routingService.getDeleteFileItemUrl(), { params });
     }
 
+    public restoreAll(audioFilesIds: string[]) {
+        let params = new HttpParams();
+        params = params.append('applicationId', environment.applicationId);
+
+        return this.httpClient.put(this.routingService.getRestoreAllUrl(), audioFilesIds, { params });
+    }
+
+    public permanentDeleteAll(audioFilesIds: string[]) {
+        let params = new HttpParams();
+        params = params.append('applicationId', environment.applicationId);
+
+        return this.httpClient.put(this.routingService.getPermanentDeleteAll(), audioFilesIds, { params });
+    }
+
+    public getDeletedAudioFiles(): Observable<AudioFile[]> {
+        return this.httpClient
+            .get<AudioFile[]>(this.routingService.getTemporaryDeletedFileItemsUrl())
+            .pipe(
+                map(audioFiles => {
+                    for (const audioFile of audioFiles) {
+                        audioFile.dateCreated = new Date(audioFile.dateCreated);
+                        audioFile.dateProcessedUtc = audioFile.dateProcessedUtc ? new Date(audioFile.dateProcessedUtc) : null;
+                        audioFile.dateUpdatedUtc = new Date(audioFile.dateUpdatedUtc);
+                    }
+
+                    return audioFiles;
+                })
+            );
+    }
+
     public sendEmail(audioFileId: string, recipient: string): Observable<any> {
         const body = { fileItemId: audioFileId, recipient };
         return this.httpClient.post(this.routingService.getEmailUrl(), body);
