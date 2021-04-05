@@ -27,7 +27,7 @@
             </a>
         </div>
 
-        <ul *ngIf="audioFile$ | async as audioFiles" class="list-group">
+        <ul *ngIf="audioFiles.length > 0" class="list-group">
             <li *ngFor="let audioFile of audioFiles" class="list-group-item">
                 <div class="row">
                     <div class="col">
@@ -61,7 +61,8 @@
             </div>
             <div class="p-grid p-fluid">
                 <div class="p-col-6">
-                    <button type="button" pButton (click)="onConfirm(message.data)" label="Yes" class="p-button-success"></button>
+                    <button type="button" pButton (click)="onConfirm(message.data)" label="Yes"
+                        class="p-button-success"></button>
                 </div>
                 <div class="p-col-6">
                     <button type="button" pButton (click)="onReject()" label="No" class="p-button-secondary"></button>

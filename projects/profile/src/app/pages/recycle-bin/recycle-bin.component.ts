@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { AudioFile } from '@profile/core/models/audio-file';
@@ -6,7 +6,8 @@ import { RecycleBinPageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
 import { getRecycleBinAudioFiles } from '@profile/state/selectors/recycle-bin.selectors';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 type ActionType = 'restoreAll' | 'deleteAll';
 
@@ -15,11 +16,12 @@ type ActionType = 'restoreAll' | 'deleteAll';
     templateUrl: './recycle-bin.component.html',
     styleUrls: ['./recycle-bin.component.scss']
 })
-export class RecycleBinComponent implements OnInit {
+export class RecycleBinComponent implements OnInit, OnDestroy {
+    private destroy$: Subject<void> = new Subject<void>();
 
     private confirmDialogKey: string = 'confirm-toast';
 
-    public audioFile$: Observable<AudioFile[]> | undefined;
+    public audioFiles: AudioFile[] = [];
 
     public constructor(
         private store: Store<AppState>,
@@ -30,7 +32,14 @@ export class RecycleBinComponent implements OnInit {
     public ngOnInit(): void {
         this.store.dispatch(RecycleBinPageAction.loadAudioFilesRequest());
 
-        this.audioFile$ = this.store.select(getRecycleBinAudioFiles);
+        this.store.select(getRecycleBinAudioFiles)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(audioFiles => this.audioFiles = audioFiles);
+    }
+
+    public ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.unsubscribe();
     }
 
     public restore(event: Event, audioFile: AudioFile): void {
@@ -94,12 +103,14 @@ export class RecycleBinComponent implements OnInit {
     }
 
     public onConfirm(actionType: ActionType): void {
+        const audioFileIds = this.audioFiles.map(x => x.id);
+
         switch (actionType) {
-            case 'deleteAll':
-                this.store.dispatch(RecycleBinPageAction.permanentDeleteAudioFilesRequest({ audioFileIds: [] }));
-                break;
             case 'restoreAll':
-                this.store.dispatch(RecycleBinPageAction.restoreAudioFilesRequest({ audioFileIds: [] }));
+                this.store.dispatch(RecycleBinPageAction.restoreAudioFilesRequest({ audioFileIds }));
+                break;
+            case 'deleteAll':
+                this.store.dispatch(RecycleBinPageAction.permanentDeleteAudioFilesRequest({ audioFileIds }));
                 break;
         }
 
