@@ -12,7 +12,7 @@ export const loadCurrentTranscribeItemsRequest = createAction(
     props<{ audioFileId: string }>()
 );
 
-export const loadCurrentAudioSourceRequest = createAction(
+export const loadCurrentAudioBlobSourceRequest = createAction(
     '[Audio File Page] Load current audio source request',
     props<{ transcribeItemId: string }>()
 );

@@ -22,12 +22,12 @@ export const loadCurrentTranscribeItemsFailure = createAction(
     props<{ error: string }>()
 );
 
-export const loadCurrentAudioSourceSuccess = createAction(
+export const loadCurrentAudioBlobSourceSuccess = createAction(
     '[Audio File API] Load current audio source success',
     props<{ transcribeItemId: string; blob: Blob }>()
 );
 
-export const loadCurrentAudioSourceFailure = createAction(
+export const loadCurrentAudioBlobSourceFailure = createAction(
     '[Audio File API] Load current audio source failure',
     props<{ error: string }>()
 );
