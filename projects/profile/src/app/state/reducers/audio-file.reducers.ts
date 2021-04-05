@@ -7,6 +7,8 @@ const initialState: FileState = {
     currentFileIdentifier: '',
     uploadedFiles: [],
     currentAudioFile: undefined,
+    currentAudioBlobSource: { transcribeItemId: '', blob: undefined },
+    currentTranscribeItems: [],
     audioFiles: [],
     successMessage: '',
     error: ''
@@ -24,6 +26,46 @@ export const fileReducer = createReducer<FileState>(
         error: ''
     })),
     on(AudioFileApiAction.loadCurrentAudioFileFailure, (state, action): FileState => ({
+        ...state,
+        error: action.error
+    })),
+    on(AudioFilePageAction.loadCurrentAudioBlobSourceRequest, (state): FileState => ({
+        ...state,
+        error: ''
+    })),
+    on(AudioFileApiAction.loadCurrentAudioBlobSourceSuccess, (state, action): FileState => ({
+        ...state,
+        currentAudioBlobSource: { transcribeItemId: action.transcribeItemId, blob: action.blob },
+        error: ''
+    })),
+    on(AudioFileApiAction.loadCurrentAudioBlobSourceFailure, (state, action): FileState => ({
+        ...state,
+        error: action.error
+    })),
+    on(AudioFilePageAction.updateTranscriptRequest, (state): FileState => ({
+        ...state,
+        successMessage: '',
+        error: ''
+    })),
+    on(AudioFileApiAction.updateTranscriptSuccess, (state, action): FileState => ({
+        ...state,
+        successMessage: action.successMessage,
+        error: ''
+    })),
+    on(AudioFileApiAction.updateTranscriptFailure, (state, action): FileState => ({
+        ...state,
+        error: action.error
+    })),
+    on(AudioFilePageAction.loadCurrentTranscribeItemsRequest, (state): FileState => ({
+        ...state,
+        error: ''
+    })),
+    on(AudioFileApiAction.loadCurrentTranscribeItemsSuccess, (state, action): FileState => ({
+        ...state,
+        currentTranscribeItems: action.transcribeItems,
+        error: ''
+    })),
+    on(AudioFileApiAction.loadCurrentTranscribeItemsFailure, (state, action): FileState => ({
         ...state,
         error: action.error
     })),

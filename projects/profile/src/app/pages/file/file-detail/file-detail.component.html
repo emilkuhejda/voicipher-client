@@ -1,1 +1,35 @@
-<p>file-detail works!</p>
+<!-- Page Heading -->
+<ng-container *ngIf="audioFile$ | async as audioFile">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{audioFile.name}}</h1>
+    </div>
+
+    <div class="mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <button (click)="sendToMail(audioFile)" class="btn btn-success mr-2">
+                        {{ 'FileDetailPage.SendToEmail' | translate }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<!-- Content -->
+<div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">{{ 'FileDetailPage.SendToEmail' | translate }}</h6>
+    </div>
+
+    <!-- Card Body -->
+    <div *ngIf="transcribeItem$ | async as transcribeItems" class="card-body">
+        <div *ngFor="let transcribeItem of transcribeItems">
+            <app-transcribe-item [transcribeItem]="transcribeItem"></app-transcribe-item>
+        </div>
+    </div>
+</div>
+
+<p-confirmPopup></p-confirmPopup>

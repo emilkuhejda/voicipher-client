@@ -7,6 +7,21 @@ export const loadCurrentAudioFileRequest = createAction(
     props<{ audioFileId: string }>()
 );
 
+export const loadCurrentTranscribeItemsRequest = createAction(
+    '[Audio File Page] Load current transcribe items request',
+    props<{ audioFileId: string }>()
+);
+
+export const loadCurrentAudioBlobSourceRequest = createAction(
+    '[Audio File Page] Load current audio source request',
+    props<{ transcribeItemId: string }>()
+);
+
+export const updateTranscriptRequest = createAction(
+    '[Audio File Page] Update transcript request',
+    props<{ transcribeItemId: string; transcript: string }>()
+);
+
 export const loadAudioFilesRequest = createAction(
     '[Audio File Page] Load audio files request'
 );
