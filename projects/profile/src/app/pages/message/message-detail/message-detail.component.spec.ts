@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import { TranslateMockPipe } from '../../../tests/translate.mock.pipe';
 
 import { MessageDetailComponent } from './message-detail.component';
 
@@ -8,7 +11,9 @@ describe('MessageDetailComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [MessageDetailComponent]
+            declarations: [MessageDetailComponent, TranslateMockPipe],
+            imports: [RouterTestingModule],
+            providers: [provideMockStore()]
         }).compileComponents();
     });
 
