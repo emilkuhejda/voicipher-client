@@ -96,11 +96,27 @@
     "EditFile": "Edit file",
     "Edit": "Edit"
   },
+  "RecycleBinPage": {
+    "RecycleBin": "Recycle Bin",
+    "RestoreRecycleBin": "Restore Recycle Bin",
+    "EmptyRecycleBin": "Empty Recycle Bin",
+    "Restore": "Restore",
+    "Delete": "Delete",
+    "RestoreMessage": "Are you sure that you want to restore file {{fileName}}?",
+    "DeleteMessage": "Are you sure that you want to permanently delete file {{fileName}}?",
+    "Summary": "Are you sure?",
+    "RestoreAllMessage": "Confirm to restore all files",
+    "DeleteAllMessage": "Confirm to permanently delete all files"
+  },
   "SuccessMessage": {
     "CreateAudioFile": "Audio file {{fileName}} was successfully created",
     "UpdateAudioFile": "Audio file {{fileName}} was successfully updated",
     "DeleteAudioFile": "The file {{fileItem}} was successfully deleted",
-    "SendEmail": "An email has been sent successfully"
+    "SendEmail": "An email has been sent successfully",
+    "RestoreAudioFile": "Audio file was successfully restored",
+    "RestoreAllAudioFile": "Audio files were successfully restored",
+    "PermanentDeleteAudioFile": "Audio file was successfully permanently deleted",
+    "PermanentDeleteAllAudioFile": "Audio files were successfully permanently deleted"
   },
   "ErrorCode": {
     "EC100": "Uploaded file was not found",
