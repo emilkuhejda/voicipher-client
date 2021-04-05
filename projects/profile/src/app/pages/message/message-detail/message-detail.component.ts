@@ -37,6 +37,8 @@ export class MessageDetailComponent implements OnInit, OnDestroy {
                 takeUntil(this.destroy$),
                 map(message => {
                     if (message) {
+                        this.store.dispatch(MessagePageAction.markMessageAsOpenedRequest({ message }));
+
                         return new MessageViewModel(message, this.currentLanguage)
                     }
 
