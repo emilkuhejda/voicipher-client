@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '@profile/environment';
 
-type StorageKey = 'token' | 'b2c.token' | 'identity' | 'language';
+type StorageKey = 'token' | 'b2c.token' | 'identity' | 'language' | 'opened.messages';
 
 @Injectable()
 export class StorageService {

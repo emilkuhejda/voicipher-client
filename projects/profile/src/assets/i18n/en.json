@@ -96,6 +96,13 @@
     "EditFile": "Edit file",
     "Edit": "Edit"
   },
+  "MessagesPage": {
+    "Messages": "Messages"
+  },
+  "MessageDetailPage": {
+    "Messages": "Messages",
+    "NotFound": "Notification is not found"
+  },
   "RecycleBinPage": {
     "RecycleBin": "Recycle Bin",
     "RestoreRecycleBin": "Restore Recycle Bin",

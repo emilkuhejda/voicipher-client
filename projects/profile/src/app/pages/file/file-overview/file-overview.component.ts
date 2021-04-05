@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
-import { getAudioFiles } from '@profile/state/selectors/audio-file.selectors';
+import { getAudioFiles } from '@profile/state/selectors';
 import { ConfirmationService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

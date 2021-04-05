@@ -18,17 +18,7 @@ export class FileService {
 
     public getAll(): Observable<AudioFile[]> {
         return this.httpClient.get<AudioFile[]>(this.routingService.getAudioFilesUrl())
-            .pipe(
-                map(audioFiles => {
-                    for (const audioFile of audioFiles) {
-                        audioFile.dateCreated = new Date(audioFile.dateCreated);
-                        audioFile.dateProcessedUtc = audioFile.dateProcessedUtc ? new Date(audioFile.dateProcessedUtc) : null;
-                        audioFile.dateUpdatedUtc = new Date(audioFile.dateUpdatedUtc);
-                    }
-
-                    return audioFiles;
-                })
-            );
+            .pipe(map(audioFiles => audioFiles.map(x => this.mapAudioFile(x))));
     }
 
     public upload(fileFormData: FileFormData): Observable<any> {
@@ -100,22 +90,19 @@ export class FileService {
     public getDeletedAudioFiles(): Observable<AudioFile[]> {
         return this.httpClient
             .get<AudioFile[]>(this.routingService.getTemporaryDeletedFileItemsUrl())
-            .pipe(
-                map(audioFiles => {
-                    for (const audioFile of audioFiles) {
-                        audioFile.dateCreated = new Date(audioFile.dateCreated);
-                        audioFile.dateProcessedUtc = audioFile.dateProcessedUtc ? new Date(audioFile.dateProcessedUtc) : null;
-                        audioFile.dateUpdatedUtc = new Date(audioFile.dateUpdatedUtc);
-                    }
-
-                    return audioFiles;
-                })
-            );
+            .pipe(map(audioFiles => audioFiles.map(x => this.mapAudioFile(x))));
     }
 
     public sendEmail(audioFileId: string, recipient: string): Observable<any> {
         const body = { fileItemId: audioFileId, recipient };
         return this.httpClient.post(this.routingService.getEmailUrl(), body);
+    }
+
+    private mapAudioFile(audioFile: AudioFile): AudioFile {
+        audioFile.dateCreated = new Date(audioFile.dateCreated);
+        audioFile.dateProcessedUtc = audioFile.dateProcessedUtc ? new Date(audioFile.dateProcessedUtc) : null;
+        audioFile.dateUpdatedUtc = new Date(audioFile.dateUpdatedUtc);
+        return audioFile;
     }
 
 }

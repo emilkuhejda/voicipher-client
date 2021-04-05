@@ -7,7 +7,7 @@
             <ng-container topbar-items>
                 <voc-message-box [header]="'MessageBox.MessageCenter' | translate"
                     [navigationButtonText]="'MessageBox.ReadMore' | translate" [navigationUrl]="['/messages']"
-                    [messages]="messages" [activeMessages]="0"></voc-message-box>
+                    [messages]="message$ | async" [activeMessages]="activeMessage$ | async"></voc-message-box>
             </ng-container>
 
             <a class="dropdown-item" [routerLink]="['/account']">
