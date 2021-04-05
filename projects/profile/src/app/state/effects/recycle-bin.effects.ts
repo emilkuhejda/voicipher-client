@@ -40,7 +40,7 @@ export class RecycleBinEffects {
                             .pipe(map(translation => RecycleBinApiAction.restoreAudioFilesSuccess({
                                 audioFileIds: action.audioFileIds,
                                 successMessage: translation
-                            })))
+                            })));
                     }),
                     catchError(() => this.translateService
                         .get('ErrorMessage')
@@ -63,7 +63,7 @@ export class RecycleBinEffects {
                             .pipe(map(translation => RecycleBinApiAction.permanentDeleteAudioFilesSuccess({
                                 audioFileIds: action.audioFileIds,
                                 successMessage: translation
-                            })))
+                            })));
                     }),
                     catchError(() => this.translateService
                         .get('ErrorMessage')

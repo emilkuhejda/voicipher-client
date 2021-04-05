@@ -9,7 +9,7 @@ import { recycleBinReducer } from './reducers/recycle-bin.reducers';
 
 export interface AppState {
     file: FileState;
-    recycleBin: RecycleBinState,
+    recycleBin: RecycleBinState;
     identity: IdentityState;
     config: ConfigState;
 }
