@@ -103,7 +103,10 @@
     "Restore": "Restore",
     "Delete": "Delete",
     "RestoreMessage": "Are you sure that you want to restore file {{fileName}}?",
-    "DeleteMessage": "Are you sure that you want to permanently delete file {{fileName}}?"
+    "DeleteMessage": "Are you sure that you want to permanently delete file {{fileName}}?",
+    "Summary": "Are you sure?",
+    "RestoreAllMessage": "Confirm to restore all files",
+    "DeleteAllMessage": "Confirm to permanently delete all files"
   },
   "SuccessMessage": {
     "CreateAudioFile": "Audio file {{fileName}} was successfully created",

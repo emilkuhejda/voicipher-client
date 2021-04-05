@@ -5,8 +5,10 @@ import { AudioFile } from '@profile/core/models/audio-file';
 import { RecycleBinPageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
 import { getRecycleBinAudioFiles } from '@profile/state/selectors/recycle-bin.selectors';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
+
+type ActionType = 'restoreAll' | 'deleteAll';
 
 @Component({
     selector: 'app-recycle-bin',
@@ -15,11 +17,14 @@ import { Observable } from 'rxjs';
 })
 export class RecycleBinComponent implements OnInit {
 
+    private confirmDialogKey: string = 'confirm-toast';
+
     public audioFile$: Observable<AudioFile[]> | undefined;
 
     public constructor(
         private store: Store<AppState>,
         private confirmationService: ConfirmationService,
+        private messageService: MessageService,
         private translateService: TranslateService) { }
 
     public ngOnInit(): void {
@@ -43,7 +48,20 @@ export class RecycleBinComponent implements OnInit {
             });
     }
 
-    public restoreAll(): void { }
+    public restoreAll(): void {
+        this.translateService
+            .get(['RecycleBinPage.Summary', 'RecycleBinPage.RestoreAllMessage'])
+            .subscribe(translations => {
+                this.messageService.add({
+                    key: this.confirmDialogKey,
+                    sticky: true,
+                    severity: 'warn',
+                    summary: translations['RecycleBinPage.Summary'],
+                    detail: translations['RecycleBinPage.RestoreAllMessage'],
+                    data: 'restoreAll' as ActionType
+                });
+            });
+    }
 
     public delete(event: Event, audioFile: AudioFile): void {
         this.translateService
@@ -60,6 +78,36 @@ export class RecycleBinComponent implements OnInit {
             });
     }
 
-    public deleteAll(): void { }
+    public deleteAll(): void {
+        this.translateService
+            .get(['RecycleBinPage.Summary', 'RecycleBinPage.DeleteAllMessage'])
+            .subscribe(translations => {
+                this.messageService.add({
+                    key: this.confirmDialogKey,
+                    sticky: true,
+                    severity: 'warn',
+                    summary: translations['RecycleBinPage.Summary'],
+                    detail: translations['RecycleBinPage.DeleteAllMessage'],
+                    data: 'deleteAll' as ActionType
+                });
+            });
+    }
+
+    public onConfirm(actionType: ActionType): void {
+        switch (actionType) {
+            case 'deleteAll':
+                this.store.dispatch(RecycleBinPageAction.permanentDeleteAudioFilesRequest({ audioFileIds: [] }));
+                break;
+            case 'restoreAll':
+                this.store.dispatch(RecycleBinPageAction.restoreAudioFilesRequest({ audioFileIds: [] }));
+                break;
+        }
+
+        this.messageService.clear(this.confirmDialogKey);
+    }
+
+    public onReject(): void {
+        this.messageService.clear(this.confirmDialogKey);
+    }
 
 }

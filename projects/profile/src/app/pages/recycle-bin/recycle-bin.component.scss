@@ -3,3 +3,22 @@
     font-size: 0.8rem;
     font-style: italic;
 }
+
+.p-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -.5rem;
+    margin-left: -.5rem;
+    margin-top: -.5rem;
+}
+
+.confirm-toast .p-col-6 {
+    flex: 0 0 auto;
+    padding: .5rem;
+    box-sizing: border-box;
+    width: 50%;
+}
+
+.p-text-center {
+    text-align: center !important;
+}
