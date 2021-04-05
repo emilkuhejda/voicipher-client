@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AudioFilePageAction } from '@profile/state/actions';
+import { AppState } from '@profile/state/app.state';
 import { TranscribeItemViewModel } from './transcribe-item-view.model';
 
 @Component({
@@ -11,18 +14,32 @@ export class TranscribeItemComponent implements OnInit {
     @Input()
     public transcribeItem: TranscribeItemViewModel | undefined;
 
-    public constructor() { }
+    public constructor(private store: Store<AppState>) { }
 
     public ngOnInit(): void {
     }
 
-    public restrictAudio(audio: any): void { }
+    public restrictAudio(audio: any): void {
+        console.log('restrictAudio');
+    }
 
-    public update(): void { }
+    public update(): void {
+        console.log('update');
+    }
 
-    public loadAudioFile(): void { }
+    public loadAudioFile(): void {
+        if (!this.transcribeItem) {
+            return;
+        }
 
-    public refresh(): void { }
+        this.transcribeItem.isLoading = true;
+
+        this.store.dispatch(AudioFilePageAction.loadCurrentAudioSourceRequest({ transcribeItemId: this.transcribeItem.id }))
+    }
+
+    public refresh(): void {
+        this.transcribeItem?.refreshTranscript();
+    }
 
     public onChange(): void {
         if (!this.transcribeItem) {

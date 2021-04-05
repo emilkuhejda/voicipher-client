@@ -3,8 +3,10 @@ import { TranscribeItem } from "@profile/core/models/transcribe-item";
 import { TimeSpanWrapper } from "@profile/core/utils/time-span-wrapper";
 
 export class TranscribeItemViewModel {
+    private readonly transcript: string;
     private transcribeItem: TranscribeItem;
 
+    public id: string;
     public userTranscript: string;
     public time: string;
     public isIncomplete: boolean;
@@ -18,11 +20,12 @@ export class TranscribeItemViewModel {
         this.transcribeItem = transcribeItem;
 
         const transcript = transcribeItem.alternatives.length > 0 ? transcribeItem.alternatives.map(x => x.transcript).join('') : '';
-        const userTranscript = transcribeItem.userTranscript === null ? transcript : transcribeItem.userTranscript;
+        this.transcript = transcribeItem.userTranscript === null ? transcript : transcribeItem.userTranscript;
         const startTime = new TimeSpanWrapper(transcribeItem.startTimeTicks).getTime();
         const endTime = new TimeSpanWrapper(transcribeItem.endTimeTicks).getTime();
 
-        this.userTranscript = userTranscript;
+        this.id = transcribeItem.id;
+        this.userTranscript = this.transcript;
         this.time = `${startTime} - ${endTime}`;
         this.isIncomplete = transcribeItem.isIncomplete;
         this.wasCleaned = transcribeItem.wasCleaned;
@@ -39,7 +42,12 @@ export class TranscribeItemViewModel {
     }
 
     public get isUserTranscriptChanged() {
-        return this.transcribeItem.transcript !== this.userTranscript;
+        return this.transcript !== this.userTranscript;
+    }
+
+    public refreshTranscript() {
+        this.isDirty = false;
+        this.userTranscript = this.transcript;
     }
 
 }

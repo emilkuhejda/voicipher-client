@@ -8,6 +8,7 @@ import { SendEmailDialogComponent } from './send-email-dialog/send-email-dialog.
 import { RoundConfidencePipe } from './pipes/round-confidence.pipe';
 import { TranscribeItemComponent } from './transcribe-item/transcribe-item.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ButtonModule } from 'primeng/button';
 
 const components = [
     FileFormComponent,
@@ -24,6 +25,7 @@ const components = [
         ReactiveFormsModule,
         ProgressBarModule,
         InputTextareaModule,
+        ButtonModule,
         TranslateModule.forChild({
             extend: true,
             isolate: false
