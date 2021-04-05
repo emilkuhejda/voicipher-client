@@ -1,11 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
+import { SendEmailDialogComponent } from '@profile/components/send-email-dialog/send-email-dialog.component';
 import { TranscribeItemViewModel } from '@profile/components/transcribe-item/transcribe-item-view.model';
 import { AudioFile } from '@profile/core/models/audio-file';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
 import { getCurrentAudioFile, getCurrentTranscribeItems } from '@profile/state/selectors';
+import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
@@ -20,7 +23,11 @@ export class FileDetailComponent implements OnInit, OnDestroy {
     public audioFile$: Observable<AudioFile | undefined> | undefined;
     public transcribeItem$: Observable<TranscribeItemViewModel[]> | undefined;
 
-    public constructor(private store: Store<AppState>, private route: ActivatedRoute) { }
+    public constructor(
+        private store: Store<AppState>,
+        private route: ActivatedRoute,
+        private dialogService: DialogService,
+        private translateService: TranslateService) { }
 
     public ngOnInit(): void {
         const audioFileId = this.route.snapshot.params.fileId;
@@ -39,6 +46,18 @@ export class FileDetailComponent implements OnInit, OnDestroy {
         this.destroy$.unsubscribe();
     }
 
-    public sendToMail(): void { }
+    public sendToMail(audioFile: AudioFile): void {
+        this.translateService
+            .get('EmailForm.Header')
+            .subscribe(translation => {
+                this.dialogService.open(SendEmailDialogComponent, {
+                    data: { audioFile },
+                    header: translation,
+                    width: '50%',
+                    contentStyle: { 'max-height': '500px' },
+                    baseZIndex: 10000
+                });
+            });
+    }
 
 }

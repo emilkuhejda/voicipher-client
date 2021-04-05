@@ -8,8 +8,9 @@
         <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
-                    <button (click)="sendToMail()" class="btn btn-success mr-2">{{ 'FileDetailPage.SendToEmail' |
-                        translate }}</button>
+                    <button (click)="sendToMail(audioFile)" class="btn btn-success mr-2">
+                        {{ 'FileDetailPage.SendToEmail' | translate }}
+                    </button>
                 </div>
             </div>
         </div>
@@ -30,3 +31,5 @@
         </div>
     </div>
 </div>
+
+<p-confirmPopup></p-confirmPopup>
