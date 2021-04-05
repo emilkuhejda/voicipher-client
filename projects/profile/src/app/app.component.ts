@@ -6,12 +6,12 @@ import { Observable, Subject } from 'rxjs';
 import { MsalService } from '@profile/service/msal.service';
 import { IdentityPageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
-import { getCurrentIdentity } from '@profile/state/selectors/Identity.selectors';
 import { Identity } from '@profile/core/models';
 import { takeUntil } from 'rxjs/operators';
 import { MessageService } from 'primeng/api';
 import {
     getCurrentLanguage,
+    getCurrentIdentity,
     getFileModuleError,
     getFileModuleSuccessMessage,
     getMessageModuleError,

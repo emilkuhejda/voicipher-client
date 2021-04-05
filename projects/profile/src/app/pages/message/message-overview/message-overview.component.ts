@@ -1,12 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { InformationMessage } from '@profile/core/models/information-message';
 import { Language } from '@profile/core/types/language';
 import { LanguageHelper } from '@profile/core/utils/language-helper';
 import { MessagePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
-import { getCurrentLanguage } from '@profile/state/selectors';
-import { getMessages } from '@profile/state/selectors/message.selectors';
+import { getCurrentLanguage, getMessages } from '@profile/state/selectors';
 import { Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { MessageViewModel } from '../message-view.model';
