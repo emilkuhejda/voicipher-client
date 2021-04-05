@@ -10,6 +10,10 @@ const initialState: RecycleBinState = {
 
 export const recycleBinReducer = createReducer<RecycleBinState>(
     initialState,
+    on(RecycleBinPageAction.loadAudioFilesRequest, (state): RecycleBinState => ({
+        ...state,
+        error: ''
+    })),
     on(RecycleBinApiAction.loadAudioFilesSuccess, (state, action): RecycleBinState => ({
         ...state,
         audioFiles: action.audioFiles.slice().sort((a, b) => b.dateUpdatedUtc.getTime() - a.dateUpdatedUtc.getTime()),

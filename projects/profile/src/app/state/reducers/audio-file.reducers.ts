@@ -14,6 +14,10 @@ const initialState: FileState = {
 
 export const fileReducer = createReducer<FileState>(
     initialState,
+    on(AudioFilePageAction.loadCurrentAudioFileRequest, (state): FileState => ({
+        ...state,
+        error: ''
+    })),
     on(AudioFileApiAction.loadCurrentAudioFileSuccess, (state, action): FileState => ({
         ...state,
         currentAudioFile: action.audioFile,
@@ -22,6 +26,10 @@ export const fileReducer = createReducer<FileState>(
     on(AudioFileApiAction.loadCurrentAudioFileFailure, (state, action): FileState => ({
         ...state,
         error: action.error
+    })),
+    on(AudioFilePageAction.loadAudioFilesRequest, (state): FileState => ({
+        ...state,
+        error: ''
     })),
     on(AudioFileApiAction.loadAudioFilesSuccess, (state, action): FileState => ({
         ...state,
@@ -73,6 +81,11 @@ export const fileReducer = createReducer<FileState>(
             error: action.error
         };
     }),
+    on(AudioFilePageAction.deleteAudioFileRequest, (state): FileState => ({
+        ...state,
+        successMessage: '',
+        error: '',
+    })),
     on(AudioFileApiAction.deleteAudioFileSuccess, (state, action): FileState => ({
         ...state,
         successMessage: action.successMessage,
@@ -81,6 +94,11 @@ export const fileReducer = createReducer<FileState>(
     on(AudioFileApiAction.deleteAudioFileFailure, (state, action): FileState => ({
         ...state,
         error: action.error
+    })),
+    on(AudioFilePageAction.sendEmailRequest, (state): FileState => ({
+        ...state,
+        successMessage: '',
+        error: ''
     })),
     on(AudioFileApiAction.sendEmailSuccess, (state, action): FileState => ({
         ...state,
