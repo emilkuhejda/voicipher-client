@@ -35,5 +35,13 @@ export const messageReducer = createReducer<MessageState>(
     on(MessageApiAction.loadCurrentMessageFailure, (state, action): MessageState => ({
         ...state,
         error: action.error
-    }))
+    })),
+    on(MessageApiAction.markMessageAsOpenedSuccess, (state, action): MessageState => {
+        const updatedMessages = state.messages.map(item => item.id === action.message.id ? action.message : item);
+        return {
+            ...state,
+            messages: updatedMessages.slice().sort((a, b) => b.datePublished.getTime() - a.datePublished.getTime()),
+            error: ''
+        };
+    })
 );

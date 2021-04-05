@@ -45,7 +45,11 @@ export class InformationMessageService {
         }
 
         this.storageService.setItem('opened.messages', openedMessages);
-        return of(message);
+
+        return of({
+            ...message,
+            wasOpened: true
+        });
     }
 
     private mapMessage(message: InformationMessage, openedMessages: string[]): InformationMessage {
