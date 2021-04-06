@@ -11,6 +11,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ButtonModule } from 'primeng/button';
 import { TranscribeDialogComponent } from './transcribe-dialog/transcribe-dialog.component';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { MessagesModule } from 'primeng/messages'
 import { NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 const components = [
@@ -31,6 +32,7 @@ const components = [
         InputTextareaModule,
         ButtonModule,
         InputSwitchModule,
+        MessagesModule,
         NgbTimepickerModule,
         TranslateModule.forChild({
             extend: true,

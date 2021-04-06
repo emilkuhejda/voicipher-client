@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { AudioFile } from '@profile/core/models/audio-file';
 import { TimeSpanWrapper } from '@profile/core/utils/time-span-wrapper';
 import { AppState } from '@profile/state/app.state';
+import { Message, MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
@@ -27,7 +29,9 @@ export class TranscribeDialogComponent {
     public constructor(
         private store: Store<AppState>,
         private config: DynamicDialogConfig,
-        private dialogRef: DynamicDialogRef) {
+        private dialogRef: DynamicDialogRef,
+        private messageService: MessageService,
+        private translateService: TranslateService) {
         const audioFile = this.config.data.audioFile as AudioFile;
         const totalTime = new TimeSpanWrapper(audioFile.totalTimeTicks);
 
@@ -49,6 +53,20 @@ export class TranscribeDialogComponent {
     }
 
     public transcribe() {
+        const transcriptionStartSeconds = this.convertToSeconds(this.startTime);
+        const transcriptionEndSeconds = this.convertToSeconds(this.endTime);
+        if (this.isTimeFrame && transcriptionStartSeconds >= transcriptionEndSeconds) {
+            this.translateService
+                .get('ErrorMessage')
+                .subscribe(translation => {
+                    this.messageService.add({
+                        key: 'error-dialog',
+                        severity: 'error',
+                        detail: translation
+                    });
+                });
+            return;
+        }
     }
 
     public close() {

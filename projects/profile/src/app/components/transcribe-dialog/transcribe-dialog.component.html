@@ -16,6 +16,8 @@
             <ngb-timepicker [(ngModel)]="endTime" [seconds]="true" (ngModelChange)="onTimeChange()"></ngb-timepicker>
         </div>
     </div>
+
+    <p-messages key="error-dialog"></p-messages>
 </div>
 <div class="modal-footer">
     <button type="button" [disabled]="loading" class="btn btn-primary"

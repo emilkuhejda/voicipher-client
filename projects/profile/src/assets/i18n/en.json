@@ -70,7 +70,8 @@
     "TimeStart": "Time start",
     "TimeEnd": "Time end",
     "Transcribe": "Transcribe",
-    "Close": "Close"
+    "Close": "Close",
+    "ErrorMessage": "Start time must be less than end time"
   },
   "TranscribeItemComponent": {
     "Accuracy": "% accuracy",
