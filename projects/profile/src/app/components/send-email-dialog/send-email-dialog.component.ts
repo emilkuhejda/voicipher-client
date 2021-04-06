@@ -19,7 +19,7 @@ export class SendEmailDialogComponent {
         private store: Store<AppState>,
         private formBuilder: FormBuilder,
         private config: DynamicDialogConfig,
-        private ref: DynamicDialogRef) {
+        private dialogRef: DynamicDialogRef) {
         this.emailForm = this.formBuilder.group({
             emailAddress: ['', [Validators.required, Validators.email]]
         });
@@ -40,11 +40,11 @@ export class SendEmailDialogComponent {
             audioFileId: this.config.data.audioFile.id,
             recipient: this.controls.emailAddress.value
         }));
-        this.ref.close();
+        this.dialogRef.close();
     }
 
     public close() {
-        this.ref.close();
+        this.dialogRef.close();
     }
 
 }

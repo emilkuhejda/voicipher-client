@@ -18,7 +18,8 @@ export class TimeSpanWrapper {
         return new Date(ticksToMicrotime - epochMicrotimeDiff);
     }
 
-    public getTotalSeconds(): number {
-        return this.ticks / (10000 * 1000);
+    public getTotalSeconds(isRounded: boolean = false): number {
+        const seconds = this.ticks / (10000 * 1000);
+        return isRounded ? Math.floor(seconds) : seconds;
     }
 }

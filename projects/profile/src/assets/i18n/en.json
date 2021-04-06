@@ -63,6 +63,15 @@
     "Send": "Send",
     "Close": "Close"
   },
+  "TranscribeDialog": {
+    "Header": "Transcribe audio file {{fileName}}",
+    "TranscribeFullAudio": "Transcribe full audio",
+    "TranscribePartOfTheAudio": "Transcribe a part of the audio",
+    "TimeStart": "Time start",
+    "TimeEnd": "Time end",
+    "Transcribe": "Transcribe",
+    "Close": "Close"
+  },
   "TranscribeItemComponent": {
     "Accuracy": "% accuracy",
     "ErrorMessage": "Couldn't be transcribed"
