@@ -15,8 +15,8 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 })
 export class TranscribeDialogComponent {
 
+    private dialogKey: string = 'error-dialog';
     private emptyTime: NgbTimeStruct = { hour: 0, minute: 0, second: 0 };
-
     private audioFile: AudioFile;
 
     public isTimeFrame: boolean;
@@ -53,6 +53,7 @@ export class TranscribeDialogComponent {
     }
 
     public transcribe() {
+        this.messageService.clear(this.dialogKey)
         const transcriptionStartSeconds = this.convertToSeconds(this.startTime);
         const transcriptionEndSeconds = this.convertToSeconds(this.endTime);
         if (this.isTimeFrame && transcriptionStartSeconds >= transcriptionEndSeconds) {
@@ -60,7 +61,7 @@ export class TranscribeDialogComponent {
                 .get('ErrorMessage')
                 .subscribe(translation => {
                     this.messageService.add({
-                        key: 'error-dialog',
+                        key: this.dialogKey,
                         severity: 'error',
                         detail: translation
                     });
