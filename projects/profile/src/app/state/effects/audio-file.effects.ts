@@ -158,4 +158,18 @@ export class AudioFileEffects {
                 ))
         ));
 
+    public transcribeAudioFile$ = createEffect(() => this.action$
+        .pipe(
+            ofType(AudioFilePageAction.startProcessingAudioFileRequest),
+            concatMap(action => this.fileService.transcribe(action.transcribeModel)
+                .pipe(
+                    switchMap(() => this.translateService
+                        .get('SuccessMessage.StartProcessing', { fileName: action.transcribeModel.name })
+                        .pipe(map(translation => AudioFileApiAction.startProcessingAudioFileSuccess({ successMessage: translation })))),
+                    catchError((error: ErrorResponse) => this.translateService
+                        .get(`ErrorCode.${error.errorCode}`)
+                        .pipe(map(translation => AudioFileApiAction.startProcessingAudioFileFailure({ error: translation }))))
+                ))
+        ));
+
 }

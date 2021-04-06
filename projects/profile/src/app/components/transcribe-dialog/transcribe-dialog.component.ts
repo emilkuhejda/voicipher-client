@@ -3,9 +3,11 @@ import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { AudioFile } from '@profile/core/models/audio-file';
+import { TranscribeModel } from '@profile/core/models/transcribe-model';
 import { TimeSpanWrapper } from '@profile/core/utils/time-span-wrapper';
+import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
-import { Message, MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
@@ -68,6 +70,19 @@ export class TranscribeDialogComponent {
                 });
             return;
         }
+
+        const transcribeModel: TranscribeModel = {
+            fileItemId: this.audioFile.id,
+            name: this.audioFile.name,
+            language: this.audioFile.language,
+            isPhoneCall: this.audioFile.isPhoneCall,
+            isTimeFrame: this.isTimeFrame,
+            startTime: transcriptionStartSeconds,
+            endTime: transcriptionEndSeconds
+        };
+
+        this.store.dispatch(AudioFilePageAction.startProcessingAudioFileRequest({ transcribeModel }));
+        this.dialogRef.close();
     }
 
     public close() {

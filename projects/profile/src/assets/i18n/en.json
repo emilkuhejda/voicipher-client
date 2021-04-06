@@ -142,7 +142,8 @@
     "RestoreAllAudioFile": "Audio files were successfully restored",
     "PermanentDeleteAudioFile": "Audio file was successfully permanently deleted",
     "PermanentDeleteAllAudioFile": "Audio files were successfully permanently deleted",
-    "UpdateTranscript": "Transcript was updated"
+    "UpdateTranscript": "Transcript was updated",
+    "StartProcessing": "The file {{name}} started processing"
   },
   "ErrorCode": {
     "EC100": "Uploaded file was not found",

@@ -2,6 +2,7 @@ import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AudioFile } from '@profile/core/models/audio-file';
 import { FileFormData } from '@profile/core/models/file-form-data';
+import { TranscribeModel } from '@profile/core/models/transcribe-model';
 import { environment } from '@profile/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -63,6 +64,20 @@ export class FileService {
         });
 
         return this.httpClient.request(uploadRequest);
+    }
+
+    transcribe(transcribeModel: TranscribeModel) {
+        let params = new HttpParams();
+        params = params.append('fileItemId', transcribeModel.fileItemId);
+        params = params.append('language', transcribeModel.language);
+        params = params.append('isPhoneCall', transcribeModel.isPhoneCall ? 'true' : 'false');
+        params = params.append('applicationId', environment.applicationId);
+        if (transcribeModel.isTimeFrame) {
+            params = params.append('startTimeSeconds', transcribeModel.startTime.toString());
+            params = params.append('endTimeSeconds', transcribeModel.endTime.toString());
+        }
+
+        return this.httpClient.put(this.routingService.getTranscribeFileItemUrl(), null, { params });
     }
 
     public delete(audioFileId: string): Observable<any> {

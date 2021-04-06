@@ -85,3 +85,13 @@ export const sendEmailFailure = createAction(
     '[Audio File API] Send email failure',
     props<{ error: string }>()
 );
+
+export const startProcessingAudioFileSuccess = createAction(
+    '[Audio File API] Start processing audio file success',
+    props<{ successMessage: string }>()
+);
+
+export const startProcessingAudioFileFailure = createAction(
+    '[Audio File API] Start processing audio file failure',
+    props<{ error: string }>()
+);
