@@ -47,12 +47,12 @@ export const deleteAudioFileRequest = createAction(
     props<{ audioFile: AudioFile }>()
 );
 
-export const sendEmailRequest = createAction(
-    '[Audio File Page] Send email request',
-    props<{ audioFileId: string; recipient: string }>()
-);
-
 export const startProcessingAudioFileRequest = createAction(
     '[Audio File Page] Start processing audio file request',
     props<{ transcribeModel: TranscribeModel }>()
+);
+
+export const sendEmailRequest = createAction(
+    '[Audio File Page] Send email request',
+    props<{ audioFileId: string; recipient: string }>()
 );

@@ -144,20 +144,6 @@ export class AudioFileEffects {
                 ))
         ));
 
-    public sendEmail$ = createEffect(() => this.action$
-        .pipe(
-            ofType(AudioFilePageAction.sendEmailRequest),
-            concatMap(action => this.fileService.sendEmail(action.audioFileId, action.recipient)
-                .pipe(
-                    concatMap(() => this.translateService
-                        .get('SuccessMessage.SendEmail')
-                        .pipe(map(translation => AudioFileApiAction.sendEmailSuccess({ successMessage: translation })))),
-                    catchError(() => this.translateService
-                        .get('ErrorMessage')
-                        .pipe(map(translation => AudioFileApiAction.sendEmailFailure({ error: translation }))))
-                ))
-        ));
-
     public transcribeAudioFile$ = createEffect(() => this.action$
         .pipe(
             ofType(AudioFilePageAction.startProcessingAudioFileRequest),
@@ -172,6 +158,20 @@ export class AudioFileEffects {
                     catchError((error: ErrorResponse) => this.translateService
                         .get(`ErrorCode.${error.errorCode}`)
                         .pipe(map(translation => AudioFileApiAction.startProcessingAudioFileFailure({ error: translation }))))
+                ))
+        ));
+
+    public sendEmail$ = createEffect(() => this.action$
+        .pipe(
+            ofType(AudioFilePageAction.sendEmailRequest),
+            concatMap(action => this.fileService.sendEmail(action.audioFileId, action.recipient)
+                .pipe(
+                    concatMap(() => this.translateService
+                        .get('SuccessMessage.SendEmail')
+                        .pipe(map(translation => AudioFileApiAction.sendEmailSuccess({ successMessage: translation })))),
+                    catchError(() => this.translateService
+                        .get('ErrorMessage')
+                        .pipe(map(translation => AudioFileApiAction.sendEmailFailure({ error: translation }))))
                 ))
         ));
 

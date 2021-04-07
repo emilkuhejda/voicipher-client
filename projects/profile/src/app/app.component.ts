@@ -4,10 +4,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { MessageModel, SidebarItemModel } from 'projects/voc-components/src/public-api';
 import { Observable, Subject } from 'rxjs';
 import { MsalService } from '@profile/service/msal.service';
-import { IdentityPageAction, MessagePageAction } from '@profile/state/actions';
+import { AccountPageAction, MessagePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
 import { Identity } from '@profile/core/models';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, takeUntil, tap } from 'rxjs/operators';
 import { MessageService } from 'primeng/api';
 import {
     getCurrentLanguage,
@@ -19,7 +19,8 @@ import {
     getRecycleBinModuleSuccessMessage,
     getUploadedFiles,
     getMessageBoxMessages,
-    getActiveMessagesCount
+    getActiveMessagesCount,
+    getAccountModuleError
 } from './state/selectors';
 import { MessageViewModel } from './pages/message/message-view.model';
 import { Language } from './core/types/language';
@@ -49,8 +50,7 @@ export class AppComponent implements OnInit, OnDestroy {
         private translateService: TranslateService) { }
 
     public ngOnInit(): void {
-        this.store.dispatch(IdentityPageAction.loadCurrentIdentityRequest());
-        this.store.dispatch(MessagePageAction.loadMessagesRequest());
+        this.store.dispatch(AccountPageAction.loadCurrentIdentityRequest());
 
         this.store
             .select(getFileModuleSuccessMessage)
@@ -62,6 +62,10 @@ export class AppComponent implements OnInit, OnDestroy {
             .subscribe(message => this.handleSuccessMessage(message));
         this.store
             .select(getFileModuleError)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(message => this.handleErrorMessage(message));
+        this.store
+            .select(getAccountModuleError)
             .pipe(takeUntil(this.destroy$))
             .subscribe(message => this.handleErrorMessage(message));
         this.store
@@ -81,7 +85,14 @@ export class AppComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.destroy$))
             .subscribe(language => this.currentLanguage = LanguageHelper.convertFromString(language));
 
-        this.identity$ = this.store.select(getCurrentIdentity);
+        this.identity$ = this.store.select(getCurrentIdentity)
+            .pipe(
+                takeUntil(this.destroy$),
+                tap(identity => {
+                    if (identity.id !== '') {
+                        this.store.dispatch(MessagePageAction.loadMessagesRequest());
+                    }
+                }));
         this.activeMessage$ = this.store.select(getActiveMessagesCount);
         this.message$ = this.store.select(getMessageBoxMessages)
             .pipe(

@@ -1,1 +1,14 @@
-<p>account works!</p>
+<!-- Content -->
+<div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">{{ 'AccountPage.Profile' | translate }}</h6>
+    </div>
+
+    <!-- Card Body -->
+    <div class="card-body">
+        <p *ngIf="remainingTime$ | async as remainingTime" class="mb-5">
+            {{ 'AccountPage.RemainingTime' | translate }}&nbsp;{{remainingTime}}
+        </p>
+    </div>
+</div>
