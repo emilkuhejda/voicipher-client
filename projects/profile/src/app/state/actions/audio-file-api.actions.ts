@@ -76,16 +76,6 @@ export const deleteAudioFileFailure = createAction(
     props<{ error: string }>()
 );
 
-export const sendEmailSuccess = createAction(
-    '[Audio File API] Send email success',
-    props<{ successMessage: string }>()
-);
-
-export const sendEmailFailure = createAction(
-    '[Audio File API] Send email failure',
-    props<{ error: string }>()
-);
-
 export const startProcessingAudioFileSuccess = createAction(
     '[Audio File API] Start processing audio file success',
     props<{ audioFileId: string; successMessage: string }>()
@@ -93,5 +83,15 @@ export const startProcessingAudioFileSuccess = createAction(
 
 export const startProcessingAudioFileFailure = createAction(
     '[Audio File API] Start processing audio file failure',
+    props<{ error: string }>()
+);
+
+export const sendEmailSuccess = createAction(
+    '[Audio File API] Send email success',
+    props<{ successMessage: string }>()
+);
+
+export const sendEmailFailure = createAction(
+    '[Audio File API] Send email failure',
     props<{ error: string }>()
 );
