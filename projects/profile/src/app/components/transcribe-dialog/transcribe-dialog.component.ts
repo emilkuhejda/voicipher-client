@@ -50,11 +50,11 @@ export class TranscribeDialogComponent {
         this.totalTime = this.convertToModel(this.totalTimeSeconds);
     }
 
-    public onTimeChange() {
+    public onTimeChange(): void {
         this.validateTimes();
     }
 
-    public transcribe() {
+    public transcribe(): void {
         this.messageService.clear(this.dialogKey)
         const transcriptionStartSeconds = this.convertToSeconds(this.startTime);
         const transcriptionEndSeconds = this.convertToSeconds(this.endTime);
@@ -85,7 +85,7 @@ export class TranscribeDialogComponent {
         this.dialogRef.close();
     }
 
-    public close() {
+    public close(): void {
         this.dialogRef.close();
     }
 

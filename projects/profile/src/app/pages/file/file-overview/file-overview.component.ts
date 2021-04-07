@@ -75,7 +75,7 @@ export class FileOverviewComponent implements OnInit {
             });
     }
 
-    public delete(event: Event, audioFileViewModel: AudioFileViewModel) {
+    public delete(event: Event, audioFileViewModel: AudioFileViewModel): void {
         this.translateService
             .get('FilesPage.DeleteActionMessage', { fileName: audioFileViewModel.name })
             .subscribe(translation => {
