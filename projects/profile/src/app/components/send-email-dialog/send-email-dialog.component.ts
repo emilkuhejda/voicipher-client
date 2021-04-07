@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
@@ -25,11 +25,11 @@ export class SendEmailDialogComponent {
         });
     }
 
-    public get controls() {
+    public get controls(): { [key: string]: AbstractControl } {
         return this.emailForm.controls;
     }
 
-    public onSubmit() {
+    public onSubmit(): void {
         this.submitted = true;
         if (this.emailForm.invalid) {
             return;
@@ -43,7 +43,7 @@ export class SendEmailDialogComponent {
         this.dialogRef.close();
     }
 
-    public close() {
+    public close(): void {
         this.dialogRef.close();
     }
 

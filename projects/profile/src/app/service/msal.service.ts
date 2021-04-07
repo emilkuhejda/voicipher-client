@@ -39,7 +39,7 @@ export class MsalService {
         this.storageService.clear();
     }
 
-    public completeLogin(token: string) {
+    public completeLogin(token: string): void {
         this.storageService.setItem('token', token);
         this.storageService.removeItem('b2c.token');
     }

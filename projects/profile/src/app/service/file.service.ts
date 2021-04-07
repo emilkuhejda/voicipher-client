@@ -66,7 +66,7 @@ export class FileService {
         return this.httpClient.request(uploadRequest);
     }
 
-    transcribe(transcribeModel: TranscribeModel) {
+    public transcribe(transcribeModel: TranscribeModel): Observable<any> {
         let params = new HttpParams();
         params = params.append('fileItemId', transcribeModel.fileItemId);
         params = params.append('language', transcribeModel.language);
@@ -88,14 +88,14 @@ export class FileService {
         return this.httpClient.delete(this.routingService.getDeleteFileItemUrl(), { params });
     }
 
-    public restoreAll(audioFilesIds: string[]) {
+    public restoreAll(audioFilesIds: string[]): Observable<any> {
         let params = new HttpParams();
         params = params.append('applicationId', environment.applicationId);
 
         return this.httpClient.put(this.routingService.getRestoreAllUrl(), audioFilesIds, { params });
     }
 
-    public permanentDeleteAll(audioFilesIds: string[]) {
+    public permanentDeleteAll(audioFilesIds: string[]): Observable<any> {
         let params = new HttpParams();
         params = params.append('applicationId', environment.applicationId);
 

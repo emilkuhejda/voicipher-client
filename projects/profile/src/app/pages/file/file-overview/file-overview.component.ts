@@ -43,7 +43,7 @@ export class FileOverviewComponent implements OnInit {
             );
     }
 
-    public navigateToPage(path: string, audioFileId: string) {
+    public navigateToPage(path: string, audioFileId: string): void {
         this.router.navigate([path, audioFileId]);
     }
 

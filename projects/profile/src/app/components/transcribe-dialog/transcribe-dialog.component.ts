@@ -55,7 +55,7 @@ export class TranscribeDialogComponent {
     }
 
     public transcribe(): void {
-        this.messageService.clear(this.dialogKey)
+        this.messageService.clear(this.dialogKey);
         const transcriptionStartSeconds = this.convertToSeconds(this.startTime);
         const transcriptionEndSeconds = this.convertToSeconds(this.endTime);
         if (this.isTimeFrame && transcriptionStartSeconds >= transcriptionEndSeconds) {
@@ -98,8 +98,8 @@ export class TranscribeDialogComponent {
             this.endTime = { ...this.totalTime };
         }
 
-        var startTimeSeconds = this.convertToSeconds(this.startTime);
-        var endTimeSeconds = this.convertToSeconds(this.endTime);
+        const startTimeSeconds = this.convertToSeconds(this.startTime);
+        const endTimeSeconds = this.convertToSeconds(this.endTime);
 
         if (endTimeSeconds > this.totalTimeSeconds) {
             this.endTime = { ...this.totalTime };
@@ -119,16 +119,16 @@ export class TranscribeDialogComponent {
         return (timeStruct.hour * 3600) + (timeStruct.minute * 60) + timeStruct.second;
     }
 
-    private convertToModel(seconds: number): NgbTimeStruct {
-        const hours = Math.floor(seconds / 3600);
-        const minutes = Math.floor((seconds - (hours * 3600)) / 60);
-        const second = seconds - (hours * 3600) - (minutes * 60);
+    private convertToModel(totalSeconds: number): NgbTimeStruct {
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds - (hours * 3600)) / 60);
+        const seconds = totalSeconds - (hours * 3600) - (minutes * 60);
 
         return {
             hour: hours,
             minute: minutes,
-            second: second
-        }
+            second: seconds
+        };
     }
 
 }
