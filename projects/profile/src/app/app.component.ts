@@ -7,7 +7,7 @@ import { MsalService } from '@profile/service/msal.service';
 import { AccountPageAction, MessagePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
 import { Identity } from '@profile/core/models';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, takeUntil, tap } from 'rxjs/operators';
 import { MessageService } from 'primeng/api';
 import {
     getCurrentLanguage,
@@ -51,7 +51,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     public ngOnInit(): void {
         this.store.dispatch(AccountPageAction.loadCurrentIdentityRequest());
-        this.store.dispatch(MessagePageAction.loadMessagesRequest());
 
         this.store
             .select(getFileModuleSuccessMessage)
@@ -86,7 +85,14 @@ export class AppComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.destroy$))
             .subscribe(language => this.currentLanguage = LanguageHelper.convertFromString(language));
 
-        this.identity$ = this.store.select(getCurrentIdentity);
+        this.identity$ = this.store.select(getCurrentIdentity)
+            .pipe(
+                takeUntil(this.destroy$),
+                tap(identity => {
+                    if (identity.id !== '') {
+                        this.store.dispatch(MessagePageAction.loadMessagesRequest());
+                    }
+                }));
         this.activeMessage$ = this.store.select(getActiveMessagesCount);
         this.message$ = this.store.select(getMessageBoxMessages)
             .pipe(

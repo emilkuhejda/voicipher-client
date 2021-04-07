@@ -34,8 +34,8 @@ export class RegisterUserComponent implements OnInit {
             .registerUser(userRegistrationModel)
             .subscribe(
                 userRegistration => {
-                    this.store.dispatch(AccountPageAction.setCurrentIdentityRequest({ identity: userRegistration.identity }));
                     this.msalService.completeLogin(userRegistration.token);
+                    this.store.dispatch(AccountPageAction.setCurrentIdentityRequest({ identity: userRegistration.identity }));
                     this.router.navigate(['/']);
                 },
                 () => this.msalService.logout());
