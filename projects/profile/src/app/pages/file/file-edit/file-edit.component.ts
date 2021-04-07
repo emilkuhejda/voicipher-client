@@ -35,8 +35,8 @@ export class FileEditComponent implements OnInit, OnDestroy {
                         fileName: audioFile.fileName,
                         language: audioFile.language,
                         audioType: audioFile.isPhoneCall ? '1' : '0',
-                        transcriptionStartTime: new TimeSpanWrapper(audioFile.transcriptionStartTimeTicks).getTotalSeconds().toString(),
-                        transcriptionEndTime: new TimeSpanWrapper(audioFile.transcriptionEndTimeTicks).getTotalSeconds().toString()
+                        transcriptionStartTime: new TimeSpanWrapper(audioFile.transcriptionStartTimeTicks).getTotalSeconds(true).toString(),
+                        transcriptionEndTime: new TimeSpanWrapper(audioFile.transcriptionEndTimeTicks).getTotalSeconds(true).toString()
                     };
                 }
             });

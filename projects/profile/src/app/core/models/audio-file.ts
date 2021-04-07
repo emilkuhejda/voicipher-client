@@ -6,7 +6,7 @@ export interface AudioFile {
     name: string;
     fileName: string;
     language: string;
-    isPhoneCall: string;
+    isPhoneCall: boolean;
     recognitionStateString: RecognitionState;
     uploadStatus: UploadStatus;
     totalTimeTicks: number;

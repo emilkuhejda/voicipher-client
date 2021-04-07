@@ -39,11 +39,11 @@ export class TranscribeItemViewModel {
         return total / map.length;
     }
 
-    public get isUserTranscriptChanged() {
+    public get isUserTranscriptChanged(): boolean {
         return this.transcript !== this.userTranscript;
     }
 
-    public refreshTranscript() {
+    public refreshTranscript(): void {
         this.isDirty = true;
         this.userTranscript = this.transcript;
     }

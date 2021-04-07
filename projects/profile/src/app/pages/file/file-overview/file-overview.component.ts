@@ -11,6 +11,7 @@ import { map } from 'rxjs/operators';
 import { AudioFileViewModel } from './audio-file.view.model';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SendEmailDialogComponent } from '@profile/components/send-email-dialog/send-email-dialog.component';
+import { TranscribeDialogComponent } from '@profile/components/transcribe-dialog/transcribe-dialog.component';
 
 @Component({
     selector: 'app-file-overview',
@@ -42,11 +43,23 @@ export class FileOverviewComponent implements OnInit {
             );
     }
 
-    public navigateToPage(path: string, audioFileId: string) {
+    public navigateToPage(path: string, audioFileId: string): void {
         this.router.navigate([path, audioFileId]);
     }
 
-    public transcribe(audioFileViewModel: AudioFileViewModel): void { }
+    public transcribe(audioFileViewModel: AudioFileViewModel): void {
+        this.translateService
+            .get('TranscribeDialog.Header', { fileName: audioFileViewModel.name })
+            .subscribe(translation => {
+                this.dialogService.open(TranscribeDialogComponent, {
+                    data: { audioFile: audioFileViewModel.audioFile },
+                    header: translation,
+                    width: '50%',
+                    contentStyle: { 'max-height': '500px' },
+                    baseZIndex: 10000
+                });
+            });
+    }
 
     public sendEmail(audioFileViewModel: AudioFileViewModel): void {
         this.translateService
@@ -62,7 +75,7 @@ export class FileOverviewComponent implements OnInit {
             });
     }
 
-    public delete(event: Event, audioFileViewModel: AudioFileViewModel) {
+    public delete(event: Event, audioFileViewModel: AudioFileViewModel): void {
         this.translateService
             .get('FilesPage.DeleteActionMessage', { fileName: audioFileViewModel.name })
             .subscribe(translation => {

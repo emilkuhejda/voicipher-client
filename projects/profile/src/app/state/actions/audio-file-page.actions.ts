@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { AudioFile } from '@profile/core/models/audio-file';
 import { FileFormData } from '@profile/core/models/file-form-data';
+import { TranscribeModel } from '@profile/core/models/transcribe-model';
 
 export const loadCurrentAudioFileRequest = createAction(
     '[Audio File Page] Load current audio file request',
@@ -49,4 +50,9 @@ export const deleteAudioFileRequest = createAction(
 export const sendEmailRequest = createAction(
     '[Audio File Page] Send email request',
     props<{ audioFileId: string; recipient: string }>()
+);
+
+export const startProcessingAudioFileRequest = createAction(
+    '[Audio File Page] Start processing audio file request',
+    props<{ transcribeModel: TranscribeModel }>()
 );
