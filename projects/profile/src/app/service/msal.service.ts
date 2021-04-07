@@ -34,15 +34,15 @@ export class MsalService {
         this.clientApplication.loginRedirect(environment.tenantConfig.b2cScopes);
     }
 
-    editProfile() {
+    public editProfile(): void {
         const tenantConfig = environment.tenantConfig;
-        this.clientApplication.authority = tenantConfig.authorityBase + tenantConfig.tenant + "/" + tenantConfig.editProfile;
+        this.clientApplication.authority = tenantConfig.authorityBase + tenantConfig.tenant + '/' + tenantConfig.editProfile;
         this.clientApplication.loginRedirect(tenantConfig.b2cScopes);
     }
 
-    resetPassword() {
+    public resetPassword(): void {
         const tenantConfig = environment.tenantConfig;
-        this.clientApplication.authority = tenantConfig.authorityBase + tenantConfig.tenant + "/" + tenantConfig.passwordReset;
+        this.clientApplication.authority = tenantConfig.authorityBase + tenantConfig.tenant + '/' + tenantConfig.passwordReset;
         this.clientApplication.loginRedirect(tenantConfig.b2cScopes);
     }
 
