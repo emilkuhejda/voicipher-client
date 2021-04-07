@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
@@ -19,17 +19,17 @@ export class SendEmailDialogComponent {
         private store: Store<AppState>,
         private formBuilder: FormBuilder,
         private config: DynamicDialogConfig,
-        private ref: DynamicDialogRef) {
+        private dialogRef: DynamicDialogRef) {
         this.emailForm = this.formBuilder.group({
             emailAddress: ['', [Validators.required, Validators.email]]
         });
     }
 
-    public get controls() {
+    public get controls(): { [key: string]: AbstractControl } {
         return this.emailForm.controls;
     }
 
-    public onSubmit() {
+    public onSubmit(): void {
         this.submitted = true;
         if (this.emailForm.invalid) {
             return;
@@ -40,11 +40,11 @@ export class SendEmailDialogComponent {
             audioFileId: this.config.data.audioFile.id,
             recipient: this.controls.emailAddress.value
         }));
-        this.ref.close();
+        this.dialogRef.close();
     }
 
-    public close() {
-        this.ref.close();
+    public close(): void {
+        this.dialogRef.close();
     }
 
 }

@@ -3,7 +3,7 @@ import { Language } from '../types/language';
 export class LanguageHelper {
     private static supportedLanguages: string[] = ['en-GB', 'en-US', 'ru-RU'];
 
-    public static isPhoneCallModelSupported(language: string) {
+    public static isPhoneCallModelSupported(language: string): boolean {
         const index = this.supportedLanguages.findIndex(x => x === language);
         return index >= 0;
     }

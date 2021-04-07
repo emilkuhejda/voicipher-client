@@ -63,6 +63,16 @@
     "Send": "Send",
     "Close": "Close"
   },
+  "TranscribeDialog": {
+    "Header": "Transcribe audio file {{fileName}}",
+    "TranscribeFullAudio": "Transcribe full audio",
+    "TranscribePartOfTheAudio": "Transcribe a part of the audio",
+    "TimeStart": "Time start",
+    "TimeEnd": "Time end",
+    "Transcribe": "Transcribe",
+    "Close": "Close",
+    "ErrorMessage": "Start time must be less than end time"
+  },
   "TranscribeItemComponent": {
     "Accuracy": "% accuracy",
     "ErrorMessage": "Couldn't be transcribed"
@@ -132,16 +142,22 @@
     "RestoreAllAudioFile": "Audio files were successfully restored",
     "PermanentDeleteAudioFile": "Audio file was successfully permanently deleted",
     "PermanentDeleteAllAudioFile": "Audio files were successfully permanently deleted",
-    "UpdateTranscript": "Transcript was updated"
+    "UpdateTranscript": "Transcript was updated",
+    "StartProcessing": "The file {{name}} started processing"
   },
   "ErrorCode": {
     "EC100": "Uploaded file was not found",
     "EC101": "File was not found",
+    "EC103": "File is already processing",
+    "EC104": "File is not completely uploaded. Please try again later",
     "EC200": "Language is not supported",
     "EC201": "Audio file is not supported",
     "EC203": "Audio type is not supported",
     "EC204": "Start time must be less than end time",
     "EC205": "End time must be less than total time of the recording",
+    "EC300": "Your subscription does not have enough free minutes",
+    "EC303": "It's only possible to transcribe one file at a time. Please wait until your transcription will be finished",
+    "EC304": "Too many attempts to start transcription. Please contact us",
     "EC500": "System is under maintenance. Please try again later.",
     "None": "Error occurred, please try again later",
     "Unauthorized": "Error occurred, please try again later"
