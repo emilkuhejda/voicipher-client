@@ -7,6 +7,8 @@
 
     <!-- Card Body -->
     <div class="card-body">
-        <h4 *ngIf="remainingTime$ | async as remainingTime" class="mb-5">Remaining time: {{remainingTime}}</h4>
+        <p *ngIf="remainingTime$ | async as remainingTime" class="mb-5">
+            {{ 'AccountPage.RemainingTime' | translate }}&nbsp;{{remainingTime}}
+        </p>
     </div>
 </div>

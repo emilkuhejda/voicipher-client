@@ -3,7 +3,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { MsalService } from '@profile/service/msal.service';
 import { StorageService } from '@profile/service/storage.service';
-import { UserService } from '@profile/service/user.service';
 import { of } from 'rxjs';
 import { TranslateMockPipe } from '../../tests/translate.mock.pipe';
 
@@ -18,12 +17,6 @@ describe('RegisterUserComponent', () => {
             declarations: [RegisterUserComponent, TranslateMockPipe],
             providers: [
                 provideMockStore(),
-                {
-                    provide: UserService,
-                    useValue: {
-                        registerUser: () => of({})
-                    }
-                },
                 {
                     provide: MsalService,
                     useValue: {
