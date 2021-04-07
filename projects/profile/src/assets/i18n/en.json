@@ -133,6 +133,12 @@
     "RestoreAllMessage": "Confirm to restore all files",
     "DeleteAllMessage": "Confirm to permanently delete all files"
   },
+  "AccountPage": {
+    "Profile": "Profile",
+    "RemainingTime": "Remaining time:",
+    "EditProfile": "Edit profile",
+    "ResetPassword": "Reset password"
+  },
   "SuccessMessage": {
     "CreateAudioFile": "Audio file {{fileName}} was successfully created",
     "UpdateAudioFile": "Audio file {{fileName}} was successfully updated",

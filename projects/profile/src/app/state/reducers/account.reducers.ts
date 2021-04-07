@@ -11,7 +11,8 @@ const emptyIdentity: Identity = {
 };
 
 const initialState: AccountState = {
-    identity: emptyIdentity
+    identity: emptyIdentity,
+    remainingTime: ''
 };
 
 export const accountReducer = createReducer<AccountState>(

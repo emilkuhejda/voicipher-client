@@ -49,6 +49,7 @@ export interface RecycleBinState {
 
 export interface AccountState {
     identity: Identity;
+    remainingTime: string;
 }
 
 export interface ConfigState {
