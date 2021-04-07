@@ -27,6 +27,15 @@ export const accountReducer = createReducer<AccountState>(
         ...state,
         loginError: true
     })),
+    on(AccountApiAction.updateUserDataSuccess, (state, action): AccountState => ({
+        ...state,
+        identity: { ...action.identity },
+        error: ''
+    })),
+    on(AccountApiAction.updateUserDataFailure, (state, action): AccountState => ({
+        ...state,
+        error: action.error
+    })),
     on(AccountApiAction.setCurrentIdentitySuccess, (state, action): AccountState => ({
         ...state,
         identity: { ...action.identity }

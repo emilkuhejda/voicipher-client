@@ -10,6 +10,16 @@ export const registerUserFailure = createAction(
     '[Account API] Register user failure'
 );
 
+export const updateUserDataSuccess = createAction(
+    '[Account API] Update user data success',
+    props<{ identity: Identity }>()
+);
+
+export const updateUserDataFailure = createAction(
+    '[Account API] Update user data failure',
+    props<{ error: string }>()
+);
+
 export const setCurrentIdentitySuccess = createAction(
     '[Account API] Set current identity success',
     props<{ identity: Identity }>()

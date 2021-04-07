@@ -37,6 +37,18 @@ export class AccountEffects {
             )
         ));
 
+    public updateUser$ = createEffect(() => this.action$
+        .pipe(
+            ofType(AccountPageAction.updateUserDataRequest),
+            concatMap(action => this.accountService.updateUser(action.updateUserInputModel)
+                .pipe(
+                    map(identity => AccountApiAction.updateUserDataSuccess({ identity })),
+                    catchError(() => this.translateService
+                        .get('ErrorMessage')
+                        .pipe(map(translation => AccountApiAction.updateUserDataFailure({ error: translation }))))
+                ))
+        ));
+
     public createIdentity$ = createEffect(() => this.action$
         .pipe(
             ofType(AccountPageAction.setCurrentIdentityRequest),
