@@ -12,7 +12,8 @@ const emptyIdentity: Identity = {
 
 const initialState: AccountState = {
     identity: emptyIdentity,
-    remainingTime: ''
+    remainingTime: '',
+    error: ''
 };
 
 export const accountReducer = createReducer<AccountState>(
@@ -30,5 +31,13 @@ export const accountReducer = createReducer<AccountState>(
     })),
     on(AccountPageAction.removeCurrentIdentityRequest, (): AccountState => ({
         ...initialState
+    })),
+    on(AccountApiAction.loadRemainingTimeSuccess, (state, action): AccountState => ({
+        ...state,
+        remainingTime: action.remainingTime
+    })),
+    on(AccountApiAction.loadRemainingTimeFailure, (state, action): AccountState => ({
+        ...state,
+        error: action.error
     }))
 );

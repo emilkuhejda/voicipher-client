@@ -19,7 +19,8 @@ import {
     getRecycleBinModuleSuccessMessage,
     getUploadedFiles,
     getMessageBoxMessages,
-    getActiveMessagesCount
+    getActiveMessagesCount,
+    getAccountModuleError
 } from './state/selectors';
 import { MessageViewModel } from './pages/message/message-view.model';
 import { Language } from './core/types/language';
@@ -62,6 +63,10 @@ export class AppComponent implements OnInit, OnDestroy {
             .subscribe(message => this.handleSuccessMessage(message));
         this.store
             .select(getFileModuleError)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(message => this.handleErrorMessage(message));
+        this.store
+            .select(getAccountModuleError)
             .pipe(takeUntil(this.destroy$))
             .subscribe(message => this.handleErrorMessage(message));
         this.store

@@ -9,6 +9,7 @@ import { TokenInterceptorService } from './token-interceptor.service';
 import { ErrorInterceptorService } from './error-interceptor.service';
 import { InformationMessageService } from './information-message.service';
 import { TranscribeItemService } from './transcribe-item.service';
+import { AccountService } from './account.service';
 
 @NgModule({
     declarations: [],
@@ -23,6 +24,7 @@ import { TranscribeItemService } from './transcribe-item.service';
         FileService,
         TranscribeItemService,
         InformationMessageService,
+        AccountService,
         TokenInterceptorService,
         ErrorInterceptorService
     ]

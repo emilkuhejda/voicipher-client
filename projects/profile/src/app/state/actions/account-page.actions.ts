@@ -13,3 +13,7 @@ export const loadCurrentIdentityRequest = createAction(
 export const removeCurrentIdentityRequest = createAction(
     '[Account Page] Remove current identity request'
 );
+
+export const loadRemainingTimeRequest = createAction(
+    '[Account Page] Load remaining time request'
+);

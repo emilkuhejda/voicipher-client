@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { AccountPageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
 import { getRemainingTime } from '@profile/state/selectors';
 import { Observable } from 'rxjs';
@@ -16,6 +17,7 @@ export class AccountComponent implements OnInit {
     public constructor(private store: Store<AppState>) { }
 
     public ngOnInit(): void {
+        this.store.dispatch(AccountPageAction.loadRemainingTimeRequest());
         this.remainingTime$ = this.store.select(getRemainingTime);
     }
 

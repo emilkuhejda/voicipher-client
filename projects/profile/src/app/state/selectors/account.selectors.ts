@@ -12,3 +12,8 @@ export const getRemainingTime = createSelector(
     getAccountFeatureState,
     state => state.remainingTime
 );
+
+export const getAccountModuleError = createSelector(
+    getAccountFeatureState,
+    state => state.error
+);

@@ -64,4 +64,8 @@ export class RoutingService {
         return environment.webApiUrl + 'api/v1/information-messages/mark-as-opened/';
     }
 
+    public getSubscriptionRemainingTimeUrl(): string {
+        return environment.webApiUrl + 'api/v1/subscriptions/remaining-time/';
+    }
+
 }

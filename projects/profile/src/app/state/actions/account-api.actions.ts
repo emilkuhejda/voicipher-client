@@ -14,3 +14,13 @@ export const loadCurrentIdentitySuccess = createAction(
 export const loadCurrentIdentityFailure = createAction(
     '[Account API] Load current identity Failure'
 );
+
+export const loadRemainingTimeSuccess = createAction(
+    '[Account Page] Load remaining time success',
+    props<{ remainingTime: string }>()
+);
+
+export const loadRemainingTimeFailure = createAction(
+    '[Account Page] Load remaining time Failure',
+    props<{ error: string }>()
+);
