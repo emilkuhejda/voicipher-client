@@ -13,6 +13,7 @@ export const environment = {
         tenant: 'voicipher.onmicrosoft.com',
         clientId: '3f16cd47-52fe-44e6-96b3-131e1e57b09c',
         signUpSignIn: 'B2C_1_Voicipher_SignUp_SignIn',
+        editProfile: 'B2C_1_Voicipher_Edit',
         passwordReset: 'B2C_1_Voicipher_Password_Reset',
         authorityBase: 'https://login.microsoftonline.com/tfp/',
         b2cScopes: ['https://voicipher.onmicrosoft.com/access-api/user_impersonation'],
