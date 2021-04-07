@@ -72,7 +72,7 @@ export class TranscribeDialogComponent {
         }
 
         const transcribeModel: TranscribeModel = {
-            fileItemId: this.audioFile.id,
+            audioFileId: this.audioFile.id,
             name: this.audioFile.name,
             language: this.audioFile.language,
             isPhoneCall: this.audioFile.isPhoneCall,
@@ -99,7 +99,7 @@ export class TranscribeDialogComponent {
         }
 
         const startTimeSeconds = this.convertToSeconds(this.startTime);
-        const endTimeSeconds = this.convertToSeconds(this.endTime);
+        let endTimeSeconds = this.convertToSeconds(this.endTime);
 
         if (endTimeSeconds > this.totalTimeSeconds) {
             this.endTime = { ...this.totalTime };

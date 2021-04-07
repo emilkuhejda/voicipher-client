@@ -1,5 +1,5 @@
 export interface TranscribeModel {
-    fileItemId: string;
+    audioFileId: string;
     name: string;
     language: string;
     isPhoneCall: boolean;

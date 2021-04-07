@@ -88,7 +88,7 @@ export const sendEmailFailure = createAction(
 
 export const startProcessingAudioFileSuccess = createAction(
     '[Audio File API] Start processing audio file success',
-    props<{ successMessage: string }>()
+    props<{ audioFileId: string; successMessage: string }>()
 );
 
 export const startProcessingAudioFileFailure = createAction(

@@ -68,7 +68,7 @@ export class FileService {
 
     public transcribe(transcribeModel: TranscribeModel): Observable<any> {
         let params = new HttpParams();
-        params = params.append('fileItemId', transcribeModel.fileItemId);
+        params = params.append('fileItemId', transcribeModel.audioFileId);
         params = params.append('language', transcribeModel.language);
         params = params.append('isPhoneCall', transcribeModel.isPhoneCall ? 'true' : 'false');
         params = params.append('applicationId', environment.applicationId);

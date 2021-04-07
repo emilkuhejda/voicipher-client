@@ -1,4 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
+import { AudioFile } from '@profile/core/models/audio-file';
 import { AudioFileApiAction, AudioFilePageAction } from '../actions';
 import { FileState } from '../app.state';
 
@@ -151,15 +152,21 @@ export const fileReducer = createReducer<FileState>(
         ...state,
         error: action.error
     })),
-    on(AudioFilePageAction.startProcessingAudioFileRequest, (state, action): FileState => ({
+    on(AudioFilePageAction.startProcessingAudioFileRequest, (state): FileState => ({
         ...state,
         successMessage: '',
         error: ''
     })),
-    on(AudioFileApiAction.startProcessingAudioFileSuccess, (state, action): FileState => ({
-        ...state,
-        successMessage: action.successMessage
-    })),
+    on(AudioFileApiAction.startProcessingAudioFileSuccess, (state, action): FileState => {
+        const updatedFiles: AudioFile[] = state.audioFiles.map(audioFile => audioFile.id === action.audioFileId
+            ? { ...audioFile, recognitionStateString: 'InProgress' }
+            : audioFile)
+        return {
+            ...state,
+            audioFiles: updatedFiles,
+            successMessage: action.successMessage
+        };
+    }),
     on(AudioFileApiAction.startProcessingAudioFileFailure, (state, action): FileState => ({
         ...state,
         error: action.error

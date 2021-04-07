@@ -165,7 +165,10 @@ export class AudioFileEffects {
                 .pipe(
                     switchMap(() => this.translateService
                         .get('SuccessMessage.StartProcessing', { fileName: action.transcribeModel.name })
-                        .pipe(map(translation => AudioFileApiAction.startProcessingAudioFileSuccess({ successMessage: translation })))),
+                        .pipe(map(translation => AudioFileApiAction.startProcessingAudioFileSuccess({
+                            audioFileId: action.transcribeModel.audioFileId,
+                            successMessage: translation
+                        })))),
                     catchError((error: ErrorResponse) => this.translateService
                         .get(`ErrorCode.${error.errorCode}`)
                         .pipe(map(translation => AudioFileApiAction.startProcessingAudioFileFailure({ error: translation }))))
