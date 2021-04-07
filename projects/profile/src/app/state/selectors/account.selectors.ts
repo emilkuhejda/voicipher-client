@@ -8,6 +8,11 @@ export const getCurrentIdentity = createSelector(
     state => state.identity
 );
 
+export const getLoginError = createSelector(
+    getAccountFeatureState,
+    state => state.loginError
+);
+
 export const getRemainingTime = createSelector(
     getAccountFeatureState,
     state => state.remainingTime

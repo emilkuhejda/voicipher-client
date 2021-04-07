@@ -51,6 +51,7 @@ export interface AccountState {
     identity: Identity;
     remainingTime: string;
     error: string;
+    loginError: boolean;
 }
 
 export interface ConfigState {

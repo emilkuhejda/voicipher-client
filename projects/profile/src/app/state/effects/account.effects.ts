@@ -3,9 +3,11 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { Identity } from '@profile/core/models';
 import { AccountService } from '@profile/service/account.service';
+import { MsalService } from '@profile/service/msal.service';
 import { StorageService } from '@profile/service/storage.service';
+import { UserService } from '@profile/service/user.service';
 import { of } from 'rxjs';
-import { catchError, concatMap, map } from 'rxjs/operators';
+import { catchError, concatMap, map, switchMap } from 'rxjs/operators';
 import { AccountApiAction, AccountPageAction } from '../actions';
 
 @Injectable()
@@ -13,9 +15,29 @@ export class AccountEffects {
 
     public constructor(
         private action$: Actions,
+        private userService: UserService,
         private accountService: AccountService,
+        private msalService: MsalService,
         private storageService: StorageService,
         private translateService: TranslateService) { }
+
+    public registerUser$ = createEffect(() => this.action$
+        .pipe(
+            ofType(AccountPageAction.registerUserRequest),
+            concatMap(action => this.userService.registerUser(action.userRegistrationModel)
+                .pipe(
+                    switchMap(userRegistration => {
+                        this.msalService.completeLogin(userRegistration.token);
+
+                        return [
+                            AccountPageAction.setCurrentIdentityRequest({ identity: userRegistration.identity }),
+                            AccountApiAction.registerUserSuccess({ identity: userRegistration.identity })
+                        ];
+                    }),
+                    catchError(() => of(AccountApiAction.registerUserFailure()))
+                )
+            )
+        ));
 
     public createIdentity$ = createEffect(() => this.action$
         .pipe(

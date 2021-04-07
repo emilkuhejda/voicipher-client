@@ -13,11 +13,20 @@ const emptyIdentity: Identity = {
 const initialState: AccountState = {
     identity: emptyIdentity,
     remainingTime: '',
-    error: ''
+    error: '',
+    loginError: false,
 };
 
 export const accountReducer = createReducer<AccountState>(
     initialState,
+    on(AccountApiAction.registerUserSuccess, (state, action): AccountState => ({
+        ...state,
+        identity: { ...action.identity }
+    })),
+    on(AccountApiAction.registerUserFailure, (state, action): AccountState => ({
+        ...state,
+        loginError: true
+    })),
     on(AccountApiAction.setCurrentIdentitySuccess, (state, action): AccountState => ({
         ...state,
         identity: { ...action.identity }

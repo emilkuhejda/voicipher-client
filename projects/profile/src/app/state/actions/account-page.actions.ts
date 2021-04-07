@@ -1,5 +1,11 @@
 import { createAction, props } from '@ngrx/store';
 import { Identity } from '@profile/core/models';
+import { UserRegistrationInputModel } from '@profile/core/models/input-models';
+
+export const registerUserRequest = createAction(
+    '[Account Page] Register user request',
+    props<{ userRegistrationModel: UserRegistrationInputModel }>()
+);
 
 export const setCurrentIdentityRequest = createAction(
     '[Account Page] Set current identity request',
