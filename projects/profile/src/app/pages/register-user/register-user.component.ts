@@ -6,7 +6,7 @@ import { UserService } from '@profile/service/user.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '@profile/state/app.state';
-import { IdentityPageAction } from '@profile/state/actions';
+import { AccountPageAction } from '@profile/state/actions';
 
 @Component({
     selector: 'app-register-user',
@@ -34,7 +34,7 @@ export class RegisterUserComponent implements OnInit {
             .registerUser(userRegistrationModel)
             .subscribe(
                 userRegistration => {
-                    this.store.dispatch(IdentityPageAction.setCurrentIdentityRequest({ identity: userRegistration.identity }));
+                    this.store.dispatch(AccountPageAction.setCurrentIdentityRequest({ identity: userRegistration.identity }));
                     this.msalService.completeLogin(userRegistration.token);
                     this.router.navigate(['/']);
                 },

@@ -6,7 +6,7 @@ import { TranscribeItem } from '@profile/core/models/transcribe-item';
 import { UploadedFile } from '@profile/core/models/uploaded-file';
 import { fileReducer } from './reducers/audio-file.reducers';
 import { configReducer } from './reducers/config.reducers';
-import { identityReducer } from './reducers/Identity.reducers';
+import { accountReducer } from './reducers/account.reducers';
 import { messageReducer } from './reducers/message.reducers';
 import { recycleBinReducer } from './reducers/recycle-bin.reducers';
 
@@ -19,7 +19,7 @@ export interface AppState {
     file: FileState;
     message: MessageState;
     recycleBin: RecycleBinState;
-    identity: IdentityState;
+    account: AccountState;
     config: ConfigState;
 }
 
@@ -47,7 +47,7 @@ export interface RecycleBinState {
     error: string;
 }
 
-export interface IdentityState {
+export interface AccountState {
     identity: Identity;
 }
 
@@ -60,6 +60,6 @@ export const reducers: ActionReducerMap<AppState> = {
     file: fileReducer,
     message: messageReducer,
     recycleBin: recycleBinReducer,
-    identity: identityReducer,
+    account: accountReducer,
     config: configReducer
 };

@@ -4,31 +4,31 @@ import { Identity } from '@profile/core/models';
 import { StorageService } from '@profile/service/storage.service';
 import { of } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
-import { IdentityApiAction, IdentityPageAction } from '../actions';
+import { AccountApiAction, AccountPageAction } from '../actions';
 
 @Injectable()
-export class IdentityEffects {
+export class AccountEffects {
 
     public constructor(private action$: Actions, private storageService: StorageService) { }
 
     public createIdentity$ = createEffect(() => this.action$
         .pipe(
-            ofType(IdentityPageAction.setCurrentIdentityRequest),
+            ofType(AccountPageAction.setCurrentIdentityRequest),
             concatMap(action => {
                 this.storageService.setItem('identity', action.identity);
-                return of(IdentityApiAction.setCurrentIdentitySuccess({ identity: action.identity }));
+                return of(AccountApiAction.setCurrentIdentitySuccess({ identity: action.identity }));
             })
         ));
 
     public loadIdentity$ = createEffect(() => this.action$
         .pipe(
-            ofType(IdentityPageAction.loadCurrentIdentityRequest),
+            ofType(AccountPageAction.loadCurrentIdentityRequest),
             concatMap(() => {
                 const identity = this.storageService.getItem<Identity>('identity');
                 if (identity) {
-                    return of(IdentityApiAction.loadCurrentIdentitySuccess({ identity }));
+                    return of(AccountApiAction.loadCurrentIdentitySuccess({ identity }));
                 } else {
-                    return of(IdentityApiAction.loadCurrentIdentityFailure());
+                    return of(AccountApiAction.loadCurrentIdentityFailure());
                 }
             })
         ));

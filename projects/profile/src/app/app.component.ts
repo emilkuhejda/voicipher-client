@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { MessageModel, SidebarItemModel } from 'projects/voc-components/src/public-api';
 import { Observable, Subject } from 'rxjs';
 import { MsalService } from '@profile/service/msal.service';
-import { IdentityPageAction, MessagePageAction } from '@profile/state/actions';
+import { AccountPageAction, MessagePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
 import { Identity } from '@profile/core/models';
 import { map, takeUntil } from 'rxjs/operators';
@@ -49,7 +49,7 @@ export class AppComponent implements OnInit, OnDestroy {
         private translateService: TranslateService) { }
 
     public ngOnInit(): void {
-        this.store.dispatch(IdentityPageAction.loadCurrentIdentityRequest());
+        this.store.dispatch(AccountPageAction.loadCurrentIdentityRequest());
         this.store.dispatch(MessagePageAction.loadMessagesRequest());
 
         this.store
