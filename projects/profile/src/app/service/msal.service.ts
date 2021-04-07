@@ -34,6 +34,18 @@ export class MsalService {
         this.clientApplication.loginRedirect(environment.tenantConfig.b2cScopes);
     }
 
+    editProfile() {
+        const tenantConfig = environment.tenantConfig;
+        this.clientApplication.authority = tenantConfig.authorityBase + tenantConfig.tenant + "/" + tenantConfig.editProfile;
+        this.clientApplication.loginRedirect(tenantConfig.b2cScopes);
+    }
+
+    resetPassword() {
+        const tenantConfig = environment.tenantConfig;
+        this.clientApplication.authority = tenantConfig.authorityBase + tenantConfig.tenant + "/" + tenantConfig.passwordReset;
+        this.clientApplication.loginRedirect(tenantConfig.b2cScopes);
+    }
+
     public logout(): void {
         this.clientApplication.logout();
         this.storageService.clear();
