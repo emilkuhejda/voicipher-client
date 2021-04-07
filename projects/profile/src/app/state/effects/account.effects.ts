@@ -5,7 +5,6 @@ import { Identity } from '@profile/core/models';
 import { AccountService } from '@profile/service/account.service';
 import { MsalService } from '@profile/service/msal.service';
 import { StorageService } from '@profile/service/storage.service';
-import { UserService } from '@profile/service/user.service';
 import { of } from 'rxjs';
 import { catchError, concatMap, map, switchMap } from 'rxjs/operators';
 import { AccountApiAction, AccountPageAction } from '../actions';
@@ -15,7 +14,6 @@ export class AccountEffects {
 
     public constructor(
         private action$: Actions,
-        private userService: UserService,
         private accountService: AccountService,
         private msalService: MsalService,
         private storageService: StorageService,
@@ -24,7 +22,7 @@ export class AccountEffects {
     public registerUser$ = createEffect(() => this.action$
         .pipe(
             ofType(AccountPageAction.registerUserRequest),
-            concatMap(action => this.userService.registerUser(action.userRegistrationModel)
+            concatMap(action => this.accountService.registerUser(action.userRegistrationModel)
                 .pipe(
                     switchMap(userRegistration => {
                         this.msalService.completeLogin(userRegistration.token);

@@ -23,7 +23,7 @@ export const accountReducer = createReducer<AccountState>(
         ...state,
         identity: { ...action.identity }
     })),
-    on(AccountApiAction.registerUserFailure, (state, action): AccountState => ({
+    on(AccountApiAction.registerUserFailure, (state): AccountState => ({
         ...state,
         loginError: true
     })),

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MsalService } from './msal.service';
 import { StorageService } from './storage.service';
-import { UserService } from './user.service';
 import { RoutingService } from './routing.service';
 import { FileService } from './file.service';
 import { TokenInterceptorService } from './token-interceptor.service';
@@ -20,7 +19,6 @@ import { AccountService } from './account.service';
         MsalService,
         StorageService,
         RoutingService,
-        UserService,
         FileService,
         TranscribeItemService,
         InformationMessageService,
