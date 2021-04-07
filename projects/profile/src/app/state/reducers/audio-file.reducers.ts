@@ -160,7 +160,8 @@ export const fileReducer = createReducer<FileState>(
     on(AudioFileApiAction.startProcessingAudioFileSuccess, (state, action): FileState => {
         const updatedFiles: AudioFile[] = state.audioFiles.map(audioFile => audioFile.id === action.audioFileId
             ? { ...audioFile, recognitionStateString: 'InProgress' }
-            : audioFile)
+            : audioFile);
+
         return {
             ...state,
             audioFiles: updatedFiles,
