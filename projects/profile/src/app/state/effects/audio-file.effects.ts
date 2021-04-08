@@ -114,9 +114,9 @@ export class AudioFileEffects {
                             return [AudioFileApiAction.uploadAudioFileEventReceived()];
                         }
                     }),
-                    catchError((error: ErrorResponse) =>
+                    catchError((errorResponse: ErrorResponse) =>
                         this.translateService
-                            .get(`ErrorCode.${error.errorCode}`)
+                            .get(`ErrorCode.${errorResponse.errorCode}`)
                             .pipe(map(error => AudioFileApiAction.uploadAudioFilesFailure({
                                 identifier: action.identifier,
                                 error
@@ -155,8 +155,8 @@ export class AudioFileEffects {
                             audioFileId: action.transcribeModel.audioFileId,
                             successMessage
                         })))),
-                    catchError((error: ErrorResponse) => this.translateService
-                        .get(`ErrorCode.${error.errorCode}`)
+                    catchError((errorResponse: ErrorResponse) => this.translateService
+                        .get(`ErrorCode.${errorResponse.errorCode}`)
                         .pipe(map(error => AudioFileApiAction.startProcessingAudioFileFailure({ error }))))
                 ))
         ));

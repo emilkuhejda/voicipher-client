@@ -1,4 +1,4 @@
-import { RecognitionState } from "../types/recognition-state";
+import { RecognitionState } from '../types/recognition-state';
 
 export interface TranscribingAudio {
     fileItemId: string;

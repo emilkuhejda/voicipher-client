@@ -1,4 +1,4 @@
-import { AudioFile } from "../audio-file";
+import { AudioFile } from '../audio-file';
 
 export class AudioFileViewModel {
     public audioFile: AudioFile;

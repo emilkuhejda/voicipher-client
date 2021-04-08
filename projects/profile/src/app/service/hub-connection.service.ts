@@ -20,17 +20,17 @@ export class HubConnectionService {
         600 * 1000 // 10 minutes
     ];
 
-    private recognitionProgressChangedMethod: string = "recognition-progress";
-    private filesListChangedMethod: string = "file-list";
-    private recognitionStateChangedMethod: string = "recognition-state";
-    private recognitionErrorMethod: string = "recognition-error";
+    private recognitionProgressChangedMethod: string = 'recognition-progress';
+    private filesListChangedMethod: string = 'file-list';
+    private recognitionStateChangedMethod: string = 'recognition-state';
+    private recognitionErrorMethod: string = 'recognition-error';
 
     private hubConnection: signalR.HubConnection | undefined;
     private identity: Identity | null = null;
 
     public constructor(
         private store: Store<AppState>,
-        private RoutingService: RoutingService,
+        private routingService: RoutingService,
         private storageService: StorageService) { }
 
     public startConnection(): void {
@@ -44,7 +44,7 @@ export class HubConnectionService {
         }
 
         this.hubConnection = new signalR.HubConnectionBuilder()
-            .withUrl(this.RoutingService.getMessageHubUrl())
+            .withUrl(this.routingService.getMessageHubUrl())
             .withAutomaticReconnect(this.retryDelays)
             .configureLogging(signalR.LogLevel.Information)
             .build();
