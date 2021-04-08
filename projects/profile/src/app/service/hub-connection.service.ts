@@ -12,6 +12,14 @@ import { RecognitionState } from '@profile/core/types/recognition-state';
 @Injectable()
 export class HubConnectionService {
 
+    private retryDelays: number[] = [
+        10 * 1000, // 10 seconds
+        30 * 1000, // 30 seconds
+        60 * 1000, // 1 minute
+        300 * 1000, // 5 minutes
+        600 * 1000 // 10 minutes
+    ];
+
     private recognitionProgressChangedMethod: string = "recognition-progress";
     private filesListChangedMethod: string = "file-list";
     private recognitionStateChangedMethod: string = "recognition-state";
@@ -37,7 +45,7 @@ export class HubConnectionService {
 
         this.hubConnection = new signalR.HubConnectionBuilder()
             .withUrl(this.RoutingService.getMessageHubUrl())
-            .withAutomaticReconnect()
+            .withAutomaticReconnect(this.retryDelays)
             .configureLogging(signalR.LogLevel.Information)
             .build();
 
