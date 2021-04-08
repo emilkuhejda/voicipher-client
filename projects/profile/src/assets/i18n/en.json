@@ -139,6 +139,11 @@
     "EditProfile": "Edit profile",
     "ResetPassword": "Reset password"
   },
+  "RecognitionState": {
+    "Ready": "Ready",
+    "InProgress": "In progress",
+    "Completed": "Completed"
+  },
   "SuccessMessage": {
     "CreateAudioFile": "Audio file {{fileName}} was successfully created",
     "UpdateAudioFile": "Audio file {{fileName}} was successfully updated",

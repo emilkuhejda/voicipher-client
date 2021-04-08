@@ -15,55 +15,48 @@
             <i class="fas fa-plus-circle fa-sm text-white-50"></i> {{ 'FilesPage.CreateNew' | translate }}
         </a>
 
-        <div *ngIf="audioFile$ | async as audioFiles" class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th class="table-header">{{ 'FilesPage.Name' | translate }}</th>
-                        <th class="table-header">{{ 'FilesPage.DateCreated' | translate }}</th>
-                        <th class="table-header">{{ 'FilesPage.Status' | translate }}</th>
-                        <th class="table-header">{{ 'FilesPage.Actions' | translate }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let audioFile of audioFiles">
-                        <td><label>{{audioFile.name}}</label></td>
-                        <td><label>{{audioFile.dateCreated | date}}</label></td>
-                        <td>
-                            <div [className]="audioFile.status == 'Completed' ? 'completed-chip' : 'none-chip'">
-                                <p-chip [label]=" audioFile.status" icon="pi pi-check" styleClass="p-mr-2">
+        <ul *ngIf="audioFile$ | async as audioFiles" class="list-group">
+            <li *ngFor="let audioFile of audioFiles" class="list-group-item">
+                <div class="row">
+                    <div class="col">
+                        <div class="title">
+                            <div [className]="audioFile.status | lowercase">
+                                <label class="mr-2">{{audioFile.name}}</label>
+                                <p-chip [label]="audioFile.status | recognitionStateKey | translate"
+                                    styleClass="p-mr-2">
                                 </p-chip>
-
-                                <label *ngIf="audioFile.status == 'InProgress'"
-                                    class="text-primary text-right col-md-4">
-                                    ({{audioFile.percentageDone}}%)
-                                </label>
                             </div>
-                        </td>
-                        <td class="actions">
-                            <button pButton pRipple *ngIf="audioFile.canTranscribe" type="button" icon="pi pi-file"
-                                (click)="transcribe(audioFile)" class="p-button-rounded mr-2"
-                                [pTooltip]="'FilesPage.Transcribe' | translate" tooltipPosition="top"></button>
-                            <button pButton pRipple *ngIf="audioFile.canTranscribe" [disabled]="audioFile.isInProgress"
-                                (click)="navigateToPage('/files/edit', audioFile.id)" type="button" icon="pi pi-pencil"
-                                class="p-button-rounded mr-2" [pTooltip]="'FilesPage.Edit' | translate"
-                                tooltipPosition="top"></button>
-                            <button pButton pRipple *ngIf="audioFile.isCompleted" [disabled]="audioFile.isInProgress"
-                                (click)="navigateToPage('/files', audioFile.id)" type="button" icon="pi pi-pencil"
-                                class="p-button-rounded mr-2" [pTooltip]="'FilesPage.Detail' | translate"
-                                tooltipPosition="top"></button>
-                            <button pButton pRipple *ngIf="audioFile.isCompleted" [disabled]="audioFile.isInProgress"
-                                (click)="sendEmail(audioFile)" type="button" icon="pi pi-envelope"
-                                class="p-button-rounded mr-2" [pTooltip]="'FilesPage.SendEmail' | translate"
-                                tooltipPosition="top"></button>
-                            <button pButton pRipple [disabled]="audioFile.isInProgress" type="button" icon="pi pi-times"
-                                (click)="delete($event, audioFile)" class="p-button-rounded p-button-danger"
-                                [pTooltip]="'FilesPage.Delete' | translate" tooltipPosition="top"></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                        </div>
+                        <div class="subtitle">
+                            <span class="date">{{audioFile.dateCreated | date}}</span>
+                            <span *ngIf="audioFile.status == 'InProgress'" class="text-primary ml-2">
+                                ({{audioFile.percentageDone}}%)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="buttons col-3 text-right">
+                        <button pButton pRipple *ngIf="audioFile.canTranscribe" type="button" icon="pi pi-file"
+                            (click)="transcribe(audioFile)" class="p-button-rounded mr-2"
+                            [pTooltip]="'FilesPage.Transcribe' | translate" tooltipPosition="top"></button>
+                        <button pButton pRipple *ngIf="audioFile.canTranscribe" [disabled]="audioFile.isInProgress"
+                            (click)="navigateToPage('/files/edit', audioFile.id)" type="button" icon="pi pi-pencil"
+                            class="p-button-rounded mr-2" [pTooltip]="'FilesPage.Edit' | translate"
+                            tooltipPosition="top"></button>
+                        <button pButton pRipple *ngIf="audioFile.isCompleted" [disabled]="audioFile.isInProgress"
+                            (click)="navigateToPage('/files', audioFile.id)" type="button" icon="pi pi-pencil"
+                            class="p-button-rounded mr-2" [pTooltip]="'FilesPage.Detail' | translate"
+                            tooltipPosition="top"></button>
+                        <button pButton pRipple *ngIf="audioFile.isCompleted" [disabled]="audioFile.isInProgress"
+                            (click)="sendEmail(audioFile)" type="button" icon="pi pi-envelope"
+                            class="p-button-rounded mr-2" [pTooltip]="'FilesPage.SendEmail' | translate"
+                            tooltipPosition="top"></button>
+                        <button pButton pRipple [disabled]="audioFile.isInProgress" type="button" icon="pi pi-times"
+                            (click)="delete($event, audioFile)" class="p-button-rounded p-button-danger"
+                            [pTooltip]="'FilesPage.Delete' | translate" tooltipPosition="top"></button>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
 

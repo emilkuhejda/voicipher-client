@@ -1,9 +1,38 @@
-:host ::ng-deep .none-chip .p-chip {
-    background: var(--primary-color);
-    color: var(--primary-color-text);
-}
+:host ::ng-deep {
+    .none .p-chip {
+        background: var(--bluegray-500);
+        color: var(--primary-color-text);
+    }
 
-:host ::ng-deep .completed-chip .p-chip {
-    background: var(--green-500);
-    color: var(--primary-color-text);
+    .converting .p-chip,
+    .prepared .p-chip,
+    .inprogress .p-chip {
+        background: var(--blue-500);
+        color: var(--primary-color-text);
+    }
+
+    .completed .p-chip {
+        background: var(--green-500);
+        color: var(--primary-color-text);
+    }
+
+    .title label {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .subtitle .date {
+        font-style: italic;
+    }
+    
+    .p-chip {
+        font-size: 10px;
+        vertical-align: top;
+    }
+
+    .buttons {
+        align-items: center;
+        display: flex;
+        justify-content: flex-end;
+    }
 }
