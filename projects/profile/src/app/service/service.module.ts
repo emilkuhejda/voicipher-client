@@ -9,6 +9,7 @@ import { ErrorInterceptorService } from './error-interceptor.service';
 import { InformationMessageService } from './information-message.service';
 import { TranscribeItemService } from './transcribe-item.service';
 import { AccountService } from './account.service';
+import { HubConnectionService } from './hub-connection.service';
 
 @NgModule({
     declarations: [],
@@ -23,6 +24,7 @@ import { AccountService } from './account.service';
         TranscribeItemService,
         InformationMessageService,
         AccountService,
+        HubConnectionService,
         TokenInterceptorService,
         ErrorInterceptorService
     ]

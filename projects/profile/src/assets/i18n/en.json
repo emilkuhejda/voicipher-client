@@ -151,6 +151,9 @@
     "UpdateTranscript": "Transcript was updated",
     "StartProcessing": "The file {{name}} started processing"
   },
+  "Errors": {
+    "RecognitionError": "File {{fileName}} was not successfully transcribed. Please try it again or contact us."
+  },
   "ErrorCode": {
     "EC100": "Uploaded file was not found",
     "EC101": "File was not found",

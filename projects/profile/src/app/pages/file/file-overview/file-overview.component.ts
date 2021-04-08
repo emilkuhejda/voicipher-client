@@ -4,14 +4,14 @@ import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
-import { getAudioFiles } from '@profile/state/selectors';
+import { getAudioFileViewModels } from '@profile/state/selectors';
 import { ConfirmationService } from 'primeng/api';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { AudioFileViewModel } from './audio-file.view.model';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SendEmailDialogComponent } from '@profile/components/send-email-dialog/send-email-dialog.component';
 import { TranscribeDialogComponent } from '@profile/components/transcribe-dialog/transcribe-dialog.component';
+import { map } from 'rxjs/operators';
+import { AudioFileViewModel } from '@profile/core/models/view-models';
 
 @Component({
     selector: 'app-file-overview',
@@ -31,16 +31,8 @@ export class FileOverviewComponent implements OnInit {
 
     public ngOnInit(): void {
         this.store.dispatch(AudioFilePageAction.loadAudioFilesRequest());
-
-        this.audioFile$ = this.store
-            .select(getAudioFiles)
-            .pipe(
-                map(audioFiles =>
-                    audioFiles
-                        .slice()
-                        .sort((a, b) => b.dateCreated.getTime() - a.dateCreated.getTime())
-                        .map(x => new AudioFileViewModel(x)))
-            );
+        this.audioFile$ = this.store.select(getAudioFileViewModels)
+            .pipe(map(audioFiles => audioFiles.slice().sort((a, b) => b.dateCreated.getTime() - a.dateCreated.getTime())));
     }
 
     public navigateToPage(path: string, audioFileId: string): void {
