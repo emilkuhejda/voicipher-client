@@ -1,4 +1,4 @@
-import { AudioFile } from '@profile/core/models/audio-file';
+import { AudioFile } from "../audio-file";
 
 export class AudioFileViewModel {
     public audioFile: AudioFile;

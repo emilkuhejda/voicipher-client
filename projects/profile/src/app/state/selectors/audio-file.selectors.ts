@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AudioFileViewModel } from '../../pages/file/file-overview/audio-file.view.model';
+import { AudioFileViewModel } from '@profile/core/models/view-models';
 import { FileState } from '../app.state';
 
 const getFileFeatureState = createFeatureSelector<FileState>('file');

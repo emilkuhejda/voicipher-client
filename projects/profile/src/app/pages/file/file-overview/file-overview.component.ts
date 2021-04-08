@@ -7,11 +7,11 @@ import { AppState } from '@profile/state/app.state';
 import { getAudioFileViewModels } from '@profile/state/selectors';
 import { ConfirmationService } from 'primeng/api';
 import { Observable } from 'rxjs';
-import { AudioFileViewModel } from './audio-file.view.model';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SendEmailDialogComponent } from '@profile/components/send-email-dialog/send-email-dialog.component';
 import { TranscribeDialogComponent } from '@profile/components/transcribe-dialog/transcribe-dialog.component';
 import { map } from 'rxjs/operators';
+import { AudioFileViewModel } from '@profile/core/models/view-models';
 
 @Component({
     selector: 'app-file-overview',
