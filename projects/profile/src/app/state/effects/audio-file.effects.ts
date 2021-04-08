@@ -150,7 +150,7 @@ export class AudioFileEffects {
             concatMap(action => this.fileService.transcribe(action.transcribeModel)
                 .pipe(
                     switchMap(() => this.translateService
-                        .get('SuccessMessage.StartProcessing', { fileName: action.transcribeModel.name })
+                        .get('SuccessMessage.StartProcessing', { name: action.transcribeModel.name })
                         .pipe(map(successMessage => AudioFileApiAction.startProcessingAudioFileSuccess({
                             audioFileId: action.transcribeModel.audioFileId,
                             successMessage
