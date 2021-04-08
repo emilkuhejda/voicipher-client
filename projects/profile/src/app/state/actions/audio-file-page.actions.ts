@@ -64,6 +64,11 @@ export const changeRecognitionStateRequest = createAction(
     props<{ audioFileId: string; recognitionState: RecognitionState }>()
 );
 
+export const setRecognitionErrorRequest = createAction(
+    '[Audio File Page] setRecognitionError',
+    props<{ error: string }>()
+);
+
 export const sendEmailRequest = createAction(
     '[Audio File Page] Send email request',
     props<{ audioFileId: string; recipient: string }>()
