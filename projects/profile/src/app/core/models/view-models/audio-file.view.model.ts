@@ -1,4 +1,4 @@
-import { AudioFile } from '@profile/core/models/audio-file';
+import { AudioFile } from '../audio-file';
 
 export class AudioFileViewModel {
     public audioFile: AudioFile;
@@ -7,14 +7,16 @@ export class AudioFileViewModel {
     public name: string;
     public dateCreated: Date;
     public status: string;
+    public percentageDone: number;
 
-    public constructor(audioFile: AudioFile) {
+    public constructor(audioFile: AudioFile, percentageDone: number) {
         this.audioFile = audioFile;
 
         this.id = audioFile.id;
         this.name = audioFile.name;
         this.dateCreated = audioFile.dateCreated;
         this.status = audioFile.recognitionStateString;
+        this.percentageDone = percentageDone;
     }
 
     public get canTranscribe(): boolean {

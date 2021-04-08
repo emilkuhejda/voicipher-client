@@ -25,6 +25,7 @@ import {
 import { MessageViewModel } from './pages/message/message-view.model';
 import { Language } from './core/types/language';
 import { LanguageHelper } from './core/utils/language-helper';
+import { HubConnectionService } from './service/hub-connection.service';
 
 type ToastKey = 'primary' | 'secondary';
 
@@ -47,6 +48,7 @@ export class AppComponent implements OnInit, OnDestroy {
         private store: Store<AppState>,
         private messageService: MessageService,
         private msalService: MsalService,
+        private hubConnectionService: HubConnectionService,
         private translateService: TranslateService) { }
 
     public ngOnInit(): void {
@@ -91,6 +93,9 @@ export class AppComponent implements OnInit, OnDestroy {
                 tap(identity => {
                     if (identity.id !== '') {
                         this.store.dispatch(MessagePageAction.loadMessagesRequest());
+                        this.hubConnectionService.startConnection();
+                    } else {
+                        this.hubConnectionService.stopConnection();
                     }
                 }));
         this.activeMessage$ = this.store.select(getActiveMessagesCount);
@@ -122,6 +127,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
+        this.hubConnectionService.stopConnection();
         this.destroy$.next();
         this.destroy$.unsubscribe();
     }

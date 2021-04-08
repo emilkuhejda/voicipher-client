@@ -25,7 +25,7 @@ export class AudioFileEffects {
                     map(audioFile => AudioFileApiAction.loadCurrentAudioFileSuccess({ audioFile })),
                     catchError(() => this.translateService
                         .get('ErrorMessage')
-                        .pipe(map(translation => AudioFileApiAction.loadCurrentAudioFileFailure({ error: translation }))))
+                        .pipe(map(error => AudioFileApiAction.loadCurrentAudioFileFailure({ error }))))
                 ))
         ));
 
@@ -37,7 +37,7 @@ export class AudioFileEffects {
                     map(transcribeItems => AudioFileApiAction.loadCurrentTranscribeItemsSuccess({ transcribeItems })),
                     catchError(() => this.translateService
                         .get('ErrorMessage')
-                        .pipe(map(translation => AudioFileApiAction.loadCurrentTranscribeItemsFailure({ error: translation }))))
+                        .pipe(map(error => AudioFileApiAction.loadCurrentTranscribeItemsFailure({ error }))))
                 ))
         ));
 
@@ -52,7 +52,7 @@ export class AudioFileEffects {
                     })),
                     catchError(() => this.translateService
                         .get('ErrorMessage')
-                        .pipe(map(translation => AudioFileApiAction.loadCurrentAudioBlobSourceFailure({ error: translation }))))
+                        .pipe(map(error => AudioFileApiAction.loadCurrentAudioBlobSourceFailure({ error }))))
                 ))
         ));
 
@@ -63,10 +63,10 @@ export class AudioFileEffects {
                 .pipe(
                     switchMap(() => this.translateService
                         .get('SuccessMessage.UpdateTranscript')
-                        .pipe(map(translation => AudioFileApiAction.updateTranscriptSuccess({ successMessage: translation })))),
+                        .pipe(map(successMessage => AudioFileApiAction.updateTranscriptSuccess({ successMessage })))),
                     catchError(() => this.translateService
                         .get('ErrorMessage')
-                        .pipe(map(translation => AudioFileApiAction.updateTranscriptFailure({ error: translation }))))
+                        .pipe(map(error => AudioFileApiAction.updateTranscriptFailure({ error }))))
                 ))
         ));
 
@@ -78,7 +78,7 @@ export class AudioFileEffects {
                     map(audioFiles => AudioFileApiAction.loadAudioFilesSuccess({ audioFiles })),
                     catchError(() => this.translateService
                         .get('ErrorMessage')
-                        .pipe(map(translation => AudioFileApiAction.loadAudioFilesFailure({ error: translation }))))
+                        .pipe(map(error => AudioFileApiAction.loadAudioFilesFailure({ error }))))
                 ))
         ));
 
@@ -103,10 +103,10 @@ export class AudioFileEffects {
                         } else if (event instanceof HttpResponse) {
                             return this.translateService
                                 .get(translationKey, { fileName: action.fileFormData.name })
-                                .pipe(switchMap(translation => [
+                                .pipe(switchMap(successMessage => [
                                     AudioFileApiAction.uploadAudioFileSuccess({
                                         identifier: action.identifier,
-                                        successMessage: translation
+                                        successMessage
                                     }),
                                     AudioFilePageAction.loadAudioFilesRequest()
                                 ]));
@@ -114,12 +114,12 @@ export class AudioFileEffects {
                             return [AudioFileApiAction.uploadAudioFileEventReceived()];
                         }
                     }),
-                    catchError((error: ErrorResponse) =>
+                    catchError((errorResponse: ErrorResponse) =>
                         this.translateService
-                            .get(`ErrorCode.${error.errorCode}`)
-                            .pipe(map(translation => AudioFileApiAction.uploadAudioFilesFailure({
+                            .get(`ErrorCode.${errorResponse.errorCode}`)
+                            .pipe(map(error => AudioFileApiAction.uploadAudioFilesFailure({
                                 identifier: action.identifier,
-                                error: translation
+                                error
                             }))))
                 );
             })
@@ -132,14 +132,14 @@ export class AudioFileEffects {
                 .pipe(
                     switchMap(() => this.translateService
                         .get('SuccessMessage.DeleteAudioFile', { fileItem: action.audioFile.name })
-                        .pipe(switchMap(translation => [
-                            AudioFileApiAction.deleteAudioFileSuccess({ successMessage: translation }),
+                        .pipe(switchMap(successMessage => [
+                            AudioFileApiAction.deleteAudioFileSuccess({ successMessage }),
                             AudioFilePageAction.loadAudioFilesRequest()
                         ]))
                     ),
                     catchError(() => this.translateService
                         .get('ErrorMessage')
-                        .pipe(map(translation => AudioFileApiAction.loadAudioFilesFailure({ error: translation })))
+                        .pipe(map(error => AudioFileApiAction.loadAudioFilesFailure({ error })))
                     )
                 ))
         ));
@@ -150,15 +150,23 @@ export class AudioFileEffects {
             concatMap(action => this.fileService.transcribe(action.transcribeModel)
                 .pipe(
                     switchMap(() => this.translateService
-                        .get('SuccessMessage.StartProcessing', { fileName: action.transcribeModel.name })
-                        .pipe(map(translation => AudioFileApiAction.startProcessingAudioFileSuccess({
+                        .get('SuccessMessage.StartProcessing', { name: action.transcribeModel.name })
+                        .pipe(map(successMessage => AudioFileApiAction.startProcessingAudioFileSuccess({
                             audioFileId: action.transcribeModel.audioFileId,
-                            successMessage: translation
+                            successMessage
                         })))),
-                    catchError((error: ErrorResponse) => this.translateService
-                        .get(`ErrorCode.${error.errorCode}`)
-                        .pipe(map(translation => AudioFileApiAction.startProcessingAudioFileFailure({ error: translation }))))
+                    catchError((errorResponse: ErrorResponse) => this.translateService
+                        .get(`ErrorCode.${errorResponse.errorCode}`)
+                        .pipe(map(error => AudioFileApiAction.startProcessingAudioFileFailure({ error }))))
                 ))
+        ));
+
+    public displayError$ = createEffect(() => this.action$
+        .pipe(
+            ofType(AudioFilePageAction.displayRecognitionErrorRequest),
+            concatMap(action => this.translateService
+                .get('Errors.RecognitionError', { fileName: action.fileName })
+                .pipe(map(error => AudioFileApiAction.displayRecognitionErrorSuccess({ error }))))
         ));
 
     public sendEmail$ = createEffect(() => this.action$
@@ -168,10 +176,10 @@ export class AudioFileEffects {
                 .pipe(
                     concatMap(() => this.translateService
                         .get('SuccessMessage.SendEmail')
-                        .pipe(map(translation => AudioFileApiAction.sendEmailSuccess({ successMessage: translation })))),
+                        .pipe(map(successMessage => AudioFileApiAction.sendEmailSuccess({ successMessage })))),
                     catchError(() => this.translateService
                         .get('ErrorMessage')
-                        .pipe(map(translation => AudioFileApiAction.sendEmailFailure({ error: translation }))))
+                        .pipe(map(error => AudioFileApiAction.sendEmailFailure({ error }))))
                 ))
         ));
 
