@@ -5,6 +5,9 @@ import { Identity } from '@profile/core/models';
 import { StorageService } from './storage.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '@profile/state/app.state';
+import { AudioFilePageAction } from '@profile/state/actions';
+import { CacheItem } from '@profile/core/models/cache-item';
+import { RecognitionState } from '@profile/core/types/recognition-state';
 
 @Injectable()
 export class HubConnectionService {
@@ -40,10 +43,13 @@ export class HubConnectionService {
 
         this.hubConnection.start();
 
-        this.hubConnection.on(`${this.recognitionProgressChangedMethod}-${this.identity.id}`, this.onRecognitionProgressChanged);
-        this.hubConnection.on(`${this.filesListChangedMethod}-${this.identity.id}`, this.onFilesListChanged);
-        this.hubConnection.on(`${this.recognitionStateChangedMethod}-${this.identity.id}`, this.onRecognitionStateChanged);
-        this.hubConnection.on(`${this.recognitionErrorMethod}-${this.identity.id}`, this.onRecognitionError);
+        this.hubConnection.on(`${this.recognitionProgressChangedMethod}-${this.identity.id}`,
+            (cacheItem: CacheItem) => this.onRecognitionProgressChanged(cacheItem));
+        this.hubConnection.on(`${this.filesListChangedMethod}-${this.identity.id}`, () => this.onFilesListChanged());
+        this.hubConnection.on(`${this.recognitionStateChangedMethod}-${this.identity.id}`,
+            (audioFileId: string, recognitionState: RecognitionState) => this.onRecognitionStateChanged(audioFileId, recognitionState));
+        this.hubConnection.on(`${this.recognitionErrorMethod}-${this.identity.id}`,
+            (fileName: string) => this.onRecognitionError(fileName));
     }
 
     public stopConnection(): void {
@@ -63,20 +69,24 @@ export class HubConnectionService {
         this.hubConnection = undefined;
     }
 
-    private onRecognitionProgressChanged(): void {
+    private onRecognitionProgressChanged(cacheItem: CacheItem): void {
         console.log('recognition changed');
+        console.log(cacheItem);
     }
 
     private onFilesListChanged(): void {
-        console.log('file list changed');
+        this.store.dispatch(AudioFilePageAction.loadAudioFilesRequest());
     }
 
-    private onRecognitionStateChanged(): void {
+    private onRecognitionStateChanged(audioFileId: string, recognitionState: RecognitionState): void {
         console.log('recognition state changed');
+        console.log(audioFileId);
+        console.log(recognitionState);
     }
 
-    private onRecognitionError(): void {
+    private onRecognitionError(fileName: string): void {
         console.log('recognition error');
+        console.log(fileName);
     }
 
 }
