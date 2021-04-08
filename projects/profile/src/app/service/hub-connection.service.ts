@@ -78,14 +78,10 @@ export class HubConnectionService {
     }
 
     private onRecognitionStateChanged(audioFileId: string, recognitionState: RecognitionState): void {
-        // console.log('recognition state changed');
-        // console.log(audioFileId);
-        // console.log(recognitionState);
+        this.store.dispatch(AudioFilePageAction.changeRecognitionStateRequest({ audioFileId, recognitionState }));
     }
 
     private onRecognitionError(fileName: string): void {
-        // console.log('recognition error');
-        // console.log(fileName);
     }
 
 }

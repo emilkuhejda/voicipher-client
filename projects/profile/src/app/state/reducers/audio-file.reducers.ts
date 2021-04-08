@@ -178,6 +178,17 @@ export const fileReducer = createReducer<FileState>(
             audioFiles: [...updatedFiles]
         };
     }),
+    on(AudioFilePageAction.changeRecognitionStateRequest, (state, action): FileState => {
+        const updatedFiles: AudioFile[] = state.audioFiles
+            .map(audioFile => audioFile.id === action.audioFileId
+                ? { ...audioFile, recognitionStateString: action.recognitionState }
+                : audioFile);
+
+        return {
+            ...state,
+            audioFiles: [...updatedFiles]
+        };
+    }),
     on(AudioFilePageAction.sendEmailRequest, (state): FileState => ({
         ...state,
         successMessage: '',

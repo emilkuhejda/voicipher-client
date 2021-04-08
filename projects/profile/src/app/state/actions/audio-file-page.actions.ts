@@ -3,6 +3,7 @@ import { AudioFile } from '@profile/core/models/audio-file';
 import { FileFormData } from '@profile/core/models/file-form-data';
 import { TranscribeModel } from '@profile/core/models/transcribe-model';
 import { TranscribingAudio } from '@profile/core/models/transcribing-audio';
+import { RecognitionState } from '@profile/core/types/recognition-state';
 
 export const loadCurrentAudioFileRequest = createAction(
     '[Audio File Page] Load current audio file request',
@@ -56,6 +57,11 @@ export const startProcessingAudioFileRequest = createAction(
 export const changeRecognitionProgressRequest = createAction(
     '[Audio File Page] Change recognition progress request',
     props<{ transcribingAudio: TranscribingAudio }>()
+);
+
+export const changeRecognitionStateRequest = createAction(
+    '[Audio File Page] Change recognition state request',
+    props<{ audioFileId: string; recognitionState: RecognitionState }>()
 );
 
 export const sendEmailRequest = createAction(
