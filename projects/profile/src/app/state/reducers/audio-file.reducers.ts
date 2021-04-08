@@ -1,12 +1,20 @@
 import { createReducer, on } from '@ngrx/store';
 import { AudioFile } from '@profile/core/models/audio-file';
+import { TranscribingAudio } from '@profile/core/models/transcribing-audio';
 import { AudioFileApiAction, AudioFilePageAction } from '../actions';
 import { FileState } from '../app.state';
+
+const emptyTranscribingAudio: TranscribingAudio = {
+    fileItemId: '',
+    recognitionState: 'None',
+    percentageDone: 0
+};
 
 const initialState: FileState = {
     currentUploadProgress: 0,
     currentFileIdentifier: '',
     uploadedFiles: [],
+    currentTranscribingAudio: emptyTranscribingAudio,
     currentAudioFile: undefined,
     currentAudioBlobSource: { transcribeItemId: '', blob: undefined },
     currentTranscribeItems: [],
@@ -158,6 +166,18 @@ export const fileReducer = createReducer<FileState>(
         ...state,
         error: action.error
     })),
+    on(AudioFilePageAction.changeRecognitionProgressRequest, (state, action): FileState => {
+        const updatedFiles: AudioFile[] = state.audioFiles
+            .map(audioFile => audioFile.id === action.transcribingAudio.fileItemId
+                ? { ...audioFile, recognitionStateString: action.transcribingAudio.recognitionState }
+                : audioFile);
+
+        return {
+            ...state,
+            currentTranscribingAudio: action.transcribingAudio,
+            audioFiles: [...updatedFiles]
+        };
+    }),
     on(AudioFilePageAction.sendEmailRequest, (state): FileState => ({
         ...state,
         successMessage: '',

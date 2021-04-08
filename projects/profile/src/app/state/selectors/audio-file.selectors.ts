@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { AudioFileViewModel } from '../../pages/file/file-overview/audio-file.view.model';
 import { FileState } from '../app.state';
 
 const getFileFeatureState = createFeatureSelector<FileState>('file');
@@ -21,6 +22,17 @@ export const getCurrentTranscribeItems = createSelector(
 export const getAudioFiles = createSelector(
     getFileFeatureState,
     state => state.audioFiles
+);
+
+export const getAudioFileViewModels = createSelector(
+    getFileFeatureState,
+    state => state.audioFiles.map(audioFile => {
+        const percentageDone = state.currentTranscribingAudio.fileItemId === audioFile.id
+            ? state.currentTranscribingAudio.percentageDone
+            : 0;
+
+        return new AudioFileViewModel(audioFile, percentageDone);
+    })
 );
 
 export const getUploadedFiles = createSelector(

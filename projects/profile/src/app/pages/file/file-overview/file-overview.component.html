@@ -33,6 +33,11 @@
                             <div [className]="audioFile.status == 'Completed' ? 'completed-chip' : 'none-chip'">
                                 <p-chip [label]=" audioFile.status" icon="pi pi-check" styleClass="p-mr-2">
                                 </p-chip>
+
+                                <label *ngIf="audioFile.status == 'InProgress'"
+                                    class="text-primary text-right col-md-4">
+                                    ({{audioFile.percentageDone}}%)
+                                </label>
                             </div>
                         </td>
                         <td class="actions">

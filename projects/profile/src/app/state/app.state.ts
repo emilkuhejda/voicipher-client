@@ -9,6 +9,7 @@ import { configReducer } from './reducers/config.reducers';
 import { accountReducer } from './reducers/account.reducers';
 import { messageReducer } from './reducers/message.reducers';
 import { recycleBinReducer } from './reducers/recycle-bin.reducers';
+import { TranscribingAudio } from '@profile/core/models/transcribing-audio';
 
 interface BlobSource {
     transcribeItemId: string;
@@ -27,6 +28,7 @@ export interface FileState {
     currentUploadProgress: number;
     currentFileIdentifier: string;
     uploadedFiles: UploadedFile[];
+    currentTranscribingAudio: TranscribingAudio;
     currentAudioFile: AudioFile | undefined;
     currentAudioBlobSource: BlobSource;
     currentTranscribeItems: TranscribeItem[];

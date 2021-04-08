@@ -70,8 +70,7 @@ export class HubConnectionService {
     }
 
     private onRecognitionProgressChanged(transcribingAudio: TranscribingAudio): void {
-        console.log('recognition changed');
-        console.log(transcribingAudio);
+        this.store.dispatch(AudioFilePageAction.changeRecognitionProgressRequest({ transcribingAudio }));
     }
 
     private onFilesListChanged(): void {
@@ -79,14 +78,14 @@ export class HubConnectionService {
     }
 
     private onRecognitionStateChanged(audioFileId: string, recognitionState: RecognitionState): void {
-        console.log('recognition state changed');
-        console.log(audioFileId);
-        console.log(recognitionState);
+        // console.log('recognition state changed');
+        // console.log(audioFileId);
+        // console.log(recognitionState);
     }
 
     private onRecognitionError(fileName: string): void {
-        console.log('recognition error');
-        console.log(fileName);
+        // console.log('recognition error');
+        // console.log(fileName);
     }
 
 }
