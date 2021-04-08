@@ -189,7 +189,11 @@ export const fileReducer = createReducer<FileState>(
             audioFiles: [...updatedFiles]
         };
     }),
-    on(AudioFilePageAction.setRecognitionErrorRequest, (state, action): FileState => ({
+    on(AudioFilePageAction.displayRecognitionErrorRequest, (state, action): FileState => ({
+        ...state,
+        error: ''
+    })),
+    on(AudioFileApiAction.displayRecognitionErrorSuccess, (state, action): FileState => ({
         ...state,
         error: action.error
     })),

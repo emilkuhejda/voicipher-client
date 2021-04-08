@@ -91,6 +91,11 @@ export const sendEmailSuccess = createAction(
     props<{ successMessage: string }>()
 );
 
+export const displayRecognitionErrorSuccess = createAction(
+    '[Audio File API] Display recognition error success',
+    props<{ error: string }>()
+);
+
 export const sendEmailFailure = createAction(
     '[Audio File API] Send email failure',
     props<{ error: string }>()

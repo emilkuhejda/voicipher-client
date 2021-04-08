@@ -161,6 +161,14 @@ export class AudioFileEffects {
                 ))
         ));
 
+    public displayError$ = createEffect(() => this.action$
+        .pipe(
+            ofType(AudioFilePageAction.displayRecognitionErrorRequest),
+            concatMap(action => this.translateService
+                .get('Errors.RecognitionError', { fileName: action.fileName })
+                .pipe(map(error => AudioFileApiAction.displayRecognitionErrorSuccess({ error }))))
+        ));
+
     public sendEmail$ = createEffect(() => this.action$
         .pipe(
             ofType(AudioFilePageAction.sendEmailRequest),

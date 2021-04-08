@@ -8,7 +8,6 @@ import { AppState } from '@profile/state/app.state';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { TranscribingAudio } from '@profile/core/models/transcribing-audio';
 import { RecognitionState } from '@profile/core/types/recognition-state';
-import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class HubConnectionService {
@@ -24,8 +23,7 @@ export class HubConnectionService {
     public constructor(
         private store: Store<AppState>,
         private RoutingService: RoutingService,
-        private storageService: StorageService,
-        private translateService: TranslateService) { }
+        private storageService: StorageService) { }
 
     public startConnection(): void {
         if (this.hubConnection !== undefined) {
@@ -84,9 +82,7 @@ export class HubConnectionService {
     }
 
     private onRecognitionError(fileName: string): void {
-        this.translateService
-            .get('Errors.RecognitionError', { fileName })
-            .subscribe(error => this.store.dispatch(AudioFilePageAction.setRecognitionErrorRequest({ error })));
+        this.store.dispatch(AudioFilePageAction.displayRecognitionErrorRequest({ fileName }));
     }
 
 }
