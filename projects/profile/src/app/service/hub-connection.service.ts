@@ -6,7 +6,7 @@ import { StorageService } from './storage.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '@profile/state/app.state';
 import { AudioFilePageAction } from '@profile/state/actions';
-import { CacheItem } from '@profile/core/models/cache-item';
+import { TranscribingAudio } from '@profile/core/models/transcribing-audio';
 import { RecognitionState } from '@profile/core/types/recognition-state';
 
 @Injectable()
@@ -44,7 +44,7 @@ export class HubConnectionService {
         this.hubConnection.start();
 
         this.hubConnection.on(`${this.recognitionProgressChangedMethod}-${this.identity.id}`,
-            (cacheItem: CacheItem) => this.onRecognitionProgressChanged(cacheItem));
+            (transcribingAudio: TranscribingAudio) => this.onRecognitionProgressChanged(transcribingAudio));
         this.hubConnection.on(`${this.filesListChangedMethod}-${this.identity.id}`, () => this.onFilesListChanged());
         this.hubConnection.on(`${this.recognitionStateChangedMethod}-${this.identity.id}`,
             (audioFileId: string, recognitionState: RecognitionState) => this.onRecognitionStateChanged(audioFileId, recognitionState));
@@ -69,9 +69,9 @@ export class HubConnectionService {
         this.hubConnection = undefined;
     }
 
-    private onRecognitionProgressChanged(cacheItem: CacheItem): void {
+    private onRecognitionProgressChanged(transcribingAudio: TranscribingAudio): void {
         console.log('recognition changed');
-        console.log(cacheItem);
+        console.log(transcribingAudio);
     }
 
     private onFilesListChanged(): void {

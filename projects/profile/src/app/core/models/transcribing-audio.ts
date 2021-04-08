@@ -1,6 +1,6 @@
 import { RecognitionState } from "../types/recognition-state";
 
-export interface CacheItem {
+export interface TranscribingAudio {
     fileItemId: string;
     recognitionState: RecognitionState;
     percentageDone: number;
