@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Language } from '@profile/core/types/language';
 import { LanguageHelper } from '@profile/core/utils/language-helper';
-import { MessagePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
 import { getCurrentLanguage, getMessages } from '@profile/state/selectors';
 import { Observable, Subject } from 'rxjs';
@@ -23,7 +22,6 @@ export class MessageOverviewComponent implements OnInit, OnDestroy {
     public constructor(private store: Store<AppState>) { }
 
     public ngOnInit(): void {
-        this.store.dispatch(MessagePageAction.loadMessagesRequest());
         this.store
             .select(getCurrentLanguage)
             .pipe(takeUntil(this.destroy$))
