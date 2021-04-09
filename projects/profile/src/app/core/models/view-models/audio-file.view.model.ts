@@ -24,7 +24,9 @@ export class AudioFileViewModel {
     }
 
     public get isInProgress(): boolean {
-        return this.audioFile.recognitionStateString === 'InProgress';
+        return this.audioFile.recognitionStateString === 'Converting'
+            || this.audioFile.recognitionStateString === 'Prepared'
+            || this.audioFile.recognitionStateString === 'InProgress';
     }
 
     public get isCompleted(): boolean {

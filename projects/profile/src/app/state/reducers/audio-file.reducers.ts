@@ -166,6 +166,10 @@ export const fileReducer = createReducer<FileState>(
         ...state,
         error: action.error
     })),
+    on(AudioFileApiAction.loadProcessingProgressSuccess, (state, action): FileState => ({
+        ...state,
+        currentTranscribingAudio: { ...action.transcribingAudio }
+    })),
     on(AudioFilePageAction.changeRecognitionProgressRequest, (state, action): FileState => {
         const updatedFiles: AudioFile[] = state.audioFiles
             .map(audioFile => audioFile.id === action.transcribingAudio.fileItemId

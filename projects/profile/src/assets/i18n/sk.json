@@ -1,1 +1,179 @@
-{}
+{
+  "Voicipher": "Voicipher",
+  "Copyright": "Copyright &copy; Voicipher 2021",
+  "AppComponent": {
+    "UploadingFile": "Uploading file"
+  },
+  "ErrorMessage": "Error occurred, please try again later",
+  "Sidebar": {
+    "Overview": "Overview",
+    "Files": "Files",
+    "Create": "Create",
+    "MessageCenter": "Message center",
+    "RecycleBin": "Recycle bin"
+  },
+  "Topbar": {
+    "Profile": "Profile",
+    "Logout": "Logout"
+  },
+  "MessageBox": {
+    "MessageCenter": "Message Center",
+    "ReadMore": "Read More Messages"
+  },
+  "LogoutDialog": {
+    "Title": "Ready to Leave?",
+    "Body": "Select \"Logout\" below if you are ready to end your current session.",
+    "Cancel": "Cancel",
+    "Logout": "Logout"
+  },
+  "FileForm": {
+    "FileName": "File name",
+    "Language": "Language",
+    "Select": "-Select-",
+    "EnglishAU": "English (Australia)",
+    "EnglishGB": "English (United Kingdom)",
+    "EnglishUS": "English (United States)",
+    "German": "German (Germany)",
+    "French": "French (France)",
+    "Spanish": "Spanish (Spain)",
+    "Italian": "Italian (Italy)",
+    "Portuguese": "Portuguese (Portugal)",
+    "Slovak": "Slovak (Slovakia)",
+    "Czech": "Czech (Czech Republic)",
+    "Polish": "Polish (Poland)",
+    "Hungarian": "Hungarian (Hungary)",
+    "Russian": "Russian (Russia)",
+    "Japanese": "Japanese (Japan)",
+    "Chinese": "Chinese (Mandarin, simplified)",
+    "AudioUpload": "Audio upload",
+    "ChooseFile": "Choose file",
+    "AudioType": "Audio type",
+    "BasicRecording": "Basic recording",
+    "PhoneVideoCall": "Phone / video call",
+    "MultipleUploadError": "You can upload only one file at once.",
+    "FileNameError": "File name is required",
+    "LanguageError": "Language is required",
+    "UploadedFileError": "File is required"
+  },
+  "EmailForm": {
+    "Header": "Send an email",
+    "EmailAddress": "Email address",
+    "FileNameRequired": "File name is required",
+    "IncorrectEmailAddressFormat": "Email address format is incorrect",
+    "Send": "Send",
+    "Close": "Close"
+  },
+  "TranscribeDialog": {
+    "Header": "Transcribe audio file {{fileName}}",
+    "TranscribeFullAudio": "Transcribe full audio",
+    "TranscribePartOfTheAudio": "Transcribe a part of the audio",
+    "TimeStart": "Time start",
+    "TimeEnd": "Time end",
+    "Transcribe": "Transcribe",
+    "Close": "Close",
+    "ErrorMessage": "Start time must be less than end time"
+  },
+  "TranscribeItemComponent": {
+    "Accuracy": "% accuracy",
+    "ErrorMessage": "Couldn't be transcribed"
+  },
+  "NotFoundPage": {
+    "404": "404",
+    "PageNotFound": "Page Not Found",
+    "NotFoundText": "It looks like you found a glitch in the matrix...",
+    "BackToDashboard": "&larr; Back to Dashboard"
+  },
+  "RegisterUserPage": {
+    "ImageText": "Login process is in progress",
+    "LoginInProgress": "Login process is in progress. Please, do not refresh web page."
+  },
+  "FilesPage": {
+    "Files": "Files",
+    "FilesOverview": "Files Overview",
+    "CreateNew": "Create new",
+    "Name": "Name",
+    "DateCreated": "Date created",
+    "Status": "Status",
+    "Actions": "Actions",
+    "Transcribe": "Transcribe",
+    "Edit": "Edit",
+    "Detail": "Detail",
+    "SendEmail": "Send an email",
+    "Delete": "Delete",
+    "DeleteActionMessage": "Are you sure that you want to delete file {{fileName}}?"
+  },
+  "FileDetailPage": {
+    "SendToEmail": "Send to email",
+    "Transcript": "Transcript"
+  },
+  "CreateFilePage": {
+    "CreateNewFile": "Create new file",
+    "Create": "Create"
+  },
+  "EditFilePage": {
+    "EditFile": "Edit file",
+    "Edit": "Edit"
+  },
+  "MessagesPage": {
+    "Messages": "Messages"
+  },
+  "MessageDetailPage": {
+    "Messages": "Messages",
+    "NotFound": "Notification is not found"
+  },
+  "RecycleBinPage": {
+    "RecycleBin": "Recycle Bin",
+    "RestoreRecycleBin": "Restore Recycle Bin",
+    "EmptyRecycleBin": "Empty Recycle Bin",
+    "Restore": "Restore",
+    "Delete": "Delete",
+    "RestoreMessage": "Are you sure that you want to restore file {{fileName}}?",
+    "DeleteMessage": "Are you sure that you want to permanently delete file {{fileName}}?",
+    "Summary": "Are you sure?",
+    "RestoreAllMessage": "Confirm to restore all files",
+    "DeleteAllMessage": "Confirm to permanently delete all files"
+  },
+  "AccountPage": {
+    "Profile": "Profile",
+    "RemainingTime": "Remaining time:",
+    "EditProfile": "Edit profile",
+    "ResetPassword": "Reset password"
+  },
+  "RecognitionState": {
+    "Ready": "Ready",
+    "InProgress": "In progress",
+    "Completed": "Completed"
+  },
+  "SuccessMessage": {
+    "CreateAudioFile": "Audio file {{fileName}} was successfully created",
+    "UpdateAudioFile": "Audio file {{fileName}} was successfully updated",
+    "DeleteAudioFile": "The file {{fileItem}} was successfully deleted",
+    "SendEmail": "An email was successfully sent",
+    "RestoreAudioFile": "Audio file was successfully restored",
+    "RestoreAllAudioFile": "Audio files were successfully restored",
+    "PermanentDeleteAudioFile": "Audio file was successfully permanently deleted",
+    "PermanentDeleteAllAudioFile": "Audio files were successfully permanently deleted",
+    "UpdateTranscript": "Transcript was updated",
+    "StartProcessing": "The file {{name}} started processing"
+  },
+  "Errors": {
+    "RecognitionError": "File {{fileName}} was not successfully transcribed. Please try it again or contact us."
+  },
+  "ErrorCode": {
+    "EC100": "Uploaded file was not found",
+    "EC101": "File was not found",
+    "EC103": "File is already processing",
+    "EC104": "File is not completely uploaded. Please try again later",
+    "EC200": "Language is not supported",
+    "EC201": "Audio file is not supported",
+    "EC203": "Audio type is not supported",
+    "EC204": "Start time must be less than end time",
+    "EC205": "End time must be less than total time of the recording",
+    "EC300": "Your subscription does not have enough free minutes",
+    "EC303": "It's only possible to transcribe one file at a time. Please wait until your transcription will be finished",
+    "EC304": "Too many attempts to start transcription. Please contact us",
+    "EC500": "System is under maintenance. Please try again later.",
+    "None": "Error occurred, please try again later",
+    "Unauthorized": "Error occurred, please try again later"
+  }
+}

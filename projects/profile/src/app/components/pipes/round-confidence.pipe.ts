@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class RoundConfidencePipe implements PipeTransform {
 
-    public transform(value: number): any {
+    public transform(value: number): number {
         return Math.round(value * 100);
     }
 

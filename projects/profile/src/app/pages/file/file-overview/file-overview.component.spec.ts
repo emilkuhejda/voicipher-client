@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { TranslateService } from '@ngx-translate/core';
+import { RecognitionStateKeyPipe } from '@profile/components/pipes/recognition-state-key.pipe';
 import { ConfirmationService } from 'primeng/api';
 import { ChipModule } from 'primeng/chip';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -17,7 +18,7 @@ describe('FileOverviewComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [FileOverviewComponent, TranslateMockPipe],
+            declarations: [FileOverviewComponent, TranslateMockPipe, RecognitionStateKeyPipe],
             providers: [
                 provideMockStore(),
                 {
