@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { environment } from '@home/environment';
 import { DynamicScriptLoaderService } from '@home/service/dynamic-script-loader.service';
 
 @Component({
@@ -18,6 +19,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.dynamicScriptLoaderService.removeScript('script');
     }
 
-    public login(): void { }
+    public getProfileUrl(): string {
+        return environment.profileUrl;
+    }
 
 }

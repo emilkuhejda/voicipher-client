@@ -5,6 +5,7 @@ import { PagePath } from '@home/service/types';
 import { takeUntil } from 'rxjs/operators';
 import { StorageService } from '@home/service/storage.service';
 import { RouterService } from '@home/service/router.service';
+import { environment } from '@home/environment';
 
 @Component({
     selector: 'app-root',
@@ -29,6 +30,10 @@ export class AppComponent implements OnInit, OnDestroy {
     public ngOnDestroy(): void {
         this.destroy$.next();
         this.destroy$.unsubscribe();
+    }
+
+    public getProfileUrl(): string {
+        return environment.profileUrl;
     }
 
     public getLink(path: PagePath): string[] {

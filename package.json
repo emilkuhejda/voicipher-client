@@ -8,6 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "home:build": "ng build --prod --project=home",
+    "profile:build": "ng build --prod --project=profile",
+    "control-panel:build": "ng build --prod --project=control-panel",
     "home": "ng serve --project=home",
     "profile": "ng serve --project=profile",
     "control-panel": "ng serve --project=control-panel"
