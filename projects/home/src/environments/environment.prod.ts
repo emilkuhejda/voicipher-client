@@ -3,6 +3,6 @@ export const environment = {
     defaultLanguage: 'en',
     languages: ['en', 'sk'],
     storage: localStorage,
-    profileUrl: 'https://profile.voicipher.com/',
+    profileUrl: 'https://voicipher.com/profile/',
     webApiUrl: 'http://voc-net.azurewebsites.net/'
 };
