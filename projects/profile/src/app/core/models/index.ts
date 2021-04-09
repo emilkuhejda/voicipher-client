@@ -1,4 +1,4 @@
-import { AudioFile } from './audio-file';
+import { AudioFile, Convert } from './audio-file';
 import { ErrorResponse } from './error-response';
 import { FileFormData } from './file-form-data';
 import { Identity } from './identity';
@@ -14,6 +14,7 @@ import { UserRegistration } from './user-registration';
 
 export {
     AudioFile,
+    Convert as AudioFileConvert,
     ErrorResponse,
     FileFormData,
     Identity,

@@ -1,6 +1,6 @@
 import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AudioFile, FileFormData, ProcessingProgress, TranscribeModel } from '@profile/core/models';
+import { AudioFile, AudioFileConvert, FileFormData, ProcessingProgress, TranscribeModel } from '@profile/core/models';
 import { OkModel } from '@profile/core/models/ok.model';
 import { environment } from '@profile/environment';
 import { Observable } from 'rxjs';
@@ -18,7 +18,7 @@ export class FileService {
 
     public getAll(): Observable<AudioFile[]> {
         return this.httpClient.get<AudioFile[]>(this.routingService.getAudioFilesUrl())
-            .pipe(map(audioFiles => audioFiles.map(x => this.mapAudioFile(x))));
+            .pipe(map(audioFiles => audioFiles.map(x => AudioFileConvert.toAudioFile(x))));
     }
 
     public upload(fileFormData: FileFormData): Observable<HttpEvent<unknown>> {
@@ -104,7 +104,7 @@ export class FileService {
     public getDeletedAudioFiles(): Observable<AudioFile[]> {
         return this.httpClient
             .get<AudioFile[]>(this.routingService.getTemporaryDeletedFileItemsUrl())
-            .pipe(map(audioFiles => audioFiles.map(x => this.mapAudioFile(x))));
+            .pipe(map(audioFiles => audioFiles.map(x => AudioFileConvert.toAudioFile(x))));
     }
 
     public getProcessingProgress(audioFileId: string): Observable<ProcessingProgress> {
@@ -114,13 +114,6 @@ export class FileService {
     public sendEmail(audioFileId: string, recipient: string): Observable<OkModel> {
         const body = { fileItemId: audioFileId, recipient };
         return this.httpClient.post<OkModel>(this.routingService.getEmailUrl(), body);
-    }
-
-    private mapAudioFile(audioFile: AudioFile): AudioFile {
-        audioFile.dateCreated = new Date(audioFile.dateCreated);
-        audioFile.dateProcessedUtc = audioFile.dateProcessedUtc ? new Date(audioFile.dateProcessedUtc) : null;
-        audioFile.dateUpdatedUtc = new Date(audioFile.dateUpdatedUtc);
-        return audioFile;
     }
 
 }
