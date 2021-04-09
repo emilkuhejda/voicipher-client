@@ -1,9 +1,8 @@
-import { AudioFile, Convert } from './audio-file';
+import { AudioFile, Convert as AudioFileConvert } from './audio-file';
 import { ErrorResponse } from './error-response';
 import { FileFormData } from './file-form-data';
 import { Identity } from './identity';
-import { InformationMessage } from './information-message';
-import { LanguageVersion } from './language-version';
+import { InformationMessage, Convert as InformationMessageConvert, LanguageVersion } from './information-message';
 import { RecognitionAlternative } from './recognition-alternative';
 import { RecognitionWordInfo } from './recognition-word-info';
 import { TranscribeItem } from './transcribe-item';
@@ -14,11 +13,12 @@ import { UserRegistration } from './user-registration';
 
 export {
     AudioFile,
-    Convert as AudioFileConvert,
+    AudioFileConvert,
     ErrorResponse,
     FileFormData,
     Identity,
     InformationMessage,
+    InformationMessageConvert,
     LanguageVersion,
     RecognitionAlternative,
     RecognitionWordInfo,

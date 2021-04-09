@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { InformationMessage } from '@profile/core/models';
+import { InformationMessage, InformationMessageConvert } from '@profile/core/models';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RoutingService } from './routing.service';
@@ -53,10 +53,8 @@ export class InformationMessageService {
     }
 
     private mapMessage(message: InformationMessage, openedMessages: string[]): InformationMessage {
-        message.dateUpdated = new Date(message.dateUpdated);
-        message.datePublished = new Date(message.datePublished);
-        message.wasOpened = openedMessages.includes(message.id);
-        return message;
+        const wasOpened = openedMessages.includes(message.id);
+        return InformationMessageConvert.toInformationMessage(message, wasOpened);
     }
 
 }
