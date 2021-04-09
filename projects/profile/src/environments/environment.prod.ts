@@ -4,6 +4,7 @@ export const environment = {
     languages: ['en', 'sk'],
     storage: localStorage,
     applicationId: 'ef036280-6a26-421a-a258-c51c8e98b99c',
+    homeUrl: 'https://voicipher.com/',
     webApiUrl: 'http://voc-net.azurewebsites.net/',
     tenantConfig: {
         tenant: 'voicipher.onmicrosoft.com',

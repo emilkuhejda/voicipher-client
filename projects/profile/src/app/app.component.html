@@ -1,6 +1,6 @@
 <voc-main>
     <voc-sidebar sidebar [headingText]="'Sidebar.Overview' | translate" [dataItems]="sidebarItems">
-        <a [routerLink]="['/']" sidebar-brand>{{ 'Voicipher' | translate }}</a>
+        <a [href]="getHomeUrl()" sidebar-brand>{{ 'Voicipher' | translate }}</a>
     </voc-sidebar>
     <ng-container *ngIf="identity$ | async as identity">
         <voc-topbar topbar avatarText="{{identity.givenName}} {{identity.familyName}}">

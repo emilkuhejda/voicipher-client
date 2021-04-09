@@ -36,7 +36,8 @@
                             'AppPage.Contact' | translate }}</a>
                     </li>
                 </ul>
-                <a class="btn btn-outline-primary text-white ml-3">{{ 'AppPage.SignUp' | translate }}</a>
+                <a class="btn btn-outline-primary text-white ml-3" [href]="getProfileUrl()">{{ 'AppPage.SignUp' |
+                    translate }}</a>
             </div>
         </nav>
     </div>
@@ -97,12 +98,12 @@
                                 [className]="currentLanguage == 'en' ? 'text-light' : 'text-color'">{{
                                 'Language.English' | translate }}</a>
                         </li>
-                        <li class="list-inline-item">
+                        <!-- <li class="list-inline-item">
                             | &nbsp;
                             <a (click)="changeLanguage('sk')"
                                 [className]="currentLanguage == 'sk' ? 'text-light' : 'text-color'">{{ 'Language.Slovak'
                                 | translate }}</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <div class="col-md-4 text-md-right text-center">

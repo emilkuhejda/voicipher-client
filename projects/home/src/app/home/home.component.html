@@ -10,7 +10,7 @@
                 <p class="text-dark mb-4 font-weight-bold perex">{{ 'HomePage.BannerText3' | translate }}</p>
                 <ul class="list-inline">
                     <li class="list-inline-item mx-1 my-2">
-                        <a (click)="login()" class="btn btn-outline-primary">
+                        <a [href]="getProfileUrl()" class="btn btn-outline-primary">
                             <i class="fa fa-desktop text-secondary mr-3 transition"></i>{{ 'HomePage.Web' | translate }}
                         </a>
                     </li>
@@ -230,7 +230,7 @@
             <div class="w-100">
                 <ul class="list-inline text-center">
                     <li class="list-inline-item mx-1 my-2">
-                        <a (click)="login()" class="btn btn-outline-primary text-white border-white">
+                        <a [href]="getProfileUrl()" class="btn btn-outline-primary text-white border-white">
                             <i class="fa fa-desktop text-white mr-3 transition"></i>{{ 'HomePage.Web' | translate }}
                         </a>
                     </li>
