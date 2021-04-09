@@ -29,10 +29,8 @@ export interface LanguageVersion {
     sentOnAndroid: boolean;
 }
 
-// Converts JSON strings to/from your types
-// and asserts the results of JSON.parse at runtime
 export class Convert {
-    public static toInformationMessage(informationMessage: InformationMessage, wasOpened: boolean): InformationMessage {
+    public static castProperties(informationMessage: InformationMessage, wasOpened: boolean): InformationMessage {
         let message = cast(informationMessage, r('InformationMessage')) as InformationMessage;
         message.wasOpened = wasOpened;
         return message;

@@ -28,10 +28,8 @@ export interface AudioFile {
     isDeleted: boolean;
 }
 
-// Converts JSON strings to/from your types
-// and asserts the results of JSON.parse at runtime
 export class Convert {
-    public static toAudioFile(audioFile: AudioFile): AudioFile {
+    public static castProperties(audioFile: AudioFile): AudioFile {
         return cast(audioFile, r('AudioFile'));
     }
 

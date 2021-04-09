@@ -18,7 +18,7 @@ export class FileService {
 
     public getAll(): Observable<AudioFile[]> {
         return this.httpClient.get<AudioFile[]>(this.routingService.getAudioFilesUrl())
-            .pipe(map(audioFiles => audioFiles.map(x => AudioFileConvert.toAudioFile(x))));
+            .pipe(map(audioFiles => audioFiles.map(x => AudioFileConvert.castProperties(x))));
     }
 
     public upload(fileFormData: FileFormData): Observable<HttpEvent<unknown>> {
@@ -104,7 +104,7 @@ export class FileService {
     public getDeletedAudioFiles(): Observable<AudioFile[]> {
         return this.httpClient
             .get<AudioFile[]>(this.routingService.getTemporaryDeletedFileItemsUrl())
-            .pipe(map(audioFiles => audioFiles.map(x => AudioFileConvert.toAudioFile(x))));
+            .pipe(map(audioFiles => audioFiles.map(x => AudioFileConvert.castProperties(x))));
     }
 
     public getProcessingProgress(audioFileId: string): Observable<ProcessingProgress> {

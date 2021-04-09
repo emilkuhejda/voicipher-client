@@ -54,7 +54,7 @@ export class InformationMessageService {
 
     private mapMessage(message: InformationMessage, openedMessages: string[]): InformationMessage {
         const wasOpened = openedMessages.includes(message.id);
-        return InformationMessageConvert.toInformationMessage(message, wasOpened);
+        return InformationMessageConvert.castProperties(message, wasOpened);
     }
 
 }
