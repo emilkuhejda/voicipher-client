@@ -1,9 +1,6 @@
 import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AudioFile } from '@profile/core/models/audio-file';
-import { FileFormData } from '@profile/core/models/file-form-data';
-import { TranscribeModel } from '@profile/core/models/transcribe-model';
-import { TranscribingAudio } from '@profile/core/models/transcribing-audio';
+import { AudioFile, FileFormData, TranscribeModel, TranscribingAudio } from '@profile/core/models';
 import { environment } from '@profile/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

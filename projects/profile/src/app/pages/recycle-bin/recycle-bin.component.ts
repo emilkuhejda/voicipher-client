@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { AudioFile } from '@profile/core/models/audio-file';
+import { AudioFile } from '@profile/core/models';
 import { RecycleBinPageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
 import { getRecycleBinAudioFiles } from '@profile/state/selectors';

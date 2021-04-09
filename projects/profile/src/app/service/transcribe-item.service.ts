@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TranscribeItem } from '@profile/core/models/transcribe-item';
+import { TranscribeItem } from '@profile/core/models';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.prod';
 import { RoutingService } from './routing.service';

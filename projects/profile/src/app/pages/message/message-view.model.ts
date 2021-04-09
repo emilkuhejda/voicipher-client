@@ -1,5 +1,4 @@
-import { InformationMessage } from '@profile/core/models/information-message';
-import { LanguageVersion } from '@profile/core/models/language-version';
+import { InformationMessage, LanguageVersion } from '@profile/core/models';
 import { Language } from '@profile/core/types/language';
 import { MessageModel } from 'projects/voc-components/src/public-api';
 

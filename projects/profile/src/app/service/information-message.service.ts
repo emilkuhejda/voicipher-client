@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { InformationMessage } from '@profile/core/models/information-message';
+import { InformationMessage } from '@profile/core/models';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RoutingService } from './routing.service';

@@ -6,7 +6,7 @@ import { StorageService } from './storage.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '@profile/state/app.state';
 import { AudioFilePageAction } from '@profile/state/actions';
-import { TranscribingAudio } from '@profile/core/models/transcribing-audio';
+import { TranscribingAudio } from '@profile/core/models';
 import { RecognitionState } from '@profile/core/types/recognition-state';
 
 @Injectable()

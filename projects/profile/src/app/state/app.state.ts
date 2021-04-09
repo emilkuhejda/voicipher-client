@@ -1,15 +1,17 @@
 import { ActionReducerMap } from '@ngrx/store';
-import { Identity } from '@profile/core/models';
-import { AudioFile } from '@profile/core/models/audio-file';
-import { InformationMessage } from '@profile/core/models/information-message';
-import { TranscribeItem } from '@profile/core/models/transcribe-item';
-import { UploadedFile } from '@profile/core/models/uploaded-file';
+import {
+    AudioFile,
+    Identity,
+    InformationMessage,
+    TranscribeItem,
+    TranscribingAudio,
+    UploadedFile
+} from '@profile/core/models';
 import { fileReducer } from './reducers/audio-file.reducers';
 import { configReducer } from './reducers/config.reducers';
 import { accountReducer } from './reducers/account.reducers';
 import { messageReducer } from './reducers/message.reducers';
 import { recycleBinReducer } from './reducers/recycle-bin.reducers';
-import { TranscribingAudio } from '@profile/core/models/transcribing-audio';
 
 interface BlobSource {
     transcribeItemId: string;

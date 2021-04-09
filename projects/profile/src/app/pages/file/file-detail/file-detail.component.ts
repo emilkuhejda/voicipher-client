@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { SendEmailDialogComponent } from '@profile/components/send-email-dialog/send-email-dialog.component';
 import { TranscribeItemViewModel } from '@profile/components/transcribe-item/transcribe-item-view.model';
-import { AudioFile } from '@profile/core/models/audio-file';
+import { AudioFile } from '@profile/core/models';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
 import { getCurrentAudioFile, getCurrentTranscribeItems } from '@profile/state/selectors';

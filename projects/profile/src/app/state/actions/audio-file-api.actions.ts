@@ -1,7 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { AudioFile } from '@profile/core/models/audio-file';
-import { TranscribeItem } from '@profile/core/models/transcribe-item';
-import { TranscribingAudio } from '@profile/core/models/transcribing-audio';
+import { AudioFile, TranscribeItem, TranscribingAudio } from '@profile/core/models';
 
 export const loadCurrentAudioFileSuccess = createAction(
     '[Audio File API] Load current audio file success',

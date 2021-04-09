@@ -2,7 +2,7 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
-import { ErrorResponse } from '@profile/core/models/error-response';
+import { ErrorResponse } from '@profile/core/models';
 import { FileService } from '@profile/service/file.service';
 import { TranscribeItemService } from '@profile/service/transcribe-item.service';
 import { catchError, concatMap, map, mergeMap, switchMap } from 'rxjs/operators';

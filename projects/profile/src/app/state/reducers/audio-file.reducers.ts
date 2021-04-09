@@ -1,6 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { AudioFile } from '@profile/core/models/audio-file';
-import { TranscribingAudio } from '@profile/core/models/transcribing-audio';
+import { TranscribingAudio, AudioFile } from '@profile/core/models';
 import { AudioFileApiAction, AudioFilePageAction } from '../actions';
 import { FileState } from '../app.state';
 

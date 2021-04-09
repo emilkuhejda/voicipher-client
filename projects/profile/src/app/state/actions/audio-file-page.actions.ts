@@ -1,8 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { AudioFile } from '@profile/core/models/audio-file';
-import { FileFormData } from '@profile/core/models/file-form-data';
-import { TranscribeModel } from '@profile/core/models/transcribe-model';
-import { TranscribingAudio } from '@profile/core/models/transcribing-audio';
+import { FileFormData, AudioFile, TranscribeModel, TranscribingAudio } from '@profile/core/models';
 import { RecognitionState } from '@profile/core/types/recognition-state';
 
 export const loadCurrentAudioFileRequest = createAction(
