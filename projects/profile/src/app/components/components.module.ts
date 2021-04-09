@@ -13,13 +13,15 @@ import { TranscribeDialogComponent } from './transcribe-dialog/transcribe-dialog
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { MessagesModule } from 'primeng/messages';
 import { NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { RecognitionStateKeyPipe } from './pipes/recognition-state-key.pipe';
 
 const components = [
     FileFormComponent,
     TranscribeItemComponent,
     TranscribeDialogComponent,
     SendEmailDialogComponent,
-    RoundConfidencePipe
+    RoundConfidencePipe,
+    RecognitionStateKeyPipe
 ];
 
 @NgModule({

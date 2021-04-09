@@ -72,6 +72,10 @@ export class RoutingService {
         return environment.webApiUrl + 'api/v1/subscriptions/remaining-time/';
     }
 
+    public getCacheItemUrl(): string {
+        return environment.webApiUrl + 'api/v1/cache/';
+    }
+
     public getMessageHubUrl(): string {
         return environment.webApiUrl + 'api/message-hub/';
     }
