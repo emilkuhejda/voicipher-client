@@ -166,7 +166,7 @@ export class AudioFileEffects {
             ofType(AudioFilePageAction.loadProcessingProgressRequest),
             concatMap(action => this.fileService.getProcessingProgress(action.audioFileId)
                 .pipe(
-                    map(transcribingAudio => AudioFileApiAction.loadProcessingProgressSuccess({ transcribingAudio }))
+                    map(processingProgress => AudioFileApiAction.loadProcessingProgressSuccess({ processingProgress }))
                 ))
         ));
 

@@ -8,7 +8,7 @@ import { RecognitionAlternative } from './recognition-alternative';
 import { RecognitionWordInfo } from './recognition-word-info';
 import { TranscribeItem } from './transcribe-item';
 import { TranscribeModel } from './transcribe-model';
-import { TranscribingAudio } from './transcribing-audio';
+import { ProcessingProgress } from './processing-progress';
 import { UploadedFile } from './uploaded-file';
 import { UserRegistration } from './user-registration';
 
@@ -23,7 +23,7 @@ export {
     RecognitionWordInfo,
     TranscribeItem,
     TranscribeModel,
-    TranscribingAudio,
+    ProcessingProgress,
     UploadedFile,
     UserRegistration
 };

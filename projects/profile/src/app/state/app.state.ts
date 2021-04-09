@@ -3,8 +3,8 @@ import {
     AudioFile,
     Identity,
     InformationMessage,
+    ProcessingProgress,
     TranscribeItem,
-    TranscribingAudio,
     UploadedFile
 } from '@profile/core/models';
 import { fileReducer } from './reducers/audio-file.reducers';
@@ -30,7 +30,7 @@ export interface FileState {
     currentUploadProgress: number;
     currentFileIdentifier: string;
     uploadedFiles: UploadedFile[];
-    currentTranscribingAudio: TranscribingAudio;
+    currentProcessingProgress: ProcessingProgress;
     currentAudioFile: AudioFile | undefined;
     currentAudioBlobSource: BlobSource;
     currentTranscribeItems: TranscribeItem[];

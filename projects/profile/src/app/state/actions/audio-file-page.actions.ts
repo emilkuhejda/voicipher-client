@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { FileFormData, AudioFile, TranscribeModel, TranscribingAudio } from '@profile/core/models';
+import { FileFormData, AudioFile, TranscribeModel, ProcessingProgress } from '@profile/core/models';
 import { RecognitionState } from '@profile/core/types/recognition-state';
 
 export const loadCurrentAudioFileRequest = createAction(
@@ -58,7 +58,7 @@ export const loadProcessingProgressRequest = createAction(
 
 export const changeRecognitionProgressRequest = createAction(
     '[Audio File Page] Change recognition progress request',
-    props<{ transcribingAudio: TranscribingAudio }>()
+    props<{ processingProgress: ProcessingProgress }>()
 );
 
 export const changeRecognitionStateRequest = createAction(
