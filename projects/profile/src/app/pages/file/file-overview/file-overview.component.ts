@@ -43,7 +43,7 @@ export class FileOverviewComponent implements OnInit, OnDestroy {
                 filter(audioFiles => audioFiles.length > 0)
             )
             .subscribe(audioFiles => audioFiles
-                .forEach(audioFile => this.store.dispatch(AudioFilePageAction.LoadProcessingProgressRequest({
+                .forEach(audioFile => this.store.dispatch(AudioFilePageAction.loadProcessingProgressRequest({
                     audioFileId: audioFile.id
                 }))));
     }

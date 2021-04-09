@@ -166,7 +166,7 @@ export const fileReducer = createReducer<FileState>(
         ...state,
         error: action.error
     })),
-    on(AudioFileApiAction.LoadProcessingProgressSuccess, (state, action): FileState => ({
+    on(AudioFileApiAction.loadProcessingProgressSuccess, (state, action): FileState => ({
         ...state,
         currentTranscribingAudio: { ...action.transcribingAudio }
     })),

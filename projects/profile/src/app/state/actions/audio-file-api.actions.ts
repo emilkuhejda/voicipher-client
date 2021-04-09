@@ -87,7 +87,7 @@ export const startProcessingAudioFileFailure = createAction(
     props<{ error: string }>()
 );
 
-export const LoadProcessingProgressSuccess = createAction(
+export const loadProcessingProgressSuccess = createAction(
     '[Audio File API] Get processing progress success',
     props<{ transcribingAudio: TranscribingAudio }>()
 );
