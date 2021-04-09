@@ -29,6 +29,8 @@ export interface LanguageVersion {
     sentOnAndroid: boolean;
 }
 
+/* eslint-disable */
+
 export class Convert {
     public static castProperties(informationMessage: InformationMessage, wasOpened: boolean): InformationMessage {
         let message = cast(informationMessage, r('InformationMessage')) as InformationMessage;
@@ -193,3 +195,5 @@ const typeMap: any = {
         { json: 'sentOnAndroid', js: 'sentOnAndroid', typ: true },
     ], false),
 };
+
+/* eslint-enable */

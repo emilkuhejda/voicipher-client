@@ -28,6 +28,8 @@ export interface AudioFile {
     isDeleted: boolean;
 }
 
+/* eslint-disable */
+
 export class Convert {
     public static castProperties(audioFile: AudioFile): AudioFile {
         return cast(audioFile, r('AudioFile'));
@@ -189,3 +191,5 @@ const typeMap: any = {
         { json: 'isDeleted', js: 'isDeleted', typ: true },
     ], false),
 };
+
+/* eslint-enable */
