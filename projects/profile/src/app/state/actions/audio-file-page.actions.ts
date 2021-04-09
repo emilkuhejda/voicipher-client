@@ -54,6 +54,11 @@ export const startProcessingAudioFileRequest = createAction(
     props<{ transcribeModel: TranscribeModel }>()
 );
 
+export const LoadProcessingProgressRequest = createAction(
+    '[Audio File Page] Load processing progress request',
+    props<{ audioFileId: string }>()
+);
+
 export const changeRecognitionProgressRequest = createAction(
     '[Audio File Page] Change recognition progress request',
     props<{ transcribingAudio: TranscribingAudio }>()

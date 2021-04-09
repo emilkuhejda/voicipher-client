@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AudioFile } from '@profile/core/models/audio-file';
 import { FileFormData } from '@profile/core/models/file-form-data';
 import { TranscribeModel } from '@profile/core/models/transcribe-model';
+import { TranscribingAudio } from '@profile/core/models/transcribing-audio';
 import { environment } from '@profile/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -106,6 +107,10 @@ export class FileService {
         return this.httpClient
             .get<AudioFile[]>(this.routingService.getTemporaryDeletedFileItemsUrl())
             .pipe(map(audioFiles => audioFiles.map(x => this.mapAudioFile(x))));
+    }
+
+    public getProcessingProgress(audioFileId: string): Observable<TranscribingAudio> {
+        return this.httpClient.get<TranscribingAudio>(this.routingService.getCacheItemUrl() + audioFileId);
     }
 
     public sendEmail(audioFileId: string, recipient: string): Observable<any> {

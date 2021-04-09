@@ -161,6 +161,15 @@ export class AudioFileEffects {
                 ))
         ));
 
+    public loadProgress$ = createEffect(() => this.action$
+        .pipe(
+            ofType(AudioFilePageAction.LoadProcessingProgressRequest),
+            concatMap(action => this.fileService.getProcessingProgress(action.audioFileId)
+                .pipe(
+                    map(transcribingAudio => AudioFileApiAction.LoadProcessingProgressSuccess({ transcribingAudio }))
+                ))
+        ));
+
     public displayError$ = createEffect(() => this.action$
         .pipe(
             ofType(AudioFilePageAction.displayRecognitionErrorRequest),

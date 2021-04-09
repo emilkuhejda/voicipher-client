@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
-import { getAudioFileViewModels } from '@profile/state/selectors';
+import { getAudioFiles, getAudioFileViewModels } from '@profile/state/selectors';
 import { ConfirmationService } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SendEmailDialogComponent } from '@profile/components/send-email-dialog/send-email-dialog.component';
 import { TranscribeDialogComponent } from '@profile/components/transcribe-dialog/transcribe-dialog.component';
-import { map } from 'rxjs/operators';
+import { filter, map, takeUntil, tap } from 'rxjs/operators';
 import { AudioFileViewModel } from '@profile/core/models/view-models';
 
 @Component({
@@ -18,7 +18,8 @@ import { AudioFileViewModel } from '@profile/core/models/view-models';
     templateUrl: './file-overview.component.html',
     styleUrls: ['./file-overview.component.scss']
 })
-export class FileOverviewComponent implements OnInit {
+export class FileOverviewComponent implements OnInit, OnDestroy {
+    private destroy$: Subject<void> = new Subject<void>();
 
     public audioFile$: Observable<AudioFileViewModel[]> | undefined;
 
@@ -31,8 +32,25 @@ export class FileOverviewComponent implements OnInit {
 
     public ngOnInit(): void {
         this.store.dispatch(AudioFilePageAction.loadAudioFilesRequest());
-        this.audioFile$ = this.store.select(getAudioFileViewModels)
+        this.audioFile$ = this.store
+            .select(getAudioFileViewModels)
             .pipe(map(audioFiles => audioFiles.slice().sort((a, b) => b.dateCreated.getTime() - a.dateCreated.getTime())));
+
+        this.store.select(getAudioFiles)
+            .pipe(
+                takeUntil(this.destroy$),
+                map(audioFiles => audioFiles.filter(audioFile => audioFile.recognitionStateString === 'InProgress')),
+                filter(audioFiles => audioFiles.length > 0)
+            )
+            .subscribe(audioFiles => audioFiles
+                .forEach(audioFile => this.store.dispatch(AudioFilePageAction.LoadProcessingProgressRequest({
+                    audioFileId: audioFile.id
+                }))));
+    }
+
+    public ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.unsubscribe();
     }
 
     public navigateToPage(path: string, audioFileId: string): void {
