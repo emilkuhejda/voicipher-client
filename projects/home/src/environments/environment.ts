@@ -7,6 +7,7 @@ export const environment = {
     defaultLanguage: 'en',
     languages: ['en', 'sk'],
     storage: localStorage,
+    profileUrl: 'http://localhost:4100/',
     webApiUrl: 'https://localhost:5001/'
 };
 

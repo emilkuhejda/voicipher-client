@@ -8,6 +8,7 @@ export const environment = {
     languages: ['en', 'sk'],
     storage: localStorage,
     applicationId: 'ef036280-6a26-421a-a258-c51c8e98b99c',
+    homeUrl: 'http://localhost:4200/',
     webApiUrl: 'https://localhost:5001/',
     tenantConfig: {
         tenant: 'voicipher.onmicrosoft.com',

@@ -26,6 +26,7 @@ import { MessageViewModel } from './pages/message/message-view.model';
 import { Language } from './core/types/language';
 import { LanguageHelper } from './core/utils/language-helper';
 import { HubConnectionService } from './service/hub-connection.service';
+import { environment } from '@profile/environment';
 
 type ToastKey = 'primary' | 'secondary';
 
@@ -130,6 +131,10 @@ export class AppComponent implements OnInit, OnDestroy {
         this.hubConnectionService.stopConnection();
         this.destroy$.next();
         this.destroy$.unsubscribe();
+    }
+
+    public getHomeUrl(): string {
+        return environment.homeUrl;
     }
 
     public logout(): void {
