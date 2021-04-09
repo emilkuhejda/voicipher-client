@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TranscribeItem } from '@profile/core/models/transcribe-item';
+import { TranscribeItem } from '@profile/core/models';
+import { OkModel } from '@profile/core/models/ok.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.prod';
 import { RoutingService } from './routing.service';
@@ -14,18 +15,18 @@ export class TranscribeItemService {
         return this.httpClient.get<TranscribeItem[]>(this.routingService.getTranscribeItemsUrl() + audioFileId);
     }
 
-    public getAudio(transcribeItemId: string): Observable<any> {
+    public getAudio(transcribeItemId: string): Observable<Blob> {
         return this.httpClient.get(this.routingService.getTranscribeAudioUrl() + transcribeItemId, { responseType: 'blob' });
     }
 
-    public updateTranscript(transcribeItemId: string, transcript: string): Observable<any> {
+    public updateTranscript(transcribeItemId: string, transcript: string): Observable<OkModel> {
         const body = {
             transcribeItemId,
             applicationId: environment.applicationId,
             transcript
         };
 
-        return this.httpClient.put(this.routingService.getUpdateTranscriptUrl(), body);
+        return this.httpClient.put<OkModel>(this.routingService.getUpdateTranscriptUrl(), body);
     }
 
 }

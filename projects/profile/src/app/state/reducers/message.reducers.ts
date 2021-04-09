@@ -16,7 +16,7 @@ export const messageReducer = createReducer<MessageState>(
     })),
     on(MessageApiAction.loadMessagesSuccess, (state, action): MessageState => ({
         ...state,
-        messages: action.messages.slice().sort((a, b) => b.datePublished.getTime() - a.datePublished.getTime()),
+        messages: action.messages.slice().sort((a, b) => b.datePublishedUtc.getTime() - a.datePublishedUtc.getTime()),
         error: ''
     })),
     on(MessageApiAction.loadMessagesFailure, (state, action): MessageState => ({
@@ -40,7 +40,7 @@ export const messageReducer = createReducer<MessageState>(
         const updatedMessages = state.messages.map(item => item.id === action.message.id ? action.message : item);
         return {
             ...state,
-            messages: updatedMessages.slice().sort((a, b) => b.datePublished.getTime() - a.datePublished.getTime()),
+            messages: updatedMessages.slice().sort((a, b) => b.datePublishedUtc.getTime() - a.datePublishedUtc.getTime()),
             error: ''
         };
     })

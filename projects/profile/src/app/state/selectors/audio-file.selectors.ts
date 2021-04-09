@@ -27,8 +27,8 @@ export const getAudioFiles = createSelector(
 export const getAudioFileViewModels = createSelector(
     getFileFeatureState,
     state => state.audioFiles.map(audioFile => {
-        const percentageDone = state.currentTranscribingAudio.fileItemId === audioFile.id
-            ? state.currentTranscribingAudio.percentageDone
+        const percentageDone = state.currentProcessingProgress.fileItemId === audioFile.id
+            ? state.currentProcessingProgress.percentageDone
             : 0;
 
         return new AudioFileViewModel(audioFile, percentageDone);

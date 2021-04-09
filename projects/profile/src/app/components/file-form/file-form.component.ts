@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, S
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { FileFormData } from '@profile/core/models/file-form-data';
+import { FileFormData } from '@profile/core/models';
 import { LanguageHelper } from '@profile/core/utils/language-helper';
 import { AudioFilePageAction } from '@profile/state/actions';
 import { AppState } from '@profile/state/app.state';
