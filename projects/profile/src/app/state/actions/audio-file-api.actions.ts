@@ -1,7 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { AudioFile } from '@profile/core/models/audio-file';
-import { TranscribeItem } from '@profile/core/models/transcribe-item';
-import { TranscribingAudio } from '@profile/core/models/transcribing-audio';
+import { AudioFile, ProcessingProgress, TranscribeItem } from '@profile/core/models';
 
 export const loadCurrentAudioFileSuccess = createAction(
     '[Audio File API] Load current audio file success',
@@ -89,7 +87,7 @@ export const startProcessingAudioFileFailure = createAction(
 
 export const loadProcessingProgressSuccess = createAction(
     '[Audio File API] Get processing progress success',
-    props<{ transcribingAudio: TranscribingAudio }>()
+    props<{ processingProgress: ProcessingProgress }>()
 );
 
 export const sendEmailSuccess = createAction(

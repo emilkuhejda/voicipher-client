@@ -1,12 +1,11 @@
 import * as signalR from '@aspnet/signalr';
 import { Injectable } from '@angular/core';
 import { RoutingService } from './routing.service';
-import { Identity } from '@profile/core/models';
+import { Identity, ProcessingProgress } from '@profile/core/models';
 import { StorageService } from './storage.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '@profile/state/app.state';
 import { AudioFilePageAction } from '@profile/state/actions';
-import { TranscribingAudio } from '@profile/core/models/transcribing-audio';
 import { RecognitionState } from '@profile/core/types/recognition-state';
 
 @Injectable()
@@ -52,7 +51,7 @@ export class HubConnectionService {
         this.hubConnection.start();
 
         this.hubConnection.on(`${this.recognitionProgressChangedMethod}-${this.identity.id}`,
-            (transcribingAudio: TranscribingAudio) => this.onRecognitionProgressChanged(transcribingAudio));
+            (processingProgress: ProcessingProgress) => this.onRecognitionProgressChanged(processingProgress));
         this.hubConnection.on(`${this.filesListChangedMethod}-${this.identity.id}`, () => this.onFilesListChanged());
         this.hubConnection.on(`${this.recognitionStateChangedMethod}-${this.identity.id}`,
             (audioFileId: string, recognitionState: RecognitionState) => this.onRecognitionStateChanged(audioFileId, recognitionState));
@@ -77,8 +76,8 @@ export class HubConnectionService {
         this.hubConnection = undefined;
     }
 
-    private onRecognitionProgressChanged(transcribingAudio: TranscribingAudio): void {
-        this.store.dispatch(AudioFilePageAction.changeRecognitionProgressRequest({ transcribingAudio }));
+    private onRecognitionProgressChanged(processingProgress: ProcessingProgress): void {
+        this.store.dispatch(AudioFilePageAction.changeRecognitionProgressRequest({ processingProgress }));
     }
 
     private onFilesListChanged(): void {

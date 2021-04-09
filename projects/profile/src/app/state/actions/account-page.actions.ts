@@ -1,7 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Identity } from '@profile/core/models';
-import { UserRegistrationInputModel } from '@profile/core/models/input-models';
-import { UpdateUserInputModel } from '@profile/core/models/input-models/update-user.input.Model';
+import { UserRegistrationInputModel, UpdateUserInputModel } from '@profile/core/models/input-models';
 
 export const registerUserRequest = createAction(
     '[Account Page] Register user request',

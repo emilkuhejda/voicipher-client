@@ -1,5 +1,4 @@
-import { RecognitionAlternative } from '@profile/core/models/recognition-alternative';
-import { TranscribeItem } from '@profile/core/models/transcribe-item';
+import { RecognitionAlternative, TranscribeItem } from '@profile/core/models';
 import { TimeSpanWrapper } from '@profile/core/utils/time-span-wrapper';
 
 export class TranscribeItemViewModel {

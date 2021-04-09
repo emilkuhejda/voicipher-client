@@ -10,7 +10,7 @@ import { Observable, Subject } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SendEmailDialogComponent } from '@profile/components/send-email-dialog/send-email-dialog.component';
 import { TranscribeDialogComponent } from '@profile/components/transcribe-dialog/transcribe-dialog.component';
-import { filter, map, takeUntil, tap } from 'rxjs/operators';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { AudioFileViewModel } from '@profile/core/models/view-models';
 
 @Component({
@@ -34,7 +34,10 @@ export class FileOverviewComponent implements OnInit, OnDestroy {
         this.store.dispatch(AudioFilePageAction.loadAudioFilesRequest());
         this.audioFile$ = this.store
             .select(getAudioFileViewModels)
-            .pipe(map(audioFiles => audioFiles.slice().sort((a, b) => b.dateCreated.getTime() - a.dateCreated.getTime())));
+            .pipe(
+                takeUntil(this.destroy$),
+                map(audioFiles => audioFiles.slice().sort((a, b) => b.dateCreated.getTime() - a.dateCreated.getTime()))
+            );
 
         this.store.select(getAudioFiles)
             .pipe(

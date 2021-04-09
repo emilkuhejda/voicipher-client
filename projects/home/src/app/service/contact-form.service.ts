@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@home/environment';
+import { OkModel } from '@profile/core/models/ok.model';
 import { Observable } from 'rxjs';
 import { ContactFormModel } from '../domain/contact-form.model';
 
@@ -9,7 +10,7 @@ export class ContactFormService {
 
     public constructor(private httpClient: HttpClient) { }
 
-    public create(contactFormModel: ContactFormModel): Observable<any> {
-        return this.httpClient.post(`${environment.webApiUrl}api/v1/contact-form/create/`, contactFormModel);
+    public create(contactFormModel: ContactFormModel): Observable<OkModel> {
+        return this.httpClient.post<OkModel>(`${environment.webApiUrl}api/v1/contact-form/create/`, contactFormModel);
     }
 }

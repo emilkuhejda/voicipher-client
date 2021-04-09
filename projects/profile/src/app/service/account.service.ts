@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Identity, UserRegistration } from '@profile/core/models';
-import { UserRegistrationInputModel } from '@profile/core/models/input-models';
-import { UpdateUserInputModel } from '@profile/core/models/input-models/update-user.input.Model';
+import { UserRegistrationInputModel, UpdateUserInputModel } from '@profile/core/models/input-models';
 import { TimeSpanWrapper } from '@profile/core/utils/time-span-wrapper';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';

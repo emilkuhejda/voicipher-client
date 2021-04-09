@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { AudioFile } from '@profile/core/models/audio-file';
+import { AudioFile } from '@profile/core/models';
 
 export const loadAudioFilesSuccess = createAction(
     '[Recycle Bin API] Load audio files success',
