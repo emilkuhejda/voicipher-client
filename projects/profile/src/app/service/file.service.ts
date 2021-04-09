@@ -1,6 +1,7 @@
-import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AudioFile, FileFormData, ProcessingProgress, TranscribeModel } from '@profile/core/models';
+import { OkModel } from '@profile/core/models/ok.model';
 import { environment } from '@profile/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -20,7 +21,7 @@ export class FileService {
             .pipe(map(audioFiles => audioFiles.map(x => this.mapAudioFile(x))));
     }
 
-    public upload(fileFormData: FileFormData): Observable<any> {
+    public upload(fileFormData: FileFormData): Observable<HttpEvent<unknown>> {
         let params = new HttpParams();
         params = params.append('name', fileFormData.name);
         params = params.append('language', fileFormData.language);
@@ -42,7 +43,7 @@ export class FileService {
         return this.httpClient.request(uploadRequest);
     }
 
-    public update(audioFileId: string, fileFormData: FileFormData): Observable<any> {
+    public update(audioFileId: string, fileFormData: FileFormData): Observable<HttpEvent<unknown>> {
         const formData = new FormData();
         formData.append('fileItemId', audioFileId);
         formData.append('name', fileFormData.name);
@@ -64,7 +65,7 @@ export class FileService {
         return this.httpClient.request(uploadRequest);
     }
 
-    public transcribe(transcribeModel: TranscribeModel): Observable<any> {
+    public transcribe(transcribeModel: TranscribeModel): Observable<OkModel> {
         let params = new HttpParams();
         params = params.append('fileItemId', transcribeModel.audioFileId);
         params = params.append('language', transcribeModel.language);
@@ -75,29 +76,29 @@ export class FileService {
             params = params.append('endTimeSeconds', transcribeModel.endTime.toString());
         }
 
-        return this.httpClient.put(this.routingService.getTranscribeFileItemUrl(), null, { params });
+        return this.httpClient.put<OkModel>(this.routingService.getTranscribeFileItemUrl(), null, { params });
     }
 
-    public delete(audioFileId: string): Observable<any> {
+    public delete(audioFileId: string): Observable<OkModel> {
         let params = new HttpParams();
         params = params.append('fileItemId', audioFileId);
         params = params.append('applicationId', environment.applicationId);
 
-        return this.httpClient.delete(this.routingService.getDeleteFileItemUrl(), { params });
+        return this.httpClient.delete<OkModel>(this.routingService.getDeleteFileItemUrl(), { params });
     }
 
-    public restoreAll(audioFilesIds: string[]): Observable<any> {
+    public restoreAll(audioFilesIds: string[]): Observable<OkModel> {
         let params = new HttpParams();
         params = params.append('applicationId', environment.applicationId);
 
-        return this.httpClient.put(this.routingService.getRestoreAllUrl(), audioFilesIds, { params });
+        return this.httpClient.put<OkModel>(this.routingService.getRestoreAllUrl(), audioFilesIds, { params });
     }
 
-    public permanentDeleteAll(audioFilesIds: string[]): Observable<any> {
+    public permanentDeleteAll(audioFilesIds: string[]): Observable<OkModel> {
         let params = new HttpParams();
         params = params.append('applicationId', environment.applicationId);
 
-        return this.httpClient.put(this.routingService.getPermanentDeleteAll(), audioFilesIds, { params });
+        return this.httpClient.put<OkModel>(this.routingService.getPermanentDeleteAll(), audioFilesIds, { params });
     }
 
     public getDeletedAudioFiles(): Observable<AudioFile[]> {
@@ -110,9 +111,9 @@ export class FileService {
         return this.httpClient.get<ProcessingProgress>(this.routingService.getCacheItemUrl() + audioFileId);
     }
 
-    public sendEmail(audioFileId: string, recipient: string): Observable<any> {
+    public sendEmail(audioFileId: string, recipient: string): Observable<OkModel> {
         const body = { fileItemId: audioFileId, recipient };
-        return this.httpClient.post(this.routingService.getEmailUrl(), body);
+        return this.httpClient.post<OkModel>(this.routingService.getEmailUrl(), body);
     }
 
     private mapAudioFile(audioFile: AudioFile): AudioFile {
