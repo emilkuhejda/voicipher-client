@@ -71,7 +71,7 @@ import { DialogService } from 'primeng/dynamicdialog';
             defaultLanguage: environment.defaultLanguage,
             loader: {
                 provide: TranslateLoader,
-                useFactory: (http: HttpClient) => new TranslateHttpLoader(http),
+                useFactory: (http: HttpClient) => new TranslateHttpLoader(http, './assets/i18n/', '.json'),
                 deps: [HttpClient]
             }
         }),
