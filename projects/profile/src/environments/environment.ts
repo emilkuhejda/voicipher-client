@@ -19,7 +19,7 @@ export const environment = {
         authorityBase: 'https://login.microsoftonline.com/tfp/',
         b2cScopes: ['https://voicipher.onmicrosoft.com/access-api/user_impersonation'],
         cacheLocation: 'localStorage',
-        redirectUri: 'http://localhost:4100/register-user/'
+        redirectUri: 'http://localhost:4100/profile/register-user/'
     }
 };
 
