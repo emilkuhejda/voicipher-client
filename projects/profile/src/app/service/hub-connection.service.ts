@@ -45,7 +45,7 @@ export class HubConnectionService {
         this.hubConnection = new signalR.HubConnectionBuilder()
             .withUrl(this.routingService.getMessageHubUrl())
             .withAutomaticReconnect(this.retryDelays)
-            .configureLogging(signalR.LogLevel.Information)
+            .configureLogging(signalR.LogLevel.None)
             .build();
 
         this.hubConnection.start();
