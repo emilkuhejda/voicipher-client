@@ -33,20 +33,6 @@ export const recycleBinReducer = createReducer<RecycleBinState>(
             error: ''
         }
     }),
-    on(RecycleBinApiAction.restoreAudioFilesSuccess, (state, action): RecycleBinState => {
-        const reducedAudioFiles = state.audioFiles.filter(x => !action.audioFileIds.includes(x.id));
-
-        return {
-            ...state,
-            audioFiles: reducedAudioFiles.slice().sort((a, b) => b.dateUpdatedUtc.getTime() - a.dateUpdatedUtc.getTime()),
-            successMessage: action.successMessage,
-            error: ''
-        };
-    }),
-    on(RecycleBinApiAction.restoreAudioFilesFailure, (state, action): RecycleBinState => ({
-        ...state,
-        error: action.error
-    })),
     on(RecycleBinPageAction.permanentDeleteAudioFilesRequest, (state, action): RecycleBinState => {
         const reducedAudioFiles = state.audioFiles.filter(x => !action.audioFileIds.includes(x.id));
 
@@ -57,7 +43,7 @@ export const recycleBinReducer = createReducer<RecycleBinState>(
             error: ''
         }
     }),
-    on(RecycleBinApiAction.permanentDeleteAudioFilesSuccess, (state, action): RecycleBinState => {
+    on(RecycleBinApiAction.OperationSuccess, (state, action): RecycleBinState => {
         const reducedAudioFiles = state.audioFiles.filter(x => !action.audioFileIds.includes(x.id));
 
         return {
@@ -67,7 +53,7 @@ export const recycleBinReducer = createReducer<RecycleBinState>(
             error: ''
         };
     }),
-    on(RecycleBinApiAction.permanentDeleteAudioFilesFailure, (state, action): RecycleBinState => ({
+    on(RecycleBinApiAction.OperationFailure, (state, action): RecycleBinState => ({
         ...state,
         error: action.error
     }))

@@ -37,14 +37,14 @@ export class RecycleBinEffects {
 
                         return this.translateService
                             .get(translationKey)
-                            .pipe(map(translation => RecycleBinApiAction.restoreAudioFilesSuccess({
+                            .pipe(map(translation => RecycleBinApiAction.OperationSuccess({
                                 audioFileIds: action.audioFileIds,
                                 successMessage: translation
                             })));
                     }),
                     catchError(() => this.translateService
                         .get('ErrorMessage')
-                        .pipe(map(translation => RecycleBinApiAction.restoreAudioFilesFailure({ error: translation }))))
+                        .pipe(map(translation => RecycleBinApiAction.OperationFailure({ error: translation }))))
                 ))
         ));
 
@@ -60,14 +60,14 @@ export class RecycleBinEffects {
 
                         return this.translateService
                             .get(translationKey)
-                            .pipe(map(translation => RecycleBinApiAction.permanentDeleteAudioFilesSuccess({
+                            .pipe(map(translation => RecycleBinApiAction.OperationSuccess({
                                 audioFileIds: action.audioFileIds,
                                 successMessage: translation
                             })));
                     }),
                     catchError(() => this.translateService
                         .get('ErrorMessage')
-                        .pipe(map(translation => RecycleBinApiAction.permanentDeleteAudioFilesFailure({ error: translation }))))
+                        .pipe(map(translation => RecycleBinApiAction.OperationFailure({ error: translation }))))
                 ))
         ));
 }
