@@ -11,22 +11,12 @@ export const loadAudioFilesFailure = createAction(
     props<{ error: string }>()
 );
 
-export const restoreAudioFilesSuccess = createAction(
-    '[Recycle Bin API] Restore audio files success',
+export const operationSuccess = createAction(
+    '[Recycle Bin API] Operation success',
     props<{ audioFileIds: string[]; successMessage: string }>()
 );
 
-export const restoreAudioFilesFailure = createAction(
-    '[Recycle Bin API] Restore audio files failure',
-    props<{ error: string }>()
-);
-
-export const permanentDeleteAudioFilesSuccess = createAction(
-    '[Recycle Bin API] Permanent delete audio files success',
-    props<{ audioFileIds: string[]; successMessage: string }>()
-);
-
-export const permanentDeleteAudioFilesFailure = createAction(
-    '[Recycle Bin API] Permanent delete audio files failure',
+export const operationFailure = createAction(
+    '[Recycle Bin API] Operation failure',
     props<{ error: string }>()
 );
