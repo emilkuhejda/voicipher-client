@@ -31,7 +31,7 @@ export const recycleBinReducer = createReducer<RecycleBinState>(
             audioFiles: reducedAudioFiles.slice().sort((a, b) => b.dateUpdatedUtc.getTime() - a.dateUpdatedUtc.getTime()),
             successMessage: '',
             error: ''
-        }
+        };
     }),
     on(RecycleBinPageAction.permanentDeleteAudioFilesRequest, (state, action): RecycleBinState => {
         const reducedAudioFiles = state.audioFiles.filter(x => !action.audioFileIds.includes(x.id));
@@ -41,9 +41,9 @@ export const recycleBinReducer = createReducer<RecycleBinState>(
             audioFiles: reducedAudioFiles.slice().sort((a, b) => b.dateUpdatedUtc.getTime() - a.dateUpdatedUtc.getTime()),
             successMessage: '',
             error: ''
-        }
+        };
     }),
-    on(RecycleBinApiAction.OperationSuccess, (state, action): RecycleBinState => {
+    on(RecycleBinApiAction.operationSuccess, (state, action): RecycleBinState => {
         const reducedAudioFiles = state.audioFiles.filter(x => !action.audioFileIds.includes(x.id));
 
         return {
@@ -53,7 +53,7 @@ export const recycleBinReducer = createReducer<RecycleBinState>(
             error: ''
         };
     }),
-    on(RecycleBinApiAction.OperationFailure, (state, action): RecycleBinState => ({
+    on(RecycleBinApiAction.operationFailure, (state, action): RecycleBinState => ({
         ...state,
         error: action.error
     }))

@@ -11,12 +11,12 @@ export const loadAudioFilesFailure = createAction(
     props<{ error: string }>()
 );
 
-export const OperationSuccess = createAction(
+export const operationSuccess = createAction(
     '[Recycle Bin API] Operation success',
     props<{ audioFileIds: string[]; successMessage: string }>()
 );
 
-export const OperationFailure = createAction(
+export const operationFailure = createAction(
     '[Recycle Bin API] Operation failure',
     props<{ error: string }>()
 );
